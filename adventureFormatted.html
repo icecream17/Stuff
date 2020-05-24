@@ -353,20 +353,20 @@
       function updateInfo() {
          // Originally the info declaration at lives: and time: wasn't indented
             
-          let info = `Player<br> location: ${locations[Player.place]} <br> ` +
+         let info = `Player<br> location: ${locations[Player.place]} <br> ` +
             `lives: ${Player.lives} <br> actions: ${Player.actions} <br> ` +
             `time: ${new Date() - time} <br><br> Inventory <br>`
       
          if (Object.keys(Player.inventory).length === 0) {
-             info += 'none'
+            info += 'none'
          } else {
-              for (let i of Object.keys(Player.inventory)) {
-                let keyInfo = `${i}: ${Player[i]} <br> `
-                  info += keyInfo
-               }
+            for (let i of Object.keys(Player.inventory)) {
+               let keyInfo = `${i}: ${Player[i]} <br> `
+               info += keyInfo
             }
+         }
       
-            $('#playerInfo').html(info)
+         $('#playerInfo').html(info)
       }
       
    </script>
