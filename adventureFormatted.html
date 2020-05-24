@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang = 'en-US'>
+   <head>
+      <!--
+         WARNING: Internet Explorer is so outdated.
+            It won't work because of 'async'
+         -->
+      <meta charset = 'utf-8'>
+      <meta name = 'description' content = 'absolutely horrible and a waste of time'>
+      <meta name = 'keywords' content = 'adventure, fun, icecream'>
+      <meta name = 'author' content = 'icecream17'>
+      <title>adventure</title>
+      <style>
+         /* Probably the "same" [effect], but oh well */
+         /* Talking about the "html" and "body" */
+         /* The textarea "inherits" */
+         html, #story {
+         font-family: monospace;
+         font-size: large;
+         }
+         @keyframes startGameBackgroundTransition {
+         from {background-color: white;}
+         to {background-color: black;}
+         }
+         body {
+         background-color: white;
+         }
+         /* "Why are you using camelCase ugh that's not what you're..." */
+         #gameMenu {
+         color: white;
+         }
+         /* Dropdown from https://www.w3schools.com/howto/howto_css_dropdown.asp */
+         .dropdown {
+         position: absolute;
+         top: 10;
+         right: 10;
+         display: inline-block;
+         }
+         .dropdownContent {
+         display: none;
+         position: absolute;
+         top: 10;
+         right: 10;
+         min-width: 160px;
+         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+         z-index: 1;
+         }
+         .dropdownContent button {
+         background-color: #1e90ff;
+         color: #fff;
+         padding: 12px 16px;
+         font-size: 16px;
+         border: none;
+         display: block;
+         }
+         .dropdownContent button:hover {background-color: #ddd;}
+         .dropdown:hover .dropdownContent {display: block;}
+         .dropdown:hover #gameMenu {background-color: #ddd;}
+         /* End of dropdown */
+         #story {
+         margin: 0;
+         }
+         #storyDiv {
+         width: 75%;
+         height: 75%;
+         overflow-y: auto;
+         border-right: 1px solid white;
+         border-bottom: 1px solid white;
+         }
+         #infoContainer {
+         position: absolute;
+         top: 10px;
+         left: 76%;
+         width: 23%;
+         border: 1px solid dodgerblue;
+         z-index: -1;
+         }
+         #playerInfo {
+         margin-top: 0;
+         padding-left: 1%;
+         border: 1px solid green;
+         }
+         #messageConsole {
+         margin-bottom: 0;
+         padding-left: 1%;
+         border: 1px solid red;
+         }
+         #playerConsoleContainer{
+         position: absolute;
+         bottom: 2%;
+         height: 22%;
+         width: 75%;
+         border-left: 1px solid orange;
+         }
+         #playerConsole {
+         margin-top: 0;
+         margin-left: 10px;
+         height: 100%;
+         width: 100%;
+         }
+      </style>
+      <!-- Jquery for the first time -->
+      <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <!-- Icons from a font. Like menu. -->
+      <link rel = "stylesheet" href = "https://fonts.googleapis.com/icon?family=Material+Icons">
+   </head>
+   <body>
+      <button onClick = "startGame()" type = "button" id = 'start'>Start game</button>
+      <button onClick = "continueGame()" type = "button" id = 'continue'>Continue</button>
+   </body>
+   <script>
+      let time;
+      
+         let chapter = 0
+         let storyLine = 1 // Actual line - this is line 93
+         // This is line 94
+      
+         const locations = [
+         	"Office (Dallas)"
+         ]
+      
+         let Player = {
+         	place: 0,
+             actions: 0, // location is a thing. no overwrite or error
+             lives: 10,
+             inventory: {}
+         }
+      
+         /*
+      
+         Credits:
+      
+         Me (icecream17)
+         Test - JS.do
+         Search - Google
+         Menu icon - Google
+         JQuery - JQuery Foundation (hosted by Google)
+         [everything] Understanding - Stack Overflow, W3 Schools, MDN, Google
+          - CSS Understanding
+          - Animation Understanding
+          - Menu Dropdown
+          - Story scroll
+          - Async attempt
+          - HTML whitespace (computerhope.com)
+      
+         */
+      
+      function startGame() {
+         	time = new Date();
+      
+         	// Is there a better way?
+             // Warning: HTML whitespace rules sacrificed for good JS whitespace
+         	document.body.innerHTML = (`
+      <div class = 'dropdown'>
+                 	<span class = "material-icons" id = 'gameMenu'>menu</span>
+                     <div class = 'dropdownContent'>
+                     	<button id = 'menuInstructions' onClick = 'menu("menuInstructions")'>
+                         Instructions </button>
+      
+                     	<button id = 'menuSettings' onClick = 'menu("menuSettings")'>
+                         Settings </button>
+      
+                     	<button id = 'menuCredits' onClick = 'menu("menuCredits")'>
+                         Credits </button>
+                     </div>
+                 </div>
+                 <div id = 'storyDiv'>
+                  <p id = 'story'>
+                  </p>
+                 </div>
+                 <div id = 'infoContainer'>
+                 	<p id = 'playerInfo'></p>
+                     <p id = 'messageConsole'></p>
+                 </div>
+                 <div id = 'playerConsoleContainer'>
+                 	<p id = 'playerConsole' contenteditable = 'true'></p>
+                 </div>
+             `)
+      
+             // Usually I like putting the => notation
+             setTimeout( function() {
+             	writeToStory(`"Hi. Welcome to SideQuest" says the director. \n` +
+                 	`"There are only 3 challenges. Simple challenges,`
+                 )
+      
+             	setTimeout ( function() {
+                 	writeToStory(`but they somehow take up the whole year.\n\nGood luck"\n` +
+                     	`\n\nA TV lights up saying "First Challenge: Go to Rowlett"\n\n` +
+                         `What? That's really easy. Just 15 miles-ish!\n` +
+                         `"SUPER FREE TREE APPLE!" a kid outside yells. gasp\n` +
+                         `Your car is <em>missing!</em> ` +
+                         `What used to be a crowded lot with no space\n` +
+                         `is now replaced by an asteroid.\n\n` +
+                         `<ol><li>What a boring presentation</li>` +
+                         `<li>Wait... they told everyone to leave everything</li></ol>`
+                     )
+                     updateInfo()
+                     $('#messageConsole').html('Welcome!')
+                     $('#playerConsole').html('<em>></em>')
+                 }, 2000)
+             }, 5000)
+      
+             $('body').css({
+             	'animation-name': 'startGameBackgroundTransition',
+             	'animation-duration': '7s',
+             	'animation-iteration-count': '1',
+                 'animation-fill-mode': 'forwards',
+                 'color': 'white'
+             })
+      
+             $('story').css({
+             	'animation-name': 'startGameBackgroundTransition',
+             	'animation-duration': '7s',
+             	'animation-iteration-count': '1',
+                 'animation-fill-mode': 'forwards',
+                 'color': 'white'
+             })
+         }
+      
+         function continueGame() {
+         	if ($('#potato').length) {
+             	$('#continue').remove()
+             } else {
+             	$('#continue').after(
+                 	'<p id = "potato">Sorry, this feature is currently unavailable</p>'
+                 )
+             }
+         }
+      
+         function menu(elementID) {
+         	let messageElement = $('#messageConsole')
+      
+         	if (elementID === 'menuInstructions') {
+             	messageElement.html('Click on the text links to play.<br><br>' +
+                 	'You can also type <em>help</em> in the "console", ' +
+                     'which is the "orange" box at the bottom with the <em>></em> symbol<br><br>' +
+                     '(Afterwards press Enter)'
+                 )
+             } else if (elementID === 'menuSettings') {
+      
+             } else if (elementID === 'menuCredits') {
+      
+             } else {
+      
+             }
+         }
+      
+         console.clear()
+      
+         function messageToStory (...messages) {
+         	// wouldn't know how to write multiple things
+         }
+      
+         function writeToStory (text, newline = '\n') {
+             async function avoidEncryption() {
+             	await writeCharacters(text + newline)
+             }
+      
+             function writeCharacters(string) {
+             	let characters = string.split('')
+      
+                 for (let i = 0; i < characters.length; i++) {
+                 	if (characters[i] === '\n') {characters[i] === '<br>'}
+                 }
+      
+                 // SOOO MANYYY PAOSSIBLE BUGGGGSSSSS!!!!!!!!!!!
+                 for (let i = 0; i < characters.length; i++) {
+                 	if (characters[i] === '<' && characters[i + 1] !== ' ') {
+                     	debugger;
+                     	for (let j = i + 1; j < characters.length;) {
+                             characters[i] += characters.splice(j, 1)
+                             if (characters[i][characters[i].length - 1] === '>') {
+                             	break;
+                             }
+                         }
+      
+                         let endtag = '</' + characters[i].slice(1, Infinity)
+                         let end = false
+                         let possEndtag = ''
+      
+                         for (let j = i + 1; !end;) {
+                         	if (characters[j] === '<') {
+                             	possEndtag += characters[j]
+                             }
+      
+                             if (possEndtag.length) {
+                             	if (characters[j] === endtag[possEndtag.length - 1]) {
+                                 	possEndtag += characters[j]
+                                 } else {
+                                 	possEndtag = ''
+                                 }
+                             }
+      
+                             if (possEndtag === endtag) {
+                             	end = true
+                             }
+      
+                             characters[i] += characters.splice(j, 1)
+                         }
+      
+                         console.log(characters[i])
+                     }
+                 }
+      
+                 console.log(string, 'start')
+      
+                 return new Promise ( resolve => {
+                 		let writeCharacterByCharacter = setInterval( function () {
+                 			let nextCharacter = characters.shift()
+      
+                 			$('#story').append(nextCharacter)
+      
+                 		    if (characters.length === 0) {
+                 		    	clearInterval(writeCharacterByCharacter)
+                 		        resolve('done!')
+                             }
+                 	    }, 10)
+                     }
+                 )
+             }
+      
+             function clickToContinue() {
+             	// can't do this yet.
+                 // would be soo great for suspense
+             }
+      
+             // amazing
+             avoidEncryption()
+         }
+      
+         function updateInfo() {
+         	let info = `Player<br> location: ${locations[Player.place]} <br> ` +
+             `lives: ${Player.lives} <br> actions: ${Player.actions} <br> ` +
+             `time: ${new Date() - time} <br><br> Inventory <br>`
+      
+             if (Object.keys(Player.inventory).length === 0) {
+             	info += 'none'
+             } else {
+             	for (let i of Object.keys(Player.inventory)) {
+                 	let keyInfo = `${i}: ${Player[i]} <br> `
+                     info += keyInfo
+                 }
+             }
+      
+             $('#playerInfo').html(info)
+         }
+      
+   </script>
+   <noscript>Somehow you don't have JavaScript - sorry.</noscript>
+</html>
