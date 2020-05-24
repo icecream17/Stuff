@@ -322,30 +322,33 @@
       
             console.log(string, 'start')
       
-            return new Promise ( resolve => {
-               let writeCharacterByCharacter = setInterval( function () {
-               let nextCharacter = characters.shift()
+            return new Promise ( 
+               resolve => {
+                  let writeCharacterByCharacter = setInterval( 
+                     function () {
+                        let nextCharacter = characters.shift()
       
-               $('#story').append(nextCharacter)
+                        $('#story').append(nextCharacter)
       
-               if (characters.length === 0) {
-                  clearInterval(writeCharacterByCharacter)
-                  resolve('done!')
+                        if (characters.length === 0) {
+                           clearInterval(writeCharacterByCharacter)
+                           resolve('done!')
+                        }
+                     }, 10)
                }
-            }, 10)
+            )
          }
-      )
-   }
-   // whatttt happennnedddd
+         // oh...
+         // wow this is the longest return statement ever
       
-   function clickToContinue() {
-      // can't do this yet.
-      // would be soo great for suspense
-   }
+         function clickToContinue() {
+            // can't do this yet.
+            // would be soo great for suspense
+         }
       
-   // amazing
-   avoidEncryption()
-}
+         // amazing
+         avoidEncryption()
+      }
       
       function updateInfo() {
          // Originally the info declaration at lives: and time: wasn't indented
