@@ -138,7 +138,7 @@
       ]
 
       let Player = {
-      	place: 0,
+         place: 0,
          actions: 0, // location is a thing. no overwrite or error
          lives: 10,
          inventory: {}
@@ -164,9 +164,9 @@
       */
       
       function startGame() {
-      	time = new Date();
+         time = new Date();
       
-        	// Is there a better way?
+           // Is there a better way?
          // Warning: HTML whitespace rules sacrificed for good JS whitespace
          document.body.innerHTML = (`
             <div class = 'dropdown'>
@@ -191,7 +191,7 @@
                   <p id = 'messageConsole'></p>
                </div>
                <div id = 'playerConsoleContainer'>
-                 	<p id = 'playerConsole' contenteditable = 'true'></p>
+                    <p id = 'playerConsole' contenteditable = 'true'></p>
                </div>
             `)
       
@@ -219,38 +219,38 @@
             }, 5000)
       
             $('body').css({
-            	'animation-name': 'startGameBackgroundTransition',
-            	'animation-duration': '7s',
-            	'animation-iteration-count': '1',
+               'animation-name': 'startGameBackgroundTransition',
+               'animation-duration': '7s',
+               'animation-iteration-count': '1',
                'animation-fill-mode': 'forwards',
                'color': 'white'
             })
       
             $('story').css({
-             	'animation-name': 'startGameBackgroundTransition',
-             	'animation-duration': '7s',
-             	'animation-iteration-count': '1',
+                'animation-name': 'startGameBackgroundTransition',
+                'animation-duration': '7s',
+                'animation-iteration-count': '1',
                'animation-fill-mode': 'forwards',
                'color': 'white'
             })
          }
       
          function continueGame() {
-         	if ($('#potato').length) {
-            	$('#continue').remove()
+            if ($('#potato').length) {
+               $('#continue').remove()
             } else {
-             	$('#continue').after(
-               	'<p id = "potato">Sorry, this feature is currently unavailable</p>'
+                $('#continue').after(
+                  '<p id = "potato">Sorry, this feature is currently unavailable</p>'
                )
             }
          }
       
          function menu(elementID) {
-         	let messageElement = $('#messageConsole')
+            let messageElement = $('#messageConsole')
       
-         	if (elementID === 'menuInstructions') {
-             	messageElement.html('Click on the text links to play.<br><br>' +
-                 	'You can also type <em>help</em> in the "console", ' +
+            if (elementID === 'menuInstructions') {
+                messageElement.html('Click on the text links to play.<br><br>' +
+                    'You can also type <em>help</em> in the "console", ' +
                   'which is the "orange" box at the bottom with the <em>></em> symbol<br><br>' +
                   '(Afterwards press Enter)'
                )
@@ -266,29 +266,29 @@
          console.clear() // So helpful
       
          function messageToStory (...messages) {
-         	// wouldn't know how to write multiple things
+            // wouldn't know how to write multiple things
          }
       
          function writeToStory (text, newline = '\n') {
             async function avoidEncryption() {
-            	await writeCharacters(text + newline)
+               await writeCharacters(text + newline)
             }
       
             function writeCharacters(string) {
-            	let characters = string.split('')
+               let characters = string.split('')
       
                for (let i = 0; i < characters.length; i++) {
-                 	if (characters[i] === '\n') {characters[i] === '<br>'}
+                    if (characters[i] === '\n') {characters[i] === '<br>'}
                }
       
                // SOOO MANYYY PAOSSIBLE BUGGGGSSSSS!!!!!!!!!!!
                for (let i = 0; i < characters.length; i++) {
-                 	if (characters[i] === '<' && characters[i + 1] !== ' ') {
-                   	debugger;
-                    	for (let j = i + 1; j < characters.length;) {
+                    if (characters[i] === '<' && characters[i + 1] !== ' ') {
+                      debugger;
+                       for (let j = i + 1; j < characters.length;) {
                         characters[i] += characters.splice(j, 1)
                         if (characters[i][characters[i].length - 1] === '>') {
-                          	break;
+                             break;
                         }
                      }
       
@@ -297,20 +297,20 @@
                      let possEndtag = ''
       
                      for (let j = i + 1; !end;) {
-                       	if (characters[j] === '<') {
-                          	possEndtag += characters[j]
+                          if (characters[j] === '<') {
+                             possEndtag += characters[j]
                         }
       
                         if (possEndtag.length) {
-                          	if (characters[j] === endtag[possEndtag.length - 1]) {
-                            	possEndtag += characters[j]
+                             if (characters[j] === endtag[possEndtag.length - 1]) {
+                               possEndtag += characters[j]
                            } else {
-                             	possEndtag = ''
+                                possEndtag = ''
                            }
                         }
       
                         if (possEndtag === endtag) {
-                         	end = true
+                            end = true
                         }
       
                         characters[i] += characters.splice(j, 1)
@@ -323,13 +323,13 @@
                console.log(string, 'start')
       
                return new Promise ( resolve => {
-               	let writeCharacterByCharacter = setInterval( function () {
-               	let nextCharacter = characters.shift()
+                  let writeCharacterByCharacter = setInterval( function () {
+                  let nextCharacter = characters.shift()
       
-               	$('#story').append(nextCharacter)
+                  $('#story').append(nextCharacter)
       
                   if (characters.length === 0) {
-                   	clearInterval(writeCharacterByCharacter)
+                      clearInterval(writeCharacterByCharacter)
                         resolve('done!')
                      }
                   }, 10)
@@ -349,15 +349,15 @@
       function updateInfo() {
          // Originally the info declaration at lives: and time: wasn't indented
             
-       	let info = `Player<br> location: ${locations[Player.place]} <br> ` +
+          let info = `Player<br> location: ${locations[Player.place]} <br> ` +
             `lives: ${Player.lives} <br> actions: ${Player.actions} <br> ` +
             `time: ${new Date() - time} <br><br> Inventory <br>`
       
          if (Object.keys(Player.inventory).length === 0) {
-          	info += 'none'
+             info += 'none'
          } else {
-           	for (let i of Object.keys(Player.inventory)) {
-             	let keyInfo = `${i}: ${Player[i]} <br> `
+              for (let i of Object.keys(Player.inventory)) {
+                let keyInfo = `${i}: ${Player[i]} <br> `
                   info += keyInfo
                }
             }
