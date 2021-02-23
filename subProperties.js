@@ -26,6 +26,8 @@ function* subProperties (thing=globalThis) {
          properties = [...Object.getOwnPropertyNames(currentThing), ...Object.getOwnPropertySymbols(currentThing)]
       } catch (error) {
          yield ['Actual Error, type 0', error]
+         console.warn('Cannot get properties, skipping this one: %o', currentThing)
+         continue
       }
 
       for (const property of properties) {
