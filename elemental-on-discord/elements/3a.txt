@@ -1,0 +1,11 @@
+wind + 1		-> 3a
+motion
+dusty air
+wind energy
+breeze
+air pressure
+ash		(already)
+mud		(already)
+warm wind
+mist
+fog
