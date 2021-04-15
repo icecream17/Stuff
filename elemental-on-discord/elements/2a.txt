@@ -1,0 +1,11 @@
+air + 1		-> 2a
+storm
+duststorm
+plasma
+cold climate
+wind		(already)
+rock
+brick
+steam		(already)
+cloud
+fog
