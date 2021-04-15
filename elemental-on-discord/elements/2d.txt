@@ -1,0 +1,11 @@
+water + 1	-> 2d
+wave
+polluted water
+hydraulics
+ice
+hydraulics	(already)
+obsidian
+swamp
+boiling water
+watery steam
+a bigger puddle
