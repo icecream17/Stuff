@@ -1,0 +1,11 @@
+dust + 1		-> 3b
+< 3a >
+sand		(already)
+magic
+dust		(already)
+siltstone
+polluted lava
+silt
+dust		(already)
+smog
+puddle		(already)
