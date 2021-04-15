@@ -1,0 +1,11 @@
+0 + 0 		-> 1
+wind
+dust
+energy
+cold
+pressure
+lava
+mud
+heat
+steam
+puddle
