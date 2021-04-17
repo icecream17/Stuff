@@ -28,7 +28,7 @@ Creates new elements for you by brute force. See https://elemental4.net/
  */
 
 // You can change this! However if the number is too low (say, 0ms), the browser just replaces it with a minimum.
-let delay = 50 // milliseconds
+let delay = 20 // milliseconds
 
 function getElements () {
    return Array.from(document.querySelectorAll('#element-game-root .elem'))
@@ -83,7 +83,13 @@ function howManyCombinations () {
    }
 }
 
+let _stop = false
 async function step () {
+   if (currentStep[1] >= tiers.length) {
+      _stop = true
+      return;
+   }
+   
    console.group(`"Tier" ${currentStep[0]} vs ${currentStep[1]}`)
    console.log(`${howManyCombinations()} combinations`)
 
@@ -96,7 +102,7 @@ async function step () {
             }
          }
          
-         if (Math.random() < 0.05) {
+         if (Math.random() < 0.2) {
             await slowDown()
          }
 
@@ -128,18 +134,20 @@ async function step () {
    }
 
    let newElements = getNewElements()
-   for (const element of newElements) {
-      seen.add(element)
+   if (newElements.length) {
+      for (const element of newElements) {
+         seen.add(element)
+      }
+
+      tiers.push(newElements)
    }
 
-   tiers.push(newElements)
    console.log(`Created ${newElements.length} new elements            (Tier ${tiers.length - 1})`)
    console.groupEnd()
 }
 
-let _stop = false
 async function stepForever () {
-   while (!stop) {
+   while (!_stop) {
       await step()
    }
 }
