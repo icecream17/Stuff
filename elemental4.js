@@ -28,7 +28,7 @@ Creates new elements for you by brute force. See https://elemental4.net/
  */
 
 // You can change this! However if the number is too low (say, 0ms), the browser just replaces it with a minimum.
-let delay = 10 // milliseconds
+let delay = 50 // milliseconds
 
 function getElements () {
    return Array.from(document.querySelectorAll('#element-game-root .elem'))
@@ -50,8 +50,6 @@ function slowDown () {
 }
 
 async function tryCombination (elem1, elem2) {
-   await slowDown()
-
    // Unselect any elements
    click(document.body)
 
@@ -63,7 +61,6 @@ async function tryCombination (elem1, elem2) {
 async function closeSuggestionBoxIfAny () {
    const suggestionClose = document.querySelector('#suggest .suggest-close')
    if (suggestionClose !== null) {
-      await slowDown()
       click(suggestionClose)
    }
 }
@@ -97,6 +94,10 @@ async function step () {
             if (tiers[currentStep[0]].indexOf(element1) > tiers[currentStep[1]].indexOf(element2)) {
                continue;
             }
+         }
+         
+         if (Math.random() < 0.05) {
+            await slowDown()
          }
 
          await tryCombination(element1, element2)
