@@ -1,20 +1,30 @@
-/* Creates new elements for you
- * 1. Create a new save. (optional)
- *    There's also a handy function:
+/******************************************
 
-     createNewSave()
+Never gonna give you up!
+Never gonna let you down!
+Never gonna turn around and... desert you!
 
- * 2. (ctrl+shift+i opens the console in my browser)
-      Copy and paste all of this code in the console.
- *
- *    Note: generally copying and pasting code is dangerous.
- *          For example, _you_ can access your password... and code has the ability to click...
- *
- * 3. Anyways, after that, type _one_ of the following:
+Ha :)
 
-     step()
-     stepForever()
 
+---------------------------
+Creates new elements for you by brute force. See https://elemental4.net/
+1. Create a new save. (optional)
+
+2. (ctrl+shift+i opens the console in my browser)
+   Open the console in the elemental4 tab.
+   Copy and paste all of the code in that console.
+
+   Note: generally copying and pasting code is dangerous.
+         For example, _you_ can access your password... and code has the ability to click...
+
+3. Anyways, after that, type _one_ of the following:
+
+      step()
+      stepForever()
+
+1b: There's also a handy function for that:
+      createNewSave()
  */
 
 // You can change this! However if the number is too low (say, 0ms), the browser just replaces it with a minimum.
@@ -62,12 +72,33 @@ let seen = new Set(getElements())
 let tiers = [getElements()]
 let currentStep = [0, 0] // tier 0 vs tier 0
 
+function howManyCombinations () {
+   if (currentStep[0] !== currentStep[1]) {
+      return tiers[currentStep[0]].length *
+             tiers[currentStep[1]].length
+   } else {
+      // If they're the same, you don't need to check both A vs B and B vs A
+      // No optimization if they're different though
+      return (
+               tiers[currentStep[0]].length *
+               (tiers[currentStep[0]].length + 1)
+             ) / 2
+   }
+}
+
 async function step () {
    console.log(`"Tier" ${currentStep[0]} vs ${currentStep[1]}
-                ${tiers[currentStep[0]].length * tiers[currentStep[1]].length} combinations`)
+                ${howManyCombinations()} combinations`)
 
    for (const element1 of tiers[currentStep[0]]) {
       for (const element2 of tiers[currentStep[1]]) {
+         if (currentStep[0] === currentStep[1]) {
+            // Don't need to check both (A vs B) and (B vs A)
+            if (tiers[currentStep[0]].indexOf(element1) > tiers[currentStep[1]].indexOf(element2)) {
+               continue;
+            }
+         }
+
          await tryCombination(element1, element2)
          await closeSuggestionBoxIfAny()
       }
