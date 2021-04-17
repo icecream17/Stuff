@@ -152,7 +152,7 @@ async function step () {
 }
 
 async function stepForever () {
-   _stop = true
+   _stop = false
    while (!_stop) {
       await step()
    }
