@@ -87,8 +87,8 @@ function howManyCombinations () {
 }
 
 async function step () {
-   console.log(`"Tier" ${currentStep[0]} vs ${currentStep[1]}
-                ${howManyCombinations()} combinations`)
+   console.group(`"Tier" ${currentStep[0]} vs ${currentStep[1]}`)
+   console.log(`${howManyCombinations()} combinations`)
 
    for (const element1 of tiers[currentStep[0]]) {
       for (const element2 of tiers[currentStep[1]]) {
@@ -132,13 +132,13 @@ async function step () {
    }
 
    tiers.push(newElements)
-   return `Created ${newElements.length} new elements`
+   console.log(`Created ${newElements.length} new elements            (Tier ${tiers.length - 1})`)
+   console.groupEnd()
 }
 
 async function stepForever () {
    while (true) {
-      let stepResult = await step()
-      console.log(stepResult)
+      await step()
    }
 }
 
