@@ -137,11 +137,14 @@ async function step () {
    console.groupEnd()
 }
 
+let _stop = false
 async function stepForever () {
-   while (true) {
+   while (!stop) {
       await step()
    }
 }
+
+function stop () {_stop = true}
 
 function lastOf (something) {
    return something[something.length - 1]
