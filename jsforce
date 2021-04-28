@@ -1,0 +1,245 @@
+
+const JSF_CHARS = "[]()+!"
+
+const textarea = (() => {
+   if ("document" in globalThis && globalThis?.location.href === "about:blank") {
+      let result = document.createElement('textarea')
+      result.cols = 50
+      result.rows = 32
+      document.body.appendChild(result)
+      return result
+   } else {
+      // same thing to the code
+      return { value: "" }
+   }
+})()
+
+let depth = 1
+let combinations = []
+let again = new Set()
+
+function reset () {
+   depth = 1
+   combinations = []
+   textarea.value = ''
+   again = new Set()
+   console.clear()
+}
+
+String.prototype._howmany = function _howmany (substring) {
+   return this.split(substring).length - 1
+}
+
+function tryJSF (code) {
+   try {
+      return { 'pass': eval(code) }
+   } catch (error) {
+      if (Math.random() > 0.5) console.log(code, error.message)
+      return { 'fail': error }
+   }
+}
+
+function stringify (value) {
+   if (typeof value === "string") {
+      return `"${value.replaceAll('\\', '\\\\').replaceAll('"', '\\"')}"`
+   } else if (typeof value === "object" && value !== null) {
+      let oldTostring = Array.prototype.toString
+      Array.prototype.toString = function () {
+         return `[${this.join(', ')}]`
+      }
+
+      let seen = new WeakSet()
+      const result = JSON.stringify(value, function (key, keyvalue) {
+         if (typeof keyvalue === "object" && keyvalue !== null) {
+            if (seen.has(keyvalue)) return "[[Cyclic value]]"
+            else seen.add(keyvalue)
+         }
+         return keyvalue
+      })
+      Array.prototype.toString = oldTostring
+      return result
+   }
+   return value
+}
+
+function usesArrayAsFunction (str) {
+   if (!(
+      str.includes("[") && 
+      str.includes("]") && 
+      str.includes("(")))
+   {
+      return false;
+   }
+
+   const lastparen = str.lastIndexOf("(")
+   let nesting = 1
+   for (let i = str.indexOf("[") + 1; i < lastparen; i++) {
+      if (str[i] === "[") {
+         nesting++
+      } else if (str[i] === "]") {
+         nesting--
+      }
+      if (nesting === 0 && str[i + 1] === "(") return true
+      if (nesting < 0) return "!"
+   }
+   return nesting || false
+}
+
+function prefixOrPostfixArray (str) {
+   if (!(
+      str.includes("[") && 
+      str.includes("]") && 
+      str.includes("++")))
+   {
+      return false;
+   }
+   
+   let status = 0
+   let nesting = 0
+   let innerTest = ''
+   for (const char of str) {
+      if (char === '+') {
+         if (status < 2) {
+            status++
+         }
+      } else if (status === 2 && char === '[') {
+         status = 3
+         nesting++
+      } else if (status > 2 && nesting > 0) {
+         innerTest += char
+         if (char === '[') {
+            nesting++
+         } else if (char === ']') {
+            nesting--
+         }
+      } else if
+      } else {
+         status = 0
+      }
+   }
+}
+
+function search () {
+   combinations[depth] = Object.create(null)
+
+   if (depth === 1) {
+      for (const char of "[(+!") {
+         combinations[depth][char] = "nothing here"
+      }
+   } else {
+      for (const combo in combinations[depth - 1]) {
+         for (const char of JSF_CHARS) {
+            const newcombo = combo + char
+
+            // a === b instead of startsWith
+            if (
+               newcombo.includes("(]") ||
+               newcombo.includes("([)") ||
+               newcombo.includes("[)") ||
+               newcombo.includes("[(]") ||
+               newcombo.includes("(())") ||
+               newcombo.includes("[()]") ||
+               newcombo.includes(")[]") ||
+               newcombo.includes("][]") ||
+               newcombo.includes("+()") ||
+               newcombo.includes("!()") ||
+               newcombo.includes("(()") ||
+               newcombo.includes("[()") ||
+               usesArrayAsFunction(newcombo) ||
+               newcombo.includes("!)") ||
+               newcombo.includes("!]") ||
+               newcombo.includes(")!") ||
+               newcombo.includes("]!") ||
+               newcombo.includes("]+)") ||
+               newcombo.includes("]+]") ||
+               newcombo.includes("!+)") ||
+               newcombo.includes("!+]") ||
+               newcombo.includes("(+)") ||
+               newcombo.includes("(+]") ||
+               newcombo.includes(")+)") ||
+               newcombo.includes(")+]") ||
+               newcombo.includes("[+)") ||
+               newcombo.includes("[+]") ||
+               (newcombo.lastIndexOf("(") < newcombo.lastIndexOf("[") &&
+                newcombo.lastIndexOf("[") < newcombo.lastIndexOf(")")) ||
+               (newcombo.lastIndexOf("[") < newcombo.lastIndexOf("(") &&
+                newcombo.lastIndexOf("(") < newcombo.lastIndexOf("]")) ||
+               newcombo === "++++" ||
+               newcombo.includes("+++++") ||
+               newcombo.includes("!++++") ||
+               newcombo.includes("++++!") ||
+               newcombo.includes("!+++!") ||
+               newcombo.includes("!+++]") ||
+               newcombo.includes("[+++]") ||
+               newcombo.includes("!+++)") ||
+               newcombo.includes("(+++)") ||
+               newcombo.includes("!++!") ||
+               newcombo.includes("!++]") ||
+               newcombo.includes("!++)") ||
+               newcombo === "++!" ||
+               newcombo.includes("(++++") ||
+               newcombo.includes("[++++") ||
+               newcombo.includes("[+++!") ||
+               newcombo.includes("[++!") ||
+               newcombo.includes("(+++!") ||
+               newcombo.includes("(++!") ||
+               newcombo.includes("(++)") ||
+               newcombo.includes("[++]") ||
+               newcombo.includes("([]++)") ||
+               newcombo.includes("[[]++]") ||
+               newcombo.includes("(++[])") ||
+               newcombo.includes("[++[]]") ||
+               newcombo.includes("!++[])") ||
+               newcombo.includes("!++[]]") ||
+               newcombo.endsWith("!++[]") ||
+               newcombo.endsWith("+++[]") ||
+               newcombo === "++[]++" ||
+               newcombo._howmany("[") - newcombo._howmany("]") < 0 ||
+               newcombo._howmany("(") - newcombo._howmany(")") < 0 ||
+               newcombo === "()")
+            {
+               continue;
+            }
+
+            const check1 = usesArrayAsFunction(newcombo)
+            if (check1 === true || check1 === "!") {
+               continue;
+            } else if (check1 > 0) {
+               combinations[depth][newcombo] = "nothing here"
+               continue;
+            }
+
+            if ((newcombo._howmany("[") - newcombo._howmany("]")) !== 0 || 
+                (newcombo._howmany("(") - newcombo._howmany(")")) !== 0 ||
+                newcombo.endsWith("!") ||
+                newcombo.endsWith("+")) {
+               combinations[depth][newcombo] = "nothing here"
+               continue;
+            }
+
+            let result = combinations[depth][newcombo] = tryJSF(newcombo)
+            let resStr = stringify(result?.pass)
+            if ("pass" in result && !again.has(resStr)) {
+               again.add(resStr)
+               textarea.value += `${depth}: ${newcombo}\n${resStr}\n`
+            }
+         }
+      }
+   }
+   depth++
+}
+
+function time (times=8) {
+   reset()
+   console.time('search')
+   for (let i = 0; i < times; i++) {
+      search()
+   }
+   console.timeEnd('search')
+}
+
+function time2 () {
+   console.time('search')
+   search()
+   console.timeEnd('search')
+}
