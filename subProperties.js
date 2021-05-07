@@ -65,6 +65,7 @@ function* generateEverythingPossible () {
    yield globalThis
 
    const nouns = new Set()
+   const done = new Set()
    const nounsLeft = new Set()
    nounsLeft.add(globalThis)
 
@@ -73,6 +74,7 @@ function* generateEverythingPossible () {
    while (nounsLeft.size > 0) {
       for (const noun of nounsLeft) {
          nounsLeft.delete(noun)
+         done.add(noun)
          try {
             newNounsLeft.add(Object.getPrototypeOf(noun))
          } catch (error) {
@@ -99,40 +101,57 @@ function* generateEverythingPossible () {
             // obj extends from obj[[prototype]].prototype, obj[[prototype]][[prototype]].prototype, etc.
             // confusing names though
             let prototype = Object.getPrototypeOf(noun)
-            while (prototype !== null) {
-                for (const propertyName of [
-                        ...Object.getOwnPropertyNames(prototype.prototype),
-                        ...Object.getOwnPropertySymbols(prototype.prototype)
-                    ])
-                {
-                    //if (!propertyNames.has(propertyName)) {
-                        propertyNames.add(propertyName)
-                    //}
-                }
-                prototype = Object.getPrototypeOf(prototype)
+            try {
+               while (prototype !== null) {
+                   for (const propertyName of [
+                           ...Object.getOwnPropertyNames(prototype.prototype),
+                           ...Object.getOwnPropertySymbols(prototype.prototype)
+                       ])
+                   {
+                       //if (!propertyNames.has(propertyName)) {
+                           propertyNames.add(propertyName)
+                       //}
+                   }
+                   prototype = Object.getPrototypeOf(prototype)
+               }
+            } catch (error) {
+               console.warn('Error with %o,\n %o', prototype, error)
+               newNounsLeft.add(error.message)
             }
 
+            
             for (const name of propertyNames) {
                 newNounsLeft.add(noun[name])
             }
-            
          } catch (error) {
+            console.warn('Error with %o,\n %o', noun, error)
             newNounsLeft.add(error.message)
          }
 
-         console.group(noun)
+         if (newNounsLeft.size !== 0) {
+            console.group(noun)
+         }
+         // nouns
+         // newNouns
+         // newNounsLeft
+
+         // globalThis - in nouns and nounsleft
+         // globalThis - in nouns and done
+         // property - in newnounsleft
+         // property - in nouns and nounsleft
+         // property - in nouns and done
+         // property.property
          for (const newNoun of newNounsLeft) {
-            if (!nouns.has(newNoun)) {
+            if (!done.has(newNoun)) {
                yield newNoun
                nounsLeft.add(newNoun)
                nouns.add(newNoun)
             }
          }
-         if (newNounsLeft.size === 0) {
-            console.log("<empty>")
+         if (newNounsLeft.size !== 0) {
+            console.groupEnd()
          }
          newNounsLeft.clear()
-         console.groupEnd()
       }
    }
 }
@@ -141,6 +160,7 @@ function* generateEverythingPossible () {
    let x = setInterval(() => {
       let next = generator.next()
       if (next.done) {
+         console.log("%cDone!", "color:green;")
          clearInterval(x)
       } else {
          if (next.value instanceof Function) {
