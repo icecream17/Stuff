@@ -108,16 +108,18 @@ function* generateEverythingPossible () {
             let prototype = Object.getPrototypeOf(noun)
             try {
                while (prototype !== null) {
-                   for (const propertyName of [
-                           ...Object.getOwnPropertyNames(prototype.prototype),
-                           ...Object.getOwnPropertySymbols(prototype.prototype)
-                       ])
-                   {
-                       //if (!propertyNames.has(propertyName)) {
-                           propertyNames.add(propertyName)
-                       //}
-                   }
-                   prototype = Object.getPrototypeOf(prototype)
+                  if (prototype.prototype !== undefined && prototype.prototype !== null) {
+                      for (const propertyName of [
+                              ...Object.getOwnPropertyNames(prototype.prototype),
+                              ...Object.getOwnPropertySymbols(prototype.prototype)
+                          ])
+                      {
+                          //if (!propertyNames.has(propertyName)) {
+                              propertyNames.add(propertyName)
+                          //}
+                      }
+                  }
+                  prototype = Object.getPrototypeOf(prototype)
                }
             } catch (error) {
                console.warn('Error with %o,\n %o', prototype, error)
