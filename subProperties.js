@@ -75,6 +75,11 @@ function* generateEverythingPossible () {
       for (const noun of nounsLeft) {
          nounsLeft.delete(noun)
          done.add(noun)
+
+         if (noun === undefined || noun === null) {
+            continue
+         }
+
          try {
             newNounsLeft.add(Object.getPrototypeOf(noun))
          } catch (error) {
