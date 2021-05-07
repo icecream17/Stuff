@@ -72,7 +72,6 @@ function* generateEverythingPossible () {
 
    while (nounsLeft.size > 0) {
       for (const noun of nounsLeft) {
-         console.group(noun)
          nounsLeft.delete(noun)
          try {
             newNounsLeft.add(Object.getPrototypeOf(noun))
@@ -121,12 +120,16 @@ function* generateEverythingPossible () {
             newNounsLeft.add(error.message)
          }
 
+         console.group(noun)
          for (const newNoun of newNounsLeft) {
             if (!nouns.has(newNoun)) {
                yield newNoun
                nounsLeft.add(newNoun)
                nouns.add(newNoun)
             }
+         }
+         if (newNounsLeft.size === 0) {
+            console.log("<empty>")
          }
          newNounsLeft.clear()
          console.groupEnd()
@@ -148,5 +151,5 @@ function* generateEverythingPossible () {
             console.log(next.value)
          }
       }
-   }, 1000)
+   }, 100)
 }
