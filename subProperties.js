@@ -59,3 +59,94 @@ function* subProperties (thing=globalThis) {
 
    return props
 }
+
+// Version 0.2
+function* generateEverythingPossible () {
+   yield globalThis
+
+   const nouns = new Set()
+   const nounsLeft = new Set()
+   nounsLeft.add(globalThis)
+
+   const newNounsLeft = new Set()
+
+   while (nounsLeft.size > 0) {
+      for (const noun of nounsLeft) {
+         console.group(noun)
+         nounsLeft.delete(noun)
+         try {
+            newNounsLeft.add(Object.getPrototypeOf(noun))
+         } catch (error) {
+            newNounsLeft.add(error.message)
+         }
+         try {
+            const propertyNames = new Set()
+            for (const [name, propertyDescriptor] of Object.entries(Object.getOwnPropertyDescriptors(noun))) {
+                // enumerable and configurable ignored
+                // value and writable, or get and set
+                if ("value" in propertyDescriptor) {
+                    propertyNames.add(name)
+                } else {
+                    if ("get" in propertyDescriptor) {
+                        newNounsLeft.add(propertyDescriptor.get)
+                        propertyNames.add(name)
+                    }
+                    if ("set" in propertyDescriptor) {
+                        newNounsLeft.add(propertyDescriptor.set)
+                    }
+                }
+            }
+
+            // obj extends from obj[[prototype]].prototype, obj[[prototype]][[prototype]].prototype, etc.
+            // confusing names though
+            let prototype = Object.getPrototypeOf(noun)
+            while (prototype !== null) {
+                for (const propertyName of [
+                        ...Object.getOwnPropertyNames(prototype.prototype),
+                        ...Object.getOwnPropertySymbols(prototype.prototype)
+                    ])
+                {
+                    //if (!propertyNames.has(propertyName)) {
+                        propertyNames.add(propertyName)
+                    //}
+                }
+                prototype = Object.getPrototypeOf(prototype)
+            }
+
+            for (const name of propertyNames) {
+                newNounsLeft.add(noun[name])
+            }
+            
+         } catch (error) {
+            newNounsLeft.add(error.message)
+         }
+
+         for (const newNoun of newNounsLeft) {
+            if (!nouns.has(newNoun)) {
+               yield newNoun
+               nounsLeft.add(newNoun)
+               nouns.add(newNoun)
+            }
+         }
+         newNounsLeft.clear()
+         console.groupEnd()
+      }
+   }
+}
+{
+   let generator = generateEverythingPossible()
+   let x = setInterval(() => {
+      let next = generator.next()
+      if (next.done) {
+         clearInterval(x)
+      } else {
+         if (next.value instanceof Function) {
+            console.group('String(func) === ' + String(next.value))
+            console.log(next.value)
+            console.groupEnd()
+         } else {
+            console.log(next.value)
+         }
+      }
+   }, 1000)
+}
