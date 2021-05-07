@@ -149,7 +149,7 @@ function* generateEverythingPossible () {
          // property - in nouns and done
          // property.property
          for (const newNoun of newNounsLeft) {
-            if (!done.has(newNoun)) {
+            if (!done.has(newNoun) && !nounsLeft.has(newNoun)) {
                yield newNoun
                nounsLeft.add(newNoun)
                nouns.add(newNoun)
