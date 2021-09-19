@@ -180,3 +180,113 @@ function* generateEverythingPossible () {
       }
    }, 100)
 }
+
+// Version 0.3
+/* async */ function *thingGenerator (start = globalThis) {
+   yield start
+   
+   const things = [start]
+   const newThings = [start]
+   const checkedThings = []
+   const functions = [] // Unimplemented
+   const propertyTests = new Map() // thing, Set<thing>
+   const callTests = new Map() // thing, [ [], [thing], [thing, thing], [thing, thing, thing], ...] // Unimplemented
+   // Also unimplemented: await
+   
+   function* checkNew(thing) {
+      if (!things.includes(thing)) {
+         try {
+            if (thing instanceof Error) {
+               for (const thing2 of things) {
+                  let thing2Constructor, thing2Message
+                  try {
+                     thing2Constructor = thing2.constructor
+                     thing2Message = thing2.message
+                  } catch {continue}
+                  
+                  if (thing.constructor === thing2Constructor && thing.message === thing2.message) {
+                     return  
+                  }
+               }
+            }
+         } catch {}
+         
+         things.push(thing)
+         newThings.push(thing)
+         yield thing
+      }
+   }
+   
+   function update(map, key, value) {
+      if (map.has(key)) {
+         const set = map.get(key)
+         set.add(value)
+      } else {
+         map.set(key, new Set([value]))
+      }
+   }
+      
+   function updateCalls () {
+      
+   }
+      
+   function* main() {
+      const next = things.shift()
+      
+      function* propertySearch() {
+         // for in catch
+         try {
+            for (const property in next) yield* checkNew(property);
+         } catch (error) {
+            yield* checkNew(error)  
+         }
+      }
+      
+      function* propertyChecks() {
+         for (const thing of checkedThings) {
+            // typeof catch
+            try {
+               if (typeof thing === "string" || typeof thing === "symbol") {
+                  // property access catch
+                  try {
+                     yield* checkNew(thing[next])
+                     update(propertyTests, next, thing)
+                  } catch (error) {
+                     yield* checkNew(error)
+                  }
+               }
+            } catch (error) {
+               yield* checkNew(error)  
+            }
+         }
+
+         try {
+            if (typeof next === "string" || typeof next === "symbol") {
+               for (const thing of checkedThings) {
+                  try {
+                     yield* checkNew(thing[next])
+                     update(propertyTests, thing, next)
+                  } catch (error) {
+                     yield* checkNew(error)  
+                  }
+               }
+            }
+         } catch (error) {
+            yield* checkNew(error)
+         }
+      }
+      
+      function* functionCalls(){}
+      
+      yield* propertySearch()
+      yield* propertyChecks()
+      yield* functionCalls() // Unimplemented
+      
+      checkedThings.push(next)
+      // unimplemented: if typeof next === "function"
+   }
+      
+   while (newThings.length) {
+      yield* main()  
+   }
+}
