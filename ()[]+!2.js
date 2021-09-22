@@ -184,7 +184,7 @@ length: name
 186: "A"
      (true+"[object Array Iterator]")["11"]
 
-168: "]"
+189: "]"
      ("[object Array Iterator]")["22"]
 
 194: ".0000001"
@@ -224,7 +224,7 @@ Footnotes: {
 
         // This is implementation-defined
         // Thanks https://github.com/tc39/ecma262/issues/2488
-        // There can be any positive integer amount of whitespace between any of these tokens:
+        // There can be any positive integer amount of whitespace between, before, and after any of these tokens:
         // `function` `flat` `(` `)` `{` `[` `native` `code` `]` `}`
 
         // (where whitespace is defined in the specification - see source)
@@ -236,10 +236,16 @@ Footnotes: {
         // ([]["flat"]+[])[3]
         // ([]["flat"]+[])[6]
         // or similar
+   [2]: String.prototype.bold
+        // This is a legacy property, and it isn't guaranteed to be implemented unless the implementation has to run legacy code.
+        // Which is most implementations (and every implementation I know). But still, not guaranteed to exist.
+
+        // But with the methods bold, fontcolor, italics, and sub, we get the following characters:
+        // <>/"
 }
 
 /**
-// All strings we can get
+// If we can make a string
 function can (s) {
     return s.split('').every(char => "abecdflijnorstuyANI[]+-".includes(char))
 }
