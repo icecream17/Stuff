@@ -1,12 +1,14 @@
-length: name
-        shorthand 1
-        shorthand 2
-        shorthand 3
-        ...
+// length: name
+//         shorthand 1
+//         shorthand 2
+//         shorthand 3
+//         ...
 
-// Common unmentioned alternatives:
+// Common unmentioned alternatives (shorthands):
 // a+[] === []+a
 // [b]+(c) === [b]+[c]
+
+// Add an underscore before every /[0-9]+:/g to make this valid javascript
 
 3: 0
    +[]
@@ -296,7 +298,7 @@ Footnotes: {
         // <>/"
 }
 
-/**
+/** Utils */
 
 const chars = {
    "0": 6,
@@ -353,4 +355,3 @@ function canProps (o) {
 function howLong (s) {
    return s.split('').map(char => chars[char]).reduce((accum, curr) => accum + curr) + s.length - 1
 }
-*/
