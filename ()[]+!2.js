@@ -260,9 +260,8 @@
 847: Boolean
      (false)["constructor"]
 
-850: String
-     ("0")["constructor"]
-     ("false")["constructor"]
+849: String
+     ([]+[])["constructor"]
 
 910: Function
      []["flat"]["constructor"]
