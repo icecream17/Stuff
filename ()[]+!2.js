@@ -4,6 +4,10 @@ length: name
         shorthand 3
         ...
 
+// Common unmentioned alternatives:
+// a+[] === []+a
+// [b]+(c) === [b]+[c]
+
 3: 0
    +[]
 
@@ -40,6 +44,9 @@ length: name
 9: "undefined"
    undefined+[]
 
+9: "00"
+   0+[0]
+
 10: "NaN"
     NaN+[]
 
@@ -48,6 +55,9 @@ length: name
 
 12: "falseundefined"
     [false]+undefined
+
+12: "2"
+    2+[]
 
 13: "f"
     ("false")[0]
@@ -72,6 +82,9 @@ length: name
 
 17: "N"
     ("NaN")[0]
+
+17: "3"
+    3+[]
 
 18: "n"
     ("undefined")[1]
@@ -137,7 +150,7 @@ length: name
 84: "y"
     (true+[Infinity])["11"]
 
-114: "filter"
+119: "filter"
      "f"+"i"+"l"+"t"+"e"+"r"
 
 131: "1000000000000000000000"
@@ -175,11 +188,17 @@ length: name
 173: "o"
      ("[object Array Iterator]")[1]
 
+177: "b"
+     ("[object Array Iterator]")[2]
+
 182: "j"
      ("[object Array Iterator]")[3]
 
 183: "c"
      (false+"[object Array Iterator]")["10"]
+
+184: " "
+     (true+"[object Array Iterator]")["10"]
 
 186: "A"
      (true+"[object Array Iterator]")["11"]
@@ -195,6 +214,33 @@ length: name
 
 211: "-"
      "1e-7"[2]
+
+230: "sort"
+     "s"+"o"+"r"+"t"
+
+239: "call"
+     "c"+"a"+"l"+"l"
+
+247: "bind"
+     "b"+"i"+"n"+"d"
+
+282: "slice"
+     "s"+"l"+"i"+"c"+"e"
+
+292: "reduce"
+     "r"+"e"+"d"+"u"+"c"+"e"
+
+341: "includes"
+     "i"+"n"+"c"+"l"+"u"+"d"+"e"+"s"
+
+403: "join"
+     "j"+"o"+"i"+"n"
+
+591: "concat"
+     "c"+"o"+"n"+"c"+"a"+"t"
+
+606: ","
+     [[]]["concat"]([[]])+[]
 
 840: "constructor"
      "c"+"o"+"n"+"s"+"t"+"r"+"u"+"c"+"t"+"o"+"r"
@@ -217,6 +263,12 @@ length: name
 
 997: Object
      []["entries"]()["constructor"]
+
+1002: "[object Object]"
+      []+Object()
+
+1024: "O"
+      ("00"+Object())["10"]
 
 Footnotes: {
    [1]: Array.prototype.flat.toString()
@@ -245,13 +297,60 @@ Footnotes: {
 }
 
 /**
+
+const chars = {
+   "0": 6,
+   "1": 8,
+   "2": 12,
+   "3": 17,
+   "4": 22,
+   "5": 27,
+   "6": 32,
+   "7": 37,
+   "8": 42,
+   "9": 47,
+   "f": 13,
+   "t": 14,
+   "a": 15,
+   "u": 16,
+   "r": 16,
+   "N": 17,
+   "n": 18,
+   "l": 19,
+   "d": 22,
+   "s": 24,
+   "e": 25,
+   "i": 27,
+   "I": 70,
+   "y": 84,
+   ".": 150,
+   "+": 152,
+   "[": 171,
+   "o": 173,
+   "b": 177,
+   "j": 182,
+   "c": 183,
+   " ": 184,
+   "A": 186,
+   "]": 189,
+   "-": 211,
+   ",": 606,
+   "O": 1024,
+}
+
 // If we can make a string
 function can (s) {
-    return s.split('').every(char => "abecdflijnorstuyANI[]+-".includes(char))
+    return s.split('').every(char => char in chars)
 }
 
 // Properties of an object we can get
 function canProps (o) {
     return Object.getOwnPropertyNames(o).filter(key => can(key))
+}
+
+// How long it takes to make a string
+// Strings with numbers can probably be optimized better though
+function howLong (s) {
+   return s.split('').map(char => chars[char]).reduce((accum, curr) => accum + curr) + s.length - 1
 }
 */
