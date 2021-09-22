@@ -23,7 +23,10 @@
    +true
 
 6: undefined
-   [][[]] 
+   [][[]]
+
+6: NaN
+   +[false]
 
 6: "0"
    0+[]
@@ -33,9 +36,6 @@
 
 7: "true"
    true+[]
-
-7: NaN
-   +undefined
 
 8: "1"
    1+[]
@@ -49,7 +49,7 @@
 9: "00"
    0+[0]
 
-10: "NaN"
+9: "NaN"
     NaN+[]
 
 11: "10"
@@ -82,11 +82,14 @@
 16: "r"
     ("true")[1]
 
-17: "N"
+16: "N"
     ("NaN")[0]
 
 17: "3"
     3+[]
+
+17: "12"
+    1+[2]
 
 18: "n"
     ("undefined")[1]
@@ -199,11 +202,12 @@
 183: "c"
      (false+"[object Array Iterator]")["10"]
 
-184: " "
-     (true+"[object Array Iterator]")["10"]
-
-186: "A"
+186: " "
      (true+"[object Array Iterator]")["11"]
+     (NaN+"[object Array Iterator]")["10"]
+
+188: "A"
+     (NaN+"[object Array Iterator]")["11"]
 
 189: "]"
      ("[object Array Iterator]")["22"]
@@ -316,7 +320,7 @@ const chars = {
    "a": 15,
    "u": 16,
    "r": 16,
-   "N": 17,
+   "N": 16,
    "n": 18,
    "l": 19,
    "d": 22,
