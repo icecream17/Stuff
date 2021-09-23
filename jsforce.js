@@ -222,8 +222,8 @@ function check (newcombo, char) {
             delete combinations[oldDepth][oldcombo]
             textarea.value += `   New record!\n${depth}: ${newcombo}\n${resStr}\n`
          } else {
-            failedCombinations[oldDepth] ??= Object.create(null)
-            failedCombinations[oldDepth][oldcombo] = combinations[oldDepth][oldcombo]
+            failedCombinations[depth] ??= Object.create(null)
+            failedCombinations[depth][newcombo] = combinations[depth][newcombo]
             delete combinations[depth][newcombo]
          }
       }
