@@ -26,6 +26,7 @@ let combinations = []
 let totalCombinations = {}
 let failedCombinations = {}
 let undefinedCombinations = [ "[][[]]", "[][+[]]", "[][![]]", "[][!![]]" ]
+let triedCombinations = []
 let again = new Set()
 let againFrom = new Map()
 // let combosDone = new Set()
@@ -43,6 +44,7 @@ function reset () {
    totalCombinations = {}
    failedCombinations = {}
    undefinedCombinations = [ "[][[]]", "[][+[]]", "[][![]]", "[][!![]]" ]
+   triedCombinations = []
    textarea.value = ''
    again = new Set()
    againFrom = new Map()
@@ -128,6 +130,12 @@ function usesArrayAsFunction (str) {
 }
 
 function check (newcombo, char) {
+   if (triedCombinations.includes(newcombo)) {
+      // console.trace(newcombo)
+      return
+   }
+   triedCombinations.push(newcombo)
+
    // a === b instead of startsWith
    if (
       newcombo.includes("(]") ||
@@ -220,7 +228,8 @@ function check (newcombo, char) {
             failedCombinations[oldDepth] ??= Object.create(null)
             failedCombinations[oldDepth][oldcombo] = combinations[oldDepth][oldcombo]
             delete combinations[oldDepth][oldcombo]
-            textarea.value += `   New record!\n${depth}: ${newcombo}\n${resStr}\n`
+            againFrom.set(resStr, [depth, newcombo])
+            textarea.value += `   New record!\n      ${depth}: ${newcombo}\n      ${resStr}\n`
          } else {
             failedCombinations[depth] ??= Object.create(null)
             failedCombinations[depth][newcombo] = combinations[depth][newcombo]
@@ -253,7 +262,9 @@ function search () {
             // Currently only has the previous depths' combinations
             for (const combo2 in totalCombinations) {
                const newcombo = `${combo}${join}${combo2}`
+               const newcombo2 = `${combo2}${join}${combo}`
                check(newcombo)
+               check(newcombo2)
             }
          }
       }
