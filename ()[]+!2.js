@@ -352,6 +352,9 @@ const chars = {
    "O": 1024,
 }
 
+// Things equivalent to String.prototype.split('')
+// []["slice"]["bind"]("test")()
+// []["flat"]["bind"]("test")()
 const possibleObjects = [
    "", // Strings that contain any amount* of chars in any order
    true, false, NaN, undefined, Infinity,
@@ -398,7 +401,6 @@ const possibleObjects = [
             // []["find"].bind("     function   Array   ( )  {     [ native    code]   } \uFEFF")(Boolean)
             // But I haven't found such a function yet.
    [].slice, // Returns array containing elements from start to end. start can be negative.
-             // <string>.split('') is equivalent to []["slice"].bind(<string>)()
    [].sort, // Gets items from 0 to len
             // Sorts items from least to greatest.
             //    undefined > anything
