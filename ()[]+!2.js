@@ -134,6 +134,9 @@
 44: 9
     true+true+true+true+true+true+true+true+true
 
+52: "is"
+    "i"+"s"
+
 60: Infinity
     +(1+"e"+("1000"))
 
@@ -154,6 +157,9 @@
 
 84: "y"
     (true+[Infinity])["11"]
+
+86: "seal"
+    "s"+"e"+"a"+"l"
 
 119: "filter"
      "f"+"i"+"l"+"t"+"e"+"r"
@@ -232,6 +238,9 @@
 
 282: "slice"
      "s"+"l"+"i"+"c"+"e"
+
+283: "create"
+     "c"+"r"+"e"+"a"+"t"+"e"
 
 292: "reduce"
      "r"+"e"+"d"+"u"+"c"+"e"
@@ -342,6 +351,78 @@ const chars = {
    ",": 606,
    "O": 1024,
 }
+
+const possibleObjects = [
+   "", // Strings that contain any amount* of chars in any order
+   true, false, NaN, undefined, Infinity,
+   [], // Arrays can contain any amount* of possibleObjects in any order
+       // because we can use Array.prototype.concat
+   "constructor", // We can get something's constructor
+                  // So far there's only values with the following constructors
+                  // But first, some Function#properties.
+   Function.prototype.apply, // Calls a function with a certain "this value".
+   Function.prototype.bind,  // Makes a function "bound". Sets the "bound this value".
+                             // When a bound function is called the "this value" is set to the "bound this value".
+                             // Function.prototype.apply now doesn't do anything.
+   Array, // Although it's a class, using it as a function is equivalent, except that NewTarget is always undefined.
+          // Therefore newTarget is the active function object, which is set to the function whose [[Call]] or [[Construct]] is ...done.
+          // aka Array
+          // And so proto is always Array.prototype
+
+          // If called with 0 args, it always returns just []
+          // With 1 arg, returns either [arg1] or if typeof arg = number, sets array.length to number. (If valid number. Else error)
+          // Note: Can't hav more than 1 arg since can't use comma.
+          // Can only be called to make undefined[] or [possibleObjects]
+   Number, // Converts to a number except it doesn't throw with BigInts. But BigInts can't be created right now. Same as +(value)
+   Boolean, // Converts something to a boolean. Same as !!(value)
+            // Booleans can't really do anything, but at least there's a lot of letters to access in "true" and "false".
+   String, // Converts something to a string. Same as (value)+[]. Note that Symbols also can't be created right now.
+   Function, // In this scenario, calling Function always throws an error
+   Object, // Object() and Object(null) creates {}
+           // Object(x) creates ToObject(object)
+   [].concat, // Used to combine two arrays - or push a value. (Returns new array though)
+              // A = [], O = toObject(this value)
+              // For each E of [O, arg]
+              //    If E[@@isConcatSpreadable] ?? IsArray(E)
+              //       Add each element from E to A as long as that index exists and length isn't reached.
+              //    Else
+              //       Add E to A
+              // Return A
+   [].fill, // value=arg, start=0, O=ToObject(this value) len=LengthOfArrayLike(O)
+            //    Sets (each index from 0 to len) of O to value
+   [].find, // O, len as in [].fill
+            // If arg(element of O, index of element, O), return element
+            // Return undefined
+
+            // This has potential if there's a function that sometimes doesn't return a truthy value:
+            // []["find"].bind("     function   Array   ( )  {     [ native    code]   } \uFEFF")(Boolean)
+            // But I haven't found such a function yet.
+   [].slice, // Returns array containing elements from start to end. start can be negative.
+             // <string>.split('') is equivalent to []["slice"].bind(<string>)()
+   [].sort, // Gets items from 0 to len
+            // Sorts items from least to greatest.
+            //    undefined > anything
+            //    If arg exists, ToNumber(arg(x, y)) should return a negative value when x<y, 0 when x=y, and a positive value when x>y
+            // Changes ToObject(this value)'s properties
+   [].includes, // true or false
+   [].join, // Joins elements by separator
+            // +[]["join"].bind("000000")("9")
+   [].entries, // CreateArrayIterator(ToObject(this value), key+value)
+   [].filter, // Returns new array with the elements where ToBoolean(Arg(element, index, ToObject(this value))) is true
+   [].flat, // Returns new array, FlattenIntoArray([], ToObject(this value), len, 0, ToIntegerOrInfinity(arg))
+   [].reduce, // arg: (accum (last call), currentElement, index, ToObject(this value))
+   "".concat, // ToString(this value) + ToString(arg)
+   "".includes, // true or false
+   "".slice, // Same as array.slice, but returns a string
+   Object.is,
+   Object.seal,
+   Object.create,
+   Object.entries,
+   Number.isNaN,
+   Number.NaN, // Currently useless
+   Array.isArray,
+   Array.of,
+]
 
 // If we can make a string
 function can (s) {
