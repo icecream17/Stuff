@@ -385,7 +385,7 @@ const possibleObjects = [
            // Object(x) creates ToObject(object)
    [].concat, // Used to combine two arrays - or push a value. (Returns new array though)
               // A = [], O = toObject(this value)
-              // For each E of [O, arg]
+              // For each E of [O, ...args]
               //    If E[@@isConcatSpreadable] ?? IsArray(E)
               //       Add each element from E to A as long as that index exists and length isn't reached.
               //    Else
