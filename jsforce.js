@@ -218,12 +218,12 @@ function check (newcombo, char) {
          let [oldDepth, oldcombo] = againFrom.get(resStr)
          if (oldcombo.length > newcombo.length) {
             failedCombinations[oldDepth] ??= Object.create(null)
-            failedCombinations[oldDepth][oldCombo] = combinations[oldDepth][oldcombo]
+            failedCombinations[oldDepth][oldcombo] = combinations[oldDepth][oldcombo]
             delete combinations[oldDepth][oldcombo]
             textarea.value += `   New record!\n${depth}: ${newcombo}\n${resStr}\n`
          } else {
             failedCombinations[oldDepth] ??= Object.create(null)
-            failedCombinations[oldDepth][oldCombo] = combinations[oldDepth][oldcombo]
+            failedCombinations[oldDepth][oldcombo] = combinations[oldDepth][oldcombo]
             delete combinations[depth][newcombo]
          }
       }
