@@ -181,7 +181,7 @@
     "f"+"i"+"n"+"d"
 
 84: "y"
-    (true+[Infinity])["11"]
+    (NaN+[Infinity])["10"]
 
 86: "seal"
     "s"+"e"+"a"+"l"
@@ -207,18 +207,18 @@
 177: "b"
      ("[object Array Iterator]")[2]
 
+180: "c"
+     (false+[]["entries"]())["10"]
+
 182: "j"
      ("[object Array Iterator]")[3]
 
-183: "c"
-     (false+"[object Array Iterator]")["10"]
+183: " "
+     (true+[]["entries"]())["11"]
+     (NaN+[]["entries"]())["10"]
 
-186: " "
-     (true+"[object Array Iterator]")["11"]
-     (NaN+"[object Array Iterator]")["10"]
-
-188: "A"
-     (NaN+"[object Array Iterator]")["11"]
+185: "A"
+     (NaN+[]["entries"]())["11"]
 
 189: "]"
      ("[object Array Iterator]")["22"]
@@ -347,10 +347,10 @@ const chars = {
    "[": 171,
    "o": 173,
    "b": 177,
+   "c": 180,
    "j": 182,
-   "c": 183,
-   " ": 184,
-   "A": 186,
+   " ": 183,
+   "A": 185,
    "]": 189,
    "-": 211,
    ",": 606,
