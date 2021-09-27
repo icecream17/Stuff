@@ -388,6 +388,7 @@ const possibleObjects = [
    Function, // In this scenario, calling Function always throws an error
    Object, // Object() and Object(null) creates {}
            // Object(x) creates ToObject(object)
+   [].at,
    [].concat, // Used to combine two arrays - or push a value. (Returns new array though)
               // A = [], O = toObject(this value)
               // For each E of [O, ...args]
@@ -418,6 +419,7 @@ const possibleObjects = [
    [].filter, // Returns new array with the elements where ToBoolean(Arg(element, index, ToObject(this value))) is true
    [].flat, // Returns new array, FlattenIntoArray([], ToObject(this value), len, 0, ToIntegerOrInfinity(arg))
    [].reduce, // arg: (accum (last call), currentElement, index, ToObject(this value))
+   "".at,
    "".concat, // ToString(this value) + ToString(arg)
    "".includes, // true or false
    "".slice, // Same as array.slice, but returns a string
