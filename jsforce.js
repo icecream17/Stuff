@@ -1,7 +1,36 @@
 "use strict";
-const JSF_CHARS = ["()", "++", "![]", "!![]"] // call() is different from (expression)
+const POSSIBLE_CHARS = "0123456789ftuarNnldseiIy.+[objc A]-,O"
+const POSSIBLE_STRING = /^[0123456789ftuarNnldseiIy.+[objc A\]\-,O]*$/
+const JSF_PROPERTIES = [
+   // "'false'",
+   // "'true'",
+   // "'undefined'",
+   // "'NaN'",
+   "'is'",
+   "'flat'",
+   // "'Infinity'",
+   "'fill'",
+   "'find'",
+   "'seal'",
+   "'filter'",
+   "'entries'",
+   // "'[object Array Iterator]'",
+   "'sort'",
+   "'call'",
+   "'bind'",
+   "'slice'",
+   "'create'",
+   "'reduce'",
+   "'includes'",
+   "'join'",
+   "'concat'",
+   "'constructor'",
+   // "'[object Object]'",
+]
+const JSF_UNITS = ["[]", "![]", "!![]", "+[![]]", "[][[]]"] // Beyond this there's no reason to use "!"
 const JSF_SURROUND = ["()", "[]"]
 const JSF_JOIN = ["+", ""] // Joins: something[] something() something+something
+// Function calls are done by surrounding "expression" to get (expression) and then joining "[]" with "(expression)"
 
 const textarea = (() => {
    if ("document" in globalThis && globalThis?.location.href === "about:blank") {
@@ -23,10 +52,11 @@ const nestingMap = {
 
 let depth = 1
 let combinations = []
-let totalCombinations = {}
-let failedCombinations = {}
+let passedCombinations = {}
+let failedCombinations = []
 let undefinedCombinations = [ "[][[]]", "[][+[]]", "[][![]]", "[][!![]]" ]
 let triedCombinations = []
+let stringCounts = {}
 let again = new Set()
 let againFrom = new Map()
 // let combosDone = new Set()
@@ -41,8 +71,8 @@ let againFrom = new Map()
 function reset () {
    depth = 1
    combinations = []
-   totalCombinations = {}
-   failedCombinations = {}
+   passedCombinations = {}
+   failedCombinations = []
    undefinedCombinations = [ "[][[]]", "[][+[]]", "[][![]]", "[][!![]]" ]
    triedCombinations = []
    textarea.value = ''
@@ -84,8 +114,14 @@ function stringify (value) {
       let seen = new WeakSet()
       const result = JSON.stringify(value, function (key, keyvalue) {
          if (typeof keyvalue === "object" && keyvalue !== null) {
-            if (seen.has(keyvalue)) return "[[Cyclic value]]"
+            if (keyvalue instanceof Number) return `~Number { ${keyvalue} }~`
+            if (keyvalue instanceof String) return `~String { ${keyvalue} }~`
+            if (keyvalue instanceof Boolean) return `~Boolean { ${keyvalue} }~`
+
+            if (seen.has(keyvalue)) return "~[[Cyclic value]]~"
             else seen.add(keyvalue)
+         } else if (typeof keyvalue === "function") {
+            return `~function ${keyvalue.name}()~`
          } else if (keyvalue === undefined || keyvalue === NaN) {
             return "~undefined~"
          }
@@ -98,29 +134,32 @@ function stringify (value) {
 }
 
 // Or mismatched []()
+// Or (false)()
 function usesArrayAsFunction (str) {
-   if (!(str.includes("[") && str.includes("]"))) {
+   if (!(str.includes("[") && str.includes("("))) {
       return false;
    }
 
    let stack = []
-   let repeats = [0]
+   let isFunction = [0] // 0, 1, 2
    for (let i = 0; i < str.length; i++) {
       if (str[i] === "[" || str[i] === "(") {
          stack.push(str[i])
-         repeats.push(0)
+         isFunction[stack.length] = 0 // same as push
       } else if (str[i] === "]") {
          if (stack[stack.length - 1] === "(" || stack.length === 0) return true
          stack.pop()
-         repeats.pop()
-         repeats[repeats.length - 1]++
-         if (str[i + 1] === "(") return true
-         if (str[i + 1] + str[i + 2] === "++" && repeats[repeats.length - 1] < 2) return true
+         const temp = isFunction.pop()
+         isFunction[stack.length]++
+         if (str[i + 1] === "(" && isFunction[stack.length] < 2) return true
       } else if (str[i] === ")") {
          if (stack[stack.length - 1] === "[" || stack.length === 0) return true
          stack.pop()
-         repeats.pop()
-         repeats[repeats.length - 1]++
+         const temp = isFunction.pop()
+         if (temp < isFunction[stack.length]) {
+            isFunction[stack.length] = temp
+         }
+         if (str[i + 1] === "(" && isFunction[stack.length] < 2) return true
       }
       if (stack.length < 0 || stack.length > 4) return "!"
    }
@@ -138,8 +177,8 @@ function check (newcombo, char) {
 
    // a === b instead of startsWith
    if (
-      newcombo.includes("(]") ||
-      newcombo.includes("[)") ||
+      // newcombo.includes("(]") ||
+      // newcombo.includes("[)") ||
       newcombo.includes("!)") ||
       newcombo.includes("!]") ||
       newcombo.includes(")!") ||
@@ -147,23 +186,23 @@ function check (newcombo, char) {
       newcombo.includes(")[]") ||
       newcombo.includes("][]") ||
       newcombo.includes("+()") ||
-      newcombo.includes("!()") ||
+      // newcombo.includes("!()") ||
       newcombo.includes("(()") ||
       newcombo.includes("[()") ||
-      newcombo.includes("!!!") ||
+      // newcombo.includes("!!!") ||
       newcombo.includes("++!") ||
       newcombo.includes("++(") ||
       newcombo.includes("++[") ||
       newcombo.includes("+++)") ||
       newcombo.includes("+++]") ||
       newcombo === "()" ||
-      newcombo.endsWith("!++[]") ||
+      // newcombo.endsWith("!++[]") ||
       newcombo.endsWith("+++[]") ||
       (newcombo.startsWith("((") && newcombo.endsWith("))")) ||
-      (newcombo.lastIndexOf("(") < newcombo.lastIndexOf("[") &&
-       newcombo.lastIndexOf("[") < newcombo.lastIndexOf(")")) ||
-      (newcombo.lastIndexOf("[") < newcombo.lastIndexOf("(") &&
-       newcombo.lastIndexOf("(") < newcombo.lastIndexOf("]")) ||
+//       (newcombo.lastIndexOf("(") < newcombo.lastIndexOf("[") &&
+//        newcombo.lastIndexOf("[") < newcombo.lastIndexOf(")")) ||
+//       (newcombo.lastIndexOf("[") < newcombo.lastIndexOf("(") &&
+//        newcombo.lastIndexOf("(") < newcombo.lastIndexOf("]")) ||
       undefinedCombinations.some(undefinedCombo => newcombo.includes(undefinedCombo + '[') || newcombo.includes(undefinedCombo + '(')) ||
       // newcombo._howmany("[") < newcombo._howmany("]") ||
       // newcombo._howmany("(") < newcombo._howmany(")") ||
@@ -192,16 +231,10 @@ function check (newcombo, char) {
    if (check1 === true || check1 === "!") {
       // shouldError(newcombo)
       return;
-   } else if (check1 > 0) {
-      combinations[depth][newcombo] = check1
-      return;
-   } else if (char === "[" || char === "(") {
-      combinations[depth][newcombo] = "open"
-      return;
    }
 
-   if (newcombo._howmany("[") > newcombo._howmany("]") ||
-       newcombo._howmany("(") > newcombo._howmany(")") ||
+   if (// newcombo._howmany("[") > newcombo._howmany("]") ||
+       // newcombo._howmany("(") > newcombo._howmany(")") ||
        newcombo.endsWith("!") ||
        newcombo.endsWith("+") ||
        (/\+\+\[.*]/.test(newcombo) && !/\+\+\[.*]\[/.test(newcombo)) || 
@@ -215,75 +248,114 @@ function check (newcombo, char) {
    if ("pass" in result) {
       if (result.pass === undefined) {
          undefinedCombinations.push(newcombo)
+      } else if (typeof result.pass === "string") {
+         if (result.pass.includes("function") || POSSIBLE_STRING.test(result.pass)) {
+            failedCombinations.push(newcombo)
+            delete combinations[depth][newcombo]
+            return
+         }
       }
 
       const resStr = stringify(result.pass)
+      if (/(true|false|undefined|NaN|[0-9]){3}/.test(resStr) || resStr?.name === "anonymous") {
+         failedCombinations.push(newcombo)
+         delete combinations[depth][newcombo]
+         return
+      }
+
       if (!again.has(resStr)) {
          again.add(resStr)
          againFrom.set(resStr, [depth, newcombo])
-         textarea.value += `${depth}: ${newcombo}\n${resStr}\n`
+         let out = typeof resStr === "function" ? `function ${resStr.name}()` : resStr
+         textarea.value += `${depth}: ${newcombo}\n${out}\n`
       } else if (char !== "()") {
          let [oldDepth, oldcombo] = againFrom.get(resStr)
          if (oldcombo.length > newcombo.length) {
-            failedCombinations[oldDepth] ??= Object.create(null)
-            failedCombinations[oldDepth][oldcombo] = combinations[oldDepth][oldcombo]
+            failedCombinations.push(oldcombo)
             delete combinations[oldDepth][oldcombo]
+            delete passedCombinations[oldcombo]
             againFrom.set(resStr, [depth, newcombo])
             textarea.value += `   New record!\n      ${depth}: ${newcombo}\n      ${resStr}\n`
          } else {
-            failedCombinations[depth] ??= Object.create(null)
-            failedCombinations[depth][newcombo] = combinations[depth][newcombo]
+            failedCombinations.push(newcombo)
             delete combinations[depth][newcombo]
          }
+      }
+   } else {
+      failedCombinations.push(newcombo)
+      delete combinations[depth][newcombo]
+   }
+}
+
+function comboChecks (combo) {
+   for (const char of JSF_UNITS) {
+      const newcombo = combo + char
+      check(newcombo, char)
+   }
+
+   if (passedCombinations[combo] === "nothing here") return;
+   // So now we know combo is a completed expression
+
+   for (const property of JSF_PROPERTIES) {
+      check(`${combo}[${property}]`)
+   }
+
+   for (const surround of JSF_SURROUND) {
+      const newcombo = `${surround[0]}${combo}${surround[1]}`
+      check(newcombo, surround)
+   }
+
+   if (combo[0] !== '+') {
+      check(`+${combo}`)
+   }
+
+   for (const join of JSF_JOIN) {
+      // Currently only has the previous depths' combinations
+      for (const combo2 in passedCombinations) {
+         if (passedCombinations[combo2] === "nothing here") continue;
+         const newcombo = `${combo}${join}${combo2}`
+         const newcombo2 = `${combo2}${join}${combo}`
+         check(newcombo)
+         check(newcombo2)
       }
    }
 }
 
-function search () {
+async function* _search () {
    combinations[depth] = Object.create(null)
 
    if (depth === 1) {
-      check("[]")
-      check("+[]")
-      check("![]")
-      check("!![]")
-   } else {
-      for (const combo in combinations[depth - 1]) {
-         check(`+${combo}`)
-         for (const char of JSF_CHARS) {
-            const newcombo = combo + char
-            check(newcombo, char)
-         }
-         for (const surround of JSF_SURROUND) {
-            const newcombo = `${surround[0]}${combo}${surround[1]}`
-            check(newcombo, JSF_SURROUND)
-         }
-         for (const join of JSF_JOIN) {
-            // Currently only has the previous depths' combinations
-            for (const combo2 in totalCombinations) {
-               const newcombo = `${combo}${join}${combo2}`
-               const newcombo2 = `${combo2}${join}${combo}`
-               check(newcombo)
-               check(newcombo2)
-            }
-         }
+      for (const unit of JSF_UNITS) {
+         check(unit)
       }
+   } else {
+      const countLabel = `${depth} (${Object.keys(combinations[depth - 1]).length} elements)`
+      for (const combo in combinations[depth - 1]) {
+         console.count(countLabel)
+         yield comboChecks(combo)
+         await new Promise(resolve => setTimeout(resolve, 0))
+      }
+      console.countReset(countLabel)
    }
 
    // clear each depth
    // wait = Object.create(null)
 
-   // Add this depth's combinations to total
-   Object.assign(totalCombinations, combinations[depth])
+   // Add this depth's combinations to "passed"
+   Object.assign(passedCombinations, combinations[depth])
    depth++
 }
 
-function time (times=4) {
+async function time (times=10) {
    reset()
    console.time('search')
+
    for (let i = 0; i < times; i++) {
       console.time(`depth ${depth}`)
-      search()
+
+      const search = _search()
+      while (!((await search.next()).done)) continue;
+
       console.timeEnd(`depth ${depth - 1}`)
    }
    console.timeEnd('search')
