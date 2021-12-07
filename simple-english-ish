@@ -1,0 +1,199 @@
+; Extended-Backus-Naur-ish form for simple-english-ish v1
+; Alternate can pass context to a child using {Name}
+; Optional context can be given using {opt/Name}
+; Check for some context using [If:]
+
+Word =
+| Compound
+| Simple
+
+Compound =
+| Simple Simple+
+
+; Middle and End are nested in Start
+Simple =
+| Start
+| Start{EndR}
+| Start{EndVowel}
+| Full
+
+Full =
+| ConsonantStart? VowelFull
+
+VowelFull =
+| VowelEnd Consonant?
+| Vowel ConsonantClusterEnd
+| VowelPlusR FollowsR?
+| Exception
+
+Start =
+| [If: EndVowel] ConsonantStart? Vowel Middle{EndVowel}
+| [Elif: EndR] ConsonantStart? VowelPlusR Middle{EndR}
+| [Else] ConsonantStart? VowelStart Middle
+
+VowelStart =
+| Vowel Consonant
+| Exception
+
+Middle =
+| VowelStart Middle
+| [If: EndR] FollowsR VowelStart? Middle
+| [If: EndVowel] ConsonantClusterNotEnd VowelStart Middle
+| End
+
+End =
+| VowelEnd ConsonantEnd?
+| VowelPlusR FollowsR?
+| [If: EndR] FollowsR? End?
+| Exception
+
+ConsonantStart
+| Consonant
+| ConsonantClusterNotEnd
+| `h`
+| `w`
+| `j`
+; Note: j is pronounced as in fjord
+
+ConsonantEnd =
+| Consonant
+| ConsonantClusterEnd
+
+Exception =
+| `iŋ`
+| `iŋk`
+| `ʊd`
+| `ʊk`
+| `ʊʃ`
+| `ʊdz`
+| `ʊks`
+| `ʊkt`
+
+VowelEnd
+| `ɑ`
+| `æ`
+| `aɪ`
+| `aʊ`
+| `eɪ`
+| `i`
+| `ɔɪ`
+| `oʊ`
+| `u`
+| `ə`
+
+Vowel
+| VowelEnd
+| `ɛ`
+| `ɪ`
+
+VowelPlusR
+| `ɑr`
+| `aɪər`
+| `aʊər`
+| `ɛr`
+| `ɛər`
+| `ɪr`
+| `ɪər`
+| `ɔɪər`
+| `ər`
+
+FollowsR
+  one of
+    `b`
+    `ʧ`
+    `g`
+    `k`
+    `l`
+    `m`
+    `n`
+    `s`
+    `ʃ`
+    `t`
+    `v`
+
+; Note: English doesn't really care what "th" you use, so I default to θ instead of ð
+Consonant
+  one of
+    `b`
+    `ʧ`
+    `d`
+    `f`
+    `g`
+    `ʤ`
+    `k`
+    `l`
+    `m`
+    `n`
+    `p`
+    `r`
+    `s`
+    `ʃ`
+    `t`
+    `θ`
+    `v`
+    `z`
+
+ConsonantClusterEnd
+  one of
+    `bz`
+    `dz`
+    `fs`
+    `ft`
+    `ks`
+    `kt`
+    `lb`
+    `lʧ`
+    `ld`
+    `lf`
+    `lm`
+    `lp`
+    `lt`
+    `lv`
+    `mp`
+    `nʧ`
+    `nd`
+    `nt`
+    `nz`
+    `ps`
+    `pt`
+
+
+ConsonantClusterNotEnd
+  one of
+    `bl`
+    `br`
+    `bw`
+    `dr`
+    `dw`
+    `fl`
+    `fr`
+    `fw`
+    `gl`
+    `gr`
+    `gw`
+    `kl`
+    `kr`
+    `kw`
+    `pl`
+    `pr`
+    `pw`
+    `ʃr`
+    `ʃw`
+    `sk`
+    `skr`
+    `skw`
+    `sl`
+    `sm`
+    `sn`
+    `sp`
+    `spl`
+    `spr`
+    `spw`
+    `st`
+    `str`
+    `stw`
+    `sw`
+    `tr`
+    `tw`
+    `θr`
+    `θw`
