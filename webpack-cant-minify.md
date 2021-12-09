@@ -130,6 +130,7 @@ if(g){for(const n of g(e))t[I](n)||O.prototype.propertyIsEnumerable.call(e,n)&&(
 ```
 
 Notice all the variables at the end! That can be moved to the initial variable declaration inside `function a`
+
 ```js
 // new code
 !function(){var O=Object,g=O.getOwnPropertySymbols,i="includes",e={299:function(e,t,n){"use strict"
@@ -187,6 +188,8 @@ d=function(e){
   ),n
 }(s.PureComponent)},725:function(e){"use strict"
 
+// D looks safe so the newer code is
+
 !function(){var O=Object,g=O.getOwnPropertySymbols,i="includes",e={299:function(e,t,n){"use strict"
 n.d(t,{Z:function(){return d}})
 var r=n(489)
@@ -196,8 +199,64 @@ var a={}
 for(const n of O.keys(e))t[I](n)||(a[n]=e[n])
 return a}(e,t),d=function(e){(0,i.Z)(n,e)
 var t=(0,u.Z)(n);function n(){return(0,o.Z)(this,n),t.apply(this,arguments)}return(0,l.Z)(n,[{key:"render",value:function(){var e,t=this.props,n=t.className,o=void 0===n?"Control":n,l=t.innerRef,i=a(t,f)
-return(0,c.jsx)("button",(0,r.Z)((0,r.Z)({className:o,type:"button",ref:l},i),{},{children:null!==(e=this.props.children)&&void 0!==e?e:this.props.name}))}}]),n}(s.PureComponent)},725:function(e){"use strict"
+return(0,c.jsx)("button",(0,r.Z)((0,r.Z)({className:o,type:"button",ref:l},i),{},{children:null!==(e=this.props.children)&&void 0!==e?e:this.props.name}))}}]),n}(s.PureComponent)
+if(g){for(const n of g(e))t[I](n)||O.prototype.propertyIsEnumerable.call(e,n)&&(a[n]=e[n])}},725:function(e){"use strict"
 
 ```
 
-Ugh
+Hmm, `(0, a.b)` makes `a.b[[this]] !== a`. So why not declare `function T(v){return v}` and call `T(a.b)` instead? It's shorter!
+
+Although T has to be used 23 times to actually equalize the declaration, and it doesn't help next to things like "return"
+
+If `function T(v,...A){return v(...A)}`, 23+11=34, but saves 2 characters `(0,a.b)(args) into T(a.b,args)`, so only needs 17 calls to equalize.
+
+There's only 3 uses for T right now so it's not useful.
+
+```js
+Old variables: e,t,n,d,a,r,o,l,i,u,s,c,f
+New variables: O,g,I
+             ? T,v
+```
+
+Here's 725:
+
+```js
+,725:function(e){"use strict"
+var t=Object.getOwnPropertySymbols,n=Object.prototype.hasOwnProperty,r=Object.prototype.propertyIsEnumerable
+function a(e){if(null===e||void 0===e)throw new TypeError("Object.assign cannot be called with null or undefined")
+return Object(e)}e.exports=function(){try{if(!Object.assign)return!1
+var e=new String("abc")
+if(e[5]="de","5"===Object.getOwnPropertyNames(e)[0])return!1
+for(var t={},n=0;n<10;n++)t["_"+String.fromCharCode(n)]=n
+if("0123456789"!==Object.getOwnPropertyNames(t).map((function(e){return t[e]})).join(""))return!1
+var r={}
+return"abcdefghijklmnopqrst".split("").forEach((function(e){r[e]=e})),"abcdefghijklmnopqrst"===Object.keys(Object.assign({},r)).join("")}catch(a){return!1}}()?Object.assign:function(e,o){for(var l,i,u=a(e),s=1;s<arguments.length;s++){for(var c in l=Object(arguments[s]))n.call(l,c)&&(u[c]=l[c])
+if(t){i=t(l)
+for(var f=0;f<i.length;f++)r.call(l,i[f])&&(u[i[f]]=l[i[f]])}}return u}}
+
+// O=Object,S=O.getOwnPropertySymbols,P=O.prototype,E=P.propertyIsEnumerable,N=O.getOwnPropertyNames
+// join("") --> join`` (same for split)
+// null===e||void 0===e --> null==e
+!function(){var O=Object,S=O.getOwnPropertySymbols,P=O.prototype,E=P.propertyIsEnumerable,N=O.getOwnPropertyNames,e={299:function(e,t,n){"use strict"
+n.d(t,{Z:function(){return d}})
+var r=n(489)
+function a(e,t){if(null==e)return{}
+var n,r,o=n(853),l=n(531),i=n(20),u=n(804),s=n(791),c=n(184),f=["className","innerRef"],a=function(e,t){if(null==e)return{}
+var a={}
+for(const n of O.keys(e))t[I](n)||(a[n]=e[n])
+return a}(e,t),d=function(e){(0,i.Z)(n,e)
+var t=(0,u.Z)(n);function n(){return(0,o.Z)(this,n),t.apply(this,arguments)}return(0,l.Z)(n,[{key:"render",value:function(){var e,t=this.props,n=t.className,o=void 0===n?"Control":n,l=t.innerRef,i=a(t,f)
+return(0,c.jsx)("button",(0,r.Z)((0,r.Z)({className:o,type:"button",ref:l},i),{},{children:null!==(e=this.props.children)&&void 0!==e?e:this.props.name}))}}]),n}(s.PureComponent)
+if(S){for(const n of S(e))t[I](n)||E.call(e,n)&&(a[n]=e[n])}},725:function(e){"use strict"
+var n=P.hasOwnProperty,t=S,r=E
+function a(e){if(null==e)throw new TypeError("Object.assign cannot be called with null or undefined")
+return Object(e)}e.exports=function(){try{if(!O.assign)return!1
+var e=new String("abc")
+if(e[5]="de","5"===N(e)[0])return!1
+for(var t={},n=0;n<10;n++)t["_"+String.fromCharCode(n)]=n
+if("0123456789"!==N(t).map((function(e){return t[e]})).join``)return!1
+var r={}
+return"abcdefghijklmnopqrst".split``.forEach((function(e){r[e]=e})),"abcdefghijklmnopqrst"===O.keys(O.assign({},r)).join``}catch(a){return!1}}()?O.assign:function(e,o){for(var l,i,u=a(e),s=1;s<arguments.length;s++){for(var c in l=O(arguments[s]))n.call(l,c)&&(u[c]=l[c])
+if(t){i=t(l)
+for(var f=0;f<i.length;f++)E.call(l,i[f])&&(u[i[f]]=l[i[f]])}}return u}}
+```
