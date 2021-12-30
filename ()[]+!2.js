@@ -125,6 +125,12 @@
 29: 6
     true+true+true+true+true+true
 
+30: "at"
+    "a"+"t"
+
+34: []["at"]
+    []["at"]
+
 34: 7
     true+true+true+true+true+true+true
 
@@ -160,9 +166,6 @@
 
 64: "flat"
     "f"+"l"+"a"+"t"
-
-68: []["flat"]
-    []["flat"]
 
 70: "I"
     (Infinity+[])[0]
@@ -229,8 +232,8 @@
 200: "1e-7"
      +(".0000001")+[]
 
-211: "-"
-     "1e-7"[2]
+213: "-"
+     ("1e-7")[2]
 
 230: "sort"
      "s"+"o"+"r"+"t"
@@ -277,8 +280,8 @@
 849: String
      ([]+[])["constructor"]
 
-910: Function
-     []["flat"]["constructor"]
+876: Function
+     []["at"]["constructor"]
 
 997: Object
      []["entries"]()["constructor"]
@@ -290,13 +293,13 @@
       (NaN+Object())["11"]
 
 Footnotes: {
-   [1]: Array.prototype.flat.toString()
-        // aka String([].flat)
+   [1]: Array.prototype.at.toString()
+        // aka String([].at)
 
         // This is implementation-defined
         // Thanks https://github.com/tc39/ecma262/issues/2488
         // There can be any positive integer amount of whitespace between, before, and after any of these tokens:
-        // `function` `flat` `(` `)` `{` `[` `native` `code` `]` `}`
+        // `function` `at` `(` `)` `{` `[` `native` `code` `]` `}`
 
         // (where whitespace is defined in the specification - see source)
 
@@ -304,8 +307,8 @@ Footnotes: {
         // "function flat() { [native code] }"
 
         // But if you're targeting specific browsers then you could make "c" and "o" with
-        // ([]["flat"]+[])[3]
-        // ([]["flat"]+[])[6]
+        // ([]["at"]+[])[3]
+        // ([]["at"]+[])[6]
         // or similar
    [2]: String.prototype.bold
         // This is a legacy property, and it isn't guaranteed to be implemented unless the implementation has to run legacy code.
@@ -399,9 +402,11 @@ const possibleObjects = [
    [].filter, // Returns new array with the elements where ToBoolean(Arg(element, index, ToObject(this value))) is true
    [].flat, // Returns new array, FlattenIntoArray([], ToObject(this value), len, 0, ToIntegerOrInfinity(arg))
    [].reduce, // arg: (accum (last call), currentElement, index, ToObject(this value))
+   [].at,
    "".concat, // ToString(this value) + ToString(arg)
    "".includes, // true or false
    "".slice, // Same as array.slice, but returns a string
+   "".at,
    Object.is,
    Object.seal,
    Object.create,
@@ -449,7 +454,7 @@ const chars = {
    " ": 183,
    "A": 185,
    "]": 189,
-   "-": 211,
+   "-": 213,
    ",": 606,
    "O": 1023,
 }
