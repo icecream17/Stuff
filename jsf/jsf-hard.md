@@ -57,7 +57,7 @@ Other [more powerful characters have been suggested for boolean conversion](http
 
 </details>
 
-And `+undefined` gets `NaN`
+And `+undefined` (or `+[false]`) gets `NaN`
 
 ## Simple numbers
 
