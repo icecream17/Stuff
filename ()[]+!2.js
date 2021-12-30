@@ -185,6 +185,7 @@
 
 84: "y"
     (NaN+[Infinity])["10"]
+    (true+[Infinity])["11"]
 
 86: "seal"
     "s"+"e"+"a"+"l"
@@ -352,10 +353,10 @@ const possibleObjects = [
    "constructor", // We can get something's constructor
                   // So far there's only values with the following constructors
                   // But first, some Function#properties.
-   Function.prototype.apply, // Calls a function with a certain "this value".
    Function.prototype.bind,  // Makes a function "bound". Sets the "bound this value".
                              // When a bound function is called the "this value" is set to the "bound this value".
                              // Function.prototype.apply now doesn't do anything.
+   Function.prototype.call,
    Array, // Although it's a class, using it as a function is equivalent, except that NewTarget is always undefined.
           // Therefore newTarget is the active function object, which is set to the function whose [[Call]] or [[Construct]] is ...done.
           // aka Array
