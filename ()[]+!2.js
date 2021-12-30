@@ -286,8 +286,8 @@
 1002: "[object Object]"
       []+Object()
 
-1024: "O"
-      ("00"+Object())["10"]
+1023: "O"
+      (NaN+Object())["11"]
 
 Footnotes: {
    [1]: Array.prototype.flat.toString()
@@ -451,7 +451,7 @@ const chars = {
    "]": 189,
    "-": 211,
    ",": 606,
-   "O": 1024,
+   "O": 1023,
 }
 
 // If we can make a string
