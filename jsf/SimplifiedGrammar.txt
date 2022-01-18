@@ -1,0 +1,364 @@
+# Copyright to the people who made https://tc39.es/ecma262
+
+# Initial parsing
+
+CommonToken::
+ Punctuator::
+  OtherPunctuator:: one of
+   [ ] ( ) + !
+
+# Initial parsing is then passed to Script or Module
+
+Script:
+ ScriptBody:
+  StatementList:
+   StatementListItem
+
+Module:
+ ModuleItem:
+  StatementListItem[+Await]
+
+StatementListItem[Await]:
+ Statement[?Await]:
+  ExpressionStatement[?Await]:
+   Expression[+In, ?Await]
+
+# All of these pass down the [In, Await] flags
+
+Expression:
+ AssignmentExpression:
+  ConditionalExpression:
+   ShortCircuitExpression:
+    LogicalORExpression:
+     LogicalANDExpression:
+      BitwiseORExpression:
+       BitwiseXORExpression:
+        BitwiseANDExpression:
+         EqualityExpression:
+          RelationalExpression:
+           ShiftExpression:
+            AdditiveExpression:
+
+AdditiveExpression:
+ MultiplicativeExpression
+ AdditiveExpression + MultiplicativeExpression
+
+
+MultiplicativeExpression
+ ExponentiationExpression:
+  UnaryExpression:
+   UpdateExpression
+   + UnaryExpression
+   ! UnaryExpression
+
+UpdateExpression:
+ LeftHandSideExpression
+ LeftHandSideExpression ++
+ ++ UnaryExpression
+
+LeftHandSideExpression:
+ NewExpression
+ CallExpression
+
+NewExpression:
+ MemberExpression:
+  PrimaryExpression
+  MemberExpression [ Expression ]
+
+CallExpression:
+ CoverCallExpressionAndAsyncArrowHead
+ CallExpression Arguments
+ CallExpression [ Expression ]
+
+# See https://tc39.es/ecma262/#sec-grouping-operator-static-semantics-early-errors
+PrimaryExpression:
+ ArrayLiteral
+ ParenthesizedExpression
+
+CoverCallExpressionAndAsyncArrowHead:
+ MemberExpression Arguments
+
+Arguments:
+ ( )
+ ArgumentList
+
+ArrayLiteral:
+ [ ]
+ [ ElementList ]
+
+ParenthesizedExpression:
+ ( Expression )
+
+ArgumentList:
+ AssignmentExpression
+
+ElementList:
+ AssignmentExpression
+
+#####
+# Even more simplified
+
+AdditiveExpression:
+ UnaryExpression
+ AdditiveExpression + UnaryExpression
+
+UnaryExpression:
+ UpdateExpression
+ + UnaryExpression
+ ! UnaryExpression
+
+UpdateExpression:
+ MemberOrCallExpression
+ MemberOrCallExpression ++
+ ++ MemberOrCallExpression
+
+# Renamed from LeftHandSideExpression because assignment doesn't syntactically exist
+MemberOrCallExpression:
+ MemberExpression
+ CallExpression
+
+MemberExpression:
+ PrimaryExpression
+ MemberExpression [ AdditiveExpression ]
+
+CallExpression:
+ MemberExpression Arguments
+ CallExpression Arguments
+ CallExpression [ AdditiveExpression ]
+
+PrimaryExpression:
+ ArrayLiteral
+ ( AdditiveExpression )
+
+Arguments:
+ ( )
+ ( AdditiveExpression )
+
+ArrayLiteral:
+ [ ]
+ [ AdditiveExpression ]
+
+
+### Evaluation
+
+#### Notation
+
+ExampleFunctionName(ExampleArgument, [ExampleOptionalArgument])
+
+@@toPrimitive = Symbol.toPrimitive
+
+
+ReturnIfAbrupt(argument)
+1. If argument is an abrupt completion, return argument
+2. Else if argument is a Completion Record, set argument to argument.[[Value]]
+
+? OperationName()
+1. ReturnIfAbrupt(OperationName())
+
+? someValue.OperationName()
+1. ReturnIfAbrupt(someValue.OperationName())
+
+! Something
+1. NOTE: Something is not an abrupt completion
+   ? Something
+
+
+𝔽(x) = x as a double
+
+#### A few abstract operations
+
+GetV(V, P)
+1. Let O be ? ToObject(V)
+2. Return ? O.[[Get]](P, V)
+
+GetMethod(V, P)
+1. Let func be ? GetV(V, P)
+2. If func is either undefined or null, return undefined
+3. If IsCallable(func) is false, throw a TypeError
+4. Return func
+
+PrivateGet(O, P)
+1. Let entry be ! PrivateElementFind(O, P)
+2. If entry is empty, throw a TypeError exception
+3. If entry.[[Kind]] is field or method, then
+    a. Return entry.[[Value]]
+4. NOTE: entry.[[Kind]] is accessor
+5. If entry.[[Get]] is undefined, throw a TypeError
+6. Let getter be entry.[[Get]]
+7. Return ? Call(getter, O)
+
+Call(F, V, [argumentsList])
+1. If argumentsList is not present, set argumentsList to a new empty List
+2. If IsCallable(F) is false, throw a TypeError
+3. Return ? F.[[Call]](V, argumentsList)
+
+ToNumeric(value)
+1. Let primValue be ? ToPrimitive(value, number)
+2. If Type(primValue) is BigInt, return primValue
+3. Return ? ToNumber(primValue)
+
+ToNumber(argument)
+
+   Argument Type | Action
+   Undefined     | Return NaN
+   Null          | Return +0
+   Boolean       | If argument is true, return 1, else return +0
+   Number        | Return argument
+   String        | Return ! StringToNumber(argument)
+   Symbol        | Throw a TypeError
+   BigInt        | Throw a TypeError
+   Object        | Return ? ToNumber(? ToPrimitive(argument, number))
+
+ToObject(argument)
+
+   Argument Type | Action
+   Undefined     | Throw a TypeError
+   Null          | Throw a TypeError
+   Boolean       | Return a new Boolean object whose [[BooleanData]] internal slot is set to argument.
+   Number        | Return a new Number object whose [[NumberData]] internal slot is set to argument.
+   String        | Return a new String object whose [[StringData]] internal slot is set to argument.
+   Symbol        | Return a new Symbol object whose [[SymbolData]] internal slot is set to argument.
+   BigInt        | Return a new BigInt object whose [[BigIntData]] internal slot is set to argument.
+   Object        | Return argument
+
+ToPrimitive(input, [preferredType])
+1. If Type(input) is Object
+    a. Let exoticToPrim be ? GetMethod(input, @@toPrimitive)
+    b. If exoticToPrim is not undefined:
+        i. If preferredType is not present, let hint be "default"
+        ii. Else if preferredType is string, let hint be "string"
+        iii. Else (preferredType is number), let hint be "number"
+        iv. Let result be ? Call(exoticToPrim, input, << hint >>)
+        v. If Type(result) is not Object, return result
+        vi. Throw a TypeError
+    c. If preferredType is not present, let preferredType be number
+    d. Return ? OrdinaryToPrimitive(input, preferredType)
+2. Return input
+
+OrdinaryToPrimitive(O, hint)
+1. If hint is string, let methodNames be << "toString", "valueOf" >>
+2. Else let methodNames be << "valueOf", "toString" >>
+3. For each element name of methodNames, do
+   1. Let method ? Get(O, name)
+   2. If IsCallable(method) is true, then
+      i. Let result be ? Call(method, O)
+      ii. If Type(result) is not Object, return result
+4. Throw a TypeError
+
+ToString(argument)
+
+   Argument Type | Action
+   Undefined     | Return "undefined"
+   Null          | Return "null"
+   Boolean       | If argument is true, return "true", else return "false"
+   Number        | Return ! Number::toString(argument)
+   String        | Return argument
+   Symbol        | Throw a TypeError
+   BigInt        | Return ! BigInt::toString(argument)
+   Object        | Return ? ToString(? ToPrimitive(argument, string))
+
+Number::toString(x)
+1. If x matches any of the results in the table, return the result of the table
+
+   NaN      | "NaN"
+   +0 or -0 | "0"
+   x < 0    | string-concatenation of "-" and ! Number::toString(-x)
+   Infinity | "Infinity"
+
+2. Otherwise, let n, k, and s be integers such that k ≥ 1, 10^(k - 1) ≤ s < 10^k, 𝔽(s × 10^(n - k)) is x, and k is as small as possible.
+   Note that k is the number of digits in the decimal representation of s,
+        that s is not divisible by 10, and
+        that the least significant digit of s is not necessarily uniquely determined by these criteria.
+3. Return the string-concatenation of the result from the relation (table)
+
+   k ≤ n ≤ 21 | the code units of the k digits of the decimal representation of s (in order, with no leading zeroes)
+              | n-k occurrences of "0"
+   0 < n ≤ 21 | the code units of the most significant n digits of the decimal representation of s
+              | "."
+              | the code units of the remaining k-n digits of the decimal representation of s
+  -6 < n ≤ 0  | "0."
+              | -n occurrences of "0"
+              | the code units of the remaining k digits of the decimal representation of s
+     k = 1    | the code unit of the single digit of s
+              | "e"
+              | if n-1 is positive, "+", else "-"
+              | the code units of the decimal representation of the integer abs(n-1) (with no leading zeroes)
+     else     | the code units of the most significant digit of the decimal representation of s
+              | "."
+              | the code units of the remaining k - 1 digits of the decimal representation of s
+              | "e"
+              | if n-1 is positive, "+", else "-"
+              | the code units of the decimal representation of the integer abs(n-1) (with no leading zeroes)
+
+BigInt::toString(x)
+1. If x < 0, return the string-concatenation of "-" and ! BigInt::toString(-x)
+2. Return the String value consisting of the code units of the digits of the decimal representation of x.
+
+IsPropertyReference(V)
+1. If V.[[Base]] is unresolvable, return false
+1. If V.[[Base]] is an Environment Record, return false; otherwise return true
+
+IsUnresolvableReference(V)
+1. If V.[[Base]] is unresolvable, return true; otherwise return false
+
+IsPrivateReference(V)
+1. If V.[[ReferencedName]] is a Private Name, return true; otherwise return false
+
+GetValue(V)
+1. ReturnIfAbrupt(V)
+2. If V is not a Reference Record, return V
+3. If IsUnresolvableReference(V) is true, throw a ReferenceError
+4. If IsPropertyReference(V) is true, then
+    a. Let baseObj be ? ToObject(V.[[Base]])
+    b. If IsPrivateReference(V) is true, then
+        i. Return ? PrivateGet(baseObj, V.[[ReferencedName]])
+    c. Return ? baseObj.[[Get]](V.[[ReferencedName]], GetThisValue(V))
+5. Else,
+    a. Let base be V.[[Base]]
+    b. NOTE: base is an Environment Record
+       Return ? base.GetBindingValue(V.[[ReferencedName]], V.[[Strict]])
+
+GetThisValue(V)
+1. NOTE: IsPropertyReference(V) is true
+   If IsSuperReference(V) is true, return V.[[ThisValue]]; otherwise return V.[[Base]]
+
+# Not in the spec
+CustomGetValue(node)
+1. Let ref be the result of evaluating node
+2. Return ? GetValue(ref)
+
+#### Grammar + more abstract operations
+
+AdditiveExpression: AdditiveExpression + UnaryExpression
+1. Return ? EvaluateStringOrNumericBinaryExpression(AdditiveExpression, +, UnaryExpression)
+
+
+EvaluateStringOrNumericBinaryExpression(leftOperand, opText, rightOperand)
+1. Let lval be ? CustomGetValue(leftOperand)
+2. Let rval be ? CustomGetValue(rightOperand)
+3. Return ? ApplyStringOrNumericBinaryOperator(lval, opText, rval)
+
+
+ApplyStringOrNumericBinaryOperator(lval, opText, rval)
+1. If opText is +
+    a. Let lprim be ? ToPrimitive(lval)
+    b. Let rprim be ? ToPrimitive(rval)
+    c. If Type(lprim) is String or Type(rprim) is String
+        i. Let lstr be ? ToString(lprim)
+        ii. Let rstr be ? ToString(rprim)
+        iii. Return the string-concatenation of lstr and rstr
+    d. Set lval to lprim
+    e. Set rval to rprim
+2. NOTE: At this point, it must be a numeric operation
+   Let lnum be ? ToNumeric(lval)
+3. Let rnum be ? ToNumeric(rval)
+4. If Type(lnum) is different from Type(rnum) throw a TypeError
+5. Let operation be the abstract operation associated with opText and Type(lnum) in the following table:
+
+   Operation |  Type  | Abstract Operation
+   **        | Number | Number::exponentiate
+   **        | BigInt | BigInt::exponentiate
+
+   (This table continues with multiply, divide, remainder, add, subtract, leftShift, signedRightShift, unsignedRightShift, bitwiseAND, bitwiseXOR, bitwiseOR)
+
+6. Return ? operation(lnum, rnum)
