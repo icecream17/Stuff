@@ -20,12 +20,11 @@ This way it's easier to see the code, let's take the chunk until the first semic
 !function(){var e={299:function(e,t,n){"use strict"
 ```
 
-What!? Why isn't it using newer syntax, that would obviously save many characters:
+What!? Why isn't it using es6 anonymous function syntax, that would obviously save _so many characters_:
 
 ```js
-!(()=>{stuff})
-
-!function(){stuff}
+!function(){var e={299:function(e,t,n){"use strict"...
+!(()=>{var e={299:function(e,t,n){"use strict"...)
 ```
 
 It's not a problem with browserslist. That's set to
@@ -37,23 +36,38 @@ It's not a problem with browserslist. That's set to
 ```
 
 And it's 2021! No way any browsers on 2021 don't support... oh no. Why. Edge 96 has partial support!?
-Why????
+Why???? (Also opera mini has no support)
 
 I mean, the newer syntax would still work on Edge 96 but I'm still blaming them instead of webpack.
 
-Anyways here's the matching browsers as of 2021-12-9:
+Anyways here's the matching browsers as of 2022-2-5:
 ```
-A surprising amount of versions were removed because of >0.2%
-
-Edge 94 to 96
-Firefox 93 to 95
-Chrome 91 to 96
-Safari 14.1 to 15.1
-Opera 80 to 81 (not 82???)
-Safari & Chrome for iOS 14.5 to 15.1
-Chrome 96 for Android
-Firefox 94 for Android
-Samsung Internet 15.0
+and_chr 97
+and_ff 96
+and_uc 12.12       
+android 97
+android 4.4.3-4.4.4
+chrome 88 to 98
+edge 88 to 97
+firefox 85 to 96
+ios_saf 15.2-15.3
+ios_saf 15.0-15.1
+ios_saf 14.5-14.8
+ios_saf 14.0-14.4
+ios_saf 13.4-13.7
+ios_saf 12.2-12.5
+op_mini all
+op_mob 64
+opera 73 to 83
+safari 15.2-15.3
+safari 15.1
+safari 15
+safari 14.1
+safari 14
+safari 13.1
+samsung 16.0
+samsung 15.0
+samsung 14.0
 ```
 
 At least everyone supports `let`
