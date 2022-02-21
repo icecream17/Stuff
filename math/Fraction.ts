@@ -390,17 +390,17 @@ class ImmutableFraction {
 
   // pow(x, a/b) === bth root(x^a)
   exponentiate (frac: Fraction) {
-    this.simplify()
-    frac.simplify()
-    if (frac.denominator === 1n) {
-      return this.powint(frac.numerator)
-    }
-
     if (frac.isZero()) {
       if (this.isZero()) {
         throw new RangeError("0 to the power of 0")
       }
       return new Fraction(1n, 1n)
+    }
+
+    this.simplify()
+    frac.simplify()
+    if (frac.denominator === 1n) {
+      return this.powint(frac.numerator)
     }
 
     const result = this.powint(frac.numerator)
@@ -455,6 +455,15 @@ function test () {
       const result = sqrt(i * i)
       console.assert(result === i, `sqrt(${i}²) === i`, result, i)
     }
+  })
+
+  describe('speed', () => {
+    const frac = new Fraction(2902, 2183)
+    console.time("speed")
+    for (let i = 0; i < 1000; i++) {
+      // nothing right now
+    }
+    console.timeEnd("speed")
   })
 }
 
