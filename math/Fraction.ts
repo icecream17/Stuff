@@ -103,11 +103,11 @@ type SupportedFrom = bigint | number | string | ImmutableFraction
 class ImmutableFraction {
   static from<T extends typeof ImmutableFraction>(this: T, v: SupportedFrom): InstanceType<T> {
     if (v instanceof this) {
-      return v
+      return v as InstanceType<T>
     }
 
     if (this.isFraction(v)) {
-      return new this(v.numerator, v.denominator)
+      return new this(v.numerator, v.denominator) as InstanceType<T>
     }
 
     switch (typeof v) {
@@ -123,7 +123,7 @@ class ImmutableFraction {
   }
 
   static fromBigInt<T extends typeof ImmutableFraction>(this: T, big: bigint): InstanceType<T> {
-    return new this(big, 1n)
+    return new this(big, 1n) as InstanceType<T>
   }
 
   static fromNumber<T extends typeof ImmutableFraction>(this: T, num: number): InstanceType<T> {
@@ -137,13 +137,13 @@ class ImmutableFraction {
       denominator += denominator
     }
 
-    return new this(BigInt(num), denominator)
+    return new this(BigInt(num), denominator) as InstanceType<T>
   }
 
   static fromString<T extends typeof ImmutableFraction>(this: T, str: string): InstanceType<T> {
     const parts = str.split('/')
     if (parts.length === 2) {
-      return new this(BigInt(parts[0]), BigInt(parts[1]))
+      return new this(BigInt(parts[0]), BigInt(parts[1])) as InstanceType<T>
     }
 
     throw TypeError("Must be of the format [integer]/[integer]")
@@ -158,6 +158,7 @@ class ImmutableFraction {
     for (const frac of fractions) {
       result.addAssign(frac)
     }
+    return result
   }
 
   constructor (public numerator = 0n, public denominator = 1n) {
@@ -165,7 +166,7 @@ class ImmutableFraction {
       throw new RangeError("Division by zero")
     }
   }
-  
+
   simplify () {
     const gcdOfThis = gcd(this.numerator, this.denominator)
     this.numerator /= gcdOfThis
@@ -220,7 +221,7 @@ class ImmutableFraction {
 
     // Both the numerator and denominator are negative
     if (this.numerator < 0n) {
-      // -a / -b
+      // (-a - 1) / -b === (a + 1) / b
       return ((this.numerator - 1n) / this.denominator) + 1n
     }
     return ((this.numerator + 1n) / this.denominator) + 1n
@@ -270,9 +271,9 @@ class ImmutableFraction {
   }
 
   isInteger () {
-    return this.remainder() === 0
+    return this.remainder() === 0n
   }
-  
+
   /// Makes a new fraction whose sign is `sign`
   /// and whose magnitude is `this`
   ///
@@ -333,7 +334,7 @@ class ImmutableFraction {
   nthRoot (n: bigint, valueIfZeroPowZero?: bigint): bigint | Fraction {
     if (this.isInteger()) {
       return nthRoot(this.numerator / this.denominator, valueIfZeroPowZero)
-    } 
+    }
 
     if (this.isZeroOrNegative() && n % 2n === 0n) {
       throw new RangeError("Unsupported: Even root of a negative number is imaginary")
@@ -458,7 +459,7 @@ function test () {
   })
 
   describe('speed', () => {
-    const frac = new Fraction(2902, 2183)
+    const frac = new Fraction(2902n, 2183n)
     console.time("speed")
     for (let i = 0; i < 1000; i++) {
       // nothing right now
