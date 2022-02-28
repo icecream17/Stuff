@@ -290,3 +290,63 @@ function* generateEverythingPossible () {
       yield* main()  
    }
 }
+
+// v0.4
+async function* search(obj=globalThis, done=new Set(), todo=[]) {
+    todo.push = val => {
+        if(!done.has(val))Array.prototype.push.call(todo,val)
+    }
+
+    async function* main() {
+        if (done.has(obj)) return;
+
+        console.log(obj)
+
+        // "undefined" "number" "boolean" "symbol" "symbol" "bigint"
+        // "object" "function"
+        if (obj !== null && (typeof obj === "object" || typeof obj === "function")) {
+            try {
+                const props = Object.getOwnPropertyDescriptors(obj)
+                for (const prop in props) {
+                    const d = props[prop]
+                    if ("get" in d) {
+                        todo.push(d.get)
+                    }
+                    if ("set" in d) {
+                        todo.push(d.set)
+                    }
+
+                    const val = obj[prop]
+                    todo.push(val)
+                    if (val instanceof Promise) {
+                        const result = await val;
+                        todo.push(result)
+                    }
+                }
+            } catch (error) {
+                todo.push(error)
+            }
+
+            try {
+                todo.push(Object.getPrototypeOf(obj))
+            } catch (error) {
+                todo.push(error)
+            }
+        }
+
+        console.groupEnd()
+    }
+
+    yield* main()
+    for (; todo.length; obj = todo.pop()) {
+        yield* main()
+    }
+}
+
+// {
+//     const s = search()
+//     const i = setInterval(async () => {
+//         const n = await s.next()
+//         if (n.done) clearInterval(i)
+//     }, 500)
+// }
