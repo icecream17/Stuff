@@ -277,7 +277,7 @@ intrinsic LEGACY_WEB: boolean // https://tc39.es/ecma262/multipage/additional-ec
 
 ## globalThis
 
-```js
+```ts
 // abrupt because of ReturnIfAbrupt(https://tc39.es/ecma262/multipage/global-object.html#sec-hostensurecancompilestrings)
 // I don't think it gets any wider than this!
 type EvalReturn = abrupt | unknown // | throws SyntaxError | undefined
