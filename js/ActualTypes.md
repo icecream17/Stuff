@@ -1,32 +1,65 @@
 # JS Types
 
-TypeScript does not have the goal of being completely accurate, rather it wants to be as helpful as possible.
+TypeScript does not aim to be completely accurate, rather it wants to be as helpful as possible.
 
-But if you were to try to make "as accurate as possible" types, what would they be like?
+But if you were to try to make types "as accurate as possible", what would they be like?
 
-Based on https://tc39.es/ecma262/multipage/
+Based on [the EcmaScript specification](https://tc39.es/ecma262/multipage/)
 
-## Syntax
+## Overview
 
-Syntax is mostly the same as typescript.
+Syntax will be introduced as we go along,
+but this guide assumes you have some experience with TypeScript's syntax:
 
 ```ts
-// What are types?
-type hmm
-type hmm2
+// Just some general examples
+// More on all of these later
 
-// Fundamentally they're a set of possible values
-interface Number {
-   isInteger(val: hmm): hmm2
+// type: alias
+type OffBit = 0
+type OnBit<UnusedGeneric> = 1
+
+// type: object shape
+// generics, more property types not shown
+interface Unnecessary {
+   value: OffBit
 }
 
-// hmm is the set of numbers (Double-precision floating-point numbers, where there's just one NaN)
-hmm = number
+// variable: object shape
+const currentPoints: Unnecessary = {
+   value: 0
+}
 
-// hmm2 is the set { true, false }
-hmm2 = boolean
+// variable: function
+// arrows, stars, async, and more not shown
+// function <generics> (params): return type
+function example<T>(arg: T): T
 
-// This is the empty set
+// variable: class
+// generics, fields, methods not shown
+class CustomMap extends WeirdProxyThing implements RandomWorkaroundInterface {}
+
+// variables become type declarations using "declare"
+// type: function
+declare function example<T>(arg: T): T
+```
+
+### Set theory
+
+A variable's type === its [set](Set) of possible values
+
+```js
+const hmm = Number.isNaN(something)
+```
+
+The variable `hmm` can either be `true` or `false`.
+
+Its "set of possible values" === `{ true, false }` === `boolean`.
+
+Now the reason I bring up set theory is that it makes clear some types and operators:
+
+```ts
+// This is the empty set, {}
 never
 
 // Set of everything except the empty set
@@ -59,17 +92,46 @@ A xor B // A or B but not both
 // "elof", true where A is an element of B, false otherwise.
 A elof B
 
-// "is", A in (A and B)
+// "is", TODO I have no idea what this is anymore
 A is B
 
 // Note that singular values are also sets, the set of themself.
-0 is number
+0 elof number
 
 // See where this is going? (This one is sometimes true and sometimes false)
-1|2 is 2|3
+1|2 elof 2|3
+```
 
-// Ok, done with theory now.
-// js operators are just like normal, there's not all of them, and some are escaped:
+### More types and operators
+
+Done with theory
+
+``ts
+
+// set of numbers (Double-precision floating-point numbers, where there's just one NaN)
+// 2^64 - 2^53 + 3 elements (because 2^53 + 2 would be NaN)
+number
+
+// floating-point integer
+numint
+
+// the integers
+bigint
+
+// ecma262: the set of all ordered sequences of zero or more 16-bit unsigned ints,
+// up to a maximum length of 2^53 - 1 elements.
+string
+
+// set of non-string property keys
+symbol
+
+// { true, false }
+boolean
+```
+
+js operators are just like normal, there's not all of them, and some are escaped:
+
+```ts
 A ? B : C
 A <binop> B
    where <binop> ===
@@ -261,6 +323,30 @@ eval(): abrupt | stuff // Interestingly, eval can have an abrupt completion that
 yourFunction(): throws "This will never happen"
 ```
 
+### Grammar summary
+
+```ts
+Statement:
+   | TypeDeclaration
+   | VariableDeclaration
+
+VariableDeclaration:
+   | (var | let | const) Id ColonType? = (see ecmascript AssignmentExpression)
+
+Id:
+   see ecmascript BindingIdentifier
+
+ColonType:
+   | : Type
+
+Type:
+   | one of:
+        undefined null true false boolean
+        NaN Infinity number numint bigint
+        string symbol never unknown
+  | TODO
+```
+
 ## Utils
 
 ```ts
@@ -274,6 +360,8 @@ intrinsic MODULE: boolean
 intrinsic STRICT_MODE: MODULE ? true : boolean
 intrinsic LEGACY_WEB: boolean // https://tc39.es/ecma262/multipage/additional-ecmascript-features-for-web-browsers.html#sec-additional-ecmascript-features-for-web-browsers
 ```
+
+### Actual types (finally)
 
 ## globalThis
 
@@ -299,3 +387,15 @@ interface globalThis {
   builtin isFinite: TODO
 }
 ```
+
+## Footnotes
+
+### Set
+
+Datatype: an unindexed unordered collection of unique things
+Contrast with array, an indexed collection of possibly non-unique things
+
+I use math notations {roster, set builder} 
+
+https://en.wikipedia.org/wiki/Set_(abstract_data_type)
+https://en.wikipedia.org/wiki/Set_(mathematics)
