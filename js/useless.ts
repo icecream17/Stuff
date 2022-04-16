@@ -10,6 +10,7 @@ function unusedParameter(unused: number) {
 
 /**
  * This function does not actually need the start parameter
+ * Also see https://github.com/rust-lang/rust/pull/96027
  */
 function unusedRecursiveParameter(current: number, start: number, list: number[] = []): number[] {
    list.push(current)
