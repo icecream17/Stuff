@@ -51,6 +51,7 @@ opt default_type: Bool
 # As with types, operators are exhaustive.
 #
 # NOT operator
+# Using special chars to prevent name collision
 op def¬: ¬a
 	¬T ⇒ F
 	¬F ⇒ T
@@ -100,14 +101,12 @@ op def⊻: (a ⊻ b)
 
 # SECTION 2 - mapping declarations
 
-# Maps show that two expressions are equal
-# Between each translation, there's a reason.
-# By default it's the definition of the operator that just got removed.
-# But sometimes the reason has to be indicated in brackets
-
-# Maps are very similar to operators
-# "Expression ⇔ Expression" shows what two expressions are equal
-map nnid: ¬¬v ⇔ v
+# Maps show that two expressions are equal (A ⇔ B).
+#
+# In the exhaustive arms, both expressions are reduced/transforned into one.
+# Between each reduction, there's a reason, sometimes indicated in brackets.
+# The default reason is the definition of the operator that just got removed.
+map ¬¬id: ¬¬v ⇔ v
 	¬¬T ⇒ ¬F ⇒ T
 	¬¬F ⇒ ¬T ⇒ F
 
@@ -120,159 +119,210 @@ map refl⊼: (a ⊼ b) ⇔ (b ⊼ a)
 	(F ⊼ T) ⇒ T ⇐ (T ⊼ F)
 	(F ⊼ F) ⇒ T ⇐ (F ⊼ F)
 
+map refl≡: (a ≡ b) ⇔ (b ≡ a)
+	(T ≡ T)
+	(T ≡ F) ⇒ F ⇐ (F ≡ T)
+	(F ≡ T) ⇒ F ⇐ (T ≡ F)
+	(F ≡ F)
+
 # If there's no second expression, it's assumed to be the default value.
 # The default value is the first option in the default type, so here it's "T"
-map fnand: (F ⊼ a)
+map f⊼: (F ⊼ a)
 	(F ⊼ F) ⇒ T
 	(F ⊼ T) ⇒ T
 
 # Here's the first time brackets were used to indicate the reason
-map nandf: (a ⊼ F)
-	(a ⊼ F) ⇒ [refl⊼] (F ⊼ a) ⇒ [fnand] T
+map ⊼f: (a ⊼ F)
+	(a ⊼ F) ⇒ [refl⊼] (F ⊼ a) ⇒ [f⊼] T
 
-map fimpl: (F → a)
-	(F → a) ⇒ (F ⊼ ¬a) ⇒ [fnand] T
+map f→: (F → a)
+	(F → a) ⇒ (F ⊼ ¬a) ⇒ [f⊼] T
 
-map implf: (a → F) ⇔ ¬a
+map →f: (a → F) ⇔ ¬a
 	(T → F) ⇒ F ⇐ ¬T
 	(F → F) ⇒ T ⇐ ¬F
 
 # Two tabs indicate a continuation rather than a new arm
-map implt: (a → T)
+map →t: (a → T)
 	(a → T) ⇒ (a ⊼ ¬T)
 		⇒ (a ⊼ F)
-		⇒ [nandf] T
+		⇒ [⊼f] T
 
-map timpl: (T → a) ⇔ a
+map t→: (T → a) ⇔ a
 	(T → T) ⇒ (T ⊼ ¬T) ⇒ (T ⊼ F) ⇒ T
 	(T → F) ⇒ (T ⊼ ¬F) ⇒ (T ⊼ T) ⇒ F
 
-# a implies a
-map aima: (a → a)
-	(T → T) ⇒ T
-	(F → F) ⇒ T
+map a→a: (a → a)
+	(T → T) ⇒ [→t] T
+	(F → F) ⇒ [f→] T
 
-# SECTION 3 - the first few metamath axioms as theorems
+# Unused
+map (a→b)→a: ((a → b) → a) ⇔ a
+	((T → b) → T) ⇒ [→t] T
+	((F → b) → F) ⇒ [f→] (T → F) ⇒ F
 
-# ax sT: T can be substituted for any true hyp
+map a≡a: (a ≡ a)
+	(T ≡ T) ⇒ T
+	(F ≡ F) ⇒ ¬F ⇒ T
 
+map T≡id: (T ≡ a) ⇔ a
+	(T ≡ T) ⇒ T
+	(T ≡ F) ⇒ F
+
+map F≡¬id: (F ≡ a) ⇔ ¬a
+	(F ≡ T) ⇒ F ⇐ ¬T
+	(F ≡ F) ⇒ T ⇐ ¬F
+
+map id≡T: (a ≡ T) ⇔ a
+	(a ≡ T) ⇒ [refl≡] (T ≡ a) ⇒ a
+
+map ¬id≡F: (a ≡ F) ⇔ ¬a
+	(a ≡ F) ⇒ [refl≡] (F ≡ a) ⇒ [F≡¬id] ¬a
+
+# Woah double brackets
+map extr¬≡: (¬a ≡ b) ⇔ ¬(a ≡ b)
+	(¬a ≡ T) ⇒ [id≡T] ¬a [id≡T] ⇐ ¬(a ≡ T)
+	(¬a ≡ F) ⇒ [¬id≡F] ¬¬a [¬id≡F] ⇐ ¬(a ≡ F)
+
+map assoc≡: ((a ≡ b) ≡ c) ⇔ (a ≡ (b ≡ c))
+	((T ≡ b) ≡ c) ⇒ [T≡id] (b ≡ c) [T≡id] ⇐ (T ≡ (b ≡ c))
+	((F ≡ b) ≡ c) ⇒ [F≡¬id] (¬b ≡ c) ⇒ [extr¬≡] ¬(b ≡ c) [F≡¬id] ⇐ (F ≡ (b ≡ c))
+
+# SECTION 3 - axiom of true & substituting true
+
+# Technically, T isn't defined to be true yet
+# Above, it just so happened that the default value was T
+ax ⊢T: T
+
+# Another axiom is substitution, which I haven't figured out how to notated.
+# ax sT takes a true expression, and substitutes T.
+
+
+
+# SECTION 4 - the first few metamath axioms as theorems
+
+# Theorems are like maps, except rhere's only one arm.
+# The power comes from assuming multiple things at once
+# and calling items with multiple things.
+#
+# Hypotheses are assumed, and their id is h<index>
 th mp: b
-hyp	1	a
-	2	(a → b)
-proof	1	hyp2	def→	(a ⊼ ¬b)
-	2	hyp1,1	sT	(T ⊼ ¬b)
-	3	2	def⊼	¬¬b
-	4	3	nnid	b
+hyp	1			a
+	2			(a → b)
+proof	1	h1,h2	sT	(T → b)
+	3	2	t→	b
 
 map a1: (a → (b → a))
-	(T → (b → T)) ⇒ [implt] (T → T) ⇒ T
-	(F → (b → F)) ⇒ [fimpl] T
+	(T → (b → T)) ⇒ [→t] (T → T) ⇒ T
+	(F → (b → F)) ⇒ [f→] T
 
+# x3 indicator
 map a2: ((a → (b → c)) → ((a → b) → (a → c)))
 	((T → (b → c)) → ((T → b) → (T → c)))
-		⇒ [timpl x3] ((b → c) → (b → c))
-		⇒ [aima] T
+		⇒ [t→ x3] ((b → c) → (b → c))
+		⇒ [a→a] T
 	((F → (b → c)) → ((F → b) → (F → c)))
-		⇒ [fimpl x3] (T → (T → T))
+		⇒ [f→ x3] (T → (T → T))
 		⇒ [a1] T
 
 map a3: ((¬a → ¬b) → (b → a))
 	((¬a → ¬T) → (T → a))
 		⇒ ((¬a → F) → (T → a))
-		⇒ [timpl] ((¬a → F) → a)
-		⇒ [implf] (¬¬a → a)
-		⇒ [nnid] (a → a)
-		⇒ [aima] T
+		⇒ [t→] ((¬a → F) → a)
+		⇒ [→f] (¬¬a → a)
+		⇒ [¬¬id] (a → a)
+		⇒ [a→a] T
 	((¬a → ¬F) → (F → a))
-		⇒ [fimpl] ((¬a → ¬F) → T)
-		⇒ [implt] T
+		⇒ [f→] ((¬a → ¬F) → T)
+		⇒ [→t] T
 
 
 
-# Section 4: metamath 1.2.3 Logical implication
+# Section 5: metamath 1.2.3 Logical implication
 # Many of these are very inefficient expanded out
+# Last updated: 2022-5-8, 18:04 UTC
 
 th mp2: c
-hyp	1	a
-	2	b
-	3	(a → (b → c))
-proof	1	hyp1,hyp3	mp	(b → c)
-	2	hyp2,1	mp	c
+hyp	1			a
+	2			b
+	3			(a → (b → c))
+proof	1	h1,h3	mp	(b → c)
+	2	h2,1	mp	c
 
 th mp2b: c
-hyp	1	a
-	2	(a → b)
-	3	(b → c)
-proof	1	hyp1,hyp2	mp	b
-	2	1,hyp3	mp	c
+hyp	1			a
+	2			(a → b)
+	3			(b → c)
+proof	1	h1,h2	mp	b
+	2	1,h3	mp	c
 
 th a1i: (b → a)
-hyp	1	a
+hyp	1			a
 proof	1		a1	(a → (b → a))
-	2	hyp1,1	mp	(b → a)
+	2	h1,1	mp	(b → a)
 
 th 2ali: (c → (b → a))
-hyp	1	a
-proof	1	hyp1	a1i	(b → a)
+hyp	1			a
+proof	1	h1	a1i	(b → a)
 	2	1	a1i	(c → (b → a))
 
 th mp1i: (c → b)
-hyp	1	a
-	2	(a → b)
-proof	1	hyp1,hyp2	mp	b
+hyp	1			a
+	2			(a → b)
+proof	1	h1,h2	mp	b
 	2	1	ali	(c → b)
 
 th a2i: ((a → b) → (a → c))
-hyp	1	(a → (b → c))
+hyp	1			(a → (b → c))
 proof	1		a2	((a → (b → c)) → ((a → b) → (a → c)))
-	2	hyp1,1	mp	((a → b) → (a → c))
+	2	h1,1	mp	((a → b) → (a → c))
 
 th mpd: (a → c)
-hyp	1	(a → b)
-	2	(a → (b → c))
-proof	1	hyp2	a2i	((a → b) → (a → c))
-	2	hyp1,1	mp	(a → c)
+hyp	1			(a → b)
+	2			(a → (b → c))
+proof	1	h2	a2i	((a → b) → (a → c))
+	2	h1,1	mp	(a → c)
 
 th imim2i: ((a → b) → (a → c))
-hyp	1	(b → c)
-proof	1	hyp1	a1i	(b → (a → c))
+hyp	1			(b → c)
+proof	1	h1	a1i	(b → (a → c))
 	2	1	a2i	((a → b) → (a → c))
 
 th syl: (a → c)
-hyp	1	(a → b)
-	2	(b → c)
-proof	1	hyp2	ali	(a → (b → c))
-	2	hyp1,1	mpd	(a → c)
+hyp	1			(a → b)
+	2			(b → c)
+proof	1	h2	ali	(a → (b → c))
+	2	h1,1	mpd	(a → c)
 
 th 3syl: (a → d)
-hyp	1	(a → b)
-	2	(b → c)
-	3	(c → d)
-proof	1	hyp1,hyp2	syl	(a → c)
-	2	1,hyp3	syl	(a → d)
+hyp	1			(a → b)
+	2			(b → c)
+	3			(c → d)
+proof	1	h1,h2	syl	(a → c)
+	2	1,h3	syl	(a → d)
 
 
 th 4syl: (a → e)
-hyp	1	(a → b)
-	2	(b → c)
-	3	(c → d)
-	4	(d → e)
-proof	1	hyp1,hyp2,hyp3	3syl	(a → d)
-	2	1,hyp4	syl	(a → e)
+hyp	1			(a → b)
+	2			(b → c)
+	3			(c → d)
+	4			(d → e)
+proof	1	h1,h2,h3	3syl	(a → d)
+	2	1,h4	syl	(a → e)
 
 # First (inconsistent?) time the first variable wasn't a
 th mpi: (a → c)
-hyp	1	b
-	2	(a → (b → c))
-proof	1	hyp1	ali	(a → b)
-	2	1,hyp2	mpd	(a → c)
+hyp	1			b
+	2			(a → (b → c))
+proof	1	h1	ali	(a → b)
+	2	1,h2	mpd	(a → c)
 
 th mpisyl: (a → d)
-hyp	1	(a → b)
-	2	c
-	3	(b → (c → d))
-proof	1	hyp2,hyp3	mpi	(b → d)
-	2	hyp1,1	syl	(a → d)
+hyp	1			(a → b)
+	2			c
+	3			(b → (c → d))
+proof	1	h2,h3	mpi	(b → d)
+	2	h1,1	syl	(a → d)
 
 # The second a in steps 1 and 2 can be replaced with b
 # aima could be used instead
@@ -291,3 +341,76 @@ proof	1		a1	(a → (a → a))
 th idd: (a → (b → b))
 proof	1		id	(b → b)
 	2	1	a1i	(a → (b → b))
+
+th a1d: (a → (c → b))
+hyp	1			(a → b)
+proof	1		a1	(b → (c → b))
+	2	h1,1	syl	(a → (c → b))
+
+th 2a1d: (a → (c → (d → b)))
+hyp	1			(a → b)
+proof	1	h1	a1d	(a → (d → b))
+	2	1	a1d	(a → (c → (d → b)))
+
+th a1i13: (a → (b → (c → d)))
+hyp	1			(b → d)
+proof	1	h1	a1d	(b → (c → d))
+	2	1	a1i	(a → (b → (c → d)))
+
+th 2a1: (a → (b → (c → a)))
+proof	1		id	(a → a)
+	2	1	2a1d	(a → (b → (c → a)))
+
+th a2d: (a → ((b → c) → (b → d)))
+hyp	1			(a → (b → (c → d)))
+proof	1		a2	((b → (c → d)) → ((b → c) → (b → d)))
+	2	h1,1	syl	(a → ((b → c) → (b → d)))
+
+# Metamath's 30th item
+th sylcom: (a → (b → d))
+hyp	1			(a → (b → c))
+	2			(b → (c → d))
+proof	1	h2	a2i	((b → c) → (b → d))
+	2	h1,1	syl	(a → (b → d))
+
+th syl5com: (a → (c → d))
+hyp	1			(a → b)
+	2			(c → (b → d))
+proof	1	h1	a1d	(a → (c → b))
+	2	h2,1	sylcom	(a → (c → d))
+
+th com12: (b → (a → c))
+hyp	1			(a → (b → c))
+proof	1		id	(b → b)
+	2	1,h1	syl5com	(b → (a → c))
+
+th syl11: (b → (d → c))
+hyp	1			(a → (b → c))
+	2			(d → a)
+proof	1	h1,h2	syl	(d → (b → c))
+	2	1	com12	(b → (d → c))
+
+th syl5: (c → (a → d))
+hyp	1			(a → b)
+	2			(c → (b → d))
+proof	1	h1,h2	syl5com	(a → (c → d))
+	2	1	com12	(c → (a → d))
+
+th syl6: (a → (b → d))
+hyp	1			(a → (b → c))
+	2			(c → d)
+proof	1	h2	a1i	(b → (c → d))
+	2	1	sylcom	(a → (b → d))
+
+th syl56: (c → (a → e))
+hyp	1			(a → b)
+	2			(c → (b → d))
+	3			(d → e)
+proof	1	h2,h3	syl6	(c → (b → e))
+	2	h1,1	syl5	(c → (a → e))
+
+th syl6com: (b → (a → d))
+hyp	1			(a → (b → c))
+	2			(c → d)
+proof	1	h1,h2	syl6	(a → (b → d))
+	2	1	com12	(b → (a → d))
