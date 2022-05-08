@@ -46,22 +46,25 @@ opt default_type: Bool
 # F = false
 #
 # Operators take in some inputs (lowercase letters) and output a value
-# For example, there's only one input for this operator, "def¬"
+# For example, this operator (def¬) has "a" as input.
+#
+# As with types, operators are exhaustive.
 #
 # NOT operator
 op def¬: ¬a
 	¬T ⇒ F
 	¬F ⇒ T
 
-# The input space = example usage
-# Operators can only be called with the usage given
+# The input space also shows the "example usage".
+# Instead of defining operator precedence,
+# it's easier to use extra parens.
 #
 # NAND operator
 op def⊼: (a ⊼ b)
 	(T ⊼ b) ⇒ ¬b
 	(F ⊼ b) ⇒ T
 
-# And after that are several alternatives,
+# And after the params are several alternatives,
 # just like Rust's match arms.
 #
 # Biconditional (aka Iff, XNOR)
@@ -248,7 +251,8 @@ hyp	1	(a → b)
 proof	1	hyp1,hyp2	syl	(a → c)
 	2	1,hyp3	syl	(a → d)
 
-the 4syl: (a → e)
+
+th 4syl: (a → e)
 hyp	1	(a → b)
 	2	(b → c)
 	3	(c → d)
@@ -256,8 +260,34 @@ hyp	1	(a → b)
 proof	1	hyp1,hyp2,hyp3	3syl	(a → d)
 	2	1,hyp4	syl	(a → e)
 
-the mpi: (b → c)
-hyp	1	a
-	2	(b → (a → c))
-proof	1	hyp1	ali	(b → a)
-	2	1,hyp2	mpd	(b → c)
+# First (inconsistent?) time the first variable wasn't a
+th mpi: (a → c)
+hyp	1	b
+	2	(a → (b → c))
+proof	1	hyp1	ali	(a → b)
+	2	1,hyp2	mpd	(a → c)
+
+th mpisyl: (a → d)
+hyp	1	(a → b)
+	2	c
+	3	(b → (c → d))
+proof	1	hyp2,hyp3	mpi	(b → d)
+	2	hyp1,1	syl	(a → d)
+
+# The second a in steps 1 and 2 can be replaced with b
+# aima could be used instead
+th id: (a → a)
+proof	1		a1	(a → (a → a))
+	2		a1	(a → ((a → a) → a)
+	3	1,2	mpd	(a → a)
+
+th idALT: (a → a)
+proof	1		a1	(a → (a → a))
+	2		a1	(a → ((a → a) → a))
+	3		a2	((a → ((a → a) → a)) → ((a → (a → a)) → (a → a)))
+	4	2,3	mp	((a → (a → a)) → (a → a))
+	5	1,4	mp	(a → a)
+
+th idd: (a → (b → b))
+proof	1		id	(b → b)
+	2	1	a1i	(a → (b → b))
