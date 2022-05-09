@@ -36,8 +36,8 @@ typ Bool:
 	T
 	F
 
-# For now, let's say that by default, all values are booleans
-opt default_type: Bool
+# Let the compiler assign Bool as the bool_type intrinsically
+opt bool_type: Bool
 
 
 # SECTION 2 - Definition of operators
