@@ -1,5 +1,4 @@
 import logging
-import sys
 from enum import Enum, auto
 from typing import Optional, List
 
@@ -45,8 +44,7 @@ def toItemType(s: str) -> ItemType:
    elif s.startswith("ty"):
       return ItemType.Type
    else:
-      logging.error(s)
-      raise ValueError("Not a valid item type")
+      raise ValueError(f"{s.__repr__()} is not a valid item type")
 
 class Token:
    def __init__(self, typ: TokenType, val: str):
@@ -58,10 +56,13 @@ class Expr:
       self.tokens = tokens
 
 class Item:
-   def __init__(self, id_: str, typ: ItemType, data: dict):
+   def __init__(self, id_: str, typ: ItemType, initdata: dict):
+      """
+      initdata: See the source code of "Parser.parseFirstLineOfItem"
+      """
       self.id = id_
       self.type = typ
-      self.data = data
+      self.data = initdata
       self.initialized = False
 
    def __str__(self):
@@ -135,7 +136,7 @@ class Parser:
       try:
          typ = toItemType(tokens[0])
       except ValueError as error:
-         logging.error(f"Not an item type: {tokens}")
+         logging.error(f"Error info\nLine: {line}\nItem so far: {self.itemStrSoFar[-100:]}")
          raise error
 
       id_ = tokens[1]
@@ -146,8 +147,14 @@ class Parser:
       after_colon = " ".join(tokens[2:])
 
       # Rust li pona Python li ike
-      if typ == ItemType.Axiom or typ == ItemType.Theorem:
+      # The code you want to look at for "initdata"
+      if typ == ItemType.Axiom:
          data["assertion"] = after_colon
+         data["hyp"] = {}
+      elif typ == ItemType.Theorem:
+         data["assertion"] = after_colon
+         data["hyp"] = {}
+         data["proof"] = {}
       elif typ == ItemType.Operator:
          data["example"] = after_colon
       elif typ == ItemType.Option:
@@ -155,7 +162,7 @@ class Parser:
       elif typ == ItemType.Map:
          data["expressions"] = after_colon.split("⇔")
       elif typ == ItemType.Type:
-         pass
+         data["alternatives"] = set()
       else:
          raise AssertionError(f"Did I miss an enum type? {typ}")
 
@@ -192,12 +199,10 @@ class Parser:
          id_, hyps, ref, expr = rest
          if self.state == "hyp":
             i = "h" + id_
-            if "hyp" not in item.data:
-               item.data.hyp = {[i]: self.parseExpr(expr)}
-            elif i in item.data.hyp:
+            if i in item.data["hyp"]:
                self.synErr("Duplicate ids", line)
             else:
-               item.data.hyp[i] = self.parseExpr(expr)
+               item.data["hyp"][i] = self.parseExpr(expr)
          elif self.state == "proof":
             hyps = ",".split(hyps)
             raise NotImplementedError()
@@ -209,22 +214,20 @@ class Parser:
          raise NotImplementedError()
       elif typ == ItemType.Type:
          l = line.strip()
-         if "alternatives" in item.data:
-            if l in item.data["alternatives"]:
-               self.err(ValueError, "Duplicate IDs", line)
-            else:
-               item.data["alternatives"].add(l)
+         if l in item.data["alternatives"]:
+            self.err(ValueError, "Duplicate IDs", line)
          else:
-            item.data["alternatives"] = set(l)
+            item.data["alternatives"].add(l)
       else:
          assert typ != ItemType.Option # Options change option but not currentItem, so nothing happens
          raise AssertionError(f"Did I miss an enum type? {typ}")
 
    def synErr(self, message: str, line: str):
-      raise SyntaxError(f"{message}\n{line}\n\n{self.itemStrSoFar}")
+      self.err(SyntaxError, message, line)
 
    def err(self, ErrorCls: BaseException, message: str, line: str):
-      raise ErrorCls(f"{message}\n{line}\n{self.currentItem}\n{self.itemStrSoFar}")
+      logging.error(f"Error info\nLine:\n{line}\nItem so far:\n{self.itemStrSoFar[-100:]}")
+      raise ErrorCls(f"{message}\n{line}\n{self.currentItem}")
 
    def parseExpr(expr: str) -> Expr:
       raise NotImplementedError()
@@ -234,51 +237,38 @@ class Parser:
 parser: Optional[Parser] = None
 
 
-
-def printHelp():
-   print("""
-Usage: prover.py [flags] [file]
-If there are no command line arguments, runs an interactive interpreter.
-
--h, --help:    Print this help
--v, --version: Print version
-
--r, --run:     Run the interpreter (after the other arguments are run)
-
-After removing the flags, the rest of the arguments joined by spaces
-is assumed to be the input file.
-
-To read the documentation, run python's `help` builtin.
-""")
-
-
 def runCommands():
    """
    Returns `true` to indicate exiting early.
    Runs any cli args - run "--help" for details
    """
+   import sys
+   import argparse
    global parser
-   args = sys.argv[1:]
-   had_args = bool(args)
-   if "-hv" in args:
-      args.remove("-hv")
-      args.append("-h")
-      args.append("-v")
-   if "-h" in args or "--help" in args:
-      printHelp()
-      args.remove("-h")
-      args.remove("--help")
-   if "-v" in args or "--version" in args:
-      print(f"v{tab}")
 
-   if args:
-      filename = " ".join(args)
+   p = argparse.ArgumentParser(
+      # description="",
+      epilog="To read the documentation, run python's `help` builtin.")
+   p.add_argument("FILE", help="file to run")
+   p.add_argument("--log", help="set the log level")
+   p.add_argument("--no-run", action="store_true", help="don't run the interpreter after checking the file")
+   p.add_argument("--version", "-v", action="version", version="%{prog}s " + __version__)
+   args = p.parse_args()
+
+   log_level = args.log.upper()
+   if log_level is not None:
+      numeric_level = getattr(logging, log_level, None)
+      if not isinstance(numeric_level, int):
+         raise ValueError('Invalid log level: %s' % loglevel)
+      logging.basicConfig(level=numeric_level)
+
+   filename = args.FILE
+   if filename:
       with open(filename) as f:
          for line in f.readlines():
             parser.process(line)
 
-
-   return had_args
+   return args.no_run
 
 def main():
    print(f"prover.py v{__version__}")
@@ -286,8 +276,6 @@ def main():
    parser = Parser()
    if runCommands():
       return
-
-   print("To run a file provide it as a command line argument")
    cli()
 
 
