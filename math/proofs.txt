@@ -1,0 +1,403 @@
+# intro #
+
+# Instead of reading all this explanation,
+# go to anything you're interested in
+# and then read back when you're confused
+
+# Sounds less efficient, but it's easier
+# and helps and helps develop knowledge
+
+# And it's actually not less efficient
+# since you'll only need some of the information
+
+
+# If you generally know a topic, skip
+# comments surrounded by ------
+
+# ------------------
+# example ignore
+# words words does this help beginners tho?
+# two doubly switch three implies one plus one is three
+# ------------------
+
+# By default there's no explanation
+# but pictures are worth a thousand words
+# look on Wikipedia
+
+
+
+# file structure and items #
+
+# This file is a bunch of items and comments
+
+# Items are like functions,
+# they receive values
+# and output another value
+
+# In this world, inputs are the hypotheses (givens)
+# and the output is ... something
+
+item example_item
+ some hypothesis
+ some given
+ some input
+assert
+ some thing
+
+# This structure is used for everything here
+# which are mainly proofs or assertions
+# similar to but not exactly
+# "given a is a number, a + 0 is a number"
+
+
+# Identifiers #
+
+# Some naming conventions are below
+# But what's really important is:
+# what names are possible?
+
+# e.g. What identifiers are valid?
+
+# An identifier can have these characters:
+# abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+# 1234567890+×=/_<>[]!@#$%^&*()-'":;,?`~\|{}€£¥₩°¡¿
+# •○●□■♤♡◇♧☆▪︎¤《》...
+
+# <unicode moment>
+
+# basically any unicare that's not whitespace,
+# control, invisible, non-assigned, deprecated...
+
+# but try to stick to letters and numbers
+# or at least chars on the keyboard
+
+
+
+# Values and types #
+
+# Remember example_item?
+# my attention span is way too low
+
+# looking above it looks like
+# All values are preceded by a type
+
+# ----------------
+# types can be thought of as collections
+# containing all values with some specific
+# properties
+
+# for example the type "boolean"
+# contains true and false
+# ----------------
+
+
+# items "transform" some typed inputs
+# into another, hmm what can this be used for??
+# type conversion!!! ...
+
+
+
+# "some" is not actually used or defined btw
+
+
+# Variables #
+
+# types can be followed by a lowercase letter
+# in which case it is a variable
+
+# ----------------
+# variables that can be replaced with anything
+# of the same type...
+
+# as long as the same variables (same letter)
+# have the same
+# content
+# ----------------
+
+
+# Proofs #
+
+# are explained at the theorem truistok
+
+
+# Info about certain types #
+
+# Are explained where they are defined
+
+
+
+# Hope this was intuitive and easy to understand
+# in contrast to headache inducing
+
+
+
+# naming #
+
+# an      and
+# ax      axiom
+# ccat    concatenate
+# com     communicative property
+# df      definition
+# gv      given
+# hyp     hypothesis
+# lf      left
+# rt      right
+# stp     step (in a proof)
+# syn     syntax
+# th      theorem
+# tok     token sequence
+# tr      transitive property
+# tru     a wff that is true
+# val     value
+# wff     well formed formula
+
+
+# symbols
+
+
+
+
+
+# syn is actually just an alias for item
+item synisitem
+ syn a
+assert
+ item a
+
+# and same with axiom
+item axisitem
+ ax a
+assert
+ item a
+
+# and with definition
+item dfisitem
+ df a
+assert
+ item a
+
+# theorem
+item thisitem
+ th a
+assert
+ item a
+
+# they're used for clarity though
+# syn = declaring valid wffs for new things
+# def = what something does
+# ax = is not proven
+# th = proves something
+
+
+
+# tok: token sequences
+# toki
+
+# Allow combining tokens
+# Unused
+ax ccattoks
+ tok a
+ tok b
+assert
+ tok a b
+
+# Assert the left of two tokens is a tok
+ax lf2toksistok
+ tok a b
+assert
+ tok a
+
+# The right of two tokens is a tok
+ax rt2toksistok
+ tok a b
+assert
+ tok a
+
+
+
+# wffs "whiffs" Well formed formulas
+# because not all toks are wffs
+
+# wffs are toks
+ax wffistok
+ wff a
+assert
+ tok a
+
+
+
+# tru, true statements
+# again not all wffs are trus
+
+# trus are wffs
+ax truiswff
+ tru a
+assert
+ wff a
+
+
+
+# Introducing proofs #
+# proofs call previous items with hyps and stps
+# and kinda substitutes those with new things
+# the last step should be the assertion
+# that's it!
+
+# trus are toks
+th truistok
+ tru a
+assert
+ tok a
+proof
+ truiswff hyp1 : wff a
+ wffistok stp1 : tok a
+
+th truabthentoka
+ tru a b
+assert
+ tok a
+proof
+ truistok hyp1 : tok a b
+ lf2toksistok stp1 : tok a
+
+th truabthentokb
+ tru a b
+assert
+ tok b
+proof
+ truistok hyp1 : tok a b
+ rt2toksistok stp1 : tok b
+
+
+
+
+# Constructs formulas involving substitution
+# s will generally be short for "sub"
+# like in subset and substring and subtract
+#
+# sub for
+syn synsfor
+ val a
+ val b
+assert
+ wff ( a sfor b )
+
+
+# Define (left) substitution
+df sfor
+ tru ( a sfor b )
+ tok c
+ tok d
+ tru c b d
+assert
+ tru c a d
+
+# Identity substitution given a sfor b
+th asforagvasforb
+ tru ( a sfor b )
+assert
+ tru ( a sfor a )
+proof
+ truabthentoka hyp1 : tok ( a sfor
+ truabthentokb hyp1 : tok )
+ sfor hyp1 stp1 stp2 hyp1 : tru ( a sfor a )
+
+# This used to line up soooo perfectly
+#
+# abistruthenaistok hyp1 : tok ( a =
+# abistruthenbistok hyp1 : )
+# eq hyp1 stp1 stp2 hyp1 : tru ( a = a )
+#
+# but equality is semantically different
+# from substitution
+#
+# and it's practically different because
+# equality implies both lf substitution
+# and rt substitution
+#
+# rt substitution is non trivial
+# to derive from lf substitution
+#
+# in fact the only reason it isn't an axiom
+# is more powerful language
+
+
+# Transitive property of subbing
+th sfortr
+ tru ( a sfor b )
+ tru ( b sfor c )
+assert
+ tru ( a sfor c )
+proof
+ truabthentoka hyp2 : tok (
+ truabthentokb hyp2 : tok sfor c )
+ sfor hyp1 stp1 stp2 hyp2 : tru ( a sfor c )
+
+
+# two things that are equal to the same are equal
+# substitution version
+th sfortr2
+ tru ( a sfor c )
+ tru ( b sfor c )
+assert
+ tru ( a sfor b )
+proof
+ truabthentoka hyp1 : tok (
+ truabthentokb hyp1 : tok sfor c )
+ sfor hyp2 stp1 stp2 hyp1 : tru ( a sfor b )
+
+# you can get b subs a by reversing the givens
+
+
+# communicate sfor given b sfor something
+# also used to line up
+th sforcomgvbsforc
+ tru ( a sfor b )
+ tru ( b sfor c )
+assert
+ tru ( b sfor a )
+proof
+ asforagvasforb hyp2 : tru ( b sfor b )
+ sfortr2 stp1 hyp1 : tru ( b sfor a )
+
+
+
+# And
+syn synan
+
+
+
+
+# Left and right substitution
+syn syneq
+ wff a
+ wff b
+assert
+ wff ( a = b )
+
+def eq
+ tru ( a sfor b )
+ tru ( b sfor a )
+assert
+ tru ( a = b )
+
+
+
+
+
+# define the implies operator
+#
+# --------
+# truth table
+# a   b   ( a --> b )
+# T   T   T
+# T   F   F
+# F   T   T
+# F   F   T
+
+# The four 
+ax mp
+
+
+
+
