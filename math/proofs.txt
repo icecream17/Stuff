@@ -117,7 +117,12 @@ assert
 
 # Proofs #
 
-# are explained at the theorem truistok
+# proofs call previous items with hyps and stps
+# and kinda substitutes those with new things
+# the last step should be the assertion
+# that's it!
+
+# Example: ccat3toks
 
 
 # Info about certain types #
@@ -140,8 +145,10 @@ assert
 # df      definition
 # gv      given
 # hyp     hypothesis
+# ins     insert
 # lf      left
 # rt      right
+# rv      reverse
 # stp     step (in a proof)
 # syn     syntax
 # th      theorem
@@ -153,8 +160,22 @@ assert
 
 
 # symbols
+# /\      ∧       and
 
 
+
+# list of axioms and definitions
+# synisitem                     syn a ==> item a
+# axisitem                      ax a ==> item a
+# dfisitem                      df a ==> item a
+# thisitem                      th a ==> item a
+# ccattoks                      tok a AND tok b ==> tok a b 
+# lf2toksistok                  tok a b ==> tok a
+# rt2toksistok                  tok a b ==> tok b
+# wffistok                      wff a ==> tok a
+# truiswff                      tru a ==> wff a
+# sfor                          tru ( a sfor b ) AND tok c AND tok d AND tru c b d ==> tru c a d
+# istok                         tok a ==> tru istok a
 
 
 
@@ -192,16 +213,32 @@ assert
 
 # tok: token sequences
 # toki
+# Instead of describing the most common logical axioms
+# let's describe what mathematical statements even are
 
-# Allow combining tokens
-# Unused
+# The first axiom
+# Combines two toks together
 ax ccattoks
  tok a
  tok b
 assert
  tok a b
 
-# Assert the left of two tokens is a tok
+# The first theorem
+# Join *three* toks together
+th ccat3toks
+ tok a
+ tok b
+ tok c
+assert
+ tok a b c
+proof
+ ccattoks hyp1 hyp2 : tok a b
+ ccattoks stp1 hyp3 : tok a b c
+
+
+
+# The left of two tokens is a tok
 ax lf2toksistok
  tok a b
 assert
@@ -212,6 +249,87 @@ ax rt2toksistok
  tok a b
 assert
  tok a
+
+
+
+# Extracts the second of three toks
+th 2ndof3toksistok
+ tok a b c
+assert
+ tok b
+proof
+ lf2toksistok hyp1 : tok a b
+ rt2toksistok hyp2 : tok b
+
+# Repeat the first tok
+th 1stccat
+ tok a b
+assert
+ tok a a b
+proof
+ lf2toksistok hyp1 : tok a
+ ccattoks stp1 hyp1 : tok a a b
+
+th ccat1st
+ tok a b
+assert
+ tok a b a
+proof
+ lf2toksistok hyp1 : tok a
+ ccattoks hyp1 stp1 : tok a b a
+
+# Repeat the last tok
+th ccatlast
+ tok a b
+assert
+ tok a b b
+proof
+ rt2toksistok hyp1 : tok b
+ ccattoks hyp1 stp1 : tok a b b
+
+# Repeat the last tok
+th lastccat
+ tok a b
+assert
+ tok b a b
+proof
+ rt2toksistok hyp1 : tok b
+ ccattoks stp1 hyp1 : tok b a b
+
+
+
+# These theorems depend on all three axioms! I think
+
+# Reverse a token sequence
+th rvtok
+ tok a b
+assert
+ tok b a
+proof
+ ccattoks hyp1 hyp1 : tok a b a b
+ 2ndof3toksistok stp1 : tok b a
+
+# Removes the second of three toks
+th 3toksw/o2ndistok
+ tok a b c
+assert
+ tok a c
+proof
+ lf2toksistok hyp1 : tok a
+ rt2toksistok hyp1 : tok c
+ ccattoks stp1 stp2 : tok a c
+
+# Insert a token between two others
+th instok@2
+ tok a c
+ tok b
+assert
+ tok a b c
+proof
+ lf2toksistok hyp1 : tok a
+ rt2toksistok hyp1 : tok c
+ ccat3toks stp1 hyp2 stp2 : tok a b c
+
 
 
 
@@ -235,13 +353,6 @@ ax truiswff
 assert
  wff a
 
-
-
-# Introducing proofs #
-# proofs call previous items with hyps and stps
-# and kinda substitutes those with new things
-# the last step should be the assertion
-# that's it!
 
 # trus are toks
 th truistok
@@ -276,13 +387,6 @@ proof
 # like in subset and substring and subtract
 #
 # sub for
-syn synsfor
- val a
- val b
-assert
- wff ( a sfor b )
-
-
 # Define (left) substitution
 df sfor
  tru ( a sfor b )
@@ -362,41 +466,19 @@ proof
 
 
 
-# And
-syn synan
 
 
-
-
-# Left and right substitution
-syn syneq
- wff a
- wff b
+# The "eq" operator (combined with "and")
+df eq
 assert
- wff ( a = b )
+ tru ( ( ( a sfor b ) sfor ( a = b ) ) and ( ( b sfor a ) sfor ( a = b ) ) )
 
-def eq
- tru ( a sfor b )
- tru ( b sfor a )
-assert
- tru ( a = b )
+# I just realized that under my current definition of substitution,
+# it is true that
+# tru ( ( ( a sfor ( ( a )
 
+# Sigh
 
-
-
-
-# define the implies operator
-#
-# --------
-# truth table
-# a   b   ( a --> b )
-# T   T   T
-# T   F   F
-# F   T   T
-# F   F   T
-
-# The four 
-ax mp
 
 
 
