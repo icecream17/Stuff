@@ -5,7 +5,7 @@
 # and then read back when you're confused
 
 # Sounds less efficient, but it's easier
-# and helps and helps develop knowledge
+# and helps develop knowledge
 
 # And it's actually not less efficient
 # since you'll only need some of the information
@@ -26,7 +26,7 @@
 
 
 
-# file structure and items #
+# file structure, items, and proofs #
 
 # This file is a bunch of items and comments
 
@@ -43,6 +43,29 @@ item example_item
  some input
 assert
  some thing
+
+# The item asserts a value without proof
+# Here's an item that has a proof:
+
+item example_item2
+ some hypothesis
+ some given
+ some input
+assert
+ some thing
+proof
+ example_item hyp1 hyp2 hyp3 : some thing
+
+# A proof just calls previous items
+# with the right parameters
+# until the asserted statement is achieved
+
+# In this case, the proof was trivial,
+# just use example_item with hypotheses 1, 2, and 3.
+# In more complex proofs, previous steps can also be used as inputs
+
+# Items with proofs are theorems;
+# items without are syntax, definitions, or axioms.
 
 # This structure is used for everything here
 # which are mainly proofs or assertions
@@ -65,7 +88,7 @@ assert
 
 # <unicode moment>
 
-# basically any unicare that's not whitespace,
+# basically any unicare that's **not** whitespace,
 # control, invisible, non-assigned, deprecated...
 
 # but try to stick to letters and numbers
@@ -115,14 +138,12 @@ assert
 # ----------------
 
 
-# Proofs #
+# Proofs (old explanation, see above) #
 
 # proofs call previous items with hyps and stps
 # and kinda substitutes those with new things
 # the last step should be the assertion
 # that's it!
-
-# Example: ccat3toks
 
 
 # Info about certain types #
@@ -147,8 +168,14 @@ assert
 # hyp     hypothesis
 # ins     insert
 # lf      left
+# md      middle
+# ou      outer
+# rmv     remove
+# rot     rotate
 # rt      right
 # rv      reverse
+# sh      shuffle
+# sprl    spiral
 # stp     step (in a proof)
 # syn     syntax
 # th      theorem
@@ -158,24 +185,28 @@ assert
 # val     value
 # wff     well formed formula
 
-
 # symbols
 # /\      ∧       and
 
 
 
-# list of axioms and definitions
+# list of type conversion axioms
 # synisitem                     syn a ==> item a
 # axisitem                      ax a ==> item a
 # dfisitem                      df a ==> item a
 # thisitem                      th a ==> item a
+# valistok                      val a ==> tok a
+# wffisval                      wff a ==> val a
+# truiswff                      tru a ==> wff a
+
+
+# list of axioms and definitions
 # ccattoks                      tok a AND tok b ==> tok a b 
 # lf2toksistok                  tok a b ==> tok a
 # rt2toksistok                  tok a b ==> tok b
-# wffistok                      wff a ==> tok a
-# truiswff                      tru a ==> wff a
 # sfor                          tru ( a sfor b ) AND tok c AND tok d AND tru c b d ==> tru c a d
 # istok                         tok a ==> tru istok a
+
 
 
 
@@ -287,7 +318,6 @@ proof
  rt2toksistok hyp1 : tok b
  ccattoks hyp1 stp1 : tok a b b
 
-# Repeat the last tok
 th lastccat
  tok a b
 assert
@@ -295,7 +325,6 @@ assert
 proof
  rt2toksistok hyp1 : tok b
  ccattoks stp1 hyp1 : tok b a b
-
 
 
 # These theorems depend on all three axioms! I think
@@ -309,8 +338,7 @@ proof
  ccattoks hyp1 hyp1 : tok a b a b
  2ndof3toksistok stp1 : tok b a
 
-# Removes the second of three toks
-th 3toksw/o2ndistok
+th rmvmdtok
  tok a b c
 assert
  tok a c
@@ -330,17 +358,164 @@ proof
  rt2toksistok hyp1 : tok c
  ccat3toks stp1 hyp2 stp2 : tok a b c
 
+# Switch the last 2 toks
+th rvlast2toks
+ tok a b c
+assert
+ tok a c b
+proof
+ lf2toksistok hyp1 : tok a b
+ rt2toksistok hyp1 : tok c
+ instok@2 stp1 stp2 : tok a c b
 
+# Switch the first two toks
+th rv1st2toks
+ tok a b c
+assert
+ tok b a c
+proof
+ rt2toksistok hyp1 : tok b c
+ lf2toksistok hyp1 : tok a
+ instok@2 stp1 stp2 : tok b a c
+
+# Switch the outer two tokens
+th rvou2toks
+ tok a b c
+assert
+ tok c b a
+proof
+ lf2toksistok hyp1 : tok a b
+ rt2toksistok hyp1 : tok c
+ rvtoks stp1 : tok b a
+ ccattoks stp2 stp3 : tok c b a
+
+# Switch two toks in the middle
+th rvmd2toks
+ tok a b c d
+assert
+ tok a c b d
+proof
+ lf2toksistok hyp1 : tok a b
+ lf2toksistok stp1 : tok a
+ rt2toksistok stp1 : tok b
+ rt2toksistok hyp1 : tok c d
+ instok@2 stp3 stp4 : tok c b d
+ ccattoks stp2 stp5 : tok a c b d
+
+# Rotate right without changing the first tok
+th rotrtw/o1st
+ tok a b c d
+assert
+ tok a d b c
+proof
+ rvou2toks hyp1 : tok d b c a
+ rvtoks stp1 : tok a d b c
+
+# how do you even describe... how...
+# (5 minutes later) Wow....
+#
+# also counting by -2 in base 5
+th 4tokpishfl
+ tok a b c d
+assert
+ tok c a d b
+proof
+ rvou2toks hyp1 : tok d b c a
+ rvtoks stp1 : tok c a d b
+
+th rotlfw/olast
+ tok a b c d
+assert
+ tok b c a d
+proof
+ rvou2toks hyp1 : tok d b c a
+ rvtoks stp1 : tok b c a d
+
+# Imagine a counterclockwise spiral going
+# towards the center
+th 4tokrtsprl
+ tok a b c d
+assert
+ tok d a c b
+proof
+ rvmd2toks hyp1 : tok a c b d
+ rvtoks stp1 : tok d a c b
+
+th rv4tokpishfl
+ tok a b c d
+assert
+ tok b d a c
+proof
+ rvmd2toks hyp1 : tok a c b d
+ rvtoks stp1 : tok b d a c
+
+th 4tokrvlfsprl
+ tok a b c d
+assert
+ tok c b d a
+proof
+ rvmd2toks hyp1 : tok a c b d
+ rvtoks stp1 : tok c b d a
+
+
+# Reverse 4 tokens
+th rv4toks
+ tok a b c d
+assert
+ tok d c b a
+proof
+ rvou2toks hyp1 : tok d b c a
+ rvmd2toks stp1 : tok d c b a
+
+th rvtoksb&d
+ tok a b c d
+assert
+ tok a d c b
+proof
+ rv4toks hyp1 : tok d c b a
+ rvtoks stp1 : tok a d c b
+
+# Reverse both ends
+th rvtoksab&cd
+ tok a b c d
+assert
+ tok b a d c
+proof
+ rv4toks hyp1 : tok d c b a
+ rvtoks stp1 : tok b a c d
+
+th rvtoksa&c
+ tok a b c d
+assert
+ tok c b a d
+proof
+ rv4toks hyp1 : tok d c b a
+ rvtoks stp1 : tok c b a d
+
+
+# values
+ax valistok
+ val a
+assert
+ tok a
 
 
 # wffs "whiffs" Well formed formulas
 # because not all toks are wffs
 
-# wffs are toks
-ax wffistok
+# wffs are vals
+ax wffisval
+ wff a
+assert
+ val a
+
+th wffistok
  wff a
 assert
  tok a
+proof
+ wffisval hyp1 : val a
+ valistok stp1 : tok a
 
 
 
