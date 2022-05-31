@@ -1,0 +1,264 @@
+# Public domain
+# But basically the same as metamath/set.mm with different syntax, see that github repo
+
+[meta]
+multiline_comment = $( $)
+comment = #
+const = c
+var = v
+unicode_map = u
+assert = $a
+distinct = $d
+
+# Theorems go like this:
+# id
+#  hypothesis 1
+#  h2
+#  h3
+#  h...
+#  $a assertion
+#  proof step 1
+#  s2
+#  s3
+#  s...
+
+# Where the last step results in the assertion
+# A step can either reference a hypothesis or a theorem
+# h1
+# Both syntax variables and hypotheses arguments are shown:
+# ax-mp wph wps / h1 h3
+
+[items]
+
+# Constant math symbols #
+
+# well-formed formula
+c wff
+
+# turnstile
+c |-
+c ⊢
+
+# Parens
+c (
+c )
+
+# Implies
+c ->
+u -> →
+
+# Used in comments
+# And also
+c &
+
+# Proves
+c =>
+u => ⇒
+
+
+# wff variables + ascii to unicode mappings #
+# 𝛼	𝛽	𝛾	𝛿	𝜀	𝜁	𝜂	𝜃	𝜄	𝜅	𝜆	𝜇	𝜈	𝜉	𝜊	𝜋	𝜌	𝜍	𝜎	𝜏	𝜐	𝜑	𝜒	𝜓	𝜔
+v ph
+u ph 𝜑
+v ps
+u ps 𝜓
+v ch
+u ch 𝜒
+v th
+u th 𝜃
+v ta
+u ta 𝜏
+v et
+u et 𝜂
+v ze
+u ze 𝜁
+v si
+u si 𝜎
+v rh
+u rh 𝜌
+v mu
+u mu 𝜇
+v la
+u la 𝜆
+v ka
+u ka 𝜅
+
+wph
+ $a wff ph
+wps
+ $a wff ps
+wch
+ $a wff ch
+wth
+ $a wff th
+wta
+ $a wff ta
+wet
+ $a wff et
+wze
+ $a wff ze
+wsi
+ $a wff si
+wrh
+ $a wff rh
+wmu
+ $a wff mu
+wla
+ $a wff la
+wka
+ $a wff ka
+
+
+
+# The proofs here are redundant and shouldn't be used in normal proofs #
+a1ii
+ |- ph
+ |- ps
+ $a |- ph
+ h1
+
+idi
+ |- ph
+ $a |- ph
+ h1
+
+
+
+# The first syntax - wn is later #
+wi
+ $a wff ( ph -> ps )
+
+wi12
+ $a wff ( ph -> ( ps -> ch ) )
+ wps
+ wch
+ wi s1 s2
+ wph
+ wi s4 s3
+
+wi22
+ $a wff ( ( ph -> ps ) -> ( ch -> th ) )
+ wph
+ wps
+ wi s1 s2
+ wch
+ wth
+ wi12 s3 s4 s5
+
+
+
+# The first _three_ axioms, ax-3 is later #
+ax-mp
+ |- ph
+ |- ( ph -> ps )
+ $a |- ps
+
+ax-1
+ |- ( ph -> ( ps -> ph ) )
+
+ax-2
+ |- ( ( ph -> ( ps -> ch ) ) -> ( ( ph -> ps ) -> ( ph -> ch ) ) )
+
+
+# Only needs ax-mp #
+
+# Utility to avoid having to prove that ( ps -> ch ) is a wff
+mp|1
+ |- ph
+ |- ( ph -> ( ps -> ch ) )
+ $a |- ( ps -> ch )
+ wph
+ wps
+ wch
+ wi s2 s3
+ ax-mp s1 s4 / h1 h2
+
+mp2
+ |- ph
+ |- ps
+ |- ( ph -> ( ps -> ch ) )
+ $a |- ch
+ wph
+ wps
+ wch
+ mp|1 s1 s2 s3 / h1 h3
+ ax-mp s2 s3 / h2 s4
+
+mp2b
+ |- ph
+ |- ( ph -> ps )
+ |- ( ps -> ch )
+ $a |- ch
+ wph
+ wps
+ wch
+ ax-mp s1 s2 / h1 h2
+ ax-mp s2 s3 / s4 h3
+
+
+# Only needs ax-mp ax-1 #
+
+a1i
+ |- ph
+ $a ( ps -> ph )
+ wph
+ wps
+ ax-1 wph wps
+ mp|1 wph wps wph / h1 s3
+
+2a1i
+ |- ph
+ $a |- ( ch -> ( ps -> ph ) )
+ wph
+ wps
+ a1i s1 s2 / h1
+ wch
+ wi s2 s1
+ a1i s4 s5 / ps
+
+mp1i
+ |- ph
+ |- ( ph -> ps )
+ $a |- ( ch -> ps )
+ wph
+ wps
+ ax-mp s1 s2 / h1 h2
+ wch
+ a1i s4 s2 / s3
+
+
+# Only needs ax-mp ax-2 #
+
+a2i
+ |- ( ph -> ( ps -> ch ) )
+ $a |- ( ( ph -> ps ) -> ( ph -> ch ) )
+ wph
+ wps
+ wch
+ ax-2 s1 s2 s3
+ wi1 s1 s2 s3
+ wi12 s1 s2 s1 s3
+ ax-mp s5 s6 / h1 s4
+
+mpd
+ |- ( ph -> ps )
+ |- ( ph -> ( ps -> ch ) )
+ $a |- ( ph -> ch )
+ TODO
+
+
+
+
+
+# Finally: wn and ax-3 #
+
+# Introducing the not operator
+c -.
+u -. ¬
+
+wn
+ $a wff -. ph
+
+ax-3
+ |- ( ( -. ph -> -. ps ) -> ( ps -> ph ) )
+
