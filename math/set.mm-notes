@@ -1,11 +1,19 @@
+# set.mm-notes
+
+## Alternate proofs
+
 bicomd: bicom1 syl
 neg0: df-neg 0cn subidi eqtri
------
+
+## Alternate definition of cgt
+
 See https://js.do/celiasnt/altcgt for some proofs, but basically
 here's an alternate definition of combinatorial games:
 
 Fgen = rec((x ∈ V ↦ (𝒫 x × 𝒫 x)), ∅)
 Fg = { x | ∃y ∈ ω x ∈ (Fgen’y) }
+
+### Definition of cgt addition
 
 Addition will be done later.
 But here's the motivation for my future definition of addition:
@@ -36,7 +44,7 @@ The union of (x +s (1st`y)) ∪ (y +s (1st`x)) is
 
 Hmm, what if we use a recursive tool on itself?
 Let's define +cg with the unwrapped substitution above and a general operator argument:
-+cgug = (O ∈ V ↦ (x ∈ Fg, y ∈ Fg ↦ ⟨{ z | (∃w ∈ (1st'y) z = (x O w) ∨ ∃w ∈ (1st'x) z = (y O w)) }, { u | (∃t ∈ (2nd'y) u = (x O t) ∨ ∃t ∈ (2nd'x) u = (y O t)) })
++cgug = (O ∈ V ↦ (x ∈ Fg, y ∈ Fg ↦ ⟨{ z | (∃w ∈ (1st'y) z = (x O w) ∨ ∃w ∈ (1st'x) z = (y O w)) }, { u | (∃t ∈ (2nd'y) u = (x O t) ∨ ∃t ∈ (2nd'x) u = (y O t)) }⟩))
 
 And now
 +cg = +cgug`+cgug
