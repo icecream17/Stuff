@@ -46,12 +46,51 @@ Hmm, what if we use a recursive tool on itself?
 Let's define +cg with the unwrapped substitution above and a general operator argument:
 +cgug = (O ∈ V ↦ (x ∈ Fg, y ∈ Fg ↦ ⟨{ z | (∃w ∈ (1st'y) z = (x O w) ∨ ∃w ∈ (1st'x) z = (y O w)) }, { u | (∃t ∈ (2nd'y) u = (x O t) ∨ ∃t ∈ (2nd'x) u = (y O t)) }⟩))
 
-And now
-+cg = +cgug`+cgug
+Hmm, that doesn't work either... we still need to call +cgug with the right operator,
+and the right operator isn't itself, but it also isn't (x ∈ Fg, y ∈ Fg ↦ ⟨{...
+since that definition has the variable O
 
-Tada! A definition of +cg that doesn't have itself in the definition.
-It uses +cgug, the definition of +cgug doesn't have itself in the definition, but it can be called with itself -> recursion!
+However all that's needed is for the syntax to expand / unravel forever.
 
-This suggests a new tool to define recursive things without actually including itself:
-1. create a function that takes an operator and does the same thing as the goal operator would do
-2. call function with operator
+(+cgug`+cgug) takes an operator and has depth 2
+((+cgug`+cgug)`(+cgug`+cgug)) has depth 4
+... has depth 1024
+
+We then define the result of addition the first time that
+A((cgugdepth`N)`F)B = A((cgugdepth`suc N)`F)B
+
+where F = (A ∈ V, B ∈ V ↦ if-(B = ∅,∅,⟨A, B⟩))
+
+Let's try adding 0cg + 0cg
+0cg = ⟨∅, ∅⟩
++cgug`F = (x ∈ Fg, y ∈ Fg ↦ ⟨{ z | (∃w ∈ (1st'y) z = (x F w) ∨ ∃w ∈ (1st'x) z = (y F w)) }, { u | (∃t ∈ (2nd'y) u = (x O t) ∨ ∃t ∈ (2nd'x) u = (y F t)) }⟩))
+                                      ^ no                         ^ no                                 ^ no                          ^ no
+        eval: ⟨∅, ∅⟩
++cgug`(+cgug`F) = ...
+        eval: ⟨∅, ∅⟩
+        
+That was extremely "trivial".
+Let's add 1cg + 0cg
+1cg = ⟨{⟨∅, ∅⟩}, ∅⟩
+0cg = ⟨∅, ∅⟩
++cgug`F = (x ∈ Fg, y ∈ Fg ↦ ⟨{ z | (∃w ∈ (1st'y) z = (x F w) ∨ ∃w ∈ (1st'x) z = (y F w)) }, { u | (∃t ∈ (2nd'y) u = (x O t) ∨ ∃t ∈ (2nd'x) u = (y F t)) }⟩))
+                                      ^ no                                                              ^ no                          ^ no
+        eval: ⟨{ z | ∃w ∈ (1st'x) z = (y F w) }, ∅⟩
+            y and w are 0cg:
+        eval: ⟨⟨0cg, 0cg⟩, ∅⟩
++cgug`(+cgug`F)
+        eval: ⟨{ z | ∃w ∈ (1st'x) z = (y (+cgug`F) w) }, ∅⟩
+            since earlier 0cg +cgug`F 0cg resulted in 0cg:
+        eval: ⟨0cg, ∅⟩
++cgug`(+cgug`(+cgug`F))
+        eval: ⟨{ z | ∃w ∈ (1st'x) z = (y +cgug`(+cgug`F) w) }, ∅⟩
+            since earlier 0cg +cgug`(+cgug`F) 0cg resulted in 0cg:
+        eval: ⟨0cg, ∅⟩
+
+Wow, that also worked.
+Not sure if F is guaranteed to work, I just made F up.
+
+But in principle, through this really daunting and complicated construction, combinatorial addition can be defined.
+
+There are more operators though...
+        
