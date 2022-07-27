@@ -119,7 +119,7 @@ $( Informally, `Ffs` takes a graph ` g ` and a set of ordered pairs of vertices 
 $)
 Ffs = ( g e. _V , e e. ~P ( ( Vtx ` g ) X. ( Vtx ` g ) ) |->
   { s | (
-    ( c e. e <-> ( s i^i ( ( 1st ` c ) ( Roads ` g ) ( 2nd ` c ) ) ~~ 1o ) /\
+    ( e ~~ s /\ A. c e. e E! r e. s r e. ( ( 1st ` c ) ( Roads ` g ) ( 2nd ` c ) ) ) ) /\
     A. a e. s A. b e. s ( ( ( VtxRoad ` g ) ` a ) i^i ( ( VtxRoad ` g ) ` b ) ) = (/) /\
     U. ( ( VtxRoad ` g ) " s ) = ( Vtx ` g )
   ) } )
@@ -192,6 +192,8 @@ This is soo easy for human brains, but as you can probably tell by now,
 with this formulation it's going to take quite a bit longer than most people would think.
 
 ### Proofs
+
+#### ovrecgr
 
 ```mm
 
@@ -391,8 +393,193 @@ ovmpt2a
             { <. ( |_ ` ( ( i - ( W * ( W - 1 ) ) ) / ( H - 1 ) ) ) , ( ( i - ( W * ( W - 1 ) ) ) mod ( H - 1 ) ) >. ,
               <. ( |_ ` ( ( i - ( W * ( W - 1 ) ) ) / ( H - 1 ) ) ) , ( ( ( i - ( W * ( W - 1 ) ) ) mod ( H - 1 ) ) + 1 ) >. } ) ) >. )
 
+```
 
+#### ovffs
 
+```mm
+
+$d x y $.
+$d x A $.
+$d y B $.
+ovmpt2dx.1 $e ( ph -> F = ( x e. C , y e. D |-> R ) ) $.
+ovmpt2dx.2 $e ( ( ph /\ ( x = A /\ y = B ) ) -> R = S ) $.
+ovmpt2dx.3 $e ( ( ph /\ x = A ) -> D = L ) $.
+ovmpt2dx.4 $e ( ph -> A e. C ) $.
+ovmpt2dx.5 $e ( ph -> B e. L ) $.
+ovmpt2dx.6 $e ( ph -> S e. X ) $.
+ovmpt2dxf.ay $e F/_ y A $.
+ovmpt2dxf.bx $e F/_ x B $.
+ovmpt2dxf.sx $e F/_ x S $.
+ovmpt2dxf.sy $e F/_ y S $.
+ovmpt2dxf $p ( ph -> ( A F B ) = S )
+$= same as https://us.metamath.org/mpeuni/ovmpt2dxf.html except steps 7 thru 13 ...
+
+ovmpt2dx.4
+  ( ph -> A e. C )
+ovmpt2dx.5
+  ( ph -> B e. L )
+ovmpt2dxf.bx
+  F/_ x B
+nfcv
+  F/_ x _V
+nfel
+  F/ x B e. _V
+eqid
+  ( x e. C , y e. D |-> R ) = ( x e. C , y e. D |-> R )
+ovmpt4g
+  ( ( x e. C /\ y e. D /\ R e. _V ) -> ( x ( x e. C , y e. D |-> R ) y ) = R )
+ax-gen
+  A. y ( ( x e. C /\ y e. D /\ R e. _V ) -> ( x ( x e. C , y e. D |-> R ) y ) = R )
+sbcth
+  ( B e. L -> [. B / y ]. ( ( x e. C /\ y e. D /\ R e. _V ) -> ( x ( x e. C , y e. D |-> R ) y ) = R ) )
+alrimi
+  ( B e. L -> A. x [. B / y ]. ( ( x e. C /\ y e. D /\ R e. _V ) -> ( x ( x e. C , y e. D |-> R ) y ) = R ) )
+adantl
+  ( ( A e. C /\ B e. L ) -> A. x [. B / y ]. ( ( x e. C /\ y e. D /\ R e. _V ) -> ( x ( x e. C , y e. D |-> R ) y ) = R ) )
+spsbc
+  ( A e. C -> ( A. x [. B / y ]. ( ( x e. C /\ y e. D /\ R e. _V ) -> ( x ( x e. C , y e. D |-> R ) y ) = R ) ->
+                [. A / x ]. [. B / y ]. ( ( x e. C /\ y e. D /\ R e. _V ) -> ( x ( x e. C , y e. D |-> R ) y ) = R ) ) )
+adantr
+  ( ( A e. C /\ B e. L ) -> ( A. x [. B / y ]. ( ( x e. C /\ y e. D /\ R e. _V ) -> ( x ( x e. C , y e. D |-> R ) y ) = R ) ->
+                              [. A / x ]. [. B / y ]. ( ( x e. C /\ y e. D /\ R e. _V ) -> ( x ( x e. C , y e. D |-> R ) y ) = R ) ) )
+mpd
+  ( ( A e. C /\ B e. L ) -> [. A / x ]. [. B / y ]. ( ( x e. C /\ y e. D /\ R e. _V ) -> ( x ( x e. C , y e. D |-> R ) y ) = R ) )
+syl2anc
+  ( ph -> [. A / x ]. [. B / y ]. ( ( x e. C /\ y e. D /\ R e. _V ) -> ( x ( x e. C , y e. D |-> R ) y ) = R ) )
+  
+this is huge !!!
+
+relevant downstream effects:
+$d x ph $. $d y ph $. and steps 7 and 8 are removed from ovmpt2dx
+$d x ph $. $d y ph $. removed from ovmpt2d
+$d x C $. $d y C $. $d x D $. $d y D $. removed from ovmpt2ga
+
+$d s g $.
+$d s G $.
+$d s e $.
+$d s E $.
+ovffslem $p
+  ( ( g = G /\ e = E ) ->
+    { s | (
+      ( c e. e <-> ( s i^i ( ( 1st ` c ) ( Roads ` g ) ( 2nd ` c ) ) ) ~~ 1o ) /\
+      A. a e. s A. b e. s ( ( ( VtxRoad ` g ) ` a ) i^i ( ( VtxRoad ` g ) ` b ) ) = (/) /\
+      U. ( ( VtxRoad ` g ) " s ) = ( Vtx ` g )
+    ) } =
+    { s | (
+      ( c e. E <-> ( s i^i ( ( 1st ` c ) ( Roads ` G ) ( 2nd ` c ) ) ) ~~ 1o ) /\
+      A. a e. s A. b e. s ( ( ( VtxRoad ` G ) ` a ) i^i ( ( VtxRoad ` G ) ` b ) ) = (/) /\
+      U. ( ( VtxRoad ` G ) " s ) = ( Vtx ` G )
+    ) } )
+$=
+todo
+  ( ( g = G /\ e = E ) -> 
+    ( ( e ~~ s /\ A. c e. e E! r e. s r e. ( ( 1st ` c ) ( Roads ` g ) ( 2nd ` c ) ) ) ) <->
+      ( E ~~ s /\ A. c e. E E! r e. s r e. ( ( 1st ` c ) ( Roads ` G ) ( 2nd ` c ) ) ) ) )
+todo
+  ( g = G -> 
+    ( A. a e. s A. b e. s ( ( ( VtxRoad ` g ) ` a ) i^i ( ( VtxRoad ` g ) ` b ) ) = (/) <->
+      A. a e. s A. b e. s ( ( ( VtxRoad ` G ) ` a ) i^i ( ( VtxRoad ` G ) ` b ) ) = (/) ) )
+adantr
+  ( ( g = G /\ e = E ) -> 
+    ( A. a e. s A. b e. s ( ( ( VtxRoad ` g ) ` a ) i^i ( ( VtxRoad ` g ) ` b ) ) = (/) <->
+      A. a e. s A. b e. s ( ( ( VtxRoad ` G ) ` a ) i^i ( ( VtxRoad ` G ) ` b ) ) = (/) ) )
+todo
+  ( g = G -> 
+    ( U. ( ( VtxRoad ` g ) " s ) = ( Vtx ` g ) <->
+      U. ( ( VtxRoad ` G ) " s ) = ( Vtx ` G ) ) )
+adantr
+  ( ( g = G /\ e = E ) -> 
+    ( U. ( ( VtxRoad ` g ) " s ) = ( Vtx ` g ) <->
+      U. ( ( VtxRoad ` G ) " s ) = ( Vtx ` G ) ) )
+3anbi123d
+  ( ( g = G /\ e = E ) -> ( (
+      ( e ~~ s /\ A. c e. e E! r e. s r e. ( ( 1st ` c ) ( Roads ` g ) ( 2nd ` c ) ) ) ) /\
+      A. a e. s A. b e. s ( ( ( VtxRoad ` g ) ` a ) i^i ( ( VtxRoad ` g ) ` b ) ) = (/) /\
+      U. ( ( VtxRoad ` g ) " s ) = ( Vtx ` g )
+    ) <-> (
+      ( E ~~ s /\ A. c e. E E! r e. s r e. ( ( 1st ` c ) ( Roads ` G ) ( 2nd ` c ) ) ) ) /\
+      A. a e. s A. b e. s ( ( ( VtxRoad ` G ) ` a ) i^i ( ( VtxRoad ` G ) ` b ) ) = (/) /\
+      U. ( ( VtxRoad ` G ) " s ) = ( Vtx ` G )
+    ) ) )
+abbidv
+  ( ( g = G /\ e = E ) ->
+    { s | (
+      ( e ~~ s /\ A. c e. e E! r e. s r e. ( ( 1st ` c ) ( Roads ` g ) ( 2nd ` c ) ) ) ) /\
+      A. a e. s A. b e. s ( ( ( VtxRoad ` g ) ` a ) i^i ( ( VtxRoad ` g ) ` b ) ) = (/) /\
+      U. ( ( VtxRoad ` g ) " s ) = ( Vtx ` g )
+    ) } =
+    { s | (
+      ( E ~~ s /\ A. c e. E E! r e. s r e. ( ( 1st ` c ) ( Roads ` G ) ( 2nd ` c ) ) ) ) /\
+      A. a e. s A. b e. s ( ( ( VtxRoad ` G ) ` a ) i^i ( ( VtxRoad ` G ) ` b ) ) = (/) /\
+      U. ( ( VtxRoad ` G ) " s ) = ( Vtx ` G )
+    ) } )
+
+$d g e G $.
+$d g e E $.
+$d g e c $.
+$d g e a $.
+$d g e b $.
+$d g e s $.
+$d g e r $.
+ovffs $p
+  ( ( G e. _V /\ E e. ~P ( ( Vtx ` g ) X. ( Vtx ` g ) ) ) -> ( G Ffs E ) =
+    { s | (
+      ( E ~~ s /\ A. c e. E E! r e. s r e. ( ( 1st ` c ) ( Roads ` G ) ( 2nd ` c ) ) ) ) /\
+      A. a e. s A. b e. s ( ( ( VtxRoad ` G ) ` a ) i^i ( ( VtxRoad ` G ) ` b ) ) = (/) /\
+      U. ( ( VtxRoad ` G ) " s ) = ( Vtx ` G )
+    ) } )
+$=
+ovffslem
+  ( ( g = G /\ e = E ) ->
+    { s | (
+      ( e ~~ s /\ A. c e. e E! r e. s r e. ( ( 1st ` c ) ( Roads ` g ) ( 2nd ` c ) ) ) ) /\
+      A. a e. s A. b e. s ( ( ( VtxRoad ` g ) ` a ) i^i ( ( VtxRoad ` g ) ` b ) ) = (/) /\
+      U. ( ( VtxRoad ` g ) " s ) = ( Vtx ` g )
+    ) } =
+    { s | (
+      ( E ~~ s /\ A. c e. E E! r e. s r e. ( ( 1st ` c ) ( Roads ` G ) ( 2nd ` c ) ) ) ) /\
+      A. a e. s A. b e. s ( ( ( VtxRoad ` G ) ` a ) i^i ( ( VtxRoad ` G ) ` b ) ) = (/) /\
+      U. ( ( VtxRoad ` G ) " s ) = ( Vtx ` G )
+    ) } )
+df-ffs
+  Ffs = ( g e. _V , e e. ~P ( ( Vtx ` g ) X. ( Vtx ` g ) ) |->
+    { s | (
+      ( e ~~ s /\ A. c e. e E! r e. s r e. ( ( 1st ` c ) ( Roads ` g ) ( 2nd ` c ) ) ) ) /\
+      A. a e. s A. b e. s ( ( ( VtxRoad ` g ) ` a ) i^i ( ( VtxRoad ` g ) ` b ) ) = (/) /\
+      U. ( ( VtxRoad ` g ) " s ) = ( Vtx ` g )
+    ) } )
+ovmpt2ga
+  ( ( G e. _V /\ E e. ~P ( ( Vtx ` g ) X. ( Vtx ` g ) ) /\ 
+      { s | (
+        ( E ~~ s /\ A. c e. E E! r e. s r e. ( ( 1st ` c ) ( Roads ` G ) ( 2nd ` c ) ) ) ) /\
+        A. a e. s A. b e. s ( ( ( VtxRoad ` G ) ` a ) i^i ( ( VtxRoad ` G ) ` b ) ) = (/) /\
+        U. ( ( VtxRoad ` G ) " s ) = ( Vtx ` G )
+      ) } e. _V 
+    ) -> ( G Ffs E ) =
+         { s | (
+           ( E ~~ s /\ A. c e. E E! r e. s r e. ( ( 1st ` c ) ( Roads ` G ) ( 2nd ` c ) ) ) ) /\
+           A. a e. s A. b e. s ( ( ( VtxRoad ` G ) ` a ) i^i ( ( VtxRoad ` G ) ` b ) ) = (/) /\
+           U. ( ( VtxRoad ` G ) " s ) = ( Vtx ` G )
+         ) } )
+ovffslem2
+  ( ( G e. _V /\ E e. ~P ( ( Vtx ` g ) X. ( Vtx ` g ) ) ) ->
+      { s | (
+        ( E ~~ s /\ A. c e. E E! r e. s r e. ( ( 1st ` c ) ( Roads ` G ) ( 2nd ` c ) ) ) ) /\
+        A. a e. s A. b e. s ( ( ( VtxRoad ` G ) ` a ) i^i ( ( VtxRoad ` G ) ` b ) ) = (/) /\
+        U. ( ( VtxRoad ` G ) " s ) = ( Vtx ` G )
+      ) } e. _V )
+mpd3an3
+  ( ( G e. _V /\ E e. ~P ( ( Vtx ` g ) X. ( Vtx ` g ) ) ) -> ( G Ffs E ) =
+    { s | (
+      ( E ~~ s /\ A. c e. E E! r e. s r e. ( ( 1st ` c ) ( Roads ` G ) ( 2nd ` c ) ) ) ) /\
+      A. a e. s A. b e. s ( ( ( VtxRoad ` G ) ` a ) i^i ( ( VtxRoad ` G ) ` b ) ) = (/) /\
+      U. ( ( VtxRoad ` G ) " s ) = ( Vtx ` G )
+    ) } )
+
+(previously: hmm the distinct variable conditions make ovmpt2ga not work)
+(now: even then, E is element of something something g instead of something something G,
+      maybe something like vtocl)
 
 
 
