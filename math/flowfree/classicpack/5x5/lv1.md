@@ -193,6 +193,68 @@ with this formulation it's going to take quite a bit longer than most people wou
 
 ### Proofs
 
+#### misc
+
+```mm
+recgrex $p RectGraph e. _V $=
+df-recgr   RectGraph = ( w e. NN , h e. NN |->
+  <. { <. a , b >. | ( a e. NN0 /\ b e. NN0 /\ ( a < w /\ b < h ) ) } ,
+     ( i e. ( 0 ..^ ( ( w * ( w - 1 ) ) + ( h * ( h - 1 ) ) ) ) |->
+       if ( i e. ( 0 ..^ ( w * ( w - 1 ) ) ) ,
+          { <. ( i mod ( w - 1 ) ), ( |_ ` ( i / ( w - 1 ) ) ) >. , <. ( ( i mod ( w - 1 ) ) + 1 ) , ( |_ ` ( i / ( w - 1 ) ) ) >. } ,
+          { <. ( |_ ` ( ( i - ( w * ( w - 1 ) ) ) / ( h - 1 ) ) ) , ( ( i - ( w * ( w - 1 ) ) ) mod ( h - 1 ) ) >. ,
+            <. ( |_ ` ( ( i - ( w * ( w - 1 ) ) ) / ( h - 1 ) ) ) , ( ( ( i - ( w * ( w - 1 ) ) ) mod ( h - 1 ) ) + 1 ) >. } ) ) >. )
+nnex        NN e. _V
+nnex        NN e. _V
+mpt2ex      ( w e. NN , h e. NN |->
+  <. { <. a , b >. | ( a e. NN0 /\ b e. NN0 /\ ( a < w /\ b < h ) ) } ,
+     ( i e. ( 0 ..^ ( ( w * ( w - 1 ) ) + ( h * ( h - 1 ) ) ) ) |->
+       if ( i e. ( 0 ..^ ( w * ( w - 1 ) ) ) ,
+          { <. ( i mod ( w - 1 ) ), ( |_ ` ( i / ( w - 1 ) ) ) >. , <. ( ( i mod ( w - 1 ) ) + 1 ) , ( |_ ` ( i / ( w - 1 ) ) ) >. } ,
+          { <. ( |_ ` ( ( i - ( w * ( w - 1 ) ) ) / ( h - 1 ) ) ) , ( ( i - ( w * ( w - 1 ) ) ) mod ( h - 1 ) ) >. ,
+            <. ( |_ ` ( ( i - ( w * ( w - 1 ) ) ) / ( h - 1 ) ) ) , ( ( ( i - ( w * ( w - 1 ) ) ) mod ( h - 1 ) ) + 1 ) >. } ) ) >. ) e. _V
+eqeltri     RectGraph e. _V
+
+fovex $p ( F : ( A B C ) --> D -> F e. _V ) $=
+ovex     ( A B C ) e. _V
+fex      ( ( F : ( A B C ) --> D /\ ( A B C ) e. _V ) -> F e. _V )
+mpan2    ( F : ( A B C ) --> D -> F e. _V )
+
+$( Wish there was mpdid so I could do com34 mpdid 3impd instead of
+   com24 mpdi com23 3impd $)
+$( Can be generalized by adding a hypothesis and replacing
+   pm2.43d with mpdi $)
+iswlkALTlem.1 $e ( ( ph /\ ps /\ ch ) -> ( th <-> ( ps /\ et /\ ze ) ) $.
+iswlkALTlem.2 $e ( et -> ch ) $.
+iswlkALTlem   $p ( ph -> ( ( ps /\ et /\ ze ) -> th ) ) $=
+iswlkALTlem.2    ( et -> ch )
+iswlkALTlem.1    ( ( ph /\ ps /\ ch ) -> ( th <-> ( ps /\ et /\ ze ) )
+biimprd          ( ( ph /\ ps /\ ch ) -> ( ( ps /\ et /\ ze ) -> th ) )
+3expd            ( ( ph /\ ps /\ ch ) -> ( ps -> ( et -> ( ze -> th ) ) ) )
+3exp             ( ph -> ( ps -> ( ch -> ( ps -> ( et -> ( ze -> th ) ) ) )
+com34            ( ph -> ( ps -> ( ps -> ( ch -> ( et -> ( ze -> th ) ) ) )
+pm2.43d          ( ph -> ( ps -> ( ch -> ( et -> ( ze -> th ) ) )
+com24            ( ph -> ( et -> ( ch -> ( ps -> ( ze -> th ) ) )
+mpdi             ( ph -> ( et -> ( ps -> ( ze -> th ) )
+com23            ( ph -> ( ps -> ( et -> ( ze -> th ) )
+3impd            ( ph -> ( ( ps /\ et /\ ze ) -> th ) )
+
+wksfval.v $e V = ( Vtx ` G ) $.
+wksfval.i $e I = ( iEdg ` G ) $.
+iswlkALT $p ( G e. W ->
+  ( F ( Walks ` G ) P <-> ( F e. Word dom I /\ P : ( 0 ... ( # ` F ) ) --> V /\ A. k e. ( 0 ..^ ( # ` F ) ) if- ( ( P ` k ) = ( P ` ( k + 1 ) ) , ( I ` ( F ` k ) ) = { ( P ` k ) } , { ( P ` k ) , ( P ` ( k + 1 ) ) } C_ ( I ` ( F ` k ) ) ) ) ) )
+$=
+wksfval.v   V = ( Vtx ` G )
+wksfval.i   I = ( iEdg ` G )
+wlkprop     ( F ( Walks ` G ) P -> ( F e. Word dom I /\ P : ( 0 ... ( # ` F ) ) --> V /\ A. k e. ( 0 ..^ ( # ` F ) ) if- ( ( P ` k ) = ( P ` ( k + 1 ) ) , ( I ` ( F ` k ) ) = { ( P ` k ) } , { ( P ` k ) , ( P ` ( k + 1 ) ) } C_ ( I ` ( F ` k ) ) ) ) )
+iswlk       ( ( G e. W /\ F e. Word dom I /\ P e. _V ) ->
+  ( F ( Walks ` G ) P <-> ( F e. Word dom I /\ P : ( 0 ... ( # ` F ) ) --> V /\ A. k e. ( 0 ..^ ( # ` F ) ) if- ( ( P ` k ) = ( P ` ( k + 1 ) ) , ( I ` ( F ` k ) ) = { ( P ` k ) } , { ( P ` k ) , ( P ` ( k + 1 ) ) } C_ ( I ` ( F ` k ) ) ) ) ) )
+fovex       ( P : ( 0 ... ( # ` F ) ) --> V -> P e. _V )
+iswlkALTlem ( G e. W -> ( ( F e. Word dom I /\ P : ( 0 ... ( # ` F ) ) --> V /\ A. k e. ( 0 ..^ ( # ` F ) ) if- ( ( P ` k ) = ( P ` ( k + 1 ) ) , ( I ` ( F ` k ) ) = { ( P ` k ) } , { ( P ` k ) , ( P ` ( k + 1 ) ) } C_ ( I ` ( F ` k ) ) ) ) -> F ( Walks ` G ) P ) )
+impbid2     ( G e. W ->
+  ( F ( Walks ` G ) P <-> ( F e. Word dom I /\ P : ( 0 ... ( # ` F ) ) --> V /\ A. k e. ( 0 ..^ ( # ` F ) ) if- ( ( P ` k ) = ( P ` ( k + 1 ) ) , ( I ` ( F ` k ) ) = { ( P ` k ) } , { ( P ` k ) , ( P ` ( k + 1 ) ) } C_ ( I ` ( F ` k ) ) ) ) ) )
+```
+
 #### ovrecgr
 
 ```mm
@@ -398,6 +460,7 @@ ovmpt2a
 #### ovffs
 
 ```mm
+
 
 $d g G $.
 $d g e $.
