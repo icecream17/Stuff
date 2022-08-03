@@ -180,11 +180,34 @@ ${
     ) } ) $=
     ( ve cvv wcel cvtx cfv wa cv cmpt wf1o cvtxwlk wceq wral w3a cspths cxp wss
     cc0 c2nd clsw cop weq cin c0 wo cima cuni cpw crab cffs fvffs adantr f1oeq3
-    3anbi1d adantl rabbidv fvex xpex ssex elpwg syl ibir pwex rabex a1i fvmptd
-    wb ) BHIZABJKZVNUAZUBZLZGACMZGMZDVRUCDMUDKZKVTUEKUFNZOZEFUGEMPKFMPKUHUIQUJF
-    VRREVRRZPVRUKULVNQZSZCBTKZUMZUNZVRAWAOZWCWDSZCWGUNZVOUMZBUOKZHVMWMGWLWHNQVP
-    GBCDEFUPUQVQVSAQZLWEWJCWGWNWEWJVLVQWNWBWIWCWDVSAVRWAURUSUTVAVPAWLIZVMVPWOVP
-    AHIWOVPVLAVOVNVNBJVBZWPVCVDAVOHVEVFVGUTWKHIVQWJCWGWFBTVBVHVIVJVK $.
+    wb 3anbi1d adantl rabbidv fvex xpex elpw2 biimpri pwex rabex a1i fvmptd ) B
+    HIZABJKZVLUAZUBZLZGACMZGMZDVPUCDMUDKZKVRUEKUFNZOZEFUGEMPKFMPKUHUIQUJFVPREVP
+    RZPVPUKULVLQZSZCBTKZUMZUNZVPAVSOZWAWBSZCWEUNZVMUMZBUOKZHVKWKGWJWFNQVNGBCDEF
+    UPUQVOVQAQZLWCWHCWEWLWCWHUSVOWLVTWGWAWBVQAVPVSURUTVAVBVNAWJIZVKWMVNAVMVLVLB
+    JVCZWNVDVEVFVAWIHIVOWHCWEWDBTVCVGVHVIVJ $.
+$}
+
+${
+  $d G s $.
+  $d E s $.
+  $d S s b $.
+  $d S s a $.
+  $d S s p $.
+  $( Conditions for some set of paths to be a solution $)
+  isffs $p |- ( ( G e. _V /\ E C_ ( ( Vtx ` G ) X. ( Vtx ` G ) ) ) -> (
+    S e. ( ( Ffs ` G ) ` E ) <-> (
+      S e. ~P ( SPaths ` G ) /\ (
+      ( p e. S |-> <. ( ( 2nd ` p ) ` 0 ) , ( lastS ` ( 2nd ` p ) ) >. ) : S -1-1-onto-> E /\
+      A. a e. S A. b e. S ( a = b \/ ( ( VtxWalk ` a ) i^i ( VtxWalk ` b ) ) = (/) ) /\
+      U. ( VtxWalk " S ) = ( Vtx ` G )
+    ) ) ) ) $=
+    ( vs cvv wcel cfv wa cv cmpt wf1o cvtxwlk wceq wral cima cuni w3a cvtx cffs
+    cxp wss cc0 c2nd clsw cop weq cin c0 wo cspths crab ffsval eleq2d mpteq1 id
+    cpw eqidd f1oeq123d raleq raleqbi1dv imaeq2 unieqd eqeq1d 3anbi123d syl6bb
+    elrab ) CHIBCUAJZVJUCUDKZABCUBJJZIAGLZBDVMUEDLUFJZJVNUGJUHZMZNZEFUIELOJFLOJ
+    UJUKPULZFVMQZEVMQZOVMRZSZVJPZTZGCUMJUSZUNZIAWEIABDAVOMZNZVRFAQZEAQZOARZSZVJ
+    PZTZKVKVLWFABCGDEFUOUPWDWNGAWEVMAPZVQWHVTWJWCWMWOVMABBVPWGDVMAVOUQWOURWOBUT
+    VAVSWIEVMAVRFVMAVBVCWOWBWLVJWOWAWKVMAOVDVEVFVGVIVH $.
 $}
 
 $(
@@ -252,7 +275,6 @@ ${
     OPIZQIRISIEJZNVBSIGVDVAUEIZVDVAUAIUFUGZTVEORIVFTUHVDVBPIZVCUAIUFUGZVGVCUEIZ
     TVHVIORITUHUIZUJZTUKUKUOEABCDULUTVKABCDUMVJEABUNUPUQ $.
 
-  $( The vertices of a rectangular graph $)
   1stovrecgr $p |- ( ( W e. NN /\ H e. NN ) -> ( 1st ` ( W RectGraph H ) ) =
     { <. a , b >. | ( a e. NN0 /\ b e. NN0 /\ ( a < W /\ b < H ) ) } ) $=
     ( vi cn wcel wa co c1st cfv cv cn0 clt wbr cc0 c1 cmin caddc cop crecgr w3a
@@ -261,7 +283,6 @@ ${
     QRIZUDISIUEIELZPVDUEIGVFVCUFIZVFVCUGIUHKZTVGQSIVHTUIVFVDRIZVEUGIUHKZVIVEUFI
     ZTVJVKQSITUIUJZUKZTZJKVBURUSVNJEABCDUPULVBVMABCDUMVLEABUNUOUQ $.
 
-  $( The indexed edges of a rectangular graph $)
   2ndovrecgr $p |- ( ( W e. NN /\ H e. NN ) -> ( 2nd ` ( W RectGraph H ) ) =
     ( i e. ( 0 ..^ ( ( W * ( W - 1 ) ) + ( H * ( H - 1 ) ) ) ) |->
       if ( i e. ( 0 ..^ ( W * ( W - 1 ) ) ) ,
@@ -273,6 +294,27 @@ ${
     cmpt op2nd syl6eq ) CFGBFGHZCBUCIZJKDLZMGELZMGUTCNOVABNOHUADEUDZAPCCQRIZUBI
     ZBBQRIZUBISIUEIALZPVDUEIGVFVCUFIZVFVCUGIUHKZTVGQSIVHTUIVFVDRIZVEUGIUHKZVIVE
     UFIZTVJVKQSITUIUJZUOZTZJKVMURUSVNJABCDEUKULVBVMBCDEUMVLABCUNUPUQ $.
+
+  $( The vertices of a rectangular graph $)
+  vtxovrecgr $p |- ( ( W e. NN /\ H e. NN ) -> ( Vtx ` ( W RectGraph H ) ) =
+    { <. a , b >. | ( a e. NN0 /\ b e. NN0 /\ ( a < W /\ b < H ) ) } ) $=
+    ( cn wcel wa crecgr co cvtx cfv c1st cv cn0 clt wbr w3a copab cvv cxp eqtrd
+    wceq ovrecgrelvv opvtxval syl 1stovrecgr ) BEFAEFGZBAHIZJKZUHLKZCMZNFDMZNFU
+    KBOPULAOPGQCDRUGUHSSTFUIUJUBABUCUHUDUEABCDUFUA $.
+
+  $( The indexed edges of a rectangular graph $)
+  iedgovrecgr $p |- ( ( W e. NN /\ H e. NN ) -> ( iEdg ` ( W RectGraph H ) ) =
+    ( i e. ( 0 ..^ ( ( W * ( W - 1 ) ) + ( H * ( H - 1 ) ) ) ) |->
+      if ( i e. ( 0 ..^ ( W * ( W - 1 ) ) ) ,
+         { <. ( i mod ( W - 1 ) ) , ( |_ ` ( i / ( W - 1 ) ) ) >. , <. ( ( i mod ( W - 1 ) ) + 1 ) , ( |_ ` ( i / ( W - 1 ) ) ) >. } ,
+         { <. ( |_ ` ( ( i - ( W * ( W - 1 ) ) ) / ( H - 1 ) ) ) , ( ( i - ( W * ( W - 1 ) ) ) mod ( H - 1 ) ) >. ,
+           <. ( |_ ` ( ( i - ( W * ( W - 1 ) ) ) / ( H - 1 ) ) ) , ( ( ( i - ( W * ( W - 1 ) ) ) mod ( H - 1 ) ) + 1 ) >. } ) ) ) $=
+    ( cn wcel wa co cfv cc0 c1 cmin ccj caddc cfzo cmo cdiv cfl cop cpr cvv cif
+    crecgr ciedg c2nd cmpt cxp wceq ovrecgrelvv opiedgval syl 2ndovrecgr eqtrd
+    cv ) CDEBDEFZCBUBGZUCHZUOUDHZAICCJKGZLGZBBJKGZLGMGNGAUMZIUSNGEVAUROGZVAURPG
+    QHZRVBJMGVCRSVAUSKGZUTPGQHZVDUTOGZRVEVFJMGRSUAUEUNUOTTUFEUPUQUGBCUHUOUIUJAB
+    CUKUL $.
+
 $}
 
 $(
