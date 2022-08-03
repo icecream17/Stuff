@@ -9,6 +9,8 @@ I'm going to prove I found _all_ of them.
 >
 > Before looking at any solution, try to solve whatever level you're stuck on first.
 
+[Proofs used in this document](https://github.com/icecream17/Stuff/blob/master/math/flowfree/classicpack/5x5/lv1.mm)
+
 ## Construction
 
 ### Definition of flow
@@ -67,63 +69,37 @@ Unfortunately, the construction of paths are pretty complex:
 > A __path__ is a trail in which all vertices are distinct<br>
 > https://en.wikipedia.org/wiki/Path_(graph_theory)
 
-Not to mention that a path from A to B is different from its reverse (a path from B to A)
+I originally made it even more complex by saying that a path from A to B would be different
+from a path from B to A, and defining what a two-way path would be.
 
-I'm not sure if anyone has invented a structure that makes these "different" paths equal,
-so I guess I get to name it.
-
-> A __road__ from A to B, is a set of two paths, one from A to B, and its reverse from B to A
->
-> And remember that _a path cannot cross itself_.
->
-> So really, in some definitions of path we're actually using _simple paths_:
->
-> ```mm
-> reverseWalk =
->   ( w e. U. ran Walks |-> <. ( reverse ` ( 1st ` w ) ) , ( reverse ` ( 2nd ` w ) ) >. )
-> 
-> Roads = ( g e. _V |-> ( a e. ( Vtx ` g ) , b e. ( Vtx ` g ) |->
->   { c | E! x ( x e. ( a ( SPathsOn ` g ) b ) /\ c = { x , ( reverseWalk ` x ) } ) } ) )
-> ```
-
-I'd say flows are really _roads_ because it doesn't matter what direction you go in.
-
-Some puzzles have upwards of 16 flows, so there would be a lot of "different solutions"
-that are just paths flipped around without this.
+Some puzzles have upwards of 16 flows, so I thought there would be a lot of supposedly "different"
+solutions that are just paths flipped around. But instead I'll implicitly define that only
+the path from A to B is valid.
 
 ### Definition of solution
 
-And finally, the function that takes a graph and some corresponding endpoints and outputs
-the set of flow free solutions:
+Flow free solutions ;)
 
 ```mm
-$( A walk is a sequence of edges and a sequence of vertices $)
-VtxWalk = ( g e. _V |-> ( w e. ( Walks ` g ) |-> ran ( 2nd ` w ) ) )
+$( Informally, ` Ffs ` takes a graph ` g ` and a set of ordered pairs of
+   corresponding vertices ` e ` , and outputs the sets ` s ` where
 
-$( The vertices of a road are the vertices in the paths of the road $)
-VtxRoad = ( g e. _V |-> ( r e. ran ( Roads ` g ) |-> U. ( ( VtxWalk ` g ) " r ) ) )
+   1. The first and last value of every path = e
+   2. Different paths don't overlap
+   3. Vertices in all paths combined = All vertices
 
-$( Informally, `Ffs` takes a graph ` g ` and a set of ordered pairs of vertices ` e ` ,
-   and outputs the sets where
-
-   1. Every ordered pair ` < start, end > ` in ` e `
-      corresponds to a unique road in ` s ` from ` start ` to ` end ` ,
-      i.e. all pairs of colors are connected by flows
-   2. No two roads have a vertex in common
-      i.e. two different roads cannot overlap (the condition for same roads is guaranteed above)
-   3. All the vertices in the roads of ` s ` =
-      all the vertices in ` g `
-      i.e. the whole board must be covered by flows
 $)
-Ffs = ( g e. _V , e e. ~P ( ( Vtx ` g ) X. ( Vtx ` g ) ) |->
-  { s | (
-    ( e ~~ s /\ A. c e. e E! r e. s r e. ( ( 1st ` c ) ( Roads ` g ) ( 2nd ` c ) ) ) /\
-    A. a e. s A. b e. s ( ( ( VtxRoad ` g ) ` a ) i^i ( ( VtxRoad ` g ) ` b ) ) = (/) /\
-    U. ( ( VtxRoad ` g ) " s ) = ( Vtx ` g )
-  ) } )
+df-ffs $a |- Ffs = ( g e. _V |-> ( e e. ~P ( ( Vtx ` g ) X. ( Vtx ` g ) ) |->
+  { s e. ~P ( SPaths ` g ) | (
+    ( p e. s |-> <. ( ( 2nd ` p ) ` 0 ) , ( lastS ` ( 2nd ` p ) ) >. ) : s -1-1-onto-> e /\
+    A. a e. s A. b e. s ( a = b \/ ( ( VtxWalk ` a ) i^i ( VtxWalk ` b ) ) = (/) ) /\
+    U. ( VtxWalk " s ) = ( Vtx ` g )
+  ) } ) ) $.
 ```
 
-A rectangle is a common type of graph so it will be useful to define.
+### Rectangular graphs
+
+A rectangle is a very common type of graph in Flow Free so it will be useful to define.
 
 Horrifyingly, a graph in Metamath is a set of vertices... and _indexed_ edges!
 
@@ -781,7 +757,7 @@ syl5req
   ( ( Rel e /\ c e. e ) -> ( ( Roads ` g ) ` c ) = ( ( 1st ` c ) ( Roads ` g ) ( 2nd ` c ) ) )
 df-en
   ( e ~~ s <-> E. f f : e -1-1-onto-> s )
-???
+??? 
   ( e e. ~P ( ( Vtx ` g ) X. ( Vtx ` g ) ) -> A. s ( (
       ( e ~~ s /\ A. c e. e E! r e. s r e. ( ( 1st ` c ) ( Roads ` g ) ( 2nd ` c ) ) ) /\
       A. a e. s A. b e. s ( ( ( VtxRoad ` g ) ` a ) i^i ( ( VtxRoad ` g ) ` b ) ) = (/) /\
