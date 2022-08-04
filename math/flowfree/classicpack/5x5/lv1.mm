@@ -102,6 +102,30 @@ $)
 fvssunirneli $p |- ( W e. ( F ` G ) -> W e. U. ran F ) $=
   ( cfv crn cuni fvssunirn sseli ) BADAEFCABGH $.
 
+${
+  $( Lemma for ~ iswlkgALT .  (New usage is discouraged.) $)
+  iswlkgALTlem.1 $e |- ( ( ph /\ ps /\ ch ) -> ( th <-> ( ps /\ et /\ ze ) ) ) $.
+  iswlkgALTlem.2 $e |- ( et -> ch ) $.
+  iswlkgALTlem   $p |- ( ph -> ( ( ps /\ et /\ ze ) -> th ) ) $=
+    ( wi w3a biimprd 3expd 3exp com25 mpdi com24 pm2.43d 3impd ) ABEFDABEFDIZIZ
+    AEBBSAECBBSIIHABCBESABCBTIABCJZBEFDUADBEFJGKLMNOPQR $.
+$}
+
+${
+  $( Use ~ iswlkg (New usage is discouraged.) $)
+  iswlkgALT.v $e |- V = ( Vtx ` G ) $.
+  iswlkgALT.i $e |- I = ( iEdg ` G ) $.
+  iswlkgALT $p |- ( G e. W -> ( F ( Walks ` G ) P <-> (
+    F e. Word dom I /\
+    P : ( 0 ... ( # ` F ) ) --> V /\
+    A. k e. ( 0 ..^ ( # ` F ) ) if- ( ( P ` k ) = ( P ` ( k + 1 ) ) , ( I ` ( F ` k ) ) = { ( P ` k ) } , { ( P ` k ) , ( P ` ( k + 1 ) ) } C_ ( I ` ( F ` k ) ) )
+  ) ) ) $=
+    ( wcel cwlks cfv wbr cdm cword cc0 cfz co wceq cvv chash wf cv c1 caddc csn
+    cpr wss wif cfzo wral w3a wlkprop iswlk ovex fex mpan2 iswlkgALTlem impbid2
+    ) DGJZCADKLMZCENOZJZPCUALZQRZFAUBZBUCZALZVGUDUERALZSVGCLELZVHUFSVHVIUGVJUHU
+    IBPVDUJRUKZULABCDEFHIUMUTVCATJZVAVFVKAVBBCDEFGTHIUNVFVETJVLPVDQUOVEFTAUPUQU
+    RUS $.
+$}
 
 $(
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -209,6 +233,43 @@ ${
     PZTZKVKVLWFABCGDEFUOUPWDWNGAWEVMAPZVQWHVTWJWCWMWOVMABBVPWGDVMAVOUQWOURWOBUT
     VAVSWIEVMAVRFVMAVBVCWOWBWLVJWOWAWKVMAOVDVEVFVGVIVH $.
 $}
+
+${
+  $d S a $.
+  $d S b $.
+  $d S p $.
+  ffsssspths $p |- ( ( G e. _V /\ E C_ ( ( Vtx ` G ) X. ( Vtx ` G ) ) ) ->
+    ( S e. ( ( Ffs ` G ) ` E ) -> S C_ ( SPaths ` G ) ) ) $=
+    ( vp va vb cvv wcel cvtx cfv cxp wss wa cffs cspths cpw cvtxwlk wceq wral
+    cv cc0 c2nd clsw cop cmpt wf1o weq cin c0 cima cuni w3a isffs adantr syl6bi
+    wo elpwi ) CGHBCIJZURKLMABCNJJHACOJZPHZABDAUADTUBJZJVAUCJUDUEUFEFUGETQJFTQJ
+    UHUIRUPFASEASQAUJUKURRULZMAUSLZABCDEFUMUTVCVBAUSUQUNUO $.
+
+  ffsf1oco $p |- ( ( G e. _V /\ E C_ ( ( Vtx ` G ) X. ( Vtx ` G ) ) ) ->
+    ( S e. ( ( Ffs ` G ) ` E ) -> ( p e. S |-> <. ( ( 2nd ` p ) ` 0 ) , ( lastS ` ( 2nd ` p ) ) >. ) : S -1-1-onto-> E ) ) $=
+    ( va vb cvv wcel cvtx cfv cxp wss wa cffs cspths cpw cv cvtxwlk wceq wral
+    cc0 c2nd clsw cop cmpt wf1o weq cin c0 wo cima cuni w3a isffs simpr1 syl6bi
+    ) CGHBCIJZUQKLMABCNJJHACOJPHZABDAUADQUBJZJUSUCJUDUEUFZEFUGEQRJFQRJUHUISUJFA
+    TEATZRAUKULUQSZUMMUTABCDEFUNURUTVAVBUOUP $.
+
+  ffsenco $p |- ( ( G e. _V /\ E C_ ( ( Vtx ` G ) X. ( Vtx ` G ) ) ) ->
+    ( S e. ( ( Ffs ` G ) ` E ) -> S ~~ E ) ) $=
+    ( vp cvv wcel cvtx cfv cxp wss wa cffs cc0 cv c2nd clsw cop cmpt wf1o cen
+    wbr ffsf1oco f1oeng ex sylcom ) CEFBCGHZUFIJKABCLHHZFZABDAMDNOHZHUIPHQRZSZA
+    BTUAZABCDUBUHUKULABUGUJUCUDUE $.
+
+  $d p q S $.
+  $d p q E $.
+  $( Requirement of being one to one $)
+  ffsf1ompt $p |- ( ( G e. _V /\ E C_ ( ( Vtx ` G ) X. ( Vtx ` G ) ) ) ->
+    ( S e. ( ( Ffs ` G ) ` E ) -> (
+      A. p e. S <. ( ( 2nd ` p ) ` 0 ) , ( lastS ` ( 2nd ` p ) ) >. e. E /\
+      A. q e. E E! p e. S q = <. ( ( 2nd ` p ) ` 0 ) , ( lastS ` ( 2nd ` p ) ) >. ) ) ) $=
+    ( cvv wcel cvtx cfv cxp wss wa cffs cc0 cv c2nd clsw cop cmpt wral ffsf1oco
+    wf1o wceq wreu eqid f1ompt syl6ib ) CFGBCHIZUHJKLABCMIIGABEANEOPIZIUIQIRZSZ
+    UBUJBGEATDOUJUCEAUDDBTLABCEUAEDABUJUKUKUEUFUG $.
+$}
+
 
 $(
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
