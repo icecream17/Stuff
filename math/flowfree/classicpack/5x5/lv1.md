@@ -203,6 +203,12 @@ B....
 ..CB.
 .A...
 ....C
+
+A....
+..C..
+..A..
+.B..B
+....C
 ```
 
 I remember in the past, some flow free levels had room to spare like this,
