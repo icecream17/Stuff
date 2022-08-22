@@ -37,6 +37,9 @@
 7: "true"
    true+[]
 
+7: ("")
+   ([]+[])
+
 8: "1"
    1+[]
 
@@ -53,7 +56,7 @@
     NaN+[]
 
 11: "10"
-   1+[0]
+    1+[0]
 
 12: "falseundefined"
     [false]+undefined
@@ -73,6 +76,9 @@
 14: "t"
     ("true")[0]
 
+15: "20"
+    2+[0]
+
 15: "a"
     ("false")[1]
 
@@ -85,11 +91,17 @@
 16: "N"
     ("NaN")[0]
 
+16: "undefinedundefined"
+    []+undefined+undefined
+
 17: "3"
     3+[]
 
 17: "12"
     1+[2]
+
+17: "100"
+    [1]+"00"
 
 18: "n"
     ("undefined")[1]
@@ -109,6 +121,9 @@
 23: "1000"
     1+[0+[0+[0]]]
     1+[0]+(0)+(0)
+
+23: "undefinedundefinedundefined"
+    []+undefined+undefined+undefined
 
 24: "s"
     ("false")[3]
@@ -140,14 +155,29 @@
 44: 9
     true+true+true+true+true+true+true+true+true
 
+45: "1e10"
+    1+"e"+("10")
+
+48: 10000000000
+    +(1+"e"+("10"))
+
+49: "1e20"
+    1+"e"+(2)+(0)
+
 51: "1e100"
-     1+"e"+(1)+(0)+(0)
+    1+"e"+(1)+(0)+(0)
 
 51: "1e21"
-     1+"e"+(2)+(1)
+    1+"e"+(2)+(1)
+
+51: "undefinedundefinedundefinedundefinedundefinedundefined"
+    []+undefined+undefined+undefined+undefined+undefined+undefined
 
 52: "is"
     "i"+"s"
+
+55: "100000000000000000000"
+    +("1e20")+[]
 
 57: "1e+100"
     +("1e100")+[]
@@ -162,7 +192,10 @@
     +(1+"e"+("1000"))
 
 63: "1.1e+21"
-     +("11e20")+[]
+    +("11e20")+[]
+
+63: "isNaN"
+    "is"+(NaN)
 
 64: "flat"
     "f"+"l"+"a"+"t"
@@ -224,6 +257,9 @@
 185: "A"
      (NaN+[]["entries"]())["11"]
 
+187: "of"
+     "o"+"f"
+
 189: "]"
      ("[object Array Iterator]")["22"]
 
@@ -257,6 +293,9 @@
 341: "includes"
      "i"+"n"+"c"+"l"+"u"+"d"+"e"+"s"
 
+373: "isArray"
+     "is"+"A"+"r"+"r"+"a"+"y"
+
 403: "join"
      "j"+"o"+"i"+"n"
 
@@ -279,7 +318,7 @@
      (false)["constructor"]
 
 849: String
-     ([]+[])["constructor"]
+     ("")["constructor"]
 
 876: Function
      []["at"]["constructor"]
@@ -311,6 +350,10 @@ Footnotes: {
         // ([]["at"]+[])[3]
         // ([]["at"]+[])[6]
         // or similar
+   
+        // We do have the "filter" function and a way to split strings into arrays of characters,
+        // but currently I haven't found a function that filters away everything except the characters we want.
+        // And even if we can remove whitespace, comments are allowed.
    [2]: String.prototype.bold
         // This is a legacy property, and it isn't guaranteed to be implemented unless the implementation has to run legacy code.
         // Which is most implementations (and every implementation I know). But still, not guaranteed to exist.
@@ -338,9 +381,23 @@ etaoinshrdclumwfgy [bjkpqvxz]
 // []["slice"]["bind"]("test")()
 // []["flat"]["bind"]("test")()
 
+// Although for the slice case, it actually allows us to make a substring:
+// []["slice"]["bind"]("test")(1)["join"]("")
+
+// We can make a string of the characters in both strings:
+// []["filter"]["bind"]("test A")(("")["includes"]["bind"]("test B"))["join"]("")
+
+// We can even sort the characters
+// []["flat"]["bind"]("test")()["sort"]()
+
 // [arg1, arg2].reduce(function)
 // Calls function with (arg1, arg2, 1, [arg1, arg2])
-// For example:
+//
+// So if a function only uses two arguments, this is a way to call that
+// function with two arguments:
+//   []["slice"]["bind"]("test")(1)["join"]("")
+//
+// Of course the other arguments can do something though
 //   ["test1", "test2"].reduce([]["fill"]["bind"]([1, 2, 3]))   // > ["test1", 2, 3]
 
 // This can be used to call some functions with 2 args
@@ -361,6 +418,9 @@ const possibleObjects = [
           // Therefore newTarget is the active function object, which is set to the function whose [[Call]] or [[Construct]] is ...done.
           // aka Array
           // And so proto is always Array.prototype
+          // The other way to make arrays, Array.of, _does_ support binding the this value.
+          // As such we can define the "0" "1" etc. + "length" properties on a Number object.
+          // Wait, I just did Array.of.bind(Object)("test") and got a Number???
 
           // If called with 0 args, it always returns just []
           // With 1 arg, returns either [arg1] or if typeof arg = number, sets array.length to number. (If valid number. Else error)
