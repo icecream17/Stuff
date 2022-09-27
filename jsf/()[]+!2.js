@@ -290,6 +290,9 @@
 292: "reduce"
      "r"+"e"+"d"+"u"+"c"+"e"
 
+339: ","
+     ([]+[]["flat"]["bind"]("false")())[1]
+
 341: "includes"
      "i"+"n"+"c"+"l"+"u"+"d"+"e"+"s"
 
@@ -301,9 +304,6 @@
 
 591: "concat"
      "c"+"o"+"n"+"c"+"a"+"t"
-
-606: ","
-     [[]]["concat"]([[]])+[]
 
 840: "constructor"
      "c"+"o"+"n"+"s"+"t"+"r"+"u"+"c"+"t"+"o"+"r"
@@ -434,6 +434,10 @@ const possibleObjects = [
    Object, // Object() and Object(null) creates {}
            // Object(x) creates ToObject(object)
    [].concat, // Used to combine two arrays - or push a value. (Returns new array though)
+              // Note that usually something like 
+              //    ([]+[]["flat"]["bind"]("false")())[1]
+              // is shorter
+              //
               // A = [], O = toObject(this value)
               // For each E of [O, ...args]
               //    If E[@@isConcatSpreadable] ?? IsArray(E)
@@ -516,7 +520,7 @@ const chars = {
    "A": 185,
    "]": 189,
    "-": 213,
-   ",": 606,
+   ",": 339,
    "O": 1023,
 }
 
