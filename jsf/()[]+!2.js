@@ -356,8 +356,44 @@
 3634: "substring"
       "s"+"u"+"b"+"s"+"t"+"r"+"i"+"n"+"g"
 
-12681: "m"
-       [Array]["concat"]([]["flat"]["bind"](Number+[])()["sort"]()["join"](""))["reduce"](Object["assign"])[Array[1]["slice"](1)["search"]("n")]
+11050: "m"
+       [[]["at"]]["concat"]([]["flat"]["call"](Number+[])["sort"]()["join"](""))["reduce"](Object["assign"])[[]["at"][1]["slice"](1)["search"]("n")]
+
+11110: "trim"
+       "t"+"r"+"i"+"m"
+
+11111: "name"
+       "n"+"a"+"m"+"e"
+
+11275: "some"
+       "s"+"o"+"m"+"e"
+
+11965: "B"
+       Boolean["name"][0]
+
+11967: "S"
+       String["name"][0]
+
+11994: "F"
+       Function["name"][0]
+
+12151: "toString"
+       "t"+"o"+String["name"]
+
+12174: "isFinite"
+       "is"+"F"+"i"+"n"+"i"+"t"+"e"
+
+12578: "U"
+       (NaN+[]["entries"]()["toString"]["call"]())["11"]
+
+14571: "match"
+       "m"+"at"+"c"+"h"
+
+14797: "matchAll"
+       "match"+"A"+"l"+"l"
+
+23152: "trimStart"
+       "trim"+"S"+"t"+"a"+"r"+"t"
 
 Footnotes: {
    [1]: Array.prototype.at.toString()
@@ -402,11 +438,14 @@ Infinity                   Iy
 <"length" property>        gh
 <function toString>        m
 
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+^^   ^ ^    ^     ^ ^
 abcdefghijklmnopqrstuvwxyz
           x    xx    xxx x
-
 etaoinshrdclumwfgy [bjkpqvxz]
               x       xxxxxx
+function ( ) { [ native code ] }
+         x x x       x         x
 **/
 
 // Things equivalent to String.prototype.split('')
@@ -452,6 +491,7 @@ const possibleObjects = [
                              // Function.prototype.apply now doesn't do anything.
    Function.prototype.call,
    Function.prototype.length,
+   Function.prototype.name, // Mostly useless because most methods are accessed by writing out the whole name: []["at"]
    Array, // Although it's a class, using it as a function is equivalent, except that NewTarget is always undefined.
           // Therefore newTarget is the active function object, which is set to the function whose [[Call]] or [[Construct]] is ...done.
           // aka Array
@@ -505,11 +545,14 @@ const possibleObjects = [
    [].filter, // Returns new array with the elements where ToBoolean(Arg(element, index, ToObject(this value))) is true
    [].flat, // Returns new array, FlattenIntoArray([], ToObject(this value), len, 0, ToIntegerOrInfinity(arg))
    [].reduce, // arg: (accum (last call), currentElement, index, ToObject(this value))
+   [].some,
    [].at,
+   "".at,
    "".concat, // ToString(this value) + ToString(arg)
    "".includes, // true or false
+   "".match,
+   "".matchAll,
    "".slice, // Same as array.slice, but returns a string
-   "".at,
    "".search, // Takes a regex. Returns the index of the first match.
               // If the arguent is not a regex, it is implicitly turned into one by new Regex(argument)!!!
               // How convenient is that?
@@ -518,14 +561,20 @@ const possibleObjects = [
               //    https://tc39.es/ecma262/multipage/text-processing.html#sec-regexpinitialize
               // If only "\" was possible
    "".substring,
+   "".trim,
+   "".trimEnd,
+   {}.toString, // Almost every class has toString so I'm not duplicating this
    Object.is,
    Object.seal,
+   Object.isSealed,
    Object.create,
    Object.entries, // Huge
    Object.assign,
+   Number.isFinite,
    Number.isInteger,
    Number.isNaN,
    Number.NaN, // Currently useless
+   Array.from,
    Array.isArray,
    Array.of,
 ]
@@ -572,6 +621,11 @@ const chars = {
    "O": 1023,
    "h": 3308,
    "g": 3310,
+   "m": 11050,
+   "B": 11965,
+   "S": 11967,
+   "F": 11994,
+   "U": 12578,
 }
 
 // If we can make a string
