@@ -332,6 +332,18 @@
 1023: "O"
       (NaN+Object())["11"]
 
+3289: ["length",0]
+      Object["entries"](Array["of"]["bind"](Number)())
+
+3294: "length"
+      ["length",0][0]
+
+3308: "h"
+      (false+["length",0])["10"]
+
+3310: "g"
+      "length"[3]
+
 Footnotes: {
    [1]: Array.prototype.at.toString()
         // aka String([].at)
@@ -370,8 +382,9 @@ NaN                        N
 Infinity                   Iy
 [object Array Iterator]    [objc A]
 [object Object]            O
-[[]]["concat"][[]]+[]      ,
+<array join>               ,
 <numbers and exponents>    0123456789+-.
+<"length" property>        gh
 
 etaoinshrdclumwfgy [bjkpqvxz]
        x     xx x     xxxxxx
@@ -414,6 +427,7 @@ const possibleObjects = [
                              // When a bound function is called the "this value" is set to the "bound this value".
                              // Function.prototype.apply now doesn't do anything.
    Function.prototype.call,
+   Function.prototype.length,
    Array, // Although it's a class, using it as a function is equivalent, except that NewTarget is always undefined.
           // Therefore newTarget is the active function object, which is set to the function whose [[Call]] or [[Construct]] is ...done.
           // aka Array
@@ -475,7 +489,9 @@ const possibleObjects = [
    Object.is,
    Object.seal,
    Object.create,
-   Object.entries,
+   Object.entries, // Huge
+   Object.assign,
+   Number.isInteger,
    Number.isNaN,
    Number.NaN, // Currently useless
    Array.isArray,
@@ -522,6 +538,8 @@ const chars = {
    "-": 213,
    ",": 339,
    "O": 1023,
+   "h": 3308,
+   "g": 3310,
 }
 
 // If we can make a string
