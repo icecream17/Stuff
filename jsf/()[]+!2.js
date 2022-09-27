@@ -275,25 +275,25 @@
 230: "sort"
      "s"+"o"+"r"+"t"
 
-239: "call"
+236: "call"
      "c"+"a"+"l"+"l"
 
 247: "bind"
      "b"+"i"+"n"+"d"
 
-282: "slice"
+279: "slice"
      "s"+"l"+"i"+"c"+"e"
 
-283: "create"
+280: "create"
      "c"+"r"+"e"+"a"+"t"+"e"
 
-292: "reduce"
+289: "reduce"
      "r"+"e"+"d"+"u"+"c"+"e"
 
 339: ","
      ([]+[]["flat"]["bind"]("false")())[1]
 
-341: "includes"
+338: "includes"
      "i"+"n"+"c"+"l"+"u"+"d"+"e"+"s"
 
 373: "isArray"
@@ -302,10 +302,10 @@
 403: "join"
      "j"+"o"+"i"+"n"
 
-591: "concat"
+585: "concat"
      "c"+"o"+"n"+"c"+"a"+"t"
 
-840: "constructor"
+834: "constructor"
      "c"+"o"+"n"+"s"+"t"+"r"+"u"+"c"+"t"+"o"+"r"
 
 844: Array
@@ -344,6 +344,21 @@
 3310: "g"
       "length"[3]
 
+3423: "assign"
+      "a"+"s"+"s"+"i"+"g"+"n"
+
+3537: "isInteger"
+      "is"+"I"+"n"+"t"+"e"+"g"+"e"+"r"
+
+3573: "search"
+      "s"+"e"+"a"+"r"+"c"+"h"
+
+3634: "substring"
+      "s"+"u"+"b"+"s"+"t"+"r"+"i"+"n"+"g"
+
+12681: "m"
+       [Array]["concat"]([]["flat"]["bind"](Number+[])()["sort"]()["join"](""))["reduce"](Object["assign"])[Array[1]["slice"](1)["search"]("n")]
+
 Footnotes: {
    [1]: Array.prototype.at.toString()
         // aka String([].at)
@@ -380,14 +395,18 @@ true                       tru
 undefined                  ndi
 NaN                        N
 Infinity                   Iy
+<numbers and exponents>    0123456789+-.
 [object Array Iterator]    [objc A]
 [object Object]            O
 <array join>               ,
-<numbers and exponents>    0123456789+-.
 <"length" property>        gh
+<function toString>        m
+
+abcdefghijklmnopqrstuvwxyz
+          x    xx    xxx x
 
 etaoinshrdclumwfgy [bjkpqvxz]
-       x     xx x     xxxxxx
+              x       xxxxxx
 **/
 
 // Things equivalent to String.prototype.split('')
@@ -412,6 +431,11 @@ etaoinshrdclumwfgy [bjkpqvxz]
 //
 // Of course the other arguments can do something though
 //   ["test1", "test2"].reduce([]["fill"]["bind"]([1, 2, 3]))   // > ["test1", 2, 3]
+
+// A global array can be used to use multiple statements:
+// [expr1,expr2,expr3]
+//
+// This could be useful to do some Object.assigns at the start
 
 // This can be used to call some functions with 2 args
 // But this is still quite limiting, for example "fill" can only set the first number.
@@ -486,6 +510,14 @@ const possibleObjects = [
    "".includes, // true or false
    "".slice, // Same as array.slice, but returns a string
    "".at,
+   "".search, // Takes a regex. Returns the index of the first match.
+              // If the arguent is not a regex, it is implicitly turned into one by new Regex(argument)!!!
+              // How convenient is that?
+              // We're of course passing in a string. What regexes are possible?
+              // The string eventually ends up as `pattern` in `RegExpInitialize`:
+              //    https://tc39.es/ecma262/multipage/text-processing.html#sec-regexpinitialize
+              // If only "\" was possible
+   "".substring,
    Object.is,
    Object.seal,
    Object.create,
