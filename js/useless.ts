@@ -2,6 +2,24 @@
 // Exceptional code examples
 
 /**
+ * The following unnecessarily complex code literally
+ * crashes because Electron literally breaks the VM and
+ * wow. Atom is a source of obscure bugs that shouldn't exist.
+ *
+ * Don't use `Function.prototype.call` for no reason.
+ * Also don't have a function signature that looks like this.
+ * Way too many parameters here.
+ * https://github.com/pulsar-edit/superstring/blob/eb0cc0990017dc7aa4a7322ab0f65021765886d3/index.js#L18
+ */
+function unnecessaryFunctionPrototypeCallUsage(
+    findSync: (...args: any) => unknown, pattern: RegExp, ignoreCase: boolean, unicode: string,
+    range: { start: { row: number, column: number }, end: { row: number, column: number } }
+) {
+    const result = findSync.call(this, pattern, ignoreCase, unicode, range)
+    console.debug(result)
+}
+
+/**
  * This function does not use one of its parameters
  */
 function unusedParameter(unused: number) {
