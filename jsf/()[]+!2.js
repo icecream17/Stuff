@@ -290,8 +290,8 @@
 289: "reduce"
      "r"+"e"+"d"+"u"+"c"+"e"
 
-339: ","
-     ([]+[]["flat"]["bind"]("false")())[1]
+326: ","
+     ([]+[]["flat"]["call"]("false"))[1]
 
 338: "includes"
      "i"+"n"+"c"+"l"+"u"+"d"+"e"+"s"
@@ -358,6 +358,23 @@
 
 11050: "m"
        [[]["at"]]["concat"]([]["flat"]["call"](Number+[])["sort"]()["join"](""))["reduce"](Object["assign"])[[]["at"][1]["slice"](1)["search"]("n")]
+
+// This sets many properties on []["at"]
+// If "m" is used twice, after the first time this is shorter:
+//
+// 3960: "m"
+// []["at"][[]["at"][1]["slice"](1)["search"]("n")]
+//
+// At three times or more it is worthwhile to instead assign "m" to []["at"][1]:
+//
+// 16397: "m"
+// [[]["at"]]["concat"]("m")["reduce"](Object["assign"])[1]
+//
+// 41: "m"
+// []["at"][1]
+//
+// 11050+3960+3960 > 16397+41+41
+//           18970 > 16479
 
 11110: "trim"
        "t"+"r"+"i"+"m"
@@ -434,12 +451,16 @@ Infinity                   Iy
 <numbers and exponents>    0123456789+-.
 [object Array Iterator]    [objc A]
 [object Object]            O
-<array join>               ,
+<array toString>           ,
 <"length" property>        gh
-<function toString>        m
+Number#toString            m
+Boolean                    B
+String                     S
+Function                   F
+[object Undefined]         U
 
 ABCDEFGHIJKLMNOPQRSTUVWXYZ
-^^   ^ ^    ^     ^ ^
+^^   ^  ^   ^     ^ ^
 abcdefghijklmnopqrstuvwxyz
           x    xx    xxx x
 etaoinshrdclumwfgy [bjkpqvxz]
@@ -449,13 +470,13 @@ function ( ) { [ native code ] }
 **/
 
 // Things equivalent to String.prototype.split('')
-// []["slice"]["bind"]("test")()
-// []["flat"]["bind"]("test")()
+// []["slice"]["call"]("test")
+// []["flat"]["call"]("test")
 
 // Although for the slice case, it actually allows us to make a substring:
 // []["slice"]["bind"]("test")(1)["join"]("")
 
-// We can make a string of the characters in both strings:
+// We can make a string of the characters in both strings (intersection):
 // []["filter"]["bind"]("test A")(("")["includes"]["bind"]("test B"))["join"]("")
 
 // We can even sort the characters
@@ -617,7 +638,7 @@ const chars = {
    "A": 185,
    "]": 189,
    "-": 213,
-   ",": 339,
+   ",": 326,
    "O": 1023,
    "h": 3308,
    "g": 3310,
