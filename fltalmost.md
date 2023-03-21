@@ -62,8 +62,9 @@ In the sum, instead of replacing `c` and `b` with `a`, replacing with `b` gets
 $$
 \begin{align}
 a^n &> (c-b) nb^{n-1} \\
-\frac{a^n}{b^{n-1}} &> c-b > 1 \\
-a^n &> b^{n-1} \\
-a &> b^{\frac{n-1}{n}}
+    &> nb^{n-1} \\
+a   &> (c-b)^{\frac{1}{n}} n^{\frac{1}{n}} b^{\frac{n-1}{n}}
 \end{align}
 $$
+
+Note that c-b is at least 1. Looking at desmos, [this is an extremely close bound](https://www.desmos.com/calculator/5ypr2kxbfu).
