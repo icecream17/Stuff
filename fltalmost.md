@@ -61,7 +61,7 @@ In the sum, instead of replacing `c` and `b` with `a`, replacing with `b` gets
 
 $$
 \begin{align}
-a^n &> (c-b) nb^{n-1}
+a^n &> (c-b) nb^{n-1} \\
 \frac{a^n}{b^{n-1}} &> c-b > 1 \\
 a^n &> b^{n-1} \\
 a &> b^{\frac{n-1}{n}}
