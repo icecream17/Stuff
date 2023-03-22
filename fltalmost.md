@@ -100,11 +100,22 @@ And an even stricter bound is
 ```math
 \begin{align}
 a^n &= c^n - b^n \\
-    &= ... \\
+    &= (c-b) \sum_{i=1}^{n}c^{n-i}b^{i-1} \\
+    &= (c-b) \sum_{i=1}^{n}{\frac{c}{b}}^{n-i}b^{n-i}b^{i-1} \\
+    &= (c-b) \sum_{i=1}^{n}{\frac{c}{b}}^{n-i}b^{n-1} \\
     &= (c-b) nb^{n-1} \sum_{i=1}^{n}{\frac{c}{b}}^{n-i} \\
     &= (c-b) nb^{n-1} \frac{b{\frac{c}{b}}^n - b}{c-b} \\
     &= nb^{n-1}b({\frac{c}{b}}^n - 1) \\
-    &= nb^n({\frac{c}{b}}^n - 1)
+    &= nb^n({\frac{c}{b}}^n - 1) \\
+    &= nb^n({\frac{c^n}{b^n}} - 1) \\
+    &= nb^n{\frac{c^n}{b^n}} - nb^n \\
+    &= nc^n - nb^n \\
+    &= n(c^n - b^n) \\
+    \\
+c^n - b^n &= n(c^n - b^n) \\
+        1 &= n
 \end{align}
 ```
+
+wait what
 
