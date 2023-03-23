@@ -69,53 +69,13 @@ $$
 
 Note that c-b is at least 1. Looking at desmos, [this is an extremely close bound](https://www.desmos.com/calculator/5ypr2kxbfu).
 
-An ever closer bound is
+Another bound is
 
 ```math
 \begin{align}
 a^n &= c^n - b^n \\
-    &= (c-b) \sum_{i=1}^{n}c^{n-i}b^{i-1} \\
-    &= (c-b) \sum_{i=1}^{n}{\frac{c}{b}}^{n-i}b^{n-i}b^{i-1} \\
-    &= (c-b) \sum_{i=1}^{n}{\frac{c}{b}}^{n-i}b^{n-1} \\
-    &= (c-b) nb^{n-1} \sum_{i=1}^{n}{\frac{c}{b}}^{n-i} \\
-    &> (c-b) nb^{n-1} n \\
-    &= (c-b) b^{n-1} n^2 \\
+\frac{a^n}{b^n} &= \frac{c^n}{b^n} - 1
 \end{align}
 ```
 
-c > b, so $\frac{c}{b} \ne 1$
-
-Therefore, based on https://www.math.cmu.edu/~mlavrov/arml/13-14/sums-01-26-14.pdf
-
-$$
-\begin{align}
-\sum_{i=1}^{n}{\frac{c}{b}}^{n-i} &= \sum_{i=0}^{n-1}{\frac{c}{b}}^{i} \\
-                                  &= \frac{{\frac{c}{b}}^n - 1}{\frac{c}{b} - 1} \\
-                                  &= \frac{b{\frac{c}{b}}^n - b}{c-b}
-\end{align}
-$$
-
-And an even stricter bound is
-
-```math
-\begin{align}
-a^n &= c^n - b^n \\
-    &= (c-b) \sum_{i=1}^{n}c^{n-i}b^{i-1} \\
-    &= (c-b) \sum_{i=1}^{n}{\frac{c}{b}}^{n-i}b^{n-i}b^{i-1} \\
-    &= (c-b) \sum_{i=1}^{n}{\frac{c}{b}}^{n-i}b^{n-1} \\
-    &= (c-b) nb^{n-1} \sum_{i=1}^{n}{\frac{c}{b}}^{n-i} \\
-    &= (c-b) nb^{n-1} \frac{b{\frac{c}{b}}^n - b}{c-b} \\
-    &= nb^{n-1}b({\frac{c}{b}}^n - 1) \\
-    &= nb^n({\frac{c}{b}}^n - 1) \\
-    &= nb^n({\frac{c^n}{b^n}} - 1) \\
-    &= nb^n{\frac{c^n}{b^n}} - nb^n \\
-    &= nc^n - nb^n \\
-    &= n(c^n - b^n) \\
-    \\
-c^n - b^n &= n(c^n - b^n) \\
-        1 &= n
-\end{align}
-```
-
-wait what
 
