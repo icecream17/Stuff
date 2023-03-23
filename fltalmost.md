@@ -38,7 +38,7 @@ But 2^(1/n) is irrational.
 
 (This ignores the powers, which don't affect anything. Dealing with them is left as an exercise to the reader.)
 
-## And now: $a > n$
+## $a > n$
 
 $$ \text{We have: } a, b, c \in \mathbf{N}, a \le b < c, 2 < c $$
 
@@ -69,13 +69,19 @@ $$
 
 Note that c-b is at least 1. Looking at desmos, [this is an extremely close bound](https://www.desmos.com/calculator/5ypr2kxbfu).
 
-Another bound is
+## $1 < \frac{c}{b}^n < 2$
+
+The lower bound of 1 is trivial.
 
 ```math
 \begin{align}
 a^n &= c^n - b^n \\
-\frac{a^n}{b^n} &= \frac{c^n}{b^n} - 1
+\frac{a^n}{b^n} &= \frac{c^n}{b^n} - 1 \\
+\\
+a &< b \\
+a^n &< b^n \\
+\frac{a^n}{b^n} &< 1 \\
+\frac{c^n}{b^n} - 1 &< 1 \\
+\frac{c^n}{b^n} &< 2 \\
 \end{align}
 ```
-
-
