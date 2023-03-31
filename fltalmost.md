@@ -40,7 +40,7 @@ But 2^(1/n) is irrational.
 
 ## $a > n$
 
-$$ \text{We have: } a, b, c \in \mathbf{N}, a \le b < c, 2 < c $$
+$$ \text{We have: } a, b, c \in \mathbf{N}, a < b < c, 2 < c $$
 
 ```math
 \begin{align}
