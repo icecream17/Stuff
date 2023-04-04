@@ -69,7 +69,7 @@ $$
 
 Note that c-b is at least 1. Looking at desmos, [this is an extremely close bound](https://www.desmos.com/calculator/5ypr2kxbfu).
 
-## Alternate a < n
+## Alternate a > n
 
 We have 0 < b < c, 2 < n. Note that the 2 < n is important for "<" in the first half, because i=2 and c^(n-i) = b^(n-i) when n-i=0, but ultimately isn't needed
 
@@ -105,3 +105,7 @@ a^n &< b^n \\
 \frac{c^n}{b^n} &< 2 \\
 \end{align}
 ```
+
+In other words: $c < b\sqrt[n]{2}$
+
+Weaker bound: $(c-b)n<b$
