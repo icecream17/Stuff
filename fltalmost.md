@@ -106,6 +106,6 @@ a^n &< b^n \\
 \end{align}
 ```
 
-In other words: $c < b\sqrt[n]{2}$
+In other words: $$c < b\sqrt[n]{2}$$
 
-Weaker bound: $(c-b)n<b$
+Weaker bound: $(c-b)n < b$
