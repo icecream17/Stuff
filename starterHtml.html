@@ -5,24 +5,31 @@
 
 <head>
    <!-- If you're using a framework, some of these might go in your code instead. -->
+
+   <!-- Used for security. If this tag is used, it goes first.
+        See https://infosec.mozilla.org/guidelines/web_security#content-security-policy for more details.
+        Also note " upgrade-insecure-requests; " which changes your links from HTTP to HTTPS (without checking if that actually works).
+
+        Below is a reasonably strict guideline, which can be relaxed during testing.
+        For example, frameworks sometimes add inline script tags, which can be allowed with "script-src 'self' unsafe-inline;".
+
+        Note that CSPs can only further restrict the policy. So if the server also sends a good CSP, that CSP won't be weakened.
+        Incidentally if you control the server headers then this tag isn't needed. -->
+   <meta http-equiv="content-security-policy"
+         content="default-src 'none'; img-src 'self'; script-src 'self'; style-src 'self'">
+
+   <!-- These two meta tags also go first. -->
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-   <!-- Used for security. Remove if you can control the web server's response headers.
-        You don't have control if you're using github pages.
-        If you're using external scripts, styles, images, or other files... (todo) -->
-   <meta http-equiv="content-security-policy" content="upgrade-insecure-requests; default-src 'self'">
-
-   <!-- Use this instead if your framework uses inline script and style tags
-   <meta http-equiv="content-security-policy"
-      content="upgrade-insecure-requests; default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';" />
-   -->
 
    <!-- Change all of these. You can delete keywords if you want -->
    <title></title>
    <meta name="description" content="">
    <meta name="keywords" content="">
    <meta name="author" content="icecream17"> <!-- If you're not me, you might want to change this -->
+
+   <!-- Don't send page information to links; prevents tracking -->
+   <meta name="referrer" content="no-referrer">
 
    <!-- Less important
 
@@ -34,7 +41,7 @@
 
    -->
 
-   <!--              Choose one (or use a framework)
+   <!-- Choose one (or use a framework)
 
         CSS and JS: big project
    <link rel="stylesheet" href="css/style.css">
@@ -47,6 +54,9 @@
 </head>
 
 <body>
+   <noscript>
+      <!-- Insert message to users not using JS -->
+   </noscript>
 </body>
 
 </html>
