@@ -62,16 +62,15 @@ In the sum, instead of replacing `c` and `b` with `a`, replacing with `b` gets
 $$
 \begin{align}
 a^n &> (c-b) nb^{n-1} \\
-    &> nb^{n-1} \\
 a   &> (c-b)^{\frac{1}{n}} n^{\frac{1}{n}} b^{\frac{n-1}{n}}
 \end{align}
 $$
 
 Note that c-b is at least 1. Looking at desmos, [this is an extremely close bound](https://www.desmos.com/calculator/5ypr2kxbfu).
 
-## Alternate a > n
+## Slightly stricter bound for a
 
-We have 0 < b < c, 2 < n. Note that the 2 < n is important for "<" in the first half, because i=2 and c^(n-i) = b^(n-i) when n-i=0, but ultimately isn't needed
+We have 0 < b < c, 2 < n. Note that the 2 < n is important for ">" in the first half, because i=2 and c^(n-i) = b^(n-i) when n-i=0
 
 $$
 \begin{align}
@@ -82,12 +81,12 @@ c^n-b^n &= (c-b) \sum_{i=1}^{n}c^{n-i}b^{i-1} \\
         &= (c-b) (c^{n-1} + (n-1)b^{n-1}) \\
 \\
 a^n     &> (c-b) (c^{n-1} + (n-1)b^{n-1}) \\
-        &> (c-b) (b^{n-1} + (n-1)b^{n-1}) \\
-        &> (c-b) nb^{n-1} \\
-        &> na^{n-1} \\
-a       &> n
+        &= (c-b) (\frac{c^{n-1}}{b^{n-1}} + n-1) b^{n-1} \\
+a       &> (c-b)^{\frac{1}{n}} (\frac{c^{n-1}}{b^{n-1}} + n-1)^{\frac{1}{n}} b^{\frac{n-1}{n}}
 \end{align}
 $$
+
+
 
 ## $1 < \frac{c}{b}^n < 2$
 
