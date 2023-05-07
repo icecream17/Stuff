@@ -1,6 +1,13 @@
 characters or phrase,shortened version
 !!,‼
 !?,⁉
+(+),⊕
++-,±
++−,±
+(−),⊖
+−+,∓
+//,⫽
+///,⫻
 0/00,‰
 0/000,‱
 0/3,↉
@@ -66,13 +73,23 @@ characters or phrase,shortened version
 (8),⑻
 9.,⒐
 (9),⑼
+:=,≔
+::=,⩴
+(<),⧀
 <=,≤
 <<<,⋘
+(=),⊜
+=:,≕
 =/=,≠
+==,⩵
+===,⩶
+(>),⧁
+><,⪥
 >=,≥
 >>>,⋙
 ?!,⁈
 ??,⁇
+(|),⦶
 ACK,␆
 addressed to the subject,℁
 accessibility,a11y
@@ -80,6 +97,7 @@ account of,℀
 acute accent,´
 AE,Æ
 ae,æ
+alarm clock,⏰
 although,however
 aluminium,aluminum
 a.m.,㏂
@@ -183,9 +201,14 @@ eggplant,🍆
 eighth note,♪
 electric plug,🔌
 EM,␙
+empty set,∅
 ENQ,␅
 EOT,␄
 equals,=
+equals by definition,≝
+equal to,=
+equal to by definition,≝
+equiangular to,≚
 ESC,␛
 ETB,␗
 evergreen tree,🌲
@@ -193,6 +216,7 @@ exclamation,!
 EXT,␃
 face blowing wind,🌬
 fallen leaf,🍂
+fast forward,⏩
 fax,℻
 ° fahrenheit,℉
 FF,␌
@@ -233,6 +257,8 @@ honey pot,🍯
 hot dog,🌭
 hotdog,🌭
 hot pepper,🌶
+hourglass,⌛
+hourglass with flowing sand,⏳
 house,⌂
 however,altho
 HP,㏋
@@ -309,6 +335,7 @@ mil,㏕
 mile,mi.
 milky way,🌌
 mm,㎜
+minus,−
 mol,㏖
 mostly cloudy,🌥
 mostly sunny,🌤
@@ -322,6 +349,8 @@ MW,㎿
 mW,㎽
 nA,㎁
 NAK,␕
+nand,⊼
+natural,♮
 natural numbers,ℕ
 new moon,🌑
 new moon with face,🌚
@@ -329,6 +358,8 @@ nF,㎋
 night with stars,🌃
 NL,␤
 nm,㎚
+not parallel to,∦
+nor,⊽
 NUL,␀
 number,№
 NJ,Ǌ
@@ -351,11 +382,16 @@ Pa,㎩
 pA,㎀
 palm tree,🌴
 paperclip,📎
+parallel to,∥
+(∥),⦷
+pause,⏸
 pc,㍶
 peach,🍑
 pear,🍐
 per,⅌
 percent,%
+perpendicular to,⟂
+(⟂),⦹
 pF,㎊
 pH,㏗
 pineapple,🍍
@@ -364,10 +400,12 @@ plus,+
 p.m.,pm
 pm,㏘
 poultry leg,🍗
+power symbol,⏻
 PPM,㏙
 PR,㏚
 prime numbers,ℙ
 property line,⅊
+proportional to,∝
 ps,㎰
 pV,㎴
 pW,㎺
@@ -380,10 +418,13 @@ rainbow,🌈
 raincloud,🌧
 ramen,🍜
 real numbers,ℝ
+record,⏺
 red apple,🍎
 return,⏎
+rewind,⏪
 rice ball,🍙
 rice cracker,🍘
+right angle,∟
 roasted sweet potato,🍠
 rose,🌹
 RS,␞
@@ -407,6 +448,8 @@ SP,␠
 spaghetti,🍝
 sqrt,√
 sr,㏛
+stop,⏹
+stopwatch,⏱
 strawberry,🍓
 STX,␂
 SUB,␚
@@ -426,6 +469,7 @@ tel,℡
 text to speech,TTS
 text-to-speech,TTS
 tidle,~
+timer,⏲
 there exists,∃
 there is,there's
 there's,∃
@@ -467,8 +511,23 @@ XI,Ⅺ
 xi,ⅺ
 XII,Ⅻ
 xii,ⅻ
+xor,⊻
 y'all,yall
 you all,yall
 you-all,yall
 яe,ԙ
+(×),⊗
+(÷),⨸
 ♪♪,♫
+≺=,≼
+≻=,≽
+\⊂,⟈
+⊃/,⟉
+(∕),⊘
+(∗),⊛
+(∘),⊚
+(∙),⊙
+∫∫,∬
+∫∫∫,∭
+⧘⧘,⧚
+⧙⧙,⧛
