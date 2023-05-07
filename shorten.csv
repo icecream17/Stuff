@@ -1,37 +1,87 @@
 characters or phrase,shortened version
+!!,‼
+!?,⁉
+0/00,‰
+0/000,‱
 0/3,↉
+1.,⒈
+(1),⑴
 1/,⅟
+10.,⒑
+(10),⑽
+11.,⒒
+(11),⑾
+12.,⒓
+(12),⑿
 1/2,½
+13.,⒔
+(13),⒀
 1/3,⅓
+14.,⒕
+(14),⒁
 1/4,¼
+15.,⒖
+(15),⒂
 1/5,⅕
+16.,⒗
+(16),⒃
 1/6,⅙
+17.,⒘
+(17),⒄
 1/7,⅐
+18.,⒙
+(18),⒅
 1/8,⅛
+19.,⒚
+(19),⒆
 1/9,⅑
 10,⏨
 11,ꔔ
 11,ⅺ
 12,Ⅻ
+2.,⒉
+(2),⑵
+20.,⒛
+(20),⒇
 2/3,⅔
 2/5,⅖
+3.,⒊
+(3),⑶
 3/4,¾
 3/5,⅗
 3/8,⅜
+4.,⒋
+(4),⑷
 4/5,⅘
+5.,⒌
+(5),⑸
 5/6,⅚
 5/8,⅝
+6.,⒍
+(6),⑹
+7.,⒎
+(7),⑺
 7/8,⅞
-=/=,≠
+8.,⒏
+(8),⑻
+9.,⒐
+(9),⑼
 <=,≤
->=,≥
 <<<,⋘
+=/=,≠
+>=,≥
 >>>,⋙
+?!,⁈
+??,⁇
+ACK,␆
 addressed to the subject,℁
+accessibility,a11y
 account of,℀
 acute accent,´
+AE,Æ
 ae,æ
 although,however
+aluminium,aluminum
 a.m.,㏂
 am,㏂
 ampersand,&
@@ -42,8 +92,11 @@ A/S,⅍
 a/s,℁
 asterisk,*
 at,@
+AU,㍳
 aubergine,🍆
 banana,🍌
+bar,㍴
+BEL,␇
 bento box,🍱
 black droplet,🌢
 black sun with rays,☀
@@ -52,13 +105,16 @@ bookmark,🔖
 Bq,㏃
 bread,🍞
 bridge at night,🌉
+BS,␈
 burger,🍔
 burrito,🌯
 (C),©
 (c),⒞
 cactus,🌵
 cada una,℆
+cal,㎈
 cake with swirl,🍥
+CAN,␘
 candy,🍬
 cc,㏄
 cd,㏅
@@ -80,12 +136,14 @@ cloud with lightning,🌩
 cloud with rain,raincloud
 cloud with snow,🌨
 cloud with tornado,🌪
+cm,㎝
 c/o,℅
 co.,㏇
 complex numbers,ℂ
 consequentially,ergo
 cooked rice,🍚
 cookie,🍪
+CR,␍
 crescent moon,🌙
 cross product,⨯
 cube root,∛
@@ -93,17 +151,28 @@ curry and rice,🍛
 custard,🍮
 cyclone,🌀
 dango,🍡
+da,㍲
 dB,㏈
+DC1,␑
+DC2,␒
+DC3,␓
+DC4,␔
 degrees,°
+DEL,␡
 depict,limn
 depicts,limns
 despite,maugre
+DLE,␐
 dollar,$
 dollars,$
+do not,don't
 donut,🍩
 double sharp,𝄪
 doughnut,donut
 droplet,💧
+DZ,Ǳ
+Dz,ǲ
+dz,ǳ
 each one,℆
 ear of corn,🌽
 ear of rice,🌾
@@ -113,13 +182,20 @@ earth globe europe-africa,🌍
 eggplant,🍆
 eighth note,♪
 electric plug,🔌
+EM,␙
+ENQ,␅
+EOT,␄
 equals,=
+ESC,␛
+ETB,␗
 evergreen tree,🌲
 exclamation,!
+EXT,␃
 face blowing wind,🌬
 fallen leaf,🍂
 fax,℻
 ° fahrenheit,℉
+FF,␌
 ffi,ﬃ
 fi,ﬁ
 first quarter moon,☽
@@ -127,33 +203,28 @@ first quarter moon symbol,🌓
 first quarter moon with face,🌛
 flat,♭
 flower,⚘
+fm,㎙
 fog,🌫
 foggy,🌁
 four leaf clover,🍀
 fourth root,∜
 french fries,🍟
 fried shrimp,🍤
+FS,␜
 full moon,🌕
 full moon with face,🌝
+GB,㎇
+GHz,㎓
 globe with meridians,🌐
 glowing star,🌟
 GPa,㎬
 grapes,🍇
 grave accent,`
 green apple,🍏
+GS,␝
 Gy,㏉
 half note,𝅗𝅥
 hence,ergo
-intensional disjunction,⅋
-(K),Ⓚ
-keyboard,⌨
-lambda,lamda
-leaf fluttering in wind,🍃
-paperclip,📎
-plus,+
-DZ,Ǳ
-Dz,ǲ
-dz,ǳ
 ha,㏊
 hashtag,#
 herb,🌿
@@ -165,9 +236,19 @@ hot pepper,🌶
 house,⌂
 however,altho
 HP,㏋
+hPa,㍱
+HT,␉
+Hz,㎐
 ice cream,🍨
+id est,i.e.
+i don't know,idk
+II,Ⅱ
+ii,ⅱ
 III,Ⅲ
+iii,ⅲ
 IJ,Ĳ
+ij,ĳ
+i know,ik
 in,㏌
 in care of,℅
 infinity,∞
@@ -175,34 +256,59 @@ information,ℹ
 info,ℹ
 in spite of,despite
 integral,∫
+intensional disjunction,⅋
+internationalisation,i18n
+internationalization,i18n
 IV,Ⅳ
 iv,ⅳ
 IX,Ⅸ
 ix,ⅸ
+javascript,JS
+just kidding,jk
+(K),Ⓚ
+kA,㎄
+KB,㎅
+kcal,㎉
+keyboard,⌨
+kg,㎏
+kHz,㎑
 KK,㏍
 KM,㏎
+km,㎞
 kPa,㎪
 kt,㏏
 kV,㎸
 kW,㎾
+lambda,lamda
 last quarter moon,☾
 last quarter moon symbol,🌗
 last quarter moon with face,🌜
+leaf fluttering in wind,🍃
 lemon,🍋
+LF,␊
 LJ,Ǉ
+Lj,ǈ
+lj,ǉ
 lm,㏐
 ln,㏑
 log,㏒
 lollipop,🍭
+ls,ʪ
 lx,㏓
+lz,ʫ
+mA,㎃
 maize,corn
 maple leaf,🍁
+MB,㎆
 mb,㏔
 meat on bone,🍖
 melon,🍈
+mg,㎎
+MHz,㎒
 mil,㏕
 mile,mi.
 milky way,🌌
+mm,㎜
 mol,㏖
 mostly cloudy,🌥
 mostly sunny,🌤
@@ -214,10 +320,16 @@ MV,㎹
 mV,㎷
 MW,㎿
 mW,㎽
+nA,㎁
+NAK,␕
 natural numbers,ℕ
 new moon,🌑
 new moon with face,🌚
+nF,㎋
 night with stars,🌃
+NL,␤
+nm,㎚
+NUL,␀
 number,№
 NJ,Ǌ
 Nj,ǋ
@@ -230,16 +342,25 @@ oden,🍢
 OE,Œ
 oe,œ
 oo,ꝏ
+optical character recognition,OCR
+oV,㍵
+Oy,Ѹ
+oy,ѹ
 (P),℗
 Pa,㎩
+pA,㎀
 palm tree,🌴
+paperclip,📎
+pc,㍶
 peach,🍑
 pear,🍐
 per,⅌
 percent,%
+pF,㎊
 pH,㏗
 pineapple,🍍
 pizza,🍕
+plus,+
 p.m.,pm
 pm,㏘
 poultry leg,🍗
@@ -265,21 +386,30 @@ rice ball,🍙
 rice cracker,🍘
 roasted sweet potato,🍠
 rose,🌹
+RS,␞
+Rs,₨
 scruple,℈
 section,§
 seedling,🌱
 sharp,♯
 shaved ice,🍧
 shooting star,🌠
+shortcake,🍰
+SI,␏
 sixteenth note,𝅘𝅥𝅯
 sixty-fourth rest,𝅁
+SM,℠
 snow,🌨
-shortcake,🍰
+SO,␎
 soft ice cream,🍦
+SOH,␁
+SP,␠
 spaghetti,🍝
 sqrt,√
 sr,㏛
 strawberry,🍓
+STX,␂
+SUB,␚
 sun behind raincloud,🌦
 sunflower,🌻
 sunrise,🌅
@@ -289,21 +419,31 @@ sunset over buildings,🌇
 sun with face,🌞
 sushi,🍣
 Sv,㏜
+SYN,␖
 taco,🌮
 tangerine,🍊
+tel,℡
+text to speech,TTS
+text-to-speech,TTS
 tidle,~
-there's,∃
+there exists,∃
 there is,there's
-TM,™
+there's,∃
 therefore,ergo
 thermometer,🌡
 theta,θ
 thirty-second rest,𝅀
 though,tho
 through,thru
+THz,㎔
 ticket,🎫
+TM,™
 tomato,🍅
 tulip,🌷
+ts,ʦ
+typescript,TS
+ue,ᵫ
+US,␟
 vector product,⨯
 volcano,🌋
 VI,Ⅵ
@@ -312,6 +452,7 @@ VII,Ⅶ
 vii,ⅶ
 VIII,Ⅷ
 viii,ⅷ
+VT,␋
 watermelon,🍉
 water wave,🌊
 waning crescent,🌘
@@ -322,8 +463,12 @@ Wb,㏝
 white sun,🌣
 white sun with rays,☼
 whole note,𝅝
+XI,Ⅺ
 xi,ⅺ
 XII,Ⅻ
 xii,ⅻ
+y'all,yall
+you all,yall
+you-all,yall
 яe,ԙ
 ♪♪,♫
