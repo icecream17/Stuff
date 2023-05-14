@@ -60,6 +60,7 @@ characters or phrase,shortened version
 4.,⒋
 (4),⑷
 4/5,⅘
+4th root,∜
 5.,⒌
 (5),⑸
 5/6,⅚
@@ -94,29 +95,43 @@ ACK,␆
 addressed to the subject,℁
 accessibility,a11y
 account of,℀
+acid-free paper,♾
 acute accent,´
 AE,Æ
 ae,æ
+aeroplane,airplane
+airplane,✈
 alarm clock,⏰
 although,however
 aluminium,aluminum
 a.m.,㏂
 am,㏂
 ampersand,&
+anchor,⚓
 angstrom,Å
 ao,ꜵ
 apple,🍎
 A/S,⅍
 a/s,℁
+arrowhead pointer,🮰
 asterisk,*
 at,@
+atom,⚛
 AU,㍳
 aubergine,🍆
+ballot x,✗
 banana,🍌
 bar,㍴
+baseball,⚾
 BEL,␇
 bento box,🍱
+biohazard,☣
+biological hazard,biohazard
+black and white florette,✾
 black droplet,🌢
+black flag,⚑
+black florette,✿
+black nib,✒
 black sun with rays,☀
 blossom,🌼
 bookmark,🔖
@@ -134,6 +149,7 @@ cal,㎈
 cake with swirl,🍥
 CAN,␘
 candy,🍬
+castle,⛫
 cc,㏄
 cd,㏅
 ° celsius,℃
@@ -141,11 +157,14 @@ cent,¢
 centerline,℄
 cents,¢
 checkmark,✓
+check mark,✓
 cherries,🍒
 cherry blossom,🌸
 chestnut,🌰
 chicken leg,🍗
 chocolate bar,🍫
+christian cross,✝
+church,⛪
 circumflex,◌̂
 cityspace at dusk,🌆
 C/kg,㏆
@@ -157,6 +176,7 @@ cloud with tornado,🌪
 cm,㎝
 c/o,℅
 co.,㏇
+coffee,☕
 complex numbers,ℂ
 consequentially,ergo
 cooked rice,🍚
@@ -165,11 +185,13 @@ CR,␍
 crescent moon,🌙
 cross product,⨯
 cube root,∛
+curly loop,➰
 curry and rice,🍛
 custard,🍮
 cyclone,🌀
 dango,🍡
 da,㍲
+dashed ➝,➟
 dB,㏈
 DC1,␑
 DC2,␒
@@ -187,6 +209,8 @@ do not,don't
 donut,🍩
 double sharp,𝄪
 doughnut,donut
+down arrow,↓
+downwards arrow,↓
 droplet,💧
 DZ,Ǳ
 Dz,ǲ
@@ -203,6 +227,7 @@ electric plug,🔌
 EM,␙
 empty set,∅
 ENQ,␅
+envelope,✉
 EOT,␄
 equals,=
 equals by definition,≝
@@ -210,6 +235,7 @@ equal to,=
 equal to by definition,≝
 equiangular to,≚
 ESC,␛
+escape,esc
 ETB,␗
 evergreen tree,🌲
 exclamation,!
@@ -226,17 +252,22 @@ first quarter moon,☽
 first quarter moon symbol,🌓
 first quarter moon with face,🌛
 flat,♭
+floral heart,❦
 flower,⚘
 fm,㎙
 fog,🌫
 foggy,🌁
+fountain,⛲
 four leaf clover,🍀
+fourth,4th
 fourth root,∜
 french fries,🍟
 fried shrimp,🍤
 FS,␜
+fuel pump,⛽
 full moon,🌕
 full moon with face,🌝
+gas station,⛽
 GB,㎇
 GHz,㎓
 globe with meridians,🌐
@@ -248,7 +279,19 @@ green apple,🍏
 GS,␝
 Gy,㏉
 half note,𝅗𝅥
+heavy asterisk,✱
+heavy division,➗
+heavy minus,➖
+heavy plus,➕
+heavy sparkle,❈
+heavy vertical bar,❚
+heavy ↗,➚
+heavy →,➙
+heavy ↘,➘
+heavy ➝,➞
+heavy ➟,➠
 hence,ergo
+hence,thus
 ha,㏊
 hashtag,#
 herb,🌿
@@ -266,6 +309,7 @@ hPa,㍱
 HT,␉
 Hz,㎐
 ice cream,🍨
+ice skate,⛸
 id est,i.e.
 i don't know,idk
 II,Ⅱ
@@ -310,8 +354,12 @@ last quarter moon,☾
 last quarter moon symbol,🌗
 last quarter moon with face,🌜
 leaf fluttering in wind,🍃
+left arrow,←
+left right arrow,↔
+leftwards arrow,←
 lemon,🍋
 LF,␊
+light vertical bar,❘
 LJ,Ǉ
 Lj,ǈ
 lj,ǉ
@@ -323,11 +371,14 @@ ls,ʪ
 lx,㏓
 lz,ʫ
 mA,㎃
+made from 100%-recycled paper,♼
+made from partially-recycled paper,♽
 maize,corn
 maple leaf,🍁
 MB,㎆
 mb,㏔
 meat on bone,🍖
+medium vertical bar,❙
 melon,🍈
 mg,㎎
 MHz,㎒
@@ -339,6 +390,7 @@ minus,−
 mol,㏖
 mostly cloudy,🌥
 mostly sunny,🌤
+mountain,⛰
 MPa,㎫
 ms,㎳
 m/s,㎧
@@ -355,11 +407,16 @@ natural numbers,ℕ
 new moon,🌑
 new moon with face,🌚
 nF,㎋
+nib,✒
 night with stars,🌃
 NL,␤
 nm,㎚
 not parallel to,∦
 nor,⊽
+north east,northeast
+northeast arrow,↗
+north west,northwest
+northwest arrow,↖
 NUL,␀
 number,№
 NJ,Ǌ
@@ -388,12 +445,17 @@ pause,⏸
 pc,㍶
 peach,🍑
 pear,🍐
+pentagram,⛤
 per,⅌
 percent,%
+permanent paper,♾
 perpendicular to,⟂
+petrol station,⛽
 (⟂),⦹
+pencil,✏
 pF,㎊
 pH,㏗
+pick,⛏
 pineapple,🍍
 pizza,🍕
 plus,+
@@ -412,10 +474,13 @@ pW,㎺
 QE,🜀
 quarter note,♩
 rad,㎭
+radioactive,☢
 rad/s,㎮
 rain,🌧
 rainbow,🌈
 raincloud,🌧
+raised fist,✊
+raised hand,✋
 ramen,🍜
 real numbers,ℝ
 record,⏺
@@ -425,10 +490,14 @@ rewind,⏪
 rice ball,🍙
 rice cracker,🍘
 right angle,∟
+right arrow,→
+rightwards arrow,→
 roasted sweet potato,🍠
 rose,🌹
 RS,␞
 Rs,₨
+sailboat,⛵
+saltire,☓
 scruple,℈
 section,§
 seedling,🌱
@@ -441,13 +510,23 @@ sixteenth note,𝅘𝅥𝅯
 sixty-fourth rest,𝅁
 SM,℠
 snow,🌨
+snowflake,❄
 SO,␎
+soccer ball,⚽
 soft ice cream,🍦
 SOH,␁
+south east,southeast
+southeast arrow,↘
+south west,southwest
+southwest arrow,↙
 SP,␠
 spaghetti,🍝
+sparkle,❇
+sparkles,✨
 sqrt,√
+square root,sqrt
 sr,㏛
+star of david,✡
 stop,⏹
 stopwatch,⏱
 strawberry,🍓
@@ -465,10 +544,12 @@ Sv,㏜
 SYN,␖
 taco,🌮
 tangerine,🍊
+tea,☕
 tel,℡
+tent,⛺
 text to speech,TTS
 text-to-speech,TTS
-tidle,~
+tilde,~
 timer,⏲
 there exists,∃
 there is,there's
@@ -480,23 +561,30 @@ thirty-second rest,𝅀
 though,tho
 through,thru
 THz,㎔
+torii,⛩
 ticket,🎫
 TM,™
 tomato,🍅
-tulip,🌷
+triangle-headed →,➝
 ts,ʦ
+tulip,🌷
 typescript,TS
 ue,ᵫ
+up arrow,↑
+up down arrow,↕
+upwards arrow,↑
 US,␟
 vector product,⨯
 volcano,🌋
 VI,Ⅵ
 vi,ⅵ
+victory hand,✌
 VII,Ⅶ
 vii,ⅶ
 VIII,Ⅷ
 viii,ⅷ
 VT,␋
+warning,⚠
 watermelon,🍉
 water wave,🌊
 waning crescent,🌘
@@ -504,6 +592,11 @@ waning gibbous,🌖
 waxing crescent,🌒
 waxing gibbous,🌔
 Wb,㏝
+wheelchair sign,♿
+wheelchair symbol,♿
+white flag,⚐
+white florette,❀
+white nib,✑
 white sun,🌣
 white sun with rays,☼
 whole note,𝅝
@@ -531,3 +624,6 @@ you-all,yall
 ∫∫∫,∭
 ⧘⧘,⧚
 ⧙⧙,⧛
+↑↑,⇈
+↑↓,⇅
+↓↓,⇊
