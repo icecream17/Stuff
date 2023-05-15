@@ -238,6 +238,7 @@ ESC,␛
 escape,esc
 ETB,␗
 evergreen tree,🌲
+except when,unless
 exclamation,!
 EXT,␃
 face blowing wind,🌬
@@ -368,6 +369,7 @@ ln,㏑
 log,㏒
 lollipop,🍭
 ls,ʪ
+luncheon,lunch
 lx,㏓
 lz,ʫ
 mA,㎃
@@ -431,6 +433,8 @@ OE,Œ
 oe,œ
 oo,ꝏ
 optical character recognition,OCR
+orientate,orient
+orientated,oriented
 oV,㍵
 Oy,Ѹ
 oy,ѹ
@@ -469,6 +473,8 @@ prime numbers,ℙ
 property line,⅊
 proportional to,∝
 ps,㎰
+purchase,buy
+purchased,bought
 pV,㎴
 pW,㎺
 QE,🜀
@@ -608,22 +614,22 @@ xor,⊻
 y'all,yall
 you all,yall
 you-all,yall
-яe,ԙ
 (×),⊗
 (÷),⨸
-♪♪,♫
-≺=,≼
-≻=,≽
-\⊂,⟈
-⊃/,⟉
+яe,ԙ
+↑↑,⇈
+↑↓,⇅
+↓↓,⇊
 (∕),⊘
 (∗),⊛
 (∘),⊚
 (∙),⊙
 ∫∫,∬
 ∫∫∫,∭
+≺=,≼
+≻=,≽
+\⊂,⟈
+⊃/,⟉
+♪♪,♫
 ⧘⧘,⧚
 ⧙⧙,⧛
-↑↑,⇈
-↑↓,⇅
-↓↓,⇊
