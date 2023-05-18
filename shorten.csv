@@ -102,12 +102,15 @@ characters or phrase,shortened version
 ?!,⁈
 ??,⁇
 (|),⦶
-ACK,␆
-addressed to the subject,℁
+abacus,🧮
 accessibility,a11y
+accordion,🪗
 account of,℀
 acid-free paper,♾
+ACK,␆
 acute accent,´
+addressed to the subject,℁
+admission ticket,🎟
 AE,Æ
 ae,æ
 aeroplane,airplane
@@ -131,12 +134,17 @@ at,@
 atom,⚛
 AU,㍳
 aubergine,🍆
+axe,🪓
 ballot x,✗
 banana,🍌
+banjo,🪕
 bar,㍴
 baseball,⚾
+battery,🔋
 BEL,␇
 bento box,🍱
+bicycle,🚲
+bike,🚲
 biohazard,☣
 biological hazard,biohazard
 black and white florette,✾
@@ -146,28 +154,40 @@ black florette,✿
 black nib,✒
 black sun with rays,☀
 blossom,🌼
+bomb,💣
 bookmark,🔖
+books,📚
+boomerang,🪃
+bow and arrow,🏹
 Bq,㏃
 bread,🍞
 bridge at night,🌉
 BS,␈
+bubble tea,🧋
 burger,🍔
 burrito,🌯
+butter,🧈
 (C),©
 (c),⒞
 cactus,🌵
 cada una,℆
-cal,㎈
 cake with swirl,🍥
+cal,㎈
+camera,📷
 CAN,␘
+candle,🕯
 candy,🍬
+canoe,🛶
 castle,⛫
 cc,㏄
 cd,㏅
+(CC),🅭
+(CD),🄭
 ° celsius,℃
 cent,¢
 centerline,℄
 cents,¢
+chair,🪑
 checkmark,✓
 check mark,✓
 cherries,🍒
@@ -175,6 +195,7 @@ cherry blossom,🌸
 chestnut,🌰
 chicken leg,🍗
 chocolate bar,🍫
+chopsticks,🥢
 christian cross,✝
 church,⛪
 circumflex,◌̂
@@ -190,11 +211,16 @@ cm,㎝
 c/o,℅
 co.,㏇
 coffee,☕
+coin,🪙
+comet,☄
 complex numbers,ℂ
+confetti ball,🎊
 consequentially,ergo
 cooked rice,🍚
 cookie,🍪
 CR,␍
+crab,🦀
+crayon,🖍
 crescent moon,🌙
 cross product,⨯
 cube root,∛
@@ -215,16 +241,20 @@ DEL,␡
 depict,limn
 depicts,limns
 despite,maugre
+DJ,🆐
 DLE,␐
+dna,🧬
 dollar,$
 dollars,$
 do not,don't
 donut,🍩
+door,🚪
 double sharp,𝄪
 doughnut,donut
 down arrow,↓
 downwards arrow,↓
 droplet,💧
+dvd,📀
 DZ,Ǳ
 Dz,ǲ
 dz,ǳ
@@ -237,7 +267,10 @@ earth globe europe-africa,🌍
 eggplant,🍆
 eighth note,♪
 electric plug,🔌
+elevator,🛗
 EM,␙
+e-mail,📧
+email,📧
 empty set,∅
 ENQ,␅
 envelope,✉
@@ -258,22 +291,31 @@ face blowing wind,🌬
 fallen leaf,🍂
 fast forward,⏩
 fax,℻
+fax machine,📠
 ° fahrenheit,℉
 FF,␌
 ffi,ﬃ
 fi,ﬁ
 file cabinet,🗄
 file folder,📁
+fire,🔥
 first quarter moon,☽
 first quarter moon symbol,🌓
 first quarter moon with face,🌛
+flashlight,🔦
 flat,♭
+floppy disk,💾
 floral heart,❦
 flower,⚘
+flute,🪈
+flying saucer,🛸
 fm,㎙
 fog,🌫
 foggy,🌁
+fork and knife,🍴
+fork and knife with plate,🍽
 fountain,⛲
+fountain pen,🖋
 four leaf clover,🍀
 fourth,4th
 fourth root,∜
@@ -293,8 +335,11 @@ grapes,🍇
 grave accent,`
 green apple,🍏
 GS,␝
+guitar,🎸
 Gy,㏉
 half note,𝅗𝅥
+headphone,🎧
+headphones,🎧
 heavy asterisk,✱
 heavy division,➗
 heavy minus,➖
@@ -309,9 +354,11 @@ heavy ➟,➠
 hence,ergo
 hence,thus
 ha,㏊
+hammer,🔨
 hashtag,#
 herb,🌿
 hibiscus,🌺
+hindu temple,🛕
 honey pot,🍯
 hot dog,🌭
 hotdog,🌭
@@ -324,6 +371,7 @@ HP,㏋
 hPa,㍱
 HT,␉
 Hz,㎐
+ice,🧊
 ice cream,🍨
 ice skate,⛸
 id est,i.e.
@@ -349,10 +397,12 @@ IV,Ⅳ
 iv,ⅳ
 IX,Ⅸ
 ix,ⅸ
+jar,🫙
 javascript,JS
 just kidding,jk
 (K),Ⓚ
 kA,㎄
+kaaba,🕋
 KB,㎅
 kcal,㎉
 keyboard,⌨
@@ -361,11 +411,15 @@ kHz,㎑
 KK,㏍
 KM,㏎
 km,㎞
+knife,🔪
 kPa,㎪
 kt,㏏
 kV,㎸
 kW,㎾
+label,🏷
+ladder,🪜
 lambda,lamda
+laptop,💻
 last quarter moon,☾
 last quarter moon symbol,🌗
 last quarter moon with face,🌜
@@ -375,14 +429,17 @@ left right arrow,↔
 leftwards arrow,←
 lemon,🍋
 LF,␊
+light bulb,💡
 light vertical bar,❘
 LJ,Ǉ
 Lj,ǈ
 lj,ǉ
 lm,㏐
 ln,㏑
+lobster,🦞
 log,㏒
 lollipop,🍭
+low battery,🪫
 ls,ʪ
 luncheon,lunch
 lx,㏓
@@ -390,28 +447,39 @@ lz,ʫ
 mA,㎃
 made from 100%-recycled paper,♼
 made from partially-recycled paper,♽
+magnet,🧲
 maize,corn
 maple leaf,🍁
+maracas,🪇
 MB,㎆
 mb,㏔
+MC,🅪
+MD,🅫
 meat on bone,🍖
 medium vertical bar,❙
 melon,🍈
 mg,㎎
 MHz,㎒
+microphone,🎤
+microscope,🔬
 mil,㏕
 mile,mi.
 milky way,🌌
 mm,㎜
 minus,−
 mol,㏖
+money bag,💰
 mostly cloudy,🌥
 mostly sunny,🌤
+mosque,🕌
 mountain,⛰
+mount fuji,🗻
 MPa,㎫
+MR,🅬
 ms,㎳
 m/s,㎧
 mushroom,🍄
+musical score,🎼
 MV,㎹
 mV,㎷
 MW,㎿
@@ -423,6 +491,7 @@ natural,♮
 natural numbers,ℕ
 new moon,🌑
 new moon with face,🌚
+newspaper,📰
 nF,㎋
 nib,✒
 night with stars,🌃
@@ -447,29 +516,37 @@ oden,🍢
 OE,Œ
 oe,œ
 oo,ꝏ
+open book,📖
 open file folder,📂
+optical disk,💿
 optical character recognition,OCR
 orientate,orient
 orientated,oriented
 oV,㍵
 Oy,Ѹ
 oy,ѹ
+oyster,🦪
 (P),℗
 Pa,㎩
 pA,㎀
+package,📦
+paintbrush,🖌
 palm tree,🌴
 paperclip,📎
 parallel to,∥
 (∥),⦷
+party popper,🎉
 pause,⏸
 pc,㍶
 peach,🍑
 pear,🍐
+pen,🖊
 pentagram,⛤
 per,⅌
 percent,%
 permanent paper,♾
 perpendicular to,⟂
+petri dish,🧫
 petrol station,⛽
 (⟂),⦹
 pencil,✏
@@ -481,11 +558,13 @@ pizza,🍕
 plus,+
 p.m.,pm
 pm,㏘
+popcorn,🍿
 poultry leg,🍗
 power symbol,⏻
 PPM,㏙
 PR,㏚
 prime numbers,ℙ
+printer,🖨
 property line,⅊
 proportional to,∝
 ps,㎰
@@ -507,33 +586,45 @@ ramen,🍜
 real numbers,ℝ
 record,⏺
 red apple,🍎
+red envelope,🧧
 return,⏎
 rewind,⏪
+ribbon,🎀
 rice ball,🍙
 rice cracker,🍘
 right angle,∟
 right arrow,→
 rightwards arrow,→
 roasted sweet potato,🍠
+rock,🪨
+rocket,🚀
 rose,🌹
 RS,␞
 Rs,₨
 ruler,📏
 sailboat,⛵
+salt,🧂
 saltire,☓
+satellite,🛰
+saxophone,🎷
 scissors,✂
+screwdriver,🪛
 scruple,℈
 section,§
 seedling,🌱
 sharp,♯
 shaved ice,🍧
+shield,🛡
+shinto shrine,⛩
 shooting star,🌠
 shortcake,🍰
+shrimp,🦐
 SI,␏
 sixteenth note,𝅘𝅥𝅯
 sixty-fourth rest,𝅁
 SM,℠
 snow,🌨
+snow-capped mountain,🏔
 snowflake,❄
 SO,␎
 soccer ball,⚽
@@ -547,12 +638,17 @@ SP,␠
 spaghetti,🍝
 sparkle,❇
 sparkles,✨
+speedboat,🚤
 spiral calendar,🗓
 spiral notepad,🗒
+spoon,🥄
 sqrt,√
 square root,sqrt
+squid,🦑
 sr,㏛
+stadium,🏟
 star of david,✡
+Statue of Liberty,🗽
 stop,⏹
 stopwatch,⏱
 strawberry,🍓
@@ -568,11 +664,15 @@ sun with face,🌞
 sushi,🍣
 Sv,㏜
 SYN,␖
+synagogue,🕍
 taco,🌮
 tangerine,🍊
+taxi,🚕
 tea,☕
 tel,℡
+telescope,🔭
 tent,⛺
+test tube,🧪
 text to speech,TTS
 text-to-speech,TTS
 there exists,∃
@@ -589,10 +689,12 @@ ticket,🎫
 tilde,~
 timer,⏲
 TM,™
+Tokyo tower,🗼
 tomato,🍅
 torii,⛩
 triangle-headed →,➝
 triangular ruler,📐
+trumpet,🎺
 ts,ʦ
 tulip,🌷
 typescript,TS
@@ -610,6 +712,7 @@ VII,Ⅶ
 vii,ⅶ
 VIII,Ⅷ
 viii,ⅷ
+violin,🎻
 VT,␋
 warning,⚠
 watermelon,🍉
@@ -620,6 +723,7 @@ wastebasket,🗑
 waxing crescent,🌒
 waxing gibbous,🌔
 Wb,㏝
+wheel,🛞
 wheelchair sign,♿
 wheelchair symbol,♿
 white flag,⚐
@@ -628,6 +732,10 @@ white nib,✑
 white sun,🌣
 white sun with rays,☼
 whole note,𝅝
+wood,🪵
+wrapped gift,🎁
+wrench,🔧
+(Wz),🄮
 XI,Ⅺ
 xi,ⅺ
 XII,Ⅻ
