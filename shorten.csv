@@ -8,16 +8,23 @@ characters or phrase,shortened version
 −+,∓
 //,⫽
 ///,⫻
+0.,🄀
+"0,",🄁
 0/00,‰
 0/000,‱
 0/3,↉
 1.,⒈
+"1,",🄂
 (1),⑴
 1/,⅟
+10,⏨
 10.,⒑
 (10),⑽
+11,ꔔ
+11,ⅺ
 11.,⒒
 (11),⑾
+12,Ⅻ
 12.,⒓
 (12),⑿
 1/2,½
@@ -42,37 +49,41 @@ characters or phrase,shortened version
 19.,⒚
 (19),⒆
 1/9,⅑
-10,⏨
-11,ꔔ
-11,ⅺ
-12,Ⅻ
 2.,⒉
+"2,",🄃
 (2),⑵
 20.,⒛
 (20),⒇
 2/3,⅔
 2/5,⅖
 3.,⒊
+"3,",🄄
 (3),⑶
 3/4,¾
 3/5,⅗
 3/8,⅜
 4.,⒋
+"4,",🄅
 (4),⑷
 4/5,⅘
 4th root,∜
 5.,⒌
+"5,",🄆
 (5),⑸
 5/6,⅚
 5/8,⅝
 6.,⒍
+"6,",🄇
 (6),⑹
 7.,⒎
+"7,",🄈
 (7),⑺
 7/8,⅞
 8.,⒏
+"8,",🄉
 (8),⑻
 9.,⒐
+"9,",🄊
 (9),⑼
 :=,≔
 ::=,⩴
@@ -109,6 +120,7 @@ am,㏂
 ampersand,&
 anchor,⚓
 angstrom,Å
+Antarctica,🇦🇶
 ao,ꜵ
 apple,🍎
 A/S,⅍
@@ -168,6 +180,7 @@ church,⛪
 circumflex,◌̂
 cityspace at dusk,🌆
 C/kg,㏆
+clipboard,📋
 closed umbrella,🌂
 cloud with lightning,🌩
 cloud with rain,raincloud
@@ -249,6 +262,8 @@ fax,℻
 FF,␌
 ffi,ﬃ
 fi,ﬁ
+file cabinet,🗄
+file folder,📁
 first quarter moon,☽
 first quarter moon symbol,🌓
 first quarter moon with face,🌛
@@ -432,6 +447,7 @@ oden,🍢
 OE,Œ
 oe,œ
 oo,ꝏ
+open file folder,📂
 optical character recognition,OCR
 orientate,orient
 orientated,oriented
@@ -502,8 +518,10 @@ roasted sweet potato,🍠
 rose,🌹
 RS,␞
 Rs,₨
+ruler,📏
 sailboat,⛵
 saltire,☓
+scissors,✂
 scruple,℈
 section,§
 seedling,🌱
@@ -529,6 +547,8 @@ SP,␠
 spaghetti,🍝
 sparkle,❇
 sparkles,✨
+spiral calendar,🗓
+spiral notepad,🗒
 sqrt,√
 square root,sqrt
 sr,㏛
@@ -555,8 +575,6 @@ tel,℡
 tent,⛺
 text to speech,TTS
 text-to-speech,TTS
-tilde,~
-timer,⏲
 there exists,∃
 there is,there's
 there's,∃
@@ -567,11 +585,14 @@ thirty-second rest,𝅀
 though,tho
 through,thru
 THz,㎔
-torii,⛩
 ticket,🎫
+tilde,~
+timer,⏲
 TM,™
 tomato,🍅
+torii,⛩
 triangle-headed →,➝
+triangular ruler,📐
 ts,ʦ
 tulip,🌷
 typescript,TS
@@ -595,6 +616,7 @@ watermelon,🍉
 water wave,🌊
 waning crescent,🌘
 waning gibbous,🌖
+wastebasket,🗑
 waxing crescent,🌒
 waxing gibbous,🌔
 Wb,㏝
