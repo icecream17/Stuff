@@ -14,7 +14,7 @@ Using [the EcmaScript specification](https://tc39.es/ecma262/multipage/),
 it is not only possible to create super accurate types but theoretically,
 prove what js code does (instead of mere testing).
 
-## Definition of set
+## Sets, types, and values
 
 A set is a collection of (unique, unordered, and unindexed) elements.
 
@@ -27,8 +27,8 @@ And the set with no elements is `{}`
 Since elements are unique, `{ 2, 3 } = { 2, 3, 3 }`, and since they're
 unordered, `{ 2, 3 } = { 3, 2 }`
 
-Types can be thought of as sets. For example, the `number` type is the set of
-all javascript numbers, and the `null` type has only one element:
+Types can be thought of as sets of values. For example, the `number` type is
+the set of all javascript numbers, and the `null` type has only one element:
 `{ null }`
 
 > https://en.wikipedia.org/wiki/Set_(abstract_data_type)
