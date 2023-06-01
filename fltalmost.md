@@ -62,10 +62,12 @@ a &> (c-b) n \\
 Am I crazy, or can we do
 
 ```math
+\begin{align}
 a^n + b^n &= c^n \\
 (a/C)^n + (b/c)^n &= 1^n \\
 \\
-(a/c) > n
+(a/c) &> n
+\end{align}
 ```
 
 ## A better bound?
