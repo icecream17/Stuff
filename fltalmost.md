@@ -57,6 +57,19 @@ a &> (c-b) n \\
 \end{align}
 ```
 
+## huh!?
+
+Am I crazy, or can we do
+
+```math
+a^n + b^n &= c^n \\
+(a/C)^n + (b/c)^n &= 1^n \\
+\\
+(a/c) > n
+```
+
+## A better bound?
+
 In the sum, instead of replacing `c` and `b` with `a`, replacing with `b` gets
 
 $$
@@ -67,6 +80,8 @@ a   &> (c-b)^{\frac{1}{n}} n^{\frac{1}{n}} b^{\frac{n-1}{n}}
 $$
 
 Note that c-b is at least 1. Looking at desmos, [this is an extremely close bound](https://www.desmos.com/calculator/5ypr2kxbfu).
+
+Edit: My desmos calculations are **wrong** and I could not establish a remotely close bound.
 
 ## Slightly stricter bound for a
 
