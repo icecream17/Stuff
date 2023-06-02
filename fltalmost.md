@@ -64,11 +64,13 @@ Am I crazy, or can we do
 ```math
 \begin{align}
 a^n + b^n &= c^n \\
-(a/C)^n + (b/c)^n &= 1^n \\
+(a/c)^n + (b/c)^n &= 1^n \\
 \\
 (a/c) &> n
 \end{align}
 ```
+
+Edit: this is wrong
 
 ## A better bound?
 
