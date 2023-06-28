@@ -1,6 +1,6 @@
 characters or phrase,shortened version,is suggestion
-!!,‼
-!?,⁉
+!!,‼,
+!?,⁉,
 "0,",🄁
 "1,",🄂
 "2,",🄃
@@ -11,779 +11,779 @@ characters or phrase,shortened version,is suggestion
 "7,",🄈
 "8,",🄉
 "9,",🄊
-((,⸨
-(+),⊕
-(1),⑴
-(10),⑽
-(11),⑾
-(12),⑿
-(13),⒀
-(14),⒁
-(15),⒂
-(16),⒃
-(17),⒄
-(18),⒅
-(19),⒆
-(2),⑵
-(20),⒇
-(3),⑶
-(4),⑷
-(5),⑸
-(6),⑹
-(7),⑺
-(8),⑻
-(9),⑼
-(<),⧀
-(=),⊜
-(>),⧁
-(C),©
-(CC),🅭
-(CD),🄭
-(K),Ⓚ
-(P),℗
-(Wz),🄮
-(c),⒞
-(|),⦶
-(×),⊗
-(÷),⨸
-(−),⊖
-(∕),⊘
-(∗),⊛
-(∘),⊚
-(∙),⊙
-(∥),⦷
-(⟂),⦹
-)),⸩
-+-,±
-+−,±
-//,⫽
-///,⫻
-0.,🄀
-0/00,‰
-0/000,‱
-0/3,↉
-1.,⒈
-1/,⅟
-1/2,½
-1/3,⅓
-1/4,¼
-1/5,⅕
-1/6,⅙
-1/7,⅐
-1/8,⅛
-1/9,⅑
-10,⏨
-10.,⒑
-11,ⅺ
-11,ꔔ
-11.,⒒
-12,Ⅻ
-12.,⒓
-13.,⒔
-14.,⒕
-15.,⒖
-16.,⒗
-17.,⒘
-18.,⒙
-19.,⒚
-2.,⒉
-2/3,⅔
-2/5,⅖
-20.,⒛
-3.,⒊
-3/4,¾
-3/5,⅗
-3/8,⅜
-4.,⒋
-4/5,⅘
-4th root,∜
-5.,⒌
-5/6,⅚
-5/8,⅝
-6.,⒍
-7.,⒎
-7/8,⅞
-8.,⒏
-9.,⒐
-::=,⩴
-:=,≔
-<<<,⋘
-<=,≤
-=/=,≠
-=:,≕
-==,⩵
-===,⩶
-><,⪥
->=,≥
->>>,⋙
-?!,⁈
-??,⁇
-A/S,⅍
-ACK,␆
-AE,Æ
-AU,㍳
-Antarctica,🇦🇶
-BEL,␇
-BS,␈
-Bq,㏃
-C/kg,㏆
-CAN,␘
-CR,␍
-DC1,␑
-DC2,␒
-DC3,␓
-DC4,␔
-DEL,␡
-DJ,🆐
-DLE,␐
-DZ,Ǳ
-Dz,ǲ
-EM,␙
-ENQ,␅
-EOT,␄
-ESC,␛
-ETB,␗
-EXT,␃
-FF,␌
-FS,␜
-GB,㎇
-GHz,㎓
-GPa,㎬
-GS,␝
-Gy,㏉
-HP,㏋
-HT,␉
-Hz,㎐
-II,Ⅱ
-III,Ⅲ
-IJ,Ĳ
-IV,Ⅳ
-IX,Ⅸ
-KB,㎅
-KK,㏍
-KM,㏎
-LF,␊
-LJ,Ǉ
-Lj,ǈ
-MB,㎆
-MC,🅪
-MD,🅫
-MHz,㎒
-MPa,㎫
-MR,🅬
-MV,㎹
-MW,㎿
-NAK,␕
-NJ,Ǌ
-NL,␤
-NUL,␀
-Nj,ǋ
-OE,Œ
-Oy,Ѹ
-PPM,㏙
-PR,㏚
-Pa,㎩
-QE,🜀
-RS,␞
-Rs,₨
-SI,␏
-SM,℠
-SO,␎
-SOH,␁
-SP,␠
-STX,␂
-SUB,␚
-SYN,␖
-Statue of Liberty,🗽
-Sv,㏜
-THz,㎔
-TM,™
-Tokyo tower,🗼
-US,␟
-VI,Ⅵ
-VII,Ⅶ
-VIII,Ⅷ
-VT,␋
-Wb,㏝
-XI,Ⅺ
-XII,Ⅻ
-a.m.,㏂
-a/s,℁
-abacus,🧮
-accessibility,a11y
-accordion,🪗
-account of,℀
-acid-free paper,♾
-acute accent,´
-addressed to the subject,℁
-admission ticket,🎟
-ae,æ
-aeroplane,airplane
-airplane,✈
-alarm clock,⏰
-although,however
+((,⸨,
+(+),⊕,
+(1),⑴,
+(10),⑽,
+(11),⑾,
+(12),⑿,
+(13),⒀,
+(14),⒁,
+(15),⒂,
+(16),⒃,
+(17),⒄,
+(18),⒅,
+(19),⒆,
+(2),⑵,
+(20),⒇,
+(3),⑶,
+(4),⑷,
+(5),⑸,
+(6),⑹,
+(7),⑺,
+(8),⑻,
+(9),⑼,
+(<),⧀,
+(=),⊜,
+(>),⧁,
+(C),©,
+(CC),🅭,
+(CD),🄭,
+(K),Ⓚ,
+(P),℗,
+(Wz),🄮,
+(c),⒞,
+(|),⦶,
+(×),⊗,
+(÷),⨸,
+(−),⊖,
+(∕),⊘,
+(∗),⊛,
+(∘),⊚,
+(∙),⊙,
+(∥),⦷,
+(⟂),⦹,
+)),⸩,
++-,±,
++−,±,
+//,⫽,
+///,⫻,
+0.,🄀,
+0/00,‰,
+0/000,‱,
+0/3,↉,
+1.,⒈,
+1/,⅟,
+1/2,½,
+1/3,⅓,
+1/4,¼,
+1/5,⅕,
+1/6,⅙,
+1/7,⅐,
+1/8,⅛,
+1/9,⅑,
+10,⏨,
+10.,⒑,
+11,ⅺ,
+11,ꔔ,
+11.,⒒,
+12,Ⅻ,
+12.,⒓,
+13.,⒔,
+14.,⒕,
+15.,⒖,
+16.,⒗,
+17.,⒘,
+18.,⒙,
+19.,⒚,
+2.,⒉,
+2/3,⅔,
+2/5,⅖,
+20.,⒛,
+3.,⒊,
+3/4,¾,
+3/5,⅗,
+3/8,⅜,
+4.,⒋,
+4/5,⅘,
+4th root,∜,
+5.,⒌,
+5/6,⅚,
+5/8,⅝,
+6.,⒍,
+7.,⒎,
+7/8,⅞,
+8.,⒏,
+9.,⒐,
+::=,⩴,
+:=,≔,
+<<<,⋘,
+<=,≤,
+=/=,≠,
+=:,≕,
+==,⩵,
+===,⩶,
+><,⪥,
+>=,≥,
+>>>,⋙,
+?!,⁈,
+??,⁇,
+A/S,⅍,
+ACK,␆,
+AE,Æ,
+AU,㍳,
+Antarctica,🇦🇶,
+BEL,␇,
+BS,␈,
+Bq,㏃,
+C/kg,㏆,
+CAN,␘,
+CR,␍,
+DC1,␑,
+DC2,␒,
+DC3,␓,
+DC4,␔,
+DEL,␡,
+DJ,🆐,
+DLE,␐,
+DZ,Ǳ,
+Dz,ǲ,
+EM,␙,
+ENQ,␅,
+EOT,␄,
+ESC,␛,
+ETB,␗,
+EXT,␃,
+FF,␌,
+FS,␜,
+GB,㎇,
+GHz,㎓,
+GPa,㎬,
+GS,␝,
+Gy,㏉,
+HP,㏋,
+HT,␉,
+Hz,㎐,
+II,Ⅱ,
+III,Ⅲ,
+IJ,Ĳ,
+IV,Ⅳ,
+IX,Ⅸ,
+KB,㎅,
+KK,㏍,
+KM,㏎,
+LF,␊,
+LJ,Ǉ,
+Lj,ǈ,
+MB,㎆,
+MC,🅪,
+MD,🅫,
+MHz,㎒,
+MPa,㎫,
+MR,🅬,
+MV,㎹,
+MW,㎿,
+NAK,␕,
+NJ,Ǌ,
+NL,␤,
+NUL,␀,
+Nj,ǋ,
+OE,Œ,
+Oy,Ѹ,
+PPM,㏙,
+PR,㏚,
+Pa,㎩,
+QE,🜀,
+RS,␞,
+Rs,₨,
+SI,␏,
+SM,℠,
+SO,␎,
+SOH,␁,
+SP,␠,
+STX,␂,
+SUB,␚,
+SYN,␖,
+Statue of Liberty,🗽,
+Sv,㏜,
+THz,㎔,
+TM,™,
+Tokyo tower,🗼,
+US,␟,
+VI,Ⅵ,
+VII,Ⅶ,
+VIII,Ⅷ,
+VT,␋,
+Wb,㏝,
+XI,Ⅺ,
+XII,Ⅻ,
+a.m.,㏂,
+a/s,℁,
+abacus,🧮,
+accessibility,a11y,
+accordion,🪗,
+account of,℀,
+acid-free paper,♾,
+acute accent,´,
+addressed to the subject,℁,
+admission ticket,🎟,
+ae,æ,
+aeroplane,airplane,
+airplane,✈,
+alarm clock,⏰,
+although,however,
 alumium,Al,y
 aluminum,Al,y
 aluminum,alumium,y
 aluminium,Al,y
 aluminium,alumium,y
 aluminium,aluminum,y
-am,㏂
-ampersand,&
-anchor,⚓
-angstrom,Å
-ao,ꜵ
-apple,🍎
-arrowhead pointer,🮰
-asterisk,*
-at,@
-atom,⚛
-aubergine,🍆
-axe,🪓
-ballot x,✗
-banana,🍌
-banjo,🪕
-bar,㍴
-baseball,⚾
-battery,🔋
-bento box,🍱
+am,㏂,
+ampersand,&,
+anchor,⚓,
+angstrom,Å,
+ao,ꜵ,
+apple,🍎,
+arrowhead pointer,🮰,
+asterisk,*,
+at,@,
+atom,⚛,
+aubergine,🍆,
+axe,🪓,
+ballot x,✗,
+banana,🍌,
+banjo,🪕,
+bar,㍴,
+baseball,⚾,
+battery,🔋,
+bento box,🍱,
 beryllium,Be,y
-bicycle,🚲
-bike,🚲
-biohazard,☣
-biological hazard,biohazard
-black and white florette,✾
-black droplet,🌢
-black flag,⚑
-black florette,✿
-black nib,✒
-black sun with rays,☀
-blossom,🌼
-bomb,💣
-bookmark,🔖
-books,📚
-boomerang,🪃
+bicycle,🚲,
+bike,🚲,
+biohazard,☣,
+biological hazard,biohazard,
+black and white florette,✾,
+black droplet,🌢,
+black flag,⚑,
+black florette,✿,
+black nib,✒,
+black sun with rays,☀,
+blossom,🌼,
+bomb,💣,
+bookmark,🔖,
+books,📚,
+boomerang,🪃,
 boredom,ennui,y
-boron,B
-bow and arrow,🏹
-bread,🍞
-bridge at night,🌉
-bubble tea,🧋
-burger,🍔
-burrito,🌯
-butter,🧈
-c/o,℅
-cactus,🌵
-cada una,℆
-cake with swirl,🍥
-cal,㎈
-camera,📷
-candle,🕯
-candy,🍬
-canoe,🛶
+boron,B,
+bow and arrow,🏹,
+bread,🍞,
+bridge at night,🌉,
+bubble tea,🧋,
+burger,🍔,
+burrito,🌯,
+butter,🧈,
+c/o,℅,
+cactus,🌵,
+cada una,℆,
+cake with swirl,🍥,
+cal,㎈,
+camera,📷,
+candle,🕯,
+candy,🍬,
+canoe,🛶,
 carbon,C,y
-castle,⛫
-cc,㏄
-cd,㏅
-cent,¢
-centerline,℄
-cents,¢
-chair,🪑
-check mark,✓
-checkmark,✓
-cherries,🍒
-cherry blossom,🌸
-chestnut,🌰
-chicken leg,🍗
-chocolate bar,🍫
-chopsticks,🥢
-christian cross,✝
-church,⛪
-circumflex,◌̂
-cityspace at dusk,🌆
-clipboard,📋
-closed umbrella,🌂
-cloud with lightning,🌩
-cloud with rain,raincloud
-cloud with snow,🌨
-cloud with tornado,🌪
-cm,㎝
-co.,㏇
-coffee,☕
-coin,🪙
-comet,☄
-complex numbers,ℂ
-confetti ball,🎊
-consequentially,ergo
-cooked rice,🍚
-cookie,🍪
-crab,🦀
-crayon,🖍
-crescent moon,🌙
-cross product,⨯
-cube root,∛
-curly loop,➰
-curry and rice,🍛
-custard,🍮
-cyclone,🌀
-dB,㏈
-da,㍲
-dango,🍡
-dashed ➝,➟
-degrees,°
+castle,⛫,
+cc,㏄,
+cd,㏅,
+cent,¢,
+centerline,℄,
+cents,¢,
+chair,🪑,
+check mark,✓,
+checkmark,✓,
+cherries,🍒,
+cherry blossom,🌸,
+chestnut,🌰,
+chicken leg,🍗,
+chocolate bar,🍫,
+chopsticks,🥢,
+christian cross,✝,
+church,⛪,
+circumflex,◌̂,
+cityspace at dusk,🌆,
+clipboard,📋,
+closed umbrella,🌂,
+cloud with lightning,🌩,
+cloud with rain,raincloud,
+cloud with snow,🌨,
+cloud with tornado,🌪,
+cm,㎝,
+co.,㏇,
+coffee,☕,
+coin,🪙,
+comet,☄,
+complex numbers,ℂ,
+confetti ball,🎊,
+consequentially,ergo,
+cooked rice,🍚,
+cookie,🍪,
+crab,🦀,
+crayon,🖍,
+crescent moon,🌙,
+cross product,⨯,
+cube root,∛,
+curly loop,➰,
+curry and rice,🍛,
+custard,🍮,
+cyclone,🌀,
+dB,㏈,
+da,㍲,
+dango,🍡,
+dashed ➝,➟,
+degrees,°,
 depict,limn,y
 depicts,limns,y
-despite,maugre
+despite,maugre,
 dissatisfaction,ennui,y
-dna,🧬
-do not,don't
-dollar,$
-dollars,$
-donut,🍩
-door,🚪
-double sharp,𝄪
-doughnut,donut
-down arrow,↓
-downwards arrow,↓
-droplet,💧
-dvd,📀
-dz,ǳ
-e-mail,📧
-each one,℆
-ear of corn,🌽
-ear of rice,🌾
-earth globe americas,🌎
-earth globe asia-austrailia,🌏
-earth globe europe-africa,🌍
-eggplant,🍆
-eighth note,♪
-electric plug,🔌
-elevator,🛗
-email,📧
-empty set,∅
-enroll,enrol
-envelope,✉
-equal to by definition,≝
-equal to,=
-equals by definition,≝
-equals,=
-equiangular to,≚
-escape,esc
-evergreen tree,🌲
-except when,unless
-exclamation,!
-face blowing wind,🌬
-fallen leaf,🍂
-fast forward,⏩
-fax machine,📠
-fax,℻
-ffi,ﬃ
-fi,ﬁ
-file cabinet,🗄
-file folder,📁
-fire,🔥
-first quarter moon symbol,🌓
-first quarter moon with face,🌛
-first quarter moon,☽
-flashlight,🔦
-flat,♭
-floppy disk,💾
-floral heart,❦
-flower,⚘
+dna,🧬,
+do not,don't,
+dollar,$,
+dollars,$,
+donut,🍩,
+door,🚪,
+double sharp,𝄪,
+doughnut,donut,
+down arrow,↓,
+downwards arrow,↓,
+droplet,💧,
+dvd,📀,
+dz,ǳ,
+e-mail,📧,
+each one,℆,
+ear of corn,🌽,
+ear of rice,🌾,
+earth globe americas,🌎,
+earth globe asia-austrailia,🌏,
+earth globe europe-africa,🌍,
+eggplant,🍆,
+eighth note,♪,
+electric plug,🔌,
+elevator,🛗,
+email,📧,
+empty set,∅,
+enroll,enrol,
+envelope,✉,
+equal to by definition,≝,
+equal to,=,
+equals by definition,≝,
+equals,=,
+equiangular to,≚,
+escape,esc,
+evergreen tree,🌲,
+except when,unless,
+exclamation,!,
+face blowing wind,🌬,
+fallen leaf,🍂,
+fast forward,⏩,
+fax machine,📠,
+fax,℻,
+ffi,ﬃ,
+fi,ﬁ,
+file cabinet,🗄,
+file folder,📁,
+fire,🔥,
+first quarter moon symbol,🌓,
+first quarter moon with face,🌛,
+first quarter moon,☽,
+flashlight,🔦,
+flat,♭,
+floppy disk,💾,
+floral heart,❦,
+flower,⚘,
 fluorine,Fl,y
-flute,🪈
-flying saucer,🛸
-fm,㎙
-fog,🌫
-foggy,🌁
-fork and knife with plate,🍽
-fork and knife,🍴
-fountain pen,🖋
-fountain,⛲
-four leaf clover,🍀
-fourth root,∜
-fourth,4th
-french fries,🍟
-fried shrimp,🍤
-fuel pump,⛽
-full moon with face,🌝
-full moon,🌕
-gas station,⛽
-globe with meridians,🌐
-glowing star,🌟
-grapes,🍇
-grave accent,`
-green apple,🍏
-guitar,🎸
-hPa,㍱
-ha,㏊
-half note,𝅗𝅥
-hammer,🔨
-hashtag,#
-headphone,🎧
-headphones,🎧
-heavy asterisk,✱
-heavy division,➗
-heavy minus,➖
-heavy plus,➕
-heavy sparkle,❈
-heavy vertical bar,❚
-heavy →,➙
-heavy ↗,➚
-heavy ↘,➘
-heavy ➝,➞
-heavy ➟,➠
+flute,🪈,
+flying saucer,🛸,
+fm,㎙,
+fog,🌫,
+foggy,🌁,
+fork and knife with plate,🍽,
+fork and knife,🍴,
+fountain pen,🖋,
+fountain,⛲,
+four leaf clover,🍀,
+fourth root,∜,
+fourth,4th,
+french fries,🍟,
+fried shrimp,🍤,
+fuel pump,⛽,
+full moon with face,🌝,
+full moon,🌕,
+gas station,⛽,
+globe with meridians,🌐,
+glowing star,🌟,
+grapes,🍇,
+grave accent,`,
+green apple,🍏,
+guitar,🎸,
+hPa,㍱,
+ha,㏊,
+half note,𝅗𝅥,
+hammer,🔨,
+hashtag,#,
+headphone,🎧,
+headphones,🎧,
+heavy asterisk,✱,
+heavy division,➗,
+heavy minus,➖,
+heavy plus,➕,
+heavy sparkle,❈,
+heavy vertical bar,❚,
+heavy →,➙,
+heavy ↗,➚,
+heavy ↘,➘,
+heavy ➝,➞,
+heavy ➟,➠,
 helium,He,y
-hence,ergo
-hence,thus
-herb,🌿
-hibiscus,🌺
+hence,ergo,
+hence,thus,
+herb,🌿,
+hibiscus,🌺,
 highlight,limn,y
 highlights,limns,y
-hindu temple,🛕
-honey pot,🍯
-hot dog,🌭
-hot pepper,🌶
-hotdog,🌭
-hourglass with flowing sand,⏳
-hourglass,⌛
-house,⌂
-however,altho
+hindu temple,🛕,
+honey pot,🍯,
+hot dog,🌭,
+hot pepper,🌶,
+hotdog,🌭,
+hourglass with flowing sand,⏳,
+hourglass,⌛,
+house,⌂,
+however,altho,
 hydrogen,H,y
-i don't know,idk
-i know,ik
-ice cream,🍨
-ice skate,⛸
-ice,🧊
-id est,i.e.
-ii,ⅱ
-iii,ⅲ
-ij,ĳ
-in care of,℅
-in spite of,despite
-in,㏌
-infinity,∞
-info,ℹ
-information,ℹ
-integral,∫
-intensional disjunction,⅋
-internationalisation,i18n
-internationalization,i18n
-iv,ⅳ
-ix,ⅸ
-jar,🫙
-javascript,JS
-just kidding,jk
-kA,㎄
-kHz,㎑
-kPa,㎪
-kV,㎸
-kW,㎾
-kaaba,🕋
-kcal,㎉
-keyboard,⌨
-kg,㎏
-km,㎞
-knife,🔪
-kt,㏏
-label,🏷
-ladder,🪜
-lambda,lamda
-laptop,💻
-lassitude,lethargy
-last quarter moon symbol,🌗
-last quarter moon with face,🌜
-last quarter moon,☾
-leaf fluttering in wind,🍃
-left arrow,←
-left right arrow,↔
-leftwards arrow,←
-lemon,🍋
-light bulb,💡
-light vertical bar,❘
+i don't know,idk,
+i know,ik,
+ice cream,🍨,
+ice skate,⛸,
+ice,🧊,
+id est,i.e.,
+ii,ⅱ,
+iii,ⅲ,
+ij,ĳ,
+in care of,℅,
+in spite of,despite,
+in,㏌,
+infinity,∞,
+info,ℹ,
+information,ℹ,
+integral,∫,
+intensional disjunction,⅋,
+internationalisation,i18n,
+internationalization,i18n,
+iv,ⅳ,
+ix,ⅸ,
+jar,🫙,
+javascript,JS,
+just kidding,jk,
+kA,㎄,
+kHz,㎑,
+kPa,㎪,
+kV,㎸,
+kW,㎾,
+kaaba,🕋,
+kcal,㎉,
+keyboard,⌨,
+kg,㎏,
+km,㎞,
+knife,🔪,
+kt,㏏,
+label,🏷,
+ladder,🪜,
+lambda,lamda,
+laptop,💻,
+lassitude,lethargy,
+last quarter moon symbol,🌗,
+last quarter moon with face,🌜,
+last quarter moon,☾,
+leaf fluttering in wind,🍃,
+left arrow,←,
+left right arrow,↔,
+leftwards arrow,←,
+lemon,🍋,
+light bulb,💡,
+light vertical bar,❘,
 listlessness,ennui,y
 lithium,Li,y
-lj,ǉ
-lm,㏐
-ln,㏑
-lobster,🦞
-log,㏒
-lollipop,🍭
-low battery,🪫
-ls,ʪ
-luncheon,lunch
-lx,㏓
-lz,ʫ
-m/s,㎧
-mA,㎃
-mV,㎷
-mW,㎽
-made from 100%-recycled paper,♼
-made from partially-recycled paper,♽
-magnet,🧲
+lj,ǉ,
+lm,㏐,
+ln,㏑,
+lobster,🦞,
+log,㏒,
+lollipop,🍭,
+low battery,🪫,
+ls,ʪ,
+luncheon,lunch,
+lx,㏓,
+lz,ʫ,
+m/s,㎧,
+mA,㎃,
+mV,㎷,
+mW,㎽,
+made from 100%-recycled paper,♼,
+made from partially-recycled paper,♽,
+magnet,🧲,
 maize,corn,y
-maple leaf,🍁
-maracas,🪇
-mb,㏔
-meat on bone,🍖
-medium vertical bar,❙
-melon,🍈
-mg,㎎
-microphone,🎤
-microscope,🔬
-mil,㏕
-mile,mi.
-milky way,🌌
-minus,−
-mm,㎜
-mol,㏖
-money bag,💰
-mosque,🕌
-mostly cloudy,🌥
-mostly sunny,🌤
-mount fuji,🗻
-mountain,⛰
-ms,㎳
-mushroom,🍄
-musical score,🎼
-nA,㎁
-nF,㎋
-nV,㎵
-nW,㎻
-nand,⊼
-natural numbers,ℕ
-natural,♮
+maple leaf,🍁,
+maracas,🪇,
+mb,㏔,
+meat on bone,🍖,
+medium vertical bar,❙,
+melon,🍈,
+mg,㎎,
+microphone,🎤,
+microscope,🔬,
+mil,㏕,
+mile,mi.,
+milky way,🌌,
+minus,−,
+mm,㎜,
+mol,㏖,
+money bag,💰,
+mosque,🕌,
+mostly cloudy,🌥,
+mostly sunny,🌤,
+mount fuji,🗻,
+mountain,⛰,
+ms,㎳,
+mushroom,🍄,
+musical score,🎼,
+nA,㎁,
+nF,㎋,
+nV,㎵,
+nW,㎻,
+nand,⊼,
+natural numbers,ℕ,
+natural,♮,
 neon,Ne,y
-new moon with face,🌚
-new moon,🌑
-newspaper,📰
-nib,✒
-night with stars,🌃
+new moon with face,🌚,
+new moon,🌑,
+newspaper,📰,
+nib,✒,
+night with stars,🌃,
 nitrogen,N,y
-nj,ǌ
-nm,㎚
-nor,⊽
-north east,northeast
-north west,northwest
-northeast arrow,↗
-northwest arrow,↖
-not parallel to,∦
-ns,㎱
-number,№
-oV,㍵
-octothorpe,#
-oden,🍢
-oe,œ
-oo,ꝏ
-open book,📖
-open file folder,📂
-optical character recognition,OCR
-optical disk,💿
-orientate,orient
-orientated,oriented
+nj,ǌ,
+nm,㎚,
+nor,⊽,
+north east,northeast,
+north west,northwest,
+northeast arrow,↗,
+northwest arrow,↖,
+not parallel to,∦,
+ns,㎱,
+number,№,
+oV,㍵,
+octothorpe,#,
+oden,🍢,
+oe,œ,
+oo,ꝏ,
+open book,📖,
+open file folder,📂,
+optical character recognition,OCR,
+optical disk,💿,
+orientate,orient,
+orientated,oriented,
 oxygen,O,y
-oy,ѹ
-oyster,🦪
-p.m.,pm
-pA,㎀
-pF,㎊
-pH,㏗
-pV,㎴
-pW,㎺
-package,📦
-paintbrush,🖌
-palm tree,🌴
-paperclip,📎
-parallel to,∥
-party popper,🎉
-pause,⏸
-pc,㍶
-peach,🍑
-pear,🍐
-pen,🖊
-pencil,✏
-pentagram,⛤
-per,⅌
-percent,%
-permanent paper,♾
-perpendicular to,⟂
-petri dish,🧫
-petrol station,⛽
-pick,⛏
-pineapple,🍍
-pizza,🍕
-plus,+
-pm,㏘
-popcorn,🍿
-poultry leg,🍗
-power symbol,⏻
-prime numbers,ℙ
-printer,🖨
-property line,⅊
-proportional to,∝
-ps,㎰
-purchase,buy
-purchased,bought
-quarter note,♩
-rad,㎭
-rad/s,㎮
-radioactive,☢
-rain,🌧
-rainbow,🌈
-raincloud,🌧
-raised fist,✊
-raised hand,✋
-ramen,🍜
-real numbers,ℝ
-record,⏺
-red apple,🍎
-red envelope,🧧
-return,⏎
-rewind,⏪
-ribbon,🎀
-rice ball,🍙
-rice cracker,🍘
-right angle,∟
-right arrow,→
-rightwards arrow,→
-roasted sweet potato,🍠
-rock,🪨
-rocket,🚀
-rose,🌹
-ruler,📏
-sailboat,⛵
-salt,🧂
-saltire,☓
-satellite,🛰
-saxophone,🎷
-scissors,✂
-screwdriver,🪛
-scruple,℈
-section,§
-seedling,🌱
-sharp,♯
-shaved ice,🍧
-shield,🛡
-shinto shrine,⛩
-shooting star,🌠
-shortcake,🍰
-shrimp,🦐
-sixteenth note,𝅘𝅥𝅯
-sixty-fourth rest,𝅁
-snow,🌨
-snow-capped mountain,🏔
-snowflake,❄
-soccer ball,⚽
-soft ice cream,🍦
-south east,southeast
-south west,southwest
-southeast arrow,↘
-southwest arrow,↙
-spaghetti,🍝
-sparkle,❇
-sparkles,✨
-speedboat,🚤
-spiral calendar,🗓
-spiral notepad,🗒
-spoon,🥄
-sqrt,√
-square root,sqrt
-squid,🦑
-sr,㏛
-stadium,🏟
-star of david,✡
-stop,⏹
-stopwatch,⏱
-strawberry,🍓
-sun behind raincloud,🌦
-sun with face,🌞
-sunflower,🌻
-sunrise over mountains,🌄
-sunrise,🌅
-sunset over buildings,🌇
-sushi,🍣
-synagogue,🕍
-taco,🌮
-tangerine,🍊
-taxi,🚕
-tea,☕
-tel,℡
-telescope,🔭
-tent,⛺
-test tube,🧪
-text to speech,TTS
-text-to-speech,TTS
-there exists,∃
-there is,there's
-there's,∃
-therefore,ergo
-thermometer,🌡
-theta,θ
-thirty-second rest,𝅀
-though,tho
-through,thru
-ticket,🎫
-tilde,~
-timer,⏲
-tomato,🍅
-torii,⛩
-triangle-headed →,➝
-triangular ruler,📐
-trumpet,🎺
-ts,ʦ
-tulip,🌷
-typescript,TS
-ue,ᵫ
-up arrow,↑
-up down arrow,↕
-upwards arrow,↑
-vector product,⨯
-vi,ⅵ
-victory hand,✌
-vii,ⅶ
-viii,ⅷ
-violin,🎻
-volcano,🌋
-waning crescent,🌘
-waning gibbous,🌖
-warning,⚠
-wastebasket,🗑
-water wave,🌊
-watermelon,🍉
-waxing crescent,🌒
-waxing gibbous,🌔
-wheel,🛞
-wheelchair sign,♿
-wheelchair symbol,♿
-white flag,⚐
-white florette,❀
-white nib,✑
-white sun with rays,☼
-white sun,🌣
-whole note,𝅝
-wood,🪵
-wrapped gift,🎁
-wrench,🔧
-xi,ⅺ
-xii,ⅻ
-xor,⊻
-y'all,yall
-you all,yall
-you-all,yall
-° celsius,℃
-° fahrenheit,℉
-яe,ԙ
-↑↑,⇈
-↑↓,⇅
-↓↓,⇊
-−+,∓
-∫∫,∬
-∫∫∫,∭
-≺=,≼
-≻=,≽
-⊂,⟈
-⊃/,⟉
-♪♪,♫
-⧘⧘,⧚
-⧙⧙,⧛
-🌅 over mountains,🌄
+oy,ѹ,
+oyster,🦪,
+p.m.,pm,
+pA,㎀,
+pF,㎊,
+pH,㏗,
+pV,㎴,
+pW,㎺,
+package,📦,
+paintbrush,🖌,
+palm tree,🌴,
+paperclip,📎,
+parallel to,∥,
+party popper,🎉,
+pause,⏸,
+pc,㍶,
+peach,🍑,
+pear,🍐,
+pen,🖊,
+pencil,✏,
+pentagram,⛤,
+per,⅌,
+percent,%,
+permanent paper,♾,
+perpendicular to,⟂,
+petri dish,🧫,
+petrol station,⛽,
+pick,⛏,
+pineapple,🍍,
+pizza,🍕,
+plus,+,
+pm,㏘,
+popcorn,🍿,
+poultry leg,🍗,
+power symbol,⏻,
+prime numbers,ℙ,
+printer,🖨,
+property line,⅊,
+proportional to,∝,
+ps,㎰,
+purchase,buy,
+purchased,bought,
+quarter note,♩,
+rad,㎭,
+rad/s,㎮,
+radioactive,☢,
+rain,🌧,
+rainbow,🌈,
+raincloud,🌧,
+raised fist,✊,
+raised hand,✋,
+ramen,🍜,
+real numbers,ℝ,
+record,⏺,
+red apple,🍎,
+red envelope,🧧,
+return,⏎,
+rewind,⏪,
+ribbon,🎀,
+rice ball,🍙,
+rice cracker,🍘,
+right angle,∟,
+right arrow,→,
+rightwards arrow,→,
+roasted sweet potato,🍠,
+rock,🪨,
+rocket,🚀,
+rose,🌹,
+ruler,📏,
+sailboat,⛵,
+salt,🧂,
+saltire,☓,
+satellite,🛰,
+saxophone,🎷,
+scissors,✂,
+screwdriver,🪛,
+scruple,℈,
+section,§,
+seedling,🌱,
+sharp,♯,
+shaved ice,🍧,
+shield,🛡,
+shinto shrine,⛩,
+shooting star,🌠,
+shortcake,🍰,
+shrimp,🦐,
+sixteenth note,𝅘𝅥𝅯,
+sixty-fourth rest,𝅁,
+snow,🌨,
+snow-capped mountain,🏔,
+snowflake,❄,
+soccer ball,⚽,
+soft ice cream,🍦,
+south east,southeast,
+south west,southwest,
+southeast arrow,↘,
+southwest arrow,↙,
+spaghetti,🍝,
+sparkle,❇,
+sparkles,✨,
+speedboat,🚤,
+spiral calendar,🗓,
+spiral notepad,🗒,
+spoon,🥄,
+sqrt,√,
+square root,sqrt,
+squid,🦑,
+sr,㏛,
+stadium,🏟,
+star of david,✡,
+stop,⏹,
+stopwatch,⏱,
+strawberry,🍓,
+sun behind raincloud,🌦,
+sun with face,🌞,
+sunflower,🌻,
+sunrise over mountains,🌄,
+sunrise,🌅,
+sunset over buildings,🌇,
+sushi,🍣,
+synagogue,🕍,
+taco,🌮,
+tangerine,🍊,
+taxi,🚕,
+tea,☕,
+tel,℡,
+telescope,🔭,
+tent,⛺,
+test tube,🧪,
+text to speech,TTS,
+text-to-speech,TTS,
+there exists,∃,
+there is,there's,
+there's,∃,
+therefore,ergo,
+thermometer,🌡,
+theta,θ,
+thirty-second rest,𝅀,
+though,tho,
+through,thru,
+ticket,🎫,
+tilde,~,
+timer,⏲,
+tomato,🍅,
+torii,⛩,
+triangle-headed →,➝,
+triangular ruler,📐,
+trumpet,🎺,
+ts,ʦ,
+tulip,🌷,
+typescript,TS,
+ue,ᵫ,
+up arrow,↑,
+up down arrow,↕,
+upwards arrow,↑,
+vector product,⨯,
+vi,ⅵ,
+victory hand,✌,
+vii,ⅶ,
+viii,ⅷ,
+violin,🎻,
+volcano,🌋,
+waning crescent,🌘,
+waning gibbous,🌖,
+warning,⚠,
+wastebasket,🗑,
+water wave,🌊,
+watermelon,🍉,
+waxing crescent,🌒,
+waxing gibbous,🌔,
+wheel,🛞,
+wheelchair sign,♿,
+wheelchair symbol,♿,
+white flag,⚐,
+white florette,❀,
+white nib,✑,
+white sun with rays,☼,
+white sun,🌣,
+whole note,𝅝,
+wood,🪵,
+wrapped gift,🎁,
+wrench,🔧,
+xi,ⅺ,
+xii,ⅻ,
+xor,⊻,
+y'all,yall,
+you all,yall,
+you-all,yall,
+° celsius,℃,
+° fahrenheit,℉,
+яe,ԙ,
+↑↑,⇈,
+↑↓,⇅,
+↓↓,⇊,
+−+,∓,
+∫∫,∬,
+∫∫∫,∭,
+≺=,≼,
+≻=,≽,
+⊂,⟈,
+⊃/,⟉,
+♪♪,♫,
+⧘⧘,⧚,
+⧙⧙,⧛,
+🌅 over mountains,🌄,
