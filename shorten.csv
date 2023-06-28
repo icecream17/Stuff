@@ -1,4 +1,4 @@
-characters or phrase,shortened version
+characters or phrase,shortened version,is suggestion
 !!,‼
 !?,⁉
 "0,",🄁
@@ -222,7 +222,12 @@ aeroplane,airplane
 airplane,✈
 alarm clock,⏰
 although,however
-aluminium,aluminum
+alumium,Al,y
+aluminum,Al,y
+aluminum,alumium,y
+aluminium,Al,y
+aluminium,alumium,y
+aluminium,aluminum,y
 am,㏂
 ampersand,&
 anchor,⚓
@@ -242,6 +247,7 @@ bar,㍴
 baseball,⚾
 battery,🔋
 bento box,🍱
+beryllium,Be,y
 bicycle,🚲
 bike,🚲
 biohazard,☣
@@ -257,6 +263,8 @@ bomb,💣
 bookmark,🔖
 books,📚
 boomerang,🪃
+boredom,ennui,y
+boron,B
 bow and arrow,🏹
 bread,🍞
 bridge at night,🌉
@@ -273,6 +281,7 @@ camera,📷
 candle,🕯
 candy,🍬
 canoe,🛶
+carbon,C,y
 castle,⛫
 cc,㏄
 cd,㏅
@@ -322,9 +331,10 @@ da,㍲
 dango,🍡
 dashed ➝,➟
 degrees,°
-depict,limn
-depicts,limns
+depict,limn,y
+depicts,limns,y
 despite,maugre
+dissatisfaction,ennui,y
 dna,🧬
 do not,don't
 dollar,$
@@ -380,6 +390,7 @@ flat,♭
 floppy disk,💾
 floral heart,❦
 flower,⚘
+fluorine,Fl,y
 flute,🪈
 flying saucer,🛸
 fm,㎙
@@ -422,10 +433,13 @@ heavy ↗,➚
 heavy ↘,➘
 heavy ➝,➞
 heavy ➟,➠
+helium,He,y
 hence,ergo
 hence,thus
 herb,🌿
 hibiscus,🌺
+highlight,limn,y
+highlights,limns,y
 hindu temple,🛕
 honey pot,🍯
 hot dog,🌭
@@ -435,6 +449,7 @@ hourglass with flowing sand,⏳
 hourglass,⌛
 house,⌂
 however,altho
+hydrogen,H,y
 i don't know,idk
 i know,ik
 ice cream,🍨
@@ -475,6 +490,7 @@ label,🏷
 ladder,🪜
 lambda,lamda
 laptop,💻
+lassitude,lethargy
 last quarter moon symbol,🌗
 last quarter moon with face,🌜
 last quarter moon,☾
@@ -485,6 +501,8 @@ leftwards arrow,←
 lemon,🍋
 light bulb,💡
 light vertical bar,❘
+listlessness,ennui,y
+lithium,Li,y
 lj,ǉ
 lm,㏐
 ln,㏑
@@ -503,7 +521,7 @@ mW,㎽
 made from 100%-recycled paper,♼
 made from partially-recycled paper,♽
 magnet,🧲
-maize,corn
+maize,corn,y
 maple leaf,🍁
 maracas,🪇
 mb,㏔
@@ -535,11 +553,13 @@ nW,㎻
 nand,⊼
 natural numbers,ℕ
 natural,♮
+neon,Ne,y
 new moon with face,🌚
 new moon,🌑
 newspaper,📰
 nib,✒
 night with stars,🌃
+nitrogen,N,y
 nj,ǌ
 nm,㎚
 nor,⊽
@@ -561,6 +581,7 @@ optical character recognition,OCR
 optical disk,💿
 orientate,orient
 orientated,oriented
+oxygen,O,y
 oy,ѹ
 oyster,🦪
 p.m.,pm
