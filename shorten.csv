@@ -228,7 +228,7 @@ aluminum,alumium,y
 aluminium,Al,y
 aluminium,alumium,y
 aluminium,aluminum,y
-am,㏂,
+am,㏂,y
 ampersand,&,
 anchor,⚓,
 angstrom,Å,
@@ -236,14 +236,17 @@ ao,ꜵ,
 apple,🍎,
 arrowhead pointer,🮰,
 asterisk,*,
-at,@,
-atom,⚛,
+at,@,y
+at the same time,in parallel,y
+at the same time,simultaneously,y
+at the same time,also,y
+atom,⚛,y
 aubergine,🍆,
 axe,🪓,
 ballot x,✗,
 banana,🍌,
 banjo,🪕,
-bar,㍴,
+bar,㍴,y
 baseball,⚾,
 battery,🔋,
 bento box,🍱,
@@ -386,7 +389,7 @@ first quarter moon symbol,🌓,
 first quarter moon with face,🌛,
 first quarter moon,☽,
 flashlight,🔦,
-flat,♭,
+flat,♭,y
 floppy disk,💾,
 floral heart,❦,
 flower,⚘,
@@ -552,7 +555,7 @@ nV,㎵,
 nW,㎻,
 nand,⊼,
 natural numbers,ℕ,
-natural,♮,
+natural,♮,y
 neon,Ne,y
 new moon with face,🌚,
 new moon,🌑,
@@ -720,6 +723,7 @@ there exists,∃,
 there is,there's,
 there's,∃,
 therefore,ergo,
+therefore,so,y
 thermometer,🌡,
 theta,θ,
 thirty-second rest,𝅀,
