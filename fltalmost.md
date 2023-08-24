@@ -87,6 +87,8 @@ Note that c-b is at least 1. Looking at desmos, [this is an extremely close boun
 
 Edit: My desmos calculations are **wrong** and I could not establish a remotely close bound.
 
+Here's the actual bound: https://www.desmos.com/calculator/mnsbryzl3x
+
 ## Slightly stricter bound for a
 
 We have 0 < b < c, 2 < n. Note that the 2 < n is important for ">" in the first half, because i=2 and c^(n-i) = b^(n-i) when n-i=0
