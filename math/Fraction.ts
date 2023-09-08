@@ -149,6 +149,10 @@ class ImmutableFraction {
     throw TypeError("Must be of the format [integer]/[integer]")
   }
 
+  toString() {
+    return `${this.numerator}/${this.denominator}`
+  }
+
   static isFraction(v: unknown): v is ImmutableFraction {
     return v instanceof ImmutableFraction
   }
@@ -383,6 +387,10 @@ class ImmutableFraction {
       throw new RangeError("division by 0")
     }
     return new Fraction(this.numerator * frac.denominator, this.denominator * frac.numerator)
+  }
+
+  mulint (int: bigint) {
+    return new Fraction(this.numerator * int, this.denominator)
   }
 
   divint (int: bigint) {
