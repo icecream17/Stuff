@@ -304,7 +304,7 @@ class ImmutableFraction {
   /// Should be faster than the regular exponentiate function
   powint (big: bigint) {
     const [numerator, denominator] = big < 0n ? [this.denominator, this.numerator] : [this.numerator, this.denominator]
-    return new Fraction(numerator ** big, denominator ** big)
+    return new Fraction(numerator ** abs(big), denominator ** abs(big))
   }
 
   /// Returns the square root of this
