@@ -1,7 +1,7 @@
 //! "Common" patterns in javascript
 //!
 //! usage of this code is "completely outside of the law",
-//! in that no one can get sued no matter what,
+//! in that no one is liable no matter what,
 //! regarding usage or distribution of this file,
 //! to the furthest extent possible by law
 
