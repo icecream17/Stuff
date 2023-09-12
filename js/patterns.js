@@ -7,6 +7,31 @@
 
 /// Clock (definitely went overboard here)
 if (typeof globalThis.setInterval === "function" && typeof globalThis.clearInterval === "function") {
+    /// Creates a clock based on `setInterval`, which ticks however many given milliseconds plus event loop delay
+    /// plus browser/host throttling.
+    ///
+    /// There is no built-in way to do
+    /// ```
+    /// some code
+    /// don't do anything for x time
+    /// more code
+    /// ```
+    ///
+    /// in ECMAScript.
+    ///
+    /// However, most hosts provide the functions `setTimeout` and `setInterval`, which as mentioned does a function
+    /// after _x_ milliseconds (plus event loop delay and browser/host throttling).
+    ///
+    /// Event loop delay occurs when the browser/host is busy doing some other task,
+    /// (all synchronous tasks in the execution stack as well as any microtasks from `queueMicrotask`).
+    /// Throttling can come in the form of a minimum (i.e. 0 ms becomes 1 ms), or slowdowns when a tab is deemed inactive.
+    /// These delays are generally unavoidable.
+    ///
+    /// Another case of throttling is when nesting 4 levels of setInterval, this generally causes a 4ms minimum.
+    /// Using this class could help with this particular issue, if for some reason you are calling `setTimeout` inside
+    /// a function given to `setTimeout`. This provides a global unified interface for using `setInterval` instead.
+    ///
+    /// For purposes of rendering, it is recommended to use `requestAnimationFrame` instead.
     class Clock {
         // [delay, task]
         #tasks = []
@@ -15,6 +40,7 @@ if (typeof globalThis.setInterval === "function" && typeof globalThis.clearInter
         #paused = false
         #totalTicks = 0
         #sectionTicks = 0
+        #sectionStartTime = 0
         /// Note that msPerTick is a minimum tick length, not a maximum
         /// Tasks are theoretically done in chronological order; if you don't want one task to block others,
         /// use async tasks.
@@ -52,11 +78,14 @@ if (typeof globalThis.setInterval === "function" && typeof globalThis.clearInter
             if (this.#intervalId !== null && !this.#paused) {
                 this.#totalTicks++
                 this.#sectionTicks++
-                for (const task of this.#tasks) {
-                    task[0]--
-                }
-                while (this.#tasks.length && this.#tasks[this.#tasks.length - 1][0] <= 0) {
-                    this.#tasks.pop()()
+                for (let i = 0; i < this.#tasks.length; i++) {
+                    if (--this.#tasks[i][0] <= 0) {
+                        for (let j = i; j < this.#tasks.length; j++) {
+                            this.#tasks[j]()
+                        }
+                        this.#tasks.length = i
+                        break
+                    }
                 }
             }
         }
@@ -73,12 +102,15 @@ if (typeof globalThis.setInterval === "function" && typeof globalThis.clearInter
             if (msPerTick != null) {
                 this.setMsPerTick(msPerTick)
             }
-            
-            this.#intervalId = setInterval(this.processTick, this.#tickSpeed)
+
+            this.#intervalId = setInterval(this.processTick.bind(this), this.#tickSpeed)
             this.#paused = false
             this.#sectionTicks = 0
+            this.#sectionStartTime = 0
         }
-    
+
+        /// If you are stopping and starting with the same tick speed,
+        /// use `pause` and `unpause` instead!
         stop () {
             if (this.#intervalId === null) {
                 return "clock already stopped!"
