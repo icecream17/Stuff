@@ -20,7 +20,7 @@ wde $f wff de $.
 wep $f wff ep $.
 
 $( The first and second antecedents mean that ` ( ps -> ch ) ` by ~ mpi ,
-   and the consequence simplifies to ` ( ta -> ( ps -> ch ) ) ` . $)
+   and the consequence simplifies to ` ( th -> ( ps -> ch ) ) ` . $)
 ax-w2 $a |- ( ph ->
    ( ( ps -> ( ph -> ch ) ) ->
        ( ( -. ch -> ( ( -. th -> et ) -> ps ) ) -> ( th -> ch ) ) ) ) $.
