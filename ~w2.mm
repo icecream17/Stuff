@@ -225,7 +225,7 @@ w2pm2.27 $p |- ( ph -> ( ( ph -> ps ) -> ps ) ) $=
 $( Simplify ~ ax-w2 , collapsing the first antecedent $)
 w2s $p |- ( ( ps -> ch ) -> ( ( -. ch -> ( ( -. th -> et ) -> ps ) ) ->
                                                       ( th -> ch ) ) ) $=
-  ( wi wn w2pm2.27 ax-w2 mpi ) ABEZAJBEEBFCFDEAEECBEEABGJABCDHI $.
+  ( wi wn w2pm2.27 ax-w2 w2mpi ) AABEZBEEJBFCFDEAEECBEEABGJABCDHI $.
 
 $( ~ luk-1 applied to ~ w2luk3 without ~ luk-1 $)
 w2luk1luk3 $p |- ( ( ( -. th -> et ) -> ch ) -> ( th -> ch ) ) $=
