@@ -100,8 +100,11 @@
 17: "12"
     1+[2]
 
+17: "21":
+    2+[1]
+
 17: "100"
-    [1]+"00"
+    "10"+[0]
 
 18: "n"
     ("undefined")[1]
@@ -111,6 +114,9 @@
 
 19: 4
     true+true+true+true
+
+20: "30"
+    3+[0]
 
 21: "22"
     2+[2]
@@ -305,6 +311,9 @@
 585: "concat"
      "c"+"o"+"n"+"c"+"a"+"t"
 
+677: "[u-y]"
+     "["+"u"+"-"+"y"+"]"
+
 834: "constructor"
      "c"+"o"+"n"+"s"+"t"+"r"+"u"+"c"+"t"+"o"+"r"
 
@@ -359,10 +368,17 @@
 11050: "m"
        [[]["at"]]["concat"]([]["flat"]["call"](Number+[])["sort"]()["join"](""))["reduce"](Object["assign"])[[]["at"][1]["slice"](1)["search"]("n")]
 
+//                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+//                          sorts characters in Number.toString                                             index []["at"] at [index 1 before "n"]
+//     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+//     Object.assign([]["at"], sorted characters), returns []["at""]
+//
+// This strategy cannot be used for "v" since there may be an arbitrary amount of "u", so adding 1 doesn't work for v like subtracting 1 does for m.
+//
 // This sets many properties on []["at"]
 // If "m" is used twice, after the first time this is shorter:
 //
-// 3960: "m"
+// 3960: "m" (saves 7090)
 // []["at"][[]["at"][1]["slice"](1)["search"]("n")]
 //
 // At three times or more it is worthwhile to instead assign "m" to []["at"][1]:
@@ -376,41 +392,62 @@
 // 11050+3960+3960 > 16397+41+41
 //           18970 > 16479
 
+m1:
 11110: "trim"
        "t"+"r"+"i"+"m"
 
+m1:
 11111: "name"
        "n"+"a"+"m"+"e"
 
+m1:
 11275: "some"
        "s"+"o"+"m"+"e"
 
+m1:
 11965: "B"
        Boolean["name"][0]
 
+m1:
 11967: "S"
        String["name"][0]
 
+m1:
 11994: "F"
        Function["name"][0]
 
+m1:
 12151: "toString"
        "t"+"o"+String["name"]
 
+m1:
 12174: "isFinite"
        "is"+"F"+"i"+"n"+"i"+"t"+"e"
 
+m1:
 12578: "U"
        (NaN+[]["entries"]()["toString"]["call"]())["11"]
 
+m1:
 14571: "match"
        "m"+"at"+"c"+"h"
 
+m1:
 14797: "matchAll"
        "match"+"A"+"l"+"l"
 
-23152: "trimStart"
+m2:
+16062: "trimStart"
        "trim"+"S"+"t"+"a"+"r"+"t"
+
+// Using matchAll there's probably a clever way to more efficient get "groups", "index", and "input"
+m2:
+21547: "p"
+       []["flat"]["call"]([]+Object["entries"](Array["from"](("false")["matchAll"]())[0]))["sort"]()["21"]
+
+m2:
+21553: "x"
+       []["flat"]["call"]([0]+Object["entries"](Array["from"](("false")["matchAll"]())[0]))["sort"]()["30"]
 
 Footnotes: {
    [1]: Array.prototype.at.toString()
@@ -458,13 +495,14 @@ Boolean                    B
 String                     S
 Function                   F
 [object Undefined]         U
+<matchAll properties>      px
 
 ABCDEFGHIJKLMNOPQRSTUVWXYZ
 ^^   ^  ^   ^     ^ ^
 abcdefghijklmnopqrstuvwxyz
-          x    xx    xxx x
+          x     x    xx  x
 etaoinshrdclumwfgy [bjkpqvxz]
-              x       xxxxxx
+              x       x xx x
 function ( ) { [ native code ] }
          x x x       x         x
 **/
@@ -647,6 +685,8 @@ const chars = {
    "S": 11967,
    "F": 11994,
    "U": 12578,
+   "p": 21547,
+   "x": 21553,
 }
 
 // If we can make a string
