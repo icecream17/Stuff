@@ -537,7 +537,7 @@ m2:
 24462: "push"
        "p"+"u"+"s"+"h"
 
-m3:
+m3v:
 26432: "v"
        ["m"]["at"][1+[]["at"][1]["lastIndexOf"]("u")]
 
@@ -548,6 +548,22 @@ m3:
 //
 // base "m" = 11050, ^^ = 22472
 // combined "m" = 11050, ^^ = 15382
+
+m3v:
+26536: "values"
+       "v"+"a"+"l"+"u"+"e"+"s"
+
+m3v:
+26569: "reverse"
+       "r"+"e"+"v"+"e"+"r"+"s"+"e"
+
+m3v:
+26586: "every"
+       "e"+"v"+"e"+"r"+"y"
+
+m3v:
+27549: "valueOf"
+       "v"+"a"+"l"+"u"+"e"+"O"+"f"
 
 // Using two m2s saves 13500 over howLong
 m4:
@@ -611,11 +627,11 @@ Function                   F
 ABCDEFGHIJKLMNOPQRSTUVWXYZ
 ^^   ^  ^   ^     ^ ^
 abcdefghijklmnopqrstuvwxyz
-          x     x    xx  x
+          x     x     x  x
 etaoinshrdclumwfgy [bjkpqvxz]
-              x       x xx x
+              x       x x  x
 function ( ) { [ native code ] }
-         x x x       x         x
+         x x x                 x
 
  !"#$%&'()*+,-./0123456789:;<=>?@ A-Z [\]^_` a-z {|}~
 ^          ^^^^                   A-Z ^ ^    a-z
