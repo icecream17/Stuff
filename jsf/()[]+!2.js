@@ -55,6 +55,10 @@
 9: "NaN"
     NaN+[]
 
+9: "0false"
+   0+[false]
+   [0]+false
+
 11: "10"
     1+[0]
 
@@ -130,6 +134,9 @@
 
 23: "undefinedundefinedundefined"
     []+undefined+undefined+undefined
+
+23: // Get the 5th letter from a string `s`, not including the cost of `s`
+    ("0false"+`s`)["10"]
 
 24: "s"
     ("false")[3]
@@ -390,7 +397,7 @@
 // []["at"][1]
 //
 // 11050+3960+3960 > 16397+41+41
-//           18970 > 16479
+//           18970 > 16479        (2491 + 3919n save)
 
 m1:
 11110: "trim"
@@ -405,6 +412,10 @@ m1:
        "s"+"o"+"m"+"e"
 
 m1:
+11751: "fromAsync"
+       "from"+"A"+"s"+"y"+"n"+"c"
+
+m1:
 11965: "B"
        Boolean["name"][0]
 
@@ -417,12 +428,20 @@ m1:
        Function["name"][0]
 
 m1:
+12131: "isSealed"
+       "i"+"s"+"S"+"e"+a"+l"+"e"+"d"
+
+m1:
 12151: "toString"
        "t"+"o"+String["name"]
 
 m1:
 12174: "isFinite"
        "is"+"F"+"i"+"n"+"i"+"t"+"e"
+
+m1:
+12411: "toSorted"
+       "t"+"o"+"S"+"o"+"r"+"t"+"e"+"d"
 
 m1:
 12578: "U"
@@ -436,18 +455,109 @@ m1:
 14797: "matchAll"
        "match"+"A"+"l"+"l"
 
+m1:
+15561: "isSafeInteger"
+       "i"+"s"+"S"+"a"+"f"+"e"+"I"+"n"+"t"+"e"+"g"+"e"+"r"
+
 m2:
 16062: "trimStart"
        "trim"+"S"+"t"+"a"+"r"+"t"
 
-// Using matchAll there's probably a clever way to more efficient get "groups", "index", and "input"
+// If we can assume entries are already sorted that saves bytes
 m2:
-21547: "p"
-       []["flat"]["call"]([]+Object["entries"](Array["from"](("false")["matchAll"]())[0]))["sort"]()["21"]
+21093: "groups"
+       Object["entries"](Array["from"](("false")["matchAll"]())[0])["sort"]()[1][0]
 
 m2:
-21553: "x"
-       []["flat"]["call"]([0]+Object["entries"](Array["from"](("false")["matchAll"]())[0]))["sort"]()["30"]
+21097: "index"
+       Object["entries"](Array["from"](("false")["matchAll"]())[0])["sort"]()[2][0]
+
+m2:
+21102: "input"
+       Object["entries"](Array["from"](("false")["matchAll"]())[0])["sort"]()[3][0]
+
+m2:
+21111: "p"
+       "input"[2]
+
+m2:
+21116: "x"
+       "index"[4]
+
+m2:
+21199: "split"
+       "s"+"p"+"l"+"i"+"t"
+
+m2:
+21211: "repeat"
+       "r"+"e"+"p"+"e"+"a"+"t"
+
+m2:
+21325: "drop"
+       "d"+"r"+"o"+"p"
+
+m2:
+21391: "splice"
+       "s"+"p"+"l"+"i"+"c"+"e"
+
+m2:
+21397: "replace"
+       "r"+"e"+"p"+"l"+"a"+"c"+"e"
+
+m2:
+21623: "replaceAll"
+       "replace"+"A"+"l"+"l"
+
+m2:
+22135: "indexOf"
+       "index"+"O"+"f"
+
+m2:
+22369: "lastIndexOf"
+       "l"+"a"+"s"+"t"+"I"+"n"+"d"+"e"+"x"+"O"+"f"
+
+// saving 9581
+m3:
+22597: "map"
+       "m"+"a"+"p"
+
+m3:
+23600: "padStart"
+       "p"+"a"+"d"+"S"+"t"+"a"+"r"+"t"
+
+m3:
+23796: "toFixed"
+       "t"+"o"+"F"+"i"+"x"+"e"+"d"
+
+m3:
+23965: "toSpliced"
+       "t"+"o"+"S"+"p"+"l"+"i"+"c"+"e"+"d"
+
+m2:
+24462: "push"
+       "p"+"u"+"s"+"h"
+
+m3:
+26432: "v"
+       ["m"]["at"][1+[]["at"][1]["lastIndexOf"]("u")]
+
+// If m has already been made, this could be:
+//     []["at"][1+[]["at"][1]["lastIndexOf"]("u")] (saving 11050)
+//
+// Usage of "v" prohibits 3x"m" savings...
+//
+// base "m" = 11050, ^^ = 22472
+// combined "m" = 11050, ^^ = 15382
+
+// Using two m2s saves 13500 over howLong
+m4:
+28897: "pop"
+       "p"+"o"+"p"
+
+m4:
+29229: "prototype"
+       "p"+"r"+"o"+"t"+"o"+"t"+"y"+"p"+"e"
+
 
 Footnotes: {
    [1]: Array.prototype.at.toString()
@@ -496,6 +606,7 @@ String                     S
 Function                   F
 [object Undefined]         U
 <matchAll properties>      px
+<native code>              v
 
 ABCDEFGHIJKLMNOPQRSTUVWXYZ
 ^^   ^  ^   ^     ^ ^
@@ -505,6 +616,9 @@ etaoinshrdclumwfgy [bjkpqvxz]
               x       x xx x
 function ( ) { [ native code ] }
          x x x       x         x
+
+ !"#$%&'()*+,-./0123456789:;<=>?@ A-Z [\]^_` a-z {|}~
+^          ^^^^                   A-Z ^ ^    a-z
 **/
 
 // Things equivalent to String.prototype.split('')
@@ -545,6 +659,7 @@ const possibleObjects = [
    "constructor", // We can get something's constructor
                   // So far there's only values with the following constructors
                   // But first, some Function#properties.
+   "prototype", // We can get something's prototype; but using an instance is better
    Function.prototype.bind,  // Makes a function "bound". Sets the "bound this value".
                              // When a bound function is called the "this value" is set to the "bound this value".
                              // Function.prototype.apply now doesn't do anything.
@@ -570,6 +685,7 @@ const possibleObjects = [
    Function, // In this scenario, calling Function always throws an error
    Object, // Object() and Object(null) creates {}
            // Object(x) creates ToObject(object)
+   0..toFixed,
    [].concat, // Used to combine two arrays - or push a value. (Returns new array though)
               // Note that usually something like 
               //    ([]+[]["flat"]["bind"]("false")())[1]
@@ -591,7 +707,10 @@ const possibleObjects = [
             // This has potential if there's a function that sometimes doesn't return a truthy value:
             // []["find"].bind("     function   Array   ( )  {     [ native    code]   } \uFEFF")(Boolean)
             // But I haven't found such a function yet.
+   [].pop,
+   [].push,
    [].slice, // Returns array containing elements from start to end. start can be negative.
+   [].splice,
    [].sort, // Gets items from 0 to len
             // Sorts items from least to greatest.
             //    undefined > anything
@@ -605,6 +724,8 @@ const possibleObjects = [
    [].flat, // Returns new array, FlattenIntoArray([], ToObject(this value), len, 0, ToIntegerOrInfinity(arg))
    [].reduce, // arg: (accum (last call), currentElement, index, ToObject(this value))
    [].some,
+   [].toSorted,
+   [].toSpliced,
    [].at,
    "".at,
    "".concat, // ToString(this value) + ToString(arg)
@@ -631,8 +752,11 @@ const possibleObjects = [
    Object.assign,
    Number.isFinite,
    Number.isInteger,
+   Number.isSafeInteger,
    Number.isNaN,
    Number.NaN, // Currently useless
+   Number.parseFloat,
+   Number.parseInt,
    Array.from,
    Array.isArray,
    Array.of,
@@ -685,8 +809,9 @@ const chars = {
    "S": 11967,
    "F": 11994,
    "U": 12578,
-   "p": 21547,
-   "x": 21553,
+   "p": 21111,
+   "x": 21116,
+   "v": 26432,
 }
 
 // If we can make a string
@@ -706,6 +831,12 @@ function canProps (o) {
 
 // How long it takes to make a string
 // Strings with numbers can probably be optimized better though
+// Often inaccurate for characters using "m"
 function howLong (s) {
    return s.split('').map(char => chars[char]).reduce((accum, curr) => accum + curr) + s.length - 1
+}
+
+// Convert string into jsf-style build documentation
+function formWord (s) {
+   return s.split('').map(char => `"${char}"`).join("+")
 }
