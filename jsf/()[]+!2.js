@@ -440,12 +440,100 @@ m1:
        "is"+"F"+"i"+"n"+"i"+"t"+"e"
 
 m1:
+12192: "k"
+       (+(2+[0]))["toString"](2+[1])
+
+m1:
+12208: "v"
+       (+(3+[1]))["toString"](3+[2])
+
+m1:
+12214: "p"
+       (+(2+[1]+[1]))["toString"](3+[1])[1]
+
+m1:
+12217: "w"
+       (+(3+[2]))["toString"](3+[3])
+
+m1:
+12218: "q"
+       (+(2+[1]+[2]))["toString"](3+[1])[1]
+
+m1:
+12222: "x"
+       (+(1+[0]+[1]))["toString"](3+[4])[1]
+
+m1:
+12247: "z"
+       (+(3+[5]))["toString"](3+[6])
+
+m1:
+12302: "split"
+       "s"+"p"+"l"+"i"+"t"
+
+m1:
+12312: "values"
+       "v"+"a"+"l"+"u"+"e"+"s"
+
+m1:
+12314: "repeat"
+       "r"+"e"+"p"+"e"+"a"+"t"
+
+m1:
+12318: "index"
+       "i"+"n"+"d"+"e"+"x"
+
+m1:
+12325: "valueOf"
+       "v"+"a"+"l"+"u"+"e"+"O"+"f"
+
+m1:
+12328: "keys"
+       "k"+"e"+"y"+"s"
+
+m1:
+12345: "reverse"
+       "r"+"e"+"v"+"e"+"r"+"s"+"e"
+
+m1:
+12356: "freeze"
+       "f"+"r"+"e"+"e"+"z"+"e"
+
+m1:
+12362: "every"
+       "e"+"v"+"e"+"r"+"y"
+
+m1:
 12411: "toSorted"
        "t"+"o"+"S"+"o"+"r"+"t"+"e"+"d"
 
 m1:
+12428: "drop"
+       "d"+"r"+"o"+"p"
+
+m1:
+12494: "splice"
+       "s"+"p"+"l"+"i"+"c"+"e"
+
+m1:
+12500: "replace"
+       "r"+"e"+"p"+"l"+"a"+"c"+"e"
+
+m1:
 12578: "U"
        (NaN+[]["entries"]()["toString"]["call"]())["11"]
+
+m1:
+12726: "replaceAll"
+       "replace"+"A"+"l"+"l"
+
+m1:
+13356: "indexOf"
+       "index"+"O"+"f"
+
+m1:
+13475: "lastIndexOf"
+       "l"+"a"+"s"+"t"+"I"+"n"+"d"+"e"+"x"+"O"+"f"
 
 m1:
 14571: "match"
@@ -459,119 +547,53 @@ m1:
 15561: "isSafeInteger"
        "i"+"s"+"S"+"a"+"f"+"e"+"I"+"n"+"t"+"e"+"g"+"e"+"r"
 
+m1:
+15565: "push"
+       "p"+"u"+"s"+"h"
+
+m1:
+15569: "with"
+       "w"+"i"+"t"+"h"
+
+// saves 7090
 m2:
 16062: "trimStart"
        "trim"+"S"+"t"+"a"+"r"+"t"
 
-// If we can assume entries are already sorted that saves bytes
 m2:
-21093: "groups"
-       Object["entries"](Array["from"](("false")["matchAll"]())[0])["sort"]()[1][0]
-
-m2:
-21097: "index"
-       Object["entries"](Array["from"](("false")["matchAll"]())[0])["sort"]()[2][0]
-
-m2:
-21102: "input"
-       Object["entries"](Array["from"](("false")["matchAll"]())[0])["sort"]()[3][0]
-
-m2:
-21111: "p"
-       "input"[2]
-
-m2:
-21116: "x"
-       "index"[4]
-
-m2:
-21199: "split"
-       "s"+"p"+"l"+"i"+"t"
-
-m2:
-21211: "repeat"
-       "r"+"e"+"p"+"e"+"a"+"t"
-
-m2:
-21325: "drop"
-       "d"+"r"+"o"+"p"
-
-m2:
-21391: "splice"
-       "s"+"p"+"l"+"i"+"c"+"e"
-
-m2:
-21397: "replace"
-       "r"+"e"+"p"+"l"+"a"+"c"+"e"
-
-m2:
-21623: "replaceAll"
-       "replace"+"A"+"l"+"l"
-
-m2:
-22135: "indexOf"
-       "index"+"O"+"f"
-
-m2:
-22369: "lastIndexOf"
-       "l"+"a"+"s"+"t"+"I"+"n"+"d"+"e"+"x"+"O"+"f"
-
-// saving 9581
-m3:
-22597: "map"
+16191: "map"
        "m"+"a"+"p"
 
-m3:
-23600: "padStart"
+m2:
+16508: "normalize"
+       "n"+"o"+"r"+"m"+"a"+"l"+"i"+"z"+"e"
+
+m1:
+16610: "hasOwn"
+       "h"+"a"+"s"+"O"+"w"+"n"
+
+m2:
+17194: "padStart"
        "p"+"a"+"d"+"S"+"t"+"a"+"r"+"t"
 
-m3:
-23796: "toFixed"
+m2:
+17393: "toFixed"
        "t"+"o"+"F"+"i"+"x"+"e"+"d"
 
-m3:
-23965: "toSpliced"
+m2:
+17441: "isFrozen"
+       "is"+"F"+"r"+"o"+"z"+"e"+"n"
+
+m2:
+17513: "pop"
+       "p"+"o"+"p"
+
+m2:
+17559: "toSpliced"
        "t"+"o"+"S"+"p"+"l"+"i"+"c"+"e"+"d"
 
 m2:
-24462: "push"
-       "p"+"u"+"s"+"h"
-
-m3v:
-26432: "v"
-       ["m"]["at"][1+[]["at"][1]["lastIndexOf"]("u")]
-
-// If m has already been made, this could be:
-//     []["at"][1+[]["at"][1]["lastIndexOf"]("u")] (saving 11050)
-//
-// Usage of "v" prohibits 3x"m" savings...
-//
-// base "m" = 11050, ^^ = 22472
-// combined "m" = 11050, ^^ = 15382
-
-m3v:
-26536: "values"
-       "v"+"a"+"l"+"u"+"e"+"s"
-
-m3v:
-26569: "reverse"
-       "r"+"e"+"v"+"e"+"r"+"s"+"e"
-
-m3v:
-26586: "every"
-       "e"+"v"+"e"+"r"+"y"
-
-m3v:
-27549: "valueOf"
-       "v"+"a"+"l"+"u"+"e"+"O"+"f"
-
-// Using two m2s saves 13500 over howLong
-m4:
-28897: "pop"
-       "p"+"o"+"p"
-
-m4:
-29229: "prototype"
+17845: "prototype"
        "p"+"r"+"o"+"t"+"o"+"t"+"y"+"p"+"e"
 
 
@@ -581,7 +603,7 @@ Footnotes: {
 
         // This is implementation-defined
         // Thanks https://github.com/tc39/ecma262/issues/2488
-        // There can be any positive integer amount of whitespace between, before, and after any of these tokens:
+        // There can be any positive integer amount of whitespace or comments between, before, and after any of these tokens:
         // `function` `at` `(` `)` `{` `[` `native` `code` `]` `}`
 
         // (where whitespace is defined in the specification - see source)
@@ -594,9 +616,7 @@ Footnotes: {
         // ([]["at"]+[])[6]
         // or similar
    
-        // We do have the "filter" function and a way to split strings into arrays of characters,
-        // but currently I haven't found a function that filters away everything except the characters we want.
-        // And even if we can remove whitespace, comments are allowed.
+        // So current usage is far more complicated than one would think necessary
    [2]: String.prototype.bold
         // This is a legacy property, and it isn't guaranteed to be implemented unless the implementation has to run legacy code.
         // Which is most implementations (and every implementation I know). But still, not guaranteed to exist.
@@ -621,15 +641,12 @@ Boolean                    B
 String                     S
 Function                   F
 [object Undefined]         U
-<matchAll properties>      px
-<native code>              v
+<number toString>          kpqvwxz
 
 ABCDEFGHIJKLMNOPQRSTUVWXYZ
 ^^   ^  ^   ^     ^ ^
-abcdefghijklmnopqrstuvwxyz
-          x     x     x  x
-etaoinshrdclumwfgy [bjkpqvxz]
-              x       x x  x
+abcdefghijklmnopqrstuvwxyz (Done!)
+
 function ( ) { [ native code ] }
          x x x                 x
 
@@ -824,10 +841,14 @@ const chars = {
    "B": 11965,
    "S": 11967,
    "F": 11994,
+   "k": 12192,
+   "v": 12208,
+   "p": 12214,
+   "w": 12217,
+   "q": 12218,
+   "x": 12222,
+   "z": 12247,
    "U": 12578,
-   "p": 21111,
-   "x": 21116,
-   "v": 26432,
 }
 
 // If we can make a string
