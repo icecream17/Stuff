@@ -4,8 +4,13 @@ $(
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   Walsh's second axiom
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+  Currently this file is rather informal, containing many unused theorems
+  reflecting much manual experimentation.
+
 $)
 
+$( Extra variables $)
 $( phi, psi, chi, theta, tau, eta, zeta, sigma, rho, mu, lamda, kappa $)
 $( alpha, beta, gamma, delta, epsilon $)
 $v al $.
@@ -470,6 +475,7 @@ $( Another random theorem found by pmGenerator: DD2DDD2D21333
    pmGenerator generates basically every theorem possible but doesn't seem to
    have a way to filter anything. For example, theorems like ` ( ph -> T ) `
    and ` ( -. T -> ph ) ` can appear many times in disguise.
+   EDIT: see issue #2 for a more fair and accurate explanation
 
    Like always, we prove something that isn't really all that useful.
    Looking at this D proof: DD2DDD2D21333 we can see that given
