@@ -72,7 +72,7 @@ a^n + b^n &= c^n \\
 
 Edit: this is wrong
 
-## A better bound?
+## A better bound...
 
 In the sum, instead of replacing `c` and `b` with `a`, replacing with `b` gets
 
@@ -83,11 +83,9 @@ a   &> (c-b)^{\frac{1}{n}} n^{\frac{1}{n}} b^{\frac{n-1}{n}}
 \end{align}
 $$
 
-Note that c-b is at least 1. Looking at desmos, [this is an extremely close bound](https://www.desmos.com/calculator/5ypr2kxbfu).
+As $n$ approaches infinity, the right hand side approaches $b$, but $a < b$. So $a$ is getting squeezed.
 
-Edit: My desmos calculations are **wrong** and I could not establish a remotely close bound.
-
-Here's the actual bound: https://www.desmos.com/calculator/mnsbryzl3x
+However, there's still plenty of room: the larger a and b are, the more room there is.
 
 ## Slightly stricter bound for a
 
