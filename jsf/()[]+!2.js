@@ -926,3 +926,13 @@ function howLong (s) {
 function formWord (s) {
    return s.split('').map(char => `"${char}"`).join("+")
 }
+
+const reachableObjects = [Boolean, Number, String, Function, Array, Object,
+      Boolean.prototype, Number.prototype, String.prototype, Function.prototype, Array.prototype, Object.prototype,
+      [].entries(), [].entries().constructor, [].entries().constructor.prototype, Object.getPrototypeOf([].entries()),
+      [].entries().drop(0), Object.getPrototypeOf([].entries().drop(0))]
+function logAllCanProps () {
+   for (const object of reachableObjects) {
+      console.log(canProps(object))
+   }
+}
