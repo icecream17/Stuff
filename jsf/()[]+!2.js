@@ -162,6 +162,9 @@
 34: 7
     true+true+true+true+true+true+true
 
+39: ("")["at"]
+    ("")["at"]
+
 39: 8
     true+true+true+true+true+true+true+true
 
@@ -303,17 +306,30 @@
 289: "reduce"
      "r"+"e"+"d"+"u"+"c"+"e"
 
+306: []["flat"]["call"]
+     []["flat"]["call"]
+// Shortest code equivalent to []["split"]
+
+320: "Array"
+     "A"+"r"+"r"+"a"+"y"
+
 326: ","
      ([]+[]["flat"]["call"]("false"))[1]
 
 338: "includes"
      "i"+"n"+"c"+"l"+"u"+"d"+"e"+"s"
 
+344: "H"
+     (NaN+[]["entries"]()["filter"]([]["at"]))["20"]
+
 373: "isArray"
-     "is"+"A"+"r"+"r"+"a"+"y"
+     "is"+"Array"
 
 403: "join"
      "j"+"o"+"i"+"n"
+
+509: "toArray"
+     "t"+"o"+"Array"
 
 585: "concat"
      "c"+"o"+"n"+"c"+"a"+"t"
@@ -372,13 +388,22 @@
 3634: "substring"
       "s"+"u"+"b"+"s"+"t"+"r"+"i"+"n"+"g"
 
+5306: []["concat"]()["reduce"](Object["assign"])
+      []["concat"]()["reduce"](Object["assign"])
+
+// [A]["concat"](B)["reduce"](Object["assign"])
+// is the same as A[0] = A, A[1] = B
+//
+// If B is an array, A[index+1] = B[index]
+// Returns A
+
 11050: "m"
        [[]["at"]]["concat"]([]["flat"]["call"](Number+[])["sort"]()["join"](""))["reduce"](Object["assign"])[[]["at"][1]["slice"](1)["search"]("n")]
 
 //                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 //                          sorts characters in Number.toString                                             index []["at"] at [index 1 before "n"]
 //     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-//     Object.assign([]["at"], sorted characters), returns []["at""]
+//     Object.assign([]["at"], sorted characters), returns []["at"]
 //
 // This strategy cannot be used for "v" since there may be an arbitrary amount of "u", so adding 1 doesn't work for v like subtracting 1 does for m.
 //
@@ -398,6 +423,8 @@
 //
 // 11050+3960+3960 > 16397+41+41
 //           18970 > 16479        (2491 + 3919n save)
+//
+// Eventually it would be fastest to assign it to Array.prototype
 
 m1:
 11110: "trim"
@@ -466,6 +493,10 @@ m1:
 m1:
 12247: "z"
        (+(3+[5]))["toString"](3+[6])
+
+m1:
+12249: "take"
+       "t"+"a"+"k"+"e"
 
 m1:
 12302: "split"
@@ -596,6 +627,20 @@ m2:
 17845: "prototype"
        "p"+"r"+"o"+"t"+"o"+"t"+"y"+"p"+"e"
 
+m2:
+20694: "groupBy"
+       "g"+"r"+"o"+"u"+"p"+"B"+"y"
+
+m3:
+27690: "{"
+       [("")["at"]]["concat"]([]["flat"]["call"]([]["at"]+"z")["sort"]()["join"](""))["reduce"](Object["assign"])[1+("")["at"][1]["lastIndexOf"]("z")]
+
+// Similar to "m", but I doubt I'll ever use "{" so I won't calculate further usages. For convenience, I use ("")["at"],
+// which is a different but still global object from []["at"]
+
+
+
+
 
 Footnotes: {
    [1]: Array.prototype.at.toString()
@@ -633,6 +678,7 @@ NaN                        N
 Infinity                   Iy
 <numbers and exponents>    0123456789+-.
 [object Array Iterator]    [objc A]
+[object Iterator Helper]   H
 [object Object]            O
 <array toString>           ,
 <"length" property>        gh
@@ -640,23 +686,24 @@ Number#toString            m
 Boolean                    B
 String                     S
 Function                   F
-[object Undefined]         U
 <number toString>          kpqvwxz
+[object Undefined]         U
+Number#toString            {
 
 ABCDEFGHIJKLMNOPQRSTUVWXYZ
-^^   ^  ^   ^     ^ ^
+^^   ^ ^^   ^^^   ^ ^
 abcdefghijklmnopqrstuvwxyz (Done!)
 
 function ( ) { [ native code ] }
          x x x                 x
 
- !"#$%&'()*+,-./0123456789:;<=>?@ A-Z [\]^_` a-z {|}~
-^          ^^^^                   A-Z ^ ^    a-z
+ !"#$%&'()*+,-./0-9:;<=>?@ A-Z [\]^_` a-z {|}~
+^          ^^^^ ^^^        A-Z ^ ^    ^^^ ^
 **/
 
 // Things equivalent to String.prototype.split('')
 // []["slice"]["call"]("test")
-// []["flat"]["call"]("test")
+// []["flat"]["call"]("test") <least expensive
 
 // Although for the slice case, it actually allows us to make a substring:
 // []["slice"]["bind"]("test")(1)["join"]("")
@@ -834,6 +881,7 @@ const chars = {
    "]": 189,
    "-": 213,
    ",": 326,
+   "H": 344,
    "O": 1023,
    "h": 3308,
    "g": 3310,
@@ -849,6 +897,7 @@ const chars = {
    "x": 12222,
    "z": 12247,
    "U": 12578,
+   "{": 27690,
 }
 
 // If we can make a string
