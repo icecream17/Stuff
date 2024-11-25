@@ -313,11 +313,17 @@
 320: "Array"
      "A"+"r"+"r"+"a"+"y"
 
+322: "[object Iterator Helper]"
+     []+[]["entries"]()["filter"]([]["at"])
+
 326: ","
      ([]+[]["flat"]["call"]("false"))[1]
 
 338: "includes"
      "i"+"n"+"c"+"l"+"u"+"d"+"e"+"s"
+
+340: "p"
+     ("[object Iterator Helper]")["20"]
 
 344: "H"
      (NaN+[]["entries"]()["filter"]([]["at"]))["20"]
@@ -328,11 +334,26 @@
 403: "join"
      "j"+"o"+"i"+"n"
 
+428: "split"
+     "s"+"p"+"l"+"i"+"t"
+
+440: "repeat"
+     "r"+"e"+"p"+"e"+"a"+"t"
+
 509: "toArray"
      "t"+"o"+"Array"
 
+554: "drop"
+     "d"+"r"+"o"+"p"
+
 585: "concat"
      "c"+"o"+"n"+"c"+"a"+"t"
+
+620: "splice"
+     "s"+"p"+"l"+"i"+"c"+"e"
+
+626: "replace"
+     "r"+"e"+"p"+"l"+"a"+"c"+"e"
 
 677: "[u-y]"
      "["+"u"+"-"+"y"+"]"
@@ -352,6 +373,12 @@
 849: String
      ("")["constructor"]
 
+852: "replaceAll"
+     "replace"+"A"+"l"+"l"
+
+855: "pop"
+     "p"+"o"+"p"
+
 876: Function
      []["at"]["constructor"]
 
@@ -363,6 +390,9 @@
 
 1023: "O"
       (NaN+Object())["11"]
+
+1187: "prototype"
+      "p"+"r"+"o"+"t"+"o"+"t"+"y"+"p"+"e"
 
 3289: ["length",0]
       Object["entries"](Array["of"]["bind"](Number)())
@@ -387,6 +417,9 @@
 
 3634: "substring"
       "s"+"u"+"b"+"s"+"t"+"r"+"i"+"n"+"g"
+
+3691: "push"
+      "p"+"u"+"s"+"h"
 
 5306: []["concat"]()["reduce"](Object["assign"])
       []["concat"]()["reduce"](Object["assign"])
@@ -439,6 +472,10 @@ m1:
        "s"+"o"+"m"+"e"
 
 m1:
+11407: "map"
+       "m"+"a"+"p"
+
+m1:
 11751: "fromAsync"
        "from"+"A"+"s"+"y"+"n"+"c"
 
@@ -475,10 +512,6 @@ m1:
        (+(3+[1]))["toString"](3+[2])
 
 m1:
-12214: "p"
-       (+(2+[1]+[1]))["toString"](3+[1])[1]
-
-m1:
 12217: "w"
        (+(3+[2]))["toString"](3+[3])
 
@@ -499,16 +532,8 @@ m1:
        "t"+"a"+"k"+"e"
 
 m1:
-12302: "split"
-       "s"+"p"+"l"+"i"+"t"
-
-m1:
 12312: "values"
        "v"+"a"+"l"+"u"+"e"+"s"
-
-m1:
-12314: "repeat"
-       "r"+"e"+"p"+"e"+"a"+"t"
 
 m1:
 12318: "index"
@@ -535,28 +560,20 @@ m1:
        "e"+"v"+"e"+"r"+"y"
 
 m1:
+12410: "padStart"
+       "p"+"a"+"d"+"S"+"t"+"a"+"r"+"t"
+
+m1:
 12411: "toSorted"
        "t"+"o"+"S"+"o"+"r"+"t"+"e"+"d"
-
-m1:
-12428: "drop"
-       "d"+"r"+"o"+"p"
-
-m1:
-12494: "splice"
-       "s"+"p"+"l"+"i"+"c"+"e"
-
-m1:
-12500: "replace"
-       "r"+"e"+"p"+"l"+"a"+"c"+"e"
 
 m1:
 12578: "U"
        (NaN+[]["entries"]()["toString"]["call"]())["11"]
 
 m1:
-12726: "replaceAll"
-       "replace"+"A"+"l"+"l"
+12775: "toSpliced"
+       "t"+"o"+"S"+"p"+"l"+"i"+"c"+"e"+"d"
 
 m1:
 13356: "indexOf"
@@ -579,21 +596,17 @@ m1:
        "i"+"s"+"S"+"a"+"f"+"e"+"I"+"n"+"t"+"e"+"g"+"e"+"r"
 
 m1:
-15565: "push"
-       "p"+"u"+"s"+"h"
-
-m1:
 15569: "with"
        "w"+"i"+"t"+"h"
+
+m1:
+15910: "groupBy"
+       "g"+"r"+"o"+"u"+"p"+"B"+"y"
 
 // saves 7090
 m2:
 16062: "trimStart"
        "trim"+"S"+"t"+"a"+"r"+"t"
-
-m2:
-16191: "map"
-       "m"+"a"+"p"
 
 m2:
 16508: "normalize"
@@ -604,32 +617,12 @@ m1:
        "h"+"a"+"s"+"O"+"w"+"n"
 
 m2:
-17194: "padStart"
-       "p"+"a"+"d"+"S"+"t"+"a"+"r"+"t"
-
-m2:
 17393: "toFixed"
        "t"+"o"+"F"+"i"+"x"+"e"+"d"
 
 m2:
 17441: "isFrozen"
        "is"+"F"+"r"+"o"+"z"+"e"+"n"
-
-m2:
-17513: "pop"
-       "p"+"o"+"p"
-
-m2:
-17559: "toSpliced"
-       "t"+"o"+"S"+"p"+"l"+"i"+"c"+"e"+"d"
-
-m2:
-17845: "prototype"
-       "p"+"r"+"o"+"t"+"o"+"t"+"y"+"p"+"e"
-
-m2:
-20694: "groupBy"
-       "g"+"r"+"o"+"u"+"p"+"B"+"y"
 
 m3:
 27690: "{"
@@ -678,7 +671,7 @@ NaN                        N
 Infinity                   Iy
 <numbers and exponents>    0123456789+-.
 [object Array Iterator]    [objc A]
-[object Iterator Helper]   H
+[object Iterator Helper]   Hp
 [object Object]            O
 <array toString>           ,
 <"length" property>        gh
@@ -686,7 +679,7 @@ Number#toString            m
 Boolean                    B
 String                     S
 Function                   F
-<number toString>          kpqvwxz
+<number toString>          kqvwxz
 [object Undefined]         U
 Number#toString            {
 
@@ -881,6 +874,7 @@ const chars = {
    "]": 189,
    "-": 213,
    ",": 326,
+   "p": 340,
    "H": 344,
    "O": 1023,
    "h": 3308,
@@ -891,7 +885,6 @@ const chars = {
    "F": 11994,
    "k": 12192,
    "v": 12208,
-   "p": 12214,
    "w": 12217,
    "q": 12218,
    "x": 12222,
