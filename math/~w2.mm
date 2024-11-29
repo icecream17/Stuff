@@ -1,4 +1,4 @@
-$[ set.mm $]
+$[ set.mm $] $( Part of https://github.com/xamidi/pmGenerator/discussions/2 $)
 
 $(
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
