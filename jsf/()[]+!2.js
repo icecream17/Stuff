@@ -31,11 +31,12 @@ const JSF = new Proxy({}, {
    set(obj, prop, value) {
       if (value.includes("++") && !value[INTENTIONAL_PLUSPLUS]) throw Error("unintentional plusplus!: " + value);
       safekeep()
-      console.log(value.length, prop, eval(value))
+      console.log(value.length, prop, eval(value), value)
       restore()
       return Reflect.set(obj, prop, value)
    }
 })
+
 
 const preventIndex = s => {s[CANNOT_INDEX] = true; return s}
 const addNumber = (key, s) => JSF[key] = preventIndex(`+${JSF[s]}`)
@@ -47,7 +48,9 @@ const addGet = (key, object, property) => {if (JSF[property][CANNOT_INDEX]) thro
 const addCall = (key, f, arg) => JSF[key] = `${JSF[f]}(${JSF[arg]})`
 const addCall0 = (key, f) => JSF[key] = `${JSF[f]}()`
 const addString = key => addSum(`"${key}"`, key, "[]")
+const addStringF = (key, from) => addSum(`"${key}"`, from, "[]")
 const addWord = (...parts) => addSum(`"${parts.join("")}"`, ...parts.map(k => `"${k}"`))
+const addGetFromNumberRepr = (key, s, property) => JSF[key] = `(+${JSF[s]}+[])[${JSF[property]}]` 
 
 // 2
 JSF["[]"] = "[]"
@@ -105,19 +108,44 @@ addBracket('"NaN"')
 addParen(2)
 addBracket(2)
 
+const addGet5s = (key, s) =>
+   JSF[key] = `(${JSF[false]}+${JSF[s]})[${JSF['"10"']}]`;
+
+const addGet5l = (key, s) =>
+   JSF[key] = `([${JSF[false]}]+${JSF[s]})[${JSF['"10"']}]`;
+
+const addGet5r = (key, s) =>
+   JSF[key] = `(${JSF[false]}+[${JSF[s]}])[${JSF['"10"']}]`;
+
 // 12
-addSum('"falseundefined"', "[false]", undefined)
-addString(2)
+addString(2) // Most of the time just index with the number
 
 // 13
 addGet('"f"', '("false")', 0)
 addSum('"11"', 1, "[1]")
-addParen('"10"')
+
+const addGet7s = (key, s) =>
+// JSF[key] = `(${JSF[NaN]}+${JSF[s]})[${JSF['"10"']}]`; // tied
+   JSF[key] = `(${JSF[true]}+${JSF[s]})[${JSF['"11"']}]`;
+
+const addGet7l = (key, s) =>
+   JSF[key] = `([${JSF[true]}]+${JSF[s]})[${JSF['"11"']}]`;
+
+const addGet7r = (key, s) =>
+   JSF[key] = `(${JSF[true]}+[${JSF[s]}])[${JSF['"11"']}]`;
+
+const addGet8s = (key, s) =>
+   JSF[key] = `(${JSF[NaN]}+${JSF[s]})[${JSF['"11"']}]`;
+
+const addGet8l = (key, s) =>
+   JSF[key] = `([${JSF[NaN]}]+${JSF[s]})[${JSF['"11"']}]`;
+
+const addGet8r = (key, s) =>
+   JSF[key] = `(${JSF[NaN]}+[${JSF[s]}])[${JSF['"11"']}]`;
 
 // 14
 addSum(3, 2, true)
 addGet('"t"', '("true")', 0)
-addParen('"falseundefined"')
 
 // 15
 addSum('"20"', 2, "[0]")
@@ -162,13 +190,13 @@ addSum(5, 4, true)
 addGet('"e"', '("true")', 3)
 
 // 27
-addGet('"i"', '("falseundefined")', '"10"')
+addGet5l('"i"', undefined)
 
 // 29
 addSum(6, 5, true)
 
 // 30
-addString('"at"', '"a"', '"t"')
+addWord(..."at")
 
 // 34
 addGet('[]["at"]', '[]', '"at"')
@@ -182,7 +210,7 @@ addSum(8, 7, true)
 addSum(9, 8, true)
 
 // 45
-addSum('"1e10"', 1, '"e"', '("10")')
+addSum('"1e10"', 1, '"e"', '(1)', '(0)')
 
 // 47
 addParen('"1e10"')
@@ -204,15 +232,9 @@ addWord(..."is")
 addParen('"1e21"')
 addParen('"1e100"')
 
-// 54
-addNumber(1e+21, '("1e21")')
-addNumber(1e+100, '("1e100")')
-
 // 57
 addSum('"1e1000"', 1, '"e"', '(1)', '(0)', '(0)', '(0)')
 addSum('"11e20"', 1, '[1]', '"e"', '(2)', '(0)')
-addString(1e+21)
-addString(1e+100)
 
 // 59
 addParen('"1e1000"')
@@ -220,118 +242,117 @@ addParen('"11e20"')
 
 // 60
 addNumber(Infinity, '("1e1000")')
-addNumber(1.1e+21, '("11e20")')
 
 // 61
 addSum('"isNaN"', '"is"', '(NaN)')
 
+// 62
+addBracket(Infinity)
+
 // 63
 addString(Infinity)
-addString(1.1e+21)
 
 // 64
 addWord(..."flat")
 
 // 65
 addParen('"Infinity"')
-addParen('"1.1e+21"')
 
+// 70
+addGet('"I"', '("Infinity")', 0) // "I" is made explicitly for illustration
+addGetFromNumberRepr('"+"', '("1e21")', 2) // 1e+21
+addGetFromNumberRepr('"+"', '("1e100")', 2) // 1e+100
 
-64: "flat"
-    "f"+"l"+"a"+"t"
+// 72
+addGetFromNumberRepr('"."', '("11e20")', 1) // 1.1e+21
 
-70: "I"
-    (Infinity+[])[0]
+// 81
+addWord(..."fill")
 
-70: "+"
-     ("1e+21")[2]
-     ("1e+100")[2]
+// 83
+addWord(..."find")
 
-72: "."
-     ("1.1e+21")[1]
+// 84
+addGet7r("y", Infinity)
 
-81: "fill"
-    "f"+"i"+"l"+"l"
+// 86
+addWord(..."seal")
 
-83: "find"
-    "f"+"i"+"n"+"d"
+// 110
+addWord(..."return")
 
-84: "y"
-    (NaN+[Infinity])["10"]
-    (true+[Infinity])["11"]
+// 116
+addSum('".0000001"', '"."', '(0)', '(0)', '(0)', '(0)', '(0)', '(0)', '(1)')
 
-86: "seal"
-    "s"+"e"+"a"+"l"
+// 118
+addParen('".0000001"')
 
-110: "return"
-     "r"+"e"+"t"+"u"+"r"+"n"
+// 119
+addWord(..."filter")
 
-119: "filter"
-     "f"+"i"+"l"+"t"+"e"+"r"
+// 135
+addGetFromNumberRepr('"-"', '(".0000001")', 2)
 
-155: "entries"
-     "e"+"n"+"t"+"r"+"i"+"e"+"s"
+// 155
+addWord(..."entries")
 
-161: []["entries"]()
-     []["entries"]()
+// 159
+addGet('[].entries', '[]', '"entries"')
 
-164: "[object Array Iterator]"
-     []["entries"]()+[]
+// 161
+addCall0('[].entries()', '[].entries')
 
-171: "["
-     ("[object Array Iterator]")[0]
+// 164
+addStringF('[object Array Iterator]', '[].entries()')
 
-173: "o"
-     ("[object Array Iterator]")[1]
+// 166
+addParen('"[object Array Iterator]"')
 
-177: "b"
-     ("[object Array Iterator]")[2]
+// 171
+addGet('"["', '("[object Array Iterator]")', 0)
 
-180: "c"
-     (false+[]["entries"]())["10"]
+// 173
+addGet('"o"', '("[object Array Iterator]")', 1)
 
-182: "j"
-     ("[object Array Iterator]")[3]
+// 177
+addGet('"b"', '("[object Array Iterator]")', 2)
 
-183: " "
-     (true+[]["entries"]())["11"]
-     (NaN+[]["entries"]())["10"]
+// 180
+addGet5s('"c"', '[].entries()')
 
-185: "A"
-     (NaN+[]["entries"]())["11"]
+// 182
+addGet('"j"', '("[object Array Iterator]")', 3)
 
-187: "of"
-     "o"+"f"
+// 183
+addGet7s('" "', '[].entries()')
 
-189: "]"
-     ("[object Array Iterator]")["22"]
+// 185
+addGet8s('"A"', '[].entries()')
 
-194: ".0000001"
-     "."+(0)+(0)+(0)+(0)+(0)+(0)+(1)
+// 187
+addWord(..."of")
 
-200: "1e-7"
-     +(".0000001")+[]
+// 189
+addGet('"]"', '("[object Array Iterator]")', '"22"')
 
-213: "-"
-     ("1e-7")[2]
+// 230
+addWord(..."sort")
 
-230: "sort"
-     "s"+"o"+"r"+"t"
+// 236
+addWord(..."call")
 
-236: "call"
-     "c"+"a"+"l"+"l"
+// 247
+addWord(..."bind")
 
-247: "bind"
-     "b"+"i"+"n"+"d"
+// 279
+addWord(..."slice")
 
-279: "slice"
-     "s"+"l"+"i"+"c"+"e"
+// 280
+addWord(..."create")
 
-280: "create"
-     "c"+"r"+"e"+"a"+"t"+"e"
+// 289
+addWord(..."reduce")
 
-289: "reduce"
-     "r"+"e"+"d"+"u"+"c"+"e"
 
 306: []["flat"]["call"]
      []["flat"]["call"]
@@ -898,6 +919,7 @@ const chars = {
    "+": 70,
    ".": 72,
    "y": 84,
+   "-": 135,
    "[": 171,
    "o": 173,
    "b": 177,
@@ -906,7 +928,6 @@ const chars = {
    " ": 183,
    "A": 185,
    "]": 189,
-   "-": 213,
    ",": 326,
    "p": 340,
    "H": 344,
