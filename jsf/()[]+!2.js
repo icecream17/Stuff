@@ -1,32 +1,53 @@
-// length: name
-//         shorthand 1
-//         shorthand 2
-//         shorthand 3
-//         ...
+// Run at https://js.do/celiasnt/log
 
-// Common unmentioned alternatives (shorthands):
-// a+[] === []+a
-// [b]+(c) === [b]+[c]
+const [safekeep, restore] = (() => {
+   const unbound1 = Array.prototype.at
+   const unbound2 = String.prototype.at
 
-const CANNOT_INDEX = new Symbol()
+   return [() => {
+      Array.prototype.at = function at (...args) {
+         if (new.target !== undefined) throw TypeError("not a constructor");
+         return unbound1.call(this, ...args)
+      }
+      String.prototype.at = function at (...args) {
+         if (new.target !== undefined) throw TypeError("not a constructor");
+         return unbound2.call(this, ...args)
+      }
+   }, () => {
+      Array.prototype.at = unbound1
+      String.prototype.at = unbound2
+   }]
+})();
+
+const INTENTIONAL_PLUSPLUS = Symbol("++ was intentional :smile:")
+const CANNOT_INDEX = Symbol("Cannot index!")
 // String.prototype[CANNOT_INDEX] = false // unnecessary
 
 const JSF = new Proxy({}, {
+   get(target, key, receiver) {
+      if (key in target) return Reflect.get(target, key, receiver);
+      throw Error(`${key} is not in JSF!`)
+   },
    set(obj, prop, value) {
-      console.log(`${value.length} | ${prop}`)
+      if (value.includes("++") && !value[INTENTIONAL_PLUSPLUS]) throw Error("unintentional plusplus!: " + value);
+      safekeep()
+      console.log(value.length, prop, eval(value))
+      restore()
       return Reflect.set(obj, prop, value)
    }
 })
+
 const preventIndex = s => {s[CANNOT_INDEX] = true; return s}
 const addNumber = (key, s) => JSF[key] = preventIndex(`+${JSF[s]}`)
 const addNot = (key, s) => JSF[key] = preventIndex(`!${JSF[s]}`)
 const addParen = key => JSF[`(${key})`] = `(${JSF[key]})`
 const addBracket = key => JSF[`[${key}]`] = `[${JSF[key]}]`
 const addSum = (key, ...parts) => JSF[key] = preventIndex(parts.map(k => JSF[k]).join("+"))
-const addGet = (key, object, property) => {if (JSF[property][CANNOT_INDEX]) throw new Error("cannot index");JSF[key] = `${JSF[object]}[${JSF[property]}]`}
+const addGet = (key, object, property) => {if (JSF[property][CANNOT_INDEX]) throw Error("cannot index");return JSF[key] = `${JSF[object]}[${JSF[property]}]`}
 const addCall = (key, f, arg) => JSF[key] = `${JSF[f]}(${JSF[arg]})`
 const addCall0 = (key, f) => JSF[key] = `${JSF[f]}()`
 const addString = key => addSum(`"${key}"`, key, "[]")
+const addWord = (...parts) => addSum(`"${parts.join("")}"`, ...parts.map(k => `"${k}"`))
 
 // 2
 JSF["[]"] = "[]"
@@ -40,9 +61,10 @@ addNot(true, false)
 
 // 5
 addNumber(1, true)
+addParen(0)
 addBracket(0)
 addBracket(false)
-addSum("", "[]", "[]")
+addSum('""', "[]", "[]")
 
 // 6
 addGet(undefined, "[]", "[]")
@@ -53,173 +75,167 @@ addBracket(true)
 
 // 7
 addString(true)
-addParen("")
+addParen('""')
+addParen(1)
+addBracket(1)
 
 // 8
 addString(1)
+addParen(NaN)
+addBracket(NaN)
+addParen('"false"')
 addBracket('"false"')
+addBracket(undefined)
 
 // 9
 addSum(2, true, true)
+addParen('"true"')
+addBracket('"true"')
 addString(undefined)
 addString(NaN)
 addSum('"00"', 0, "[0]")
-
-// 10
 addSum('"0false"', "[0]", "false")
 
 // 11
 addSum('"10"', 1, "[0]")
+addParen('"undefined"')
+addBracket('"undefined"')
+addParen('"NaN"')
+addBracket('"NaN"')
+addParen(2)
+addBracket(2)
 
 // 12
 addSum('"falseundefined"', "[false]", undefined)
 addString(2)
 
+// 13
+addGet('"f"', '("false")', 0)
+addSum('"11"', 1, "[1]")
+addParen('"10"')
 
-13: "f"
-    ("false")[0]
+// 14
+addSum(3, 2, true)
+addGet('"t"', '("true")', 0)
+addParen('"falseundefined"')
 
-13: "11"
-    1+[1]
+// 15
+addSum('"20"', 2, "[0]")
+addGet('"a"', '("false")', 1)
+addSum('"undefinedundefined"', undefined, '[undefined]')
 
-14: 3
-    true+true+true
+// 16
+addGet('"r"', '("true")', 1)
+addGet('"u"', '("undefined")', 0)
+addGet('"N"', '("NaN")', 0)
 
-14: "t"
-    ("true")[0]
+// 17
+addString(3)
+addSum('"12"', 1, "[2]")
+addSum('"21"', 2, "[1]")
+addSum('"100"', '"10"', '(0)') // Concatenating numbers is inefficient. Prefer NaN
 
-15: "20"
-    2+[0]
+// 18
+addGet('"n"', '("undefined")', 1)
 
-15: "a"
-    ("false")[1]
+// 19
+addGet('"l"', '("false")', 2)
+addSum(4, 3, true)
 
-16: "u"
-    ("undefined")[0]
+// 20
+addSum('"30"', 3, "[0]")
 
-16: "r"
-    ("true")[1]
+// 21
+addSum('"22"', 2, "[2]")
 
-16: "N"
-    ("NaN")[0]
+// 22
+addGet('"d"', '("undefined")', 2)
 
-16: "undefinedundefined"
-    []+undefined+undefined
+// 23
+addSum('"1000"', '"100"', '(0)')
 
-17: "3"
-    3+[]
+// 24
+addGet('"s"', '("false")', 3)
+addSum(5, 4, true)
 
-17: "12"
-    1+[2]
+// 25
+addGet('"e"', '("true")', 3)
 
-17: "21":
-    2+[1]
+// 27
+addGet('"i"', '("falseundefined")', '"10"')
 
-17: "100"
-    "10"+[0]
+// 29
+addSum(6, 5, true)
 
-18: "n"
-    ("undefined")[1]
+// 30
+addString('"at"', '"a"', '"t"')
 
-19: "l"
-    ("false")[2]
+// 34
+addGet('[]["at"]', '[]', '"at"')
+addSum(7, 6, true)
 
-19: 4
-    true+true+true+true
+// 39
+addGet('("")["at"]', '("")', '"at"')
+addSum(8, 7, true)
 
-20: "30"
-    3+[0]
+// 44
+addSum(9, 8, true)
 
-21: "22"
-    2+[2]
+// 45
+addSum('"1e10"', 1, '"e"', '("10")')
 
-22: "d"
-    ("undefined")[2]
+// 47
+addParen('"1e10"')
 
-23: "1000"
-    1+[0+[0+[0]]]
-    1+[0]+(0)+(0)
+// 48
+addNumber('10000000000', '("1e10")')
 
-23: "undefinedundefinedundefined"
-    []+undefined+undefined+undefined
+// 49
+addSum('"1e20"', 1, '"e"', '(2)', '(0)')
 
-23: // Get the 5th letter from a string `s`, not including the cost of `s`
-    ("0false"+`s`)["10"]
+// 51
+addSum('"1e21"', 1, '"e"', '(2)', '(1)')
+addSum('"1e100"', 1, '"e"', '(1)', '(0)', '(0)')
 
-24: "s"
-    ("false")[3]
+// 52
+addWord(..."is")
 
-24: 5
-    true+true+true+true+true
+// 53
+addParen('"1e21"')
+addParen('"1e100"')
 
-25: "e"
-    ("true")[3]
+// 54
+addNumber(1e+21, '("1e21")')
+addNumber(1e+100, '("1e100")')
 
-27: "i"
-    ("falseundefined")["10"]
+// 57
+addSum('"1e1000"', 1, '"e"', '(1)', '(0)', '(0)', '(0)')
+addSum('"11e20"', 1, '[1]', '"e"', '(2)', '(0)')
+addString(1e+21)
+addString(1e+100)
 
-29: 6
-    true+true+true+true+true+true
+// 59
+addParen('"1e1000"')
+addParen('"11e20"')
 
-30: "at"
-    "a"+"t"
+// 60
+addNumber(Infinity, '("1e1000")')
+addNumber(1.1e+21, '("11e20")')
 
-34: []["at"]
-    []["at"]
+// 61
+addSum('"isNaN"', '"is"', '(NaN)')
 
-34: 7
-    true+true+true+true+true+true+true
+// 63
+addString(Infinity)
+addString(1.1e+21)
 
-39: ("")["at"]
-    ("")["at"]
+// 64
+addWord(..."flat")
 
-39: 8
-    true+true+true+true+true+true+true+true
+// 65
+addParen('"Infinity"')
+addParen('"1.1e+21"')
 
-44: 9
-    true+true+true+true+true+true+true+true+true
-
-45: "1e10"
-    1+"e"+("10")
-
-48: 10000000000
-    +(1+"e"+("10"))
-
-49: "1e20"
-    1+"e"+(2)+(0)
-
-51: "1e100"
-    1+"e"+(1)+(0)+(0)
-
-51: "1e21"
-    1+"e"+(2)+(1)
-
-51: "undefinedundefinedundefinedundefinedundefinedundefined"
-    []+undefined+undefined+undefined+undefined+undefined+undefined
-
-52: "is"
-    "i"+"s"
-
-55: "100000000000000000000"
-    +("1e20")+[]
-
-57: "1e+100"
-    +("1e100")+[]
-
-57: "1e+21"
-    +("1e21")+[]
-
-57: "11e20"
-    "11"+"e"+(2)+(0)
-
-60: Infinity
-    +(1+"e"+("1000"))
-
-63: "1.1e+21"
-    +("11e20")+[]
-
-63: "isNaN"
-    "is"+(NaN)
 
 64: "flat"
     "f"+"l"+"a"+"t"
