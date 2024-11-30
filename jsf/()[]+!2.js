@@ -8,65 +8,73 @@
 // a+[] === []+a
 // [b]+(c) === [b]+[c]
 
-// Add an underscore before every /[0-9]+:/g to make this valid javascript
+const CANNOT_INDEX = new Symbol()
+// String.prototype[CANNOT_INDEX] = false // unnecessary
 
-3: 0
-   +[]
+const JSF = new Proxy({}, {
+   set(obj, prop, value) {
+      console.log(`${value.length} | ${prop}`)
+      return Reflect.set(obj, prop, value)
+   }
+})
+const preventIndex = s => {s[CANNOT_INDEX] = true; return s}
+const addNumber = (key, s) => JSF[key] = preventIndex(`+${JSF[s]}`)
+const addNot = (key, s) => JSF[key] = preventIndex(`!${JSF[s]}`)
+const addParen = key => JSF[`(${key})`] = `(${JSF[key]})`
+const addBracket = key => JSF[`[${key}]`] = `[${JSF[key]}]`
+const addSum = (key, ...parts) => JSF[key] = preventIndex(parts.map(k => JSF[k]).join("+"))
+const addGet = (key, object, property) => {if (JSF[property][CANNOT_INDEX]) throw new Error("cannot index");JSF[key] = `${JSF[object]}[${JSF[property]}]`}
+const addCall = (key, f, arg) => JSF[key] = `${JSF[f]}(${JSF[arg]})`
+const addCall0 = (key, f) => JSF[key] = `${JSF[f]}()`
+const addString = key => addSum(`"${key}"`, key, "[]")
 
-3: false
-   ![]
+// 2
+JSF["[]"] = "[]"
 
-4: true
-   !![]
+// 3
+addNumber(0, "[]")
+addNot(false, "[]")
 
-5: 1
-   +true
+// 4
+addNot(true, false)
 
-6: undefined
-   [][[]]
+// 5
+addNumber(1, true)
+addBracket(0)
+addBracket(false)
+addSum("", "[]", "[]")
 
-6: NaN
-   +[false]
+// 6
+addGet(undefined, "[]", "[]")
+addNumber(NaN, "[false]")
+addString(0)
+addString(false)
+addBracket(true)
 
-6: "0"
-   0+[]
+// 7
+addString(true)
+addParen("")
 
-6: "false"
-   false+[]
+// 8
+addString(1)
+addBracket('"false"')
 
-7: "true"
-   true+[]
+// 9
+addSum(2, true, true)
+addString(undefined)
+addString(NaN)
+addSum('"00"', 0, "[0]")
 
-7: ("")
-   ([]+[])
+// 10
+addSum('"0false"', "[0]", "false")
 
-8: "1"
-   1+[]
+// 11
+addSum('"10"', 1, "[0]")
 
-9: 2
-   true+true
+// 12
+addSum('"falseundefined"', "[false]", undefined)
+addString(2)
 
-9: "undefined"
-   undefined+[]
-
-9: "00"
-   0+[0]
-
-9: "NaN"
-    NaN+[]
-
-9: "0false"
-   0+[false]
-   [0]+false
-
-11: "10"
-    1+[0]
-
-12: "falseundefined"
-    [false]+undefined
-
-12: "2"
-    2+[]
 
 13: "f"
     ("false")[0]
@@ -239,6 +247,9 @@
 86: "seal"
     "s"+"e"+"a"+"l"
 
+110: "return"
+     "r"+"e"+"t"+"u"+"r"+"n"
+
 119: "filter"
      "f"+"i"+"l"+"t"+"e"+"r"
 
@@ -337,8 +348,17 @@
 428: "split"
      "s"+"p"+"l"+"i"+"t"
 
+432: []["entries"]()["filter"]([]["at"])["return"]()
+     []["entries"]()["filter"]([]["at"])["return"]()
+
+435: "[object Object]"
+     []+[]["entries"]()["filter"]([]["at"])["return"]()
+
 440: "repeat"
      "r"+"e"+"p"+"e"+"a"+"t"
+
+456: "O"
+      (NaN+[]["entries"]()["filter"]([]["at"])["return"]())["11"]
 
 509: "toArray"
      "t"+"o"+"Array"
@@ -382,43 +402,40 @@
 876: Function
      []["at"]["constructor"]
 
-997: Object
+997: Iterator
      []["entries"]()["constructor"]
-
-1002: "[object Object]"
-      []+Object()
-
-1023: "O"
-      (NaN+Object())["11"]
 
 1187: "prototype"
       "p"+"r"+"o"+"t"+"o"+"t"+"y"+"p"+"e"
 
-3289: ["length",0]
+1268: Object
+      []["entries"]()["filter"]([]["at"])["return"]()["constructor"]
+
+3560: ["length",0]
       Object["entries"](Array["of"]["bind"](Number)())
 
-3294: "length"
+3565: "length"
       ["length",0][0]
 
-3308: "h"
+3579: "h"
       (false+["length",0])["10"]
 
-3310: "g"
+3581: "g"
       "length"[3]
 
-3423: "assign"
+3694: "assign"
       "a"+"s"+"s"+"i"+"g"+"n"
 
-3537: "isInteger"
+3808: "isInteger"
       "is"+"I"+"n"+"t"+"e"+"g"+"e"+"r"
 
-3573: "search"
+3844: "search"
       "s"+"e"+"a"+"r"+"c"+"h"
 
-3634: "substring"
+3905: "substring"
       "s"+"u"+"b"+"s"+"t"+"r"+"i"+"n"+"g"
 
-3691: "push"
+3962: "push"
       "p"+"u"+"s"+"h"
 
 5306: []["concat"]()["reduce"](Object["assign"])
@@ -427,7 +444,7 @@
 // [A]["concat"](B)["reduce"](Object["assign"])
 // is the same as A[0] = A, A[1] = B
 //
-// If B is an array, A[index+1] = B[index]
+// If B is a string, A[index] = B[index] starting from index 2
 // Returns A
 
 11050: "m"
@@ -630,9 +647,10 @@ m3:
 
 // Similar to "m", but I doubt I'll ever use "{" so I won't calculate further usages. For convenience, I use ("")["at"],
 // which is a different but still global object from []["at"]
-
-
-
+//
+// []["at"][[]["flat"]["call"]("z"+[]["at"][1])["sort"]()["join"]("")["lastIndexOf"]("z")]
+//                             1   ^^^^^^^^^^^                                 2     3
+// would work but only once, as long as the third usage of m comes before the "^^^..." but at least one usage happens before.
 
 
 Footnotes: {
@@ -876,9 +894,9 @@ const chars = {
    ",": 326,
    "p": 340,
    "H": 344,
-   "O": 1023,
-   "h": 3308,
-   "g": 3310,
+   "O": 456,
+   "h": 3579,
+   "g": 3581,
    "m": 11050,
    "B": 11965,
    "S": 11967,
