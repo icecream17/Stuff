@@ -45,6 +45,7 @@ const addParen = key => JSF[`(${key})`] = `(${JSF[key]})`
 const addBracket = key => JSF[`[${key}]`] = `[${JSF[key]}]`
 const addSum = (key, ...parts) => JSF[key] = preventIndex(parts.map(k => JSF[k]).join("+"))
 const addGet = (key, object, property) => {if (JSF[property][CANNOT_INDEX]) throw Error("cannot index");return JSF[key] = `${JSF[object]}[${JSF[property]}]`}
+const addParenGet = (key, object, property) => JSF[key] = `(${JSF[object]})[${JSF[property]}]`
 const addCall = (key, f, arg) => JSF[key] = `${JSF[f]}(${JSF[arg]})`
 const addCall0 = (key, f) => JSF[key] = `${JSF[f]}()`
 const addString = key => addSum(`"${key}"`, key, "[]")
@@ -143,6 +144,9 @@ const addGet8l = (key, s) =>
 const addGet8r = (key, s) =>
    JSF[key] = `(${JSF[NaN]}+[${JSF[s]}])[${JSF['"11"']}]`;
 
+const addGet17s = (key, s) =>
+   JSF[key] = `(${JSF[true]}+${JSF[s]})[${JSF['"21"']}]`;
+
 // 14
 addSum(3, 2, true)
 addGet('"t"', '("true")', 0)
@@ -150,12 +154,12 @@ addGet('"t"', '("true")', 0)
 // 15
 addSum('"20"', 2, "[0]")
 addGet('"a"', '("false")', 1)
-addSum('"undefinedundefined"', undefined, '[undefined]')
 
 // 16
 addGet('"r"', '("true")', 1)
 addGet('"u"', '("undefined")', 0)
 addGet('"N"', '("NaN")', 0)
+addSum('"undefinedundefined"', '[]', undefined, undefined)
 
 // 17
 addString(3)
@@ -199,11 +203,11 @@ addSum(6, 5, true)
 addWord(..."at")
 
 // 34
-addGet('[]["at"]', '[]', '"at"')
+addGet('[].at', '[]', '"at"')
 addSum(7, 6, true)
 
 // 39
-addGet('("")["at"]', '("")', '"at"')
+addGet('("").at', '("")', '"at"')
 addSum(8, 7, true)
 
 // 44
@@ -258,6 +262,9 @@ addWord(..."flat")
 // 65
 addParen('"Infinity"')
 
+// 68
+addGet('[].flat', '[]', '"flat"')
+
 // 70
 addGet('"I"', '("Infinity")', 0) // "I" is made explicitly for illustration
 addGetFromNumberRepr('"+"', '("1e21")', 2) // 1e+21
@@ -273,7 +280,7 @@ addWord(..."fill")
 addWord(..."find")
 
 // 84
-addGet7r("y", Infinity)
+addGet7r('"y"', Infinity)
 
 // 86
 addWord(..."seal")
@@ -350,73 +357,84 @@ addWord(..."slice")
 // 280
 addWord(..."create")
 
+// 282
+addGet('[].entries().filter', '[].entries()', '"filter"')
+
 // 289
 addWord(..."reduce")
 
+// 306
+addGet('[].flat.call', '[].flat', '"call"')
+// Shortest equivalent to "".split
 
-306: []["flat"]["call"]
-     []["flat"]["call"]
-// Shortest code equivalent to []["split"]
+// 314
+addCall('[].flat.call("false")', '[].flat.call', '"false"')
 
-320: "Array"
-     "A"+"r"+"r"+"a"+"y"
+// 317
+addStringF('f,a,l,s,e', '[].flat.call("false")')
 
-322: "[object Iterator Helper]"
-     []+[]["entries"]()["filter"]([]["at"])
+// 318
+addCall('[].entries().filter([].at)', '[].entries().filter', '[].at')
 
-326: ","
-     ([]+[]["flat"]["call"]("false"))[1]
+// 320
+addWord(..."Array")
 
-338: "includes"
-     "i"+"n"+"c"+"l"+"u"+"d"+"e"+"s"
+// 321
+addStringF('[object Iterator Helper]', '[].entries().filter([].at)')
 
-340: "p"
-     ("[object Iterator Helper]")["20"]
+// 326
+addParenGet('","', '"f,a,l,s,e"', 1)
 
-344: "H"
-     (NaN+[]["entries"]()["filter"]([]["at"]))["20"]
+// 338
+addWord(..."includes")
 
-373: "isArray"
-     "is"+"Array"
+// 340
+addParenGet('"p"', '"[object Iterator Helper]"', '"20"')
 
-403: "join"
-     "j"+"o"+"i"+"n"
+// 344
+addGet17s('"H"', '[].entries().filter([].at)')
 
-428: "split"
-     "s"+"p"+"l"+"i"+"t"
+// 373
+addWord("is", "Array")
 
-432: []["entries"]()["filter"]([]["at"])["return"]()
-     []["entries"]()["filter"]([]["at"])["return"]()
+// 403
+addWord(..."join")
 
-435: "[object Object]"
-     []+[]["entries"]()["filter"]([]["at"])["return"]()
+// 428
+addWord(..."split")
 
-440: "repeat"
-     "r"+"e"+"p"+"e"+"a"+"t"
+// 430
+addGet('[].entries().filter([].at).return', '[].entries().filter([].at)', '"return"')
 
-456: "O"
-      (NaN+[]["entries"]()["filter"]([]["at"])["return"]())["11"]
+// 432
+addCall0('[].entries().filter([].at).return()', '[].entries().filter([].at).return')
 
-509: "toArray"
-     "t"+"o"+"Array"
+// 440
+addWord(..."repeat")
 
-554: "drop"
-     "d"+"r"+"o"+"p"
+// 456
+addGet8s('"O"', '[].entries().filter([].at).return()')
 
-585: "concat"
-     "c"+"o"+"n"+"c"+"a"+"t"
+// 509
+addWord(..."to", "Array")
 
-620: "splice"
-     "s"+"p"+"l"+"i"+"c"+"e"
+// 554
+addWord(..."drop")
 
-626: "replace"
-     "r"+"e"+"p"+"l"+"a"+"c"+"e"
+// 585
+addWord(..."concat")
 
-677: "[u-y]"
-     "["+"u"+"-"+"y"+"]"
+// 599
+addWord(..."[u-y]")
 
-834: "constructor"
-     "c"+"o"+"n"+"s"+"t"+"r"+"u"+"c"+"t"+"o"+"r"
+// 620
+addWord(..."splice")
+
+// 626
+addWord(..."replace")
+
+// 834
+addWord(..."constructor")
 
 844: Array
      []["constructor"]
@@ -564,6 +582,14 @@ m1:
 m1:
 12208: "v"
        (+(3+[1]))["toString"](3+[2])
+
+// TODO:
+// Check if
+// (Object.entries([].entries().filter([].at).return())+[]).replace("done,true", "").replaceAll(",", "")[0]
+// is shorter
+//
+// ie [","].concat("").reduce("".replaceAll.bind(["done,true"].concat("").reduce(
+//        "".replace.bind((Object.entries([].entries().filter([].at).return())+[])) )))[0]
 
 m1:
 12217: "w"
