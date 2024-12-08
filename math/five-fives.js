@@ -1,0 +1,208 @@
+class Expr {
+  constructor (a, b, op, fives) {
+    this.a = a
+    this.b = b
+    this.op = op
+    this.fives = fives
+  }
+
+  static create(a, b, op) {
+    return new Expr(a, b, op, a.fives + b.fives)
+  }
+
+  isBase() {
+    return this.op === null
+  }
+
+  ponasuli(otherExpr) {
+    const tl = this.tierlist()
+    const ot = otherExpr.tierlist()
+    if (tl[1] === ot[1]) {
+      return tl[0] - ot[0]
+    } else {
+      return tl[1] - ot[1]
+    }
+  }
+
+  tierlist() {
+    if (this.isBase()) {
+      return [+`${this.a}`.includes("."), 0]
+    }
+
+    let tl = [0, 0]
+    if (this.a !== null) {
+      const [o, t] = this.a.tierlist()
+      tl[0] += o
+      tl[1] += t
+    }
+    if (this.b !== null) {
+      const [o, t] = this.b.tierlist()
+      tl[0] += o
+      tl[1] += t
+    }
+    tl[this.tier()]++;
+    return tl
+  }
+
+  tier() {
+    return {
+      "+": 0,
+      "-": 0,
+      "*": 0,
+      "/": 0,
+      "^": 0,
+      "!": 1,
+      "√": 1,
+    }[this.op]
+  }
+
+  precedence() {
+    return {
+      "+": 1,
+      "-": 1,
+      "*": 2,
+      "/": 2,
+      "^": 3,
+      "!": 4,
+      "√": 3,
+    }[this.op]
+  }
+
+  valueOf() {
+    if (this.isBase()) return this.a;
+    if (this.op === "√") {
+      if (this.a === null) return this.b ** 0.5;
+      return this.b ** (1 / this.a)
+    }
+    if (this.op === "!") {
+      return factorial(+this.a)
+    }
+    if (this.op === "+") {
+      return +this.a + +this.b
+    }
+    if (this.op === "^") {
+      return this.a ** this.b
+    }
+    if (this.op === "-") {
+      return this.a - this.b
+    }
+    if (this.op === "*") {
+      return this.a * this.b
+    }
+    if (this.op === "/") {
+      return this.a / this.b
+    }
+  }
+
+  toString() {
+    if (this.isBase()) return `${this.a}`;
+    if (this.op === "√") {
+      const aPart = this.a === null ? "" : `{${this.a}}`
+      const bParen = this.b.precedence() < this.precedence()
+      const bPart = bParen ? `(${this.b})` : `${this.b}`
+      return `${aPart}√${bPart}`
+    }
+
+    const aParen = this.a.precedence() < this.precedence()
+    const aPart = aParen ? `(${this.a})` : `${this.a}`
+
+    if (this.op === "!") {
+      return `${aPart}!`
+    }
+    
+    if ("+-*/^".includes(this.op)) {
+      const bParen = this.b.precedence() < this.precedence()
+      const bPart = bParen ? `(${this.b})` : `${this.b}`
+      return `${aPart}${this.op}${bPart}`
+    }
+  }
+}
+
+const factorial = n => gamma(n + 1)
+
+function gamma(z) {
+  if (z < 0.5) return Math.PI / (Math.sin(Math.PI * z) * gamma(1 - z));
+  else {
+    const g = 7;
+    const C = [0.99999999999980993, 676.5203681218851, -1259.1392167224028,771.32342877765313, -176.61502916214059, 12.507343278686905, -0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7];
+
+    z -= 1;
+
+    let x = C[0];
+    for (let i = 1; i < g + 2; i++)
+      x += C[i] / (z + i);
+
+    const t = z + g + 0.5;
+    return Math.sqrt(2 * Math.PI) * Math.pow(t, (z + 0.5)) * Math.exp(-t) * x;
+  }
+}
+
+
+
+
+
+const base = [
+  [],
+  [5, .5],
+  [55, 5.5, .55],
+  [555, 55.5, 5.55, .555],
+  [5555, 555.5, 55.55, 5.555, .5555],
+  [55555]
+].flatMap((a, i) => a.map(b => new Expr(b, null, null, i)))
+
+const best = [null, {}, {}, {}, {}, {}]
+let todo = new Set(base)
+
+const calculateNextLayer = () => {
+  let made = new Set()
+
+  const tryAdd = expr => {
+    if (expr.fives > 5) return;
+    
+    const v = +expr
+    if (Math.abs(v) > 1_000_000) return;
+
+    for (let f = expr.fives; f <= 5; f++) {
+      if (v in best[f]) {
+        if (best[f][v].ponasuli(expr) > 0) {
+          best[f][v].a = expr.a
+          best[f][v].b = expr.b
+          best[f][v].op = expr.op
+          best[f][v].fives = expr.fives
+          made.add(expr)
+          if (Number.isInteger(v) && v >= 0 && expr.fives === 5) {
+            console.log(`${expr}`, v, expr.fives, expr.tierlist(), expr)
+          }
+        }
+      } else {
+        best[f][v] = expr
+        made.add(expr)
+        if (Number.isInteger(v) && v >= 0 && expr.fives === 5) {
+          console.log(`${expr}`, v, expr.fives, expr.tierlist(), expr)
+        }
+      }
+    }
+  }
+
+  for (const expr of todo) {
+    if (expr.isBase()) tryAdd(expr);
+    //tryAdd(new Expr(expr, null, "!", expr.fives))
+    //tryAdd(new Expr(null, expr, "√", expr.fives))
+    for (let i = 1; i <= 4; i++) {
+       for (const ponai in best[i]) {
+          const pona = best[i][ponai]
+          tryAdd(Expr.create(expr, pona, "+"))
+          tryAdd(Expr.create(pona, expr, "+"))
+          tryAdd(Expr.create(expr, pona, "-"))
+          tryAdd(Expr.create(pona, expr, "-"))
+          tryAdd(Expr.create(expr, pona, "*"))
+          tryAdd(Expr.create(pona, expr, "*"))
+          tryAdd(Expr.create(expr, pona, "/"))
+          tryAdd(Expr.create(pona, expr, "/"))
+          tryAdd(Expr.create(expr, pona, "^"))
+          tryAdd(Expr.create(pona, expr, "^"))
+       }
+    }
+  }
+  todo = made
+}
