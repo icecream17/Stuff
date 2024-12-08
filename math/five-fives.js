@@ -103,7 +103,8 @@ class Expr {
       return `${aPart}√${bPart}`
     }
 
-    const aParen = this.a.precedence() < this.precedence()
+    const aParen = this.a.precedence() < this.precedence() ||
+                   this.op === "^" && this.b.precedence() === this.precedence()
     const aPart = aParen ? `(${this.a})` : `${this.a}`
 
     if (this.op === "!") {
@@ -111,7 +112,8 @@ class Expr {
     }
     
     if ("+-*/^".includes(this.op)) {
-      const bParen = this.b.precedence() < this.precedence()
+      const bParen = this.b.precedence() < this.precedence() ||
+                     "-/".includes(this.op) && this.b.precedence() === this.precedence()
       const bPart = bParen ? `(${this.b})` : `${this.b}`
       return `${aPart}${this.op}${bPart}`
     }
@@ -162,24 +164,21 @@ const calculateNextLayer = () => {
     const v = +expr
     if (Math.abs(v) > 1_000_000) return;
 
-    for (let f = expr.fives; f <= 5; f++) {
-      if (v in best[f]) {
-        if (best[f][v].ponasuli(expr) > 0) {
-          best[f][v].a = expr.a
-          best[f][v].b = expr.b
-          best[f][v].op = expr.op
-          best[f][v].fives = expr.fives
-          made.add(expr)
-          if (Number.isInteger(v) && v >= 0 && expr.fives === 5) {
-            console.log(`${expr}`, v, expr.fives, expr.tierlist(), expr)
-          }
-        }
-      } else {
-        best[f][v] = expr
+    if (v in best[expr.fives]) {
+      if (best[expr.fives][v].ponasuli(expr) > 0) {
+        best[expr.fives][v].a = expr.a
+        best[expr.fives][v].b = expr.b
+        best[expr.fives][v].op = expr.op
         made.add(expr)
-        if (Number.isInteger(v) && v >= 0 && expr.fives === 5) {
-          console.log(`${expr}`, v, expr.fives, expr.tierlist(), expr)
+        if (Number.isInteger(v) && v >= 0 && v < 300 && expr.fives === 5) {
+          console.log(v, `${expr}`, expr.fives, expr.tierlist(), expr)
         }
+      }
+    } else {
+      best[expr.fives][v] = expr
+      made.add(expr)
+      if (Number.isInteger(v) && v >= 0 && v < 300 && expr.fives === 5) {
+        console.log(v, `${expr}`, expr.fives, expr.tierlist(), expr)
       }
     }
   }
@@ -206,3 +205,16 @@ const calculateNextLayer = () => {
   }
   todo = made
 }
+
+/*
+
+calculateNextLayer()
+calculateNextLayer()
+calculateNextLayer()
+calculateNextLayer()
+calculateNextLayer()
+for (let i = 0; i < 300; i++) {
+    console.log(i, `${best[5][i]}`)
+}
+
+*/
