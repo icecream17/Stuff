@@ -95,7 +95,10 @@ class Expr {
   }
 
   toString() {
-    if (this.isBase()) return `${this.a}`;
+    if (this.isBase()) {
+      const s = `${this.a}`
+      return s.startsWith('0') ? s.slice(1) : s
+    }
     if (this.op === "√") {
       const aPart = this.a === null ? "" : `{${this.a}}`
       const bParen = this.b.precedence() < this.precedence()
@@ -163,6 +166,7 @@ const calculateNextLayer = () => {
     
     const v = +expr
     if (Math.abs(v) > 1_000_000) return;
+    if (!Number.isInteger(v) && "!√".includes(expr.op)) return; // the space explodes too much
 
     if (v in best[expr.fives]) {
       if (best[expr.fives][v].ponasuli(expr) > 0) {
@@ -183,10 +187,9 @@ const calculateNextLayer = () => {
     }
   }
 
+  let j = 0
   for (const expr of todo) {
     if (expr.isBase()) tryAdd(expr);
-    //tryAdd(new Expr(expr, null, "!", expr.fives))
-    //tryAdd(new Expr(null, expr, "√", expr.fives))
     for (let i = 1; i <= 4; i++) {
        for (const ponai in best[i]) {
           const pona = best[i][ponai]
@@ -202,19 +205,22 @@ const calculateNextLayer = () => {
           tryAdd(Expr.create(pona, expr, "^"))
        }
     }
+    tryAdd(new Expr(expr, null, "!", expr.fives))
+    tryAdd(new Expr(null, expr, "√", expr.fives))
+    j++
+    if (j % 77 === 0) console.debug("progress", j);
   }
   todo = made
+  console.info("layer done")
 }
 
-/*
-
 calculateNextLayer()
 calculateNextLayer()
 calculateNextLayer()
 calculateNextLayer()
 calculateNextLayer()
+let s = ""
 for (let i = 0; i < 300; i++) {
-    console.log(i, `${best[5][i]}`)
+    s += `${i} (${best[5][i]?.tierlist?.()}) = ${best[5][i]}\n`
 }
-
-*/
+console.log(s)
