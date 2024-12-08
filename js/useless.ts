@@ -12,11 +12,11 @@
  * https://github.com/pulsar-edit/superstring/blob/eb0cc0990017dc7aa4a7322ab0f65021765886d3/index.js#L18
  */
 function unnecessaryFunctionPrototypeCallUsage(
-    findSync: (...args: any) => unknown, pattern: RegExp, ignoreCase: boolean, unicode: string,
-    range: { start: { row: number, column: number }, end: { row: number, column: number } }
+   findSync: (...args: any) => unknown, pattern: RegExp, ignoreCase: boolean, unicode: string,
+   range: { start: { row: number, column: number }, end: { row: number, column: number } }
 ) {
-    const result = findSync.call(this, pattern, ignoreCase, unicode, range)
-    console.debug(result)
+   const result = findSync.call(this, pattern, ignoreCase, unicode, range)
+   console.debug(result)
 }
 
 /**
@@ -27,8 +27,8 @@ function unusedParameter(unused: number) {
 }
 
 /**
- * This function does not actually need the start parameter
- * Also see https://github.com/rust-lang/rust/pull/96027
+ * This function does not actually need the `start` parameter
+ * Example: https://github.com/rust-lang/rust/pull/96027
  */
 function unusedRecursiveParameter(current: number, start: number, list: number[] = []): number[] {
    list.push(current)
@@ -41,6 +41,42 @@ function unusedRecursiveParameter(current: number, start: number, list: number[]
    } else {
       return unusedRecursiveParameter(current / 2, start, list)
    }
+}
+
+/**
+ * There are simpler array manipulations to do the same thing
+ * Example: https://github.com/liquidcarrot/carrot/pull/258
+ */
+function arrayMethodSimplification() {
+   const arr1 = [3, 2, 1]
+
+   arr1.map(num => num === 2 ? [2, 2] : 1).flat()
+   arr1.flatMap(num => num === 2 ? [2, 2] : 1)
+
+   arr1.splice(0, 0, Infinity) // []
+   arr1.unshift(Infinity) // 5
+
+   arr1.splice(0, 1) // [Infinity]
+   arr1.shift() // Infinity
+
+   arr1.splice(arr1.length, 0, NaN) // []
+   arr1.push(NaN) // 5
+
+   arr1.splice(arr1.length - 1, 1) // [NaN]
+   arr1.pop() // NaN
+
+   arr1.slice(-1) // [1]
+   arr1.at(-1) // 1
+
+   arr1.slice(0, 1) // [3]
+   arr1[0] // 3
+
+   const n = Math.floor(Math.random() * arr1.length)
+   arr1.slice(n, n+1)
+   arr1[n]
+
+   arr1.splice(n, n+1, -0)
+   arr1[n] = -0
 }
 
 /**
