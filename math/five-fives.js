@@ -123,7 +123,14 @@ class Expr {
   }
 }
 
-const factorial = n => gamma(n + 1)
+const F = [1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880, 3628800]
+const factorial = n => {
+  if (Number.isInteger(n)) {
+     if (n < 0) return NaN;
+     if (n in F) return F[n];
+  }
+  return gamma(n + 1)
+}
 
 function gamma(z) {
   if (z < 0.5) return Math.PI / (Math.sin(Math.PI * z) * gamma(1 - z));
