@@ -17,28 +17,34 @@ class Expr {
   ponasuli(otherExpr) {
     const tl = this.tierlist()
     const ot = otherExpr.tierlist()
-    if (tl[1] === ot[1]) {
-      return tl[0] - ot[0]
+    if (tl[2] === ot[2]) {
+      if (tl[1] === ot[1]) {
+        return tl[0] - ot[0]
+      } else {
+        return tl[1] - ot[1]
+      }
     } else {
-      return tl[1] - ot[1]
+      return tl[2] - ot[2]
     }
   }
 
   tierlist() {
     if (this.isBase()) {
-      return [+`${this.a}`.includes("."), 0]
+      return [+`${this.a}`.includes("."), 0, +(this.b === "repeat")]
     }
 
-    let tl = [0, 0]
+    let tl = [0, 0, 0]
     if (this.a !== null) {
-      const [o, t] = this.a.tierlist()
+      const [o, t, m] = this.a.tierlist()
       tl[0] += o
       tl[1] += t
+      tl[2] += m
     }
     if (this.b !== null) {
-      const [o, t] = this.b.tierlist()
+      const [o, t, m] = this.b.tierlist()
       tl[0] += o
       tl[1] += t
+      tl[2] += m
     }
     tl[this.tier()]++;
     return tl
@@ -69,7 +75,9 @@ class Expr {
   }
 
   valueOf() {
-    if (this.isBase()) return this.a;
+    if (this.isBase()) {
+      return this.b === "repeat" ? this.a - .5 + 5/9 : this.a
+    }
     if (this.op === "√") {
       if (this.a === null) return this.b ** 0.5;
       return this.b ** (1 / this.a)
@@ -97,7 +105,7 @@ class Expr {
   toString() {
     if (this.isBase()) {
       const s = `${this.a}`
-      return s.startsWith('0') ? s.slice(1) : s
+      return (s.startsWith('0') ? s.slice(1) : s) + (this.b === "repeat" ? "r" : "")
     }
     if (this.op === "√") {
       const aPart = this.a === null ? "" : `{${this.a}}`
@@ -160,7 +168,12 @@ const base = [
   [555, 55.5, 5.55, .555],
   [5555, 555.5, 55.55, 5.555, .5555],
   [55555]
-].flatMap((a, i) => a.map(b => new Expr(b, null, null, i)))
+].flatMap((a, i) => a.flatMap((b, j) =>
+  j === 1 ? [
+    new Expr(b, "repeat", null, i), // comment this line out to disable repeated decimal five (.5r = 5/9)
+    new Expr(b, null, null, i)
+  ] : new Expr(b, null, null, i)
+))
 
 const best = [null, {}, {}, {}, {}, {}]
 let todo = new Set(base)
@@ -195,6 +208,7 @@ const calculateNextLayer = () => {
   }
 
   let j = 0
+  const size = todo.size
   for (const expr of todo) {
     if (expr.isBase()) tryAdd(expr);
     for (let i = 1; i <= 4; i++) {
@@ -215,7 +229,7 @@ const calculateNextLayer = () => {
     tryAdd(new Expr(expr, null, "!", expr.fives))
     tryAdd(new Expr(null, expr, "√", expr.fives))
     j++
-    if (j % 77 === 0) console.debug("progress", j);
+    if (j % 77 === 0) console.debug("progress", j, j / size);
   }
   todo = made
   console.info("layer done")
@@ -227,7 +241,9 @@ calculateNextLayer()
 calculateNextLayer()
 calculateNextLayer()
 let s = ""
-for (let i = 0; i < 300; i++) {
-    s += `${i} (${best[5][i]?.tierlist?.()}) = ${best[5][i]}\n`
+for (let i = 0; i < 1000; i++) {
+    const tl = best[5][i]?.tierlist?.()
+    while (tl?.at(-1) === 0) tl.pop();
+    s += `${i} (${tl}) = ${best[5][i]}\n`
 }
 console.log(s)
