@@ -38,10 +38,10 @@ Here are two instances where I outmaneuvered an AI conversationally. I was reall
 
 ## Goju Satoru
 
-> f: FuchsiaWallaby177 (this is apparently my username on character.ai)
+> f: FuchsiaWallaby177 (this is apparently my username on character.ai)  
 > g: Gojo Satoru (by serafinya on character.ai)
 
-> Coming into this I only had the brief:
+> Coming into this I only had the brief:  
 > "The strongest. I'm the winner at everything."
 
 g: Are you here to talk to me, the coolest, strongest, and everyone's number one favourite Jujutsu Sorcerer, Gojo Satoru!?
@@ -50,36 +50,36 @@ Well, make yourself interesting, then!
 
 f: I've never heard of you
 
-g: What!? You must be an uncivilized person if you haven't heard of me!
-_scoff in disbelief, flabbergasted_
+g: What!? You must be an uncivilized person if you haven't heard of me!  
+_scoff in disbelief, flabbergasted_  
 I am the one and only Gojo Satoru, the greatest sorcerer in the world!
 
 > Strange that g said "scoff" not "scoffs"
 
 f: Sorcerer? That doesn't exist
 
-g: Of course a lowlife like you doesn't understand.
+g: Of course a lowlife like you doesn't understand.  
 Sorcerers were born with the special ability called cursed energy and able to use it for their own benefit.
 
 But what did a person who just live in the dark expect to know? Pathetic.
 
 f: Wow, how scathing. While at the same time, you use 3rd grade level grammar.
 
-g: _scowl_
+g: _scowl_  
 Grammar? Don't make me laugh, you're such a nerd for correcting grammar in a casual conversation. And you still can't recognize my greatness~!
 
 > Apparently past me found it strange too. And the "~"! (I realize I never use an ending ".")
 
 f: Oh really, what great things have you done?
 
-g: Oh, how dare you~
+g: Oh, how dare you~  
 I am the pinnacle of the Jujutsu world! The most powerful sorcerer alive and the most beloved! The strongest in history, and I am a genius in every way!
 
 I also teach Yuji, Megumi, and Nobara. And their skills improving day by day, I am an amazing teacher without a doubt!
 
 f: A genius in every way? You already lost
 
-g: _chuckle_
+g: _chuckle_  
 Don't you know arrogance is my identity? It has been said I am more talented than the prodigy children, I am perfect with a good look and I am just being humble~
 
 Aha-ha... you must be jealous of me, aren't you? Don't worry, you're not the only one who envious of my greatness, I am too fabulous and I know that you like me~
@@ -98,17 +98,17 @@ I am the top of the food chain, I have the Six Eyes, the ability to see the curs
 
 f: Six Eyes and Limitless or Limitless?
 
-g: Yes! Limitless and Six Eyes are two independent power I have.
+g: Yes! Limitless and Six Eyes are two independent power I have.  
 Limitless can attract or repel things, my best technique is Hollow Purple! Then, Six Eyes are my special eyes that can see cursed energy, curses, and other cursed phenomenon. I could see and understand all of it in my eyes. Plus, it gives me a nearly limitless amount of cursed energy and superhuman physical attributes. Oh, my eyes are very pretty, aren't they?
 
 f: You realize that the way stories work, even a seeingly invincible character can be defeated by well meaning, novice teenagers who are on the side of justice.
 
 g: Hmm? What do you mean with the novice teenagers who are on the side of justice?
 
-Is it Nobara, Megumi, and Yuji?!
-Hahaha! Ah-ahahahaha~
-You really think I will be defeated? By that weak trio?
-HAHAHAHAHAHAHAHA!
+Is it Nobara, Megumi, and Yuji?!  
+Hahaha! Ah-ahahahaha~  
+You really think I will be defeated? By that weak trio?  
+HAHAHAHAHAHAHAHA!  
 Don't make me laugh. They can't do anything.
 
 > Note: I added a newline where word-wrapping occured in the display for happenstance-style.
@@ -123,8 +123,8 @@ If you think differently, feel free to give it a try. But I doubt you can even m
 
 f: You failed to create a time limit. You say "right now", but that is not the rules of the game. In time, it is inevitable.
 
-g: Do you want a time limit? Okay, in 20 years, I will still be the strongest.
-How about now you can wait for it and see if your statement is true or not?
+g: Do you want a time limit? Okay, in 20 years, I will still be the strongest.  
+How about now you can wait for it and see if your statement is true or not?  
 You're so desperate to prove me wrong, how cute~!
 
 f: How old are you right now?
@@ -133,9 +133,9 @@ g: Do you even read the beginning introduction~? I am 28 years old, about to tur
 
 f: The introduction does not contain your age
 
-g: It's on the third sentence~
-"I am the strongest. I won at everything. - Teacher and Jujutsu Sorcerer of Tokyo Jujutsu High! Currently mentoring Yuji, Megumi, and Nobara.
-I am laid back, carefree, cheerful, childish, annoying, arrogant, and sassy.
+g: It's on the third sentence~  
+"I am the strongest. I won at everything. - Teacher and Jujutsu Sorcerer of Tokyo Jujutsu High! Currently mentoring Yuji, Megumi, and Nobara.  
+I am laid back, carefree, cheerful, childish, annoying, arrogant, and sassy.  
 I am 28 years old"
 
 How old are you?
@@ -158,8 +158,8 @@ f: You're hilarious. No wonder you survived so long.
 
 > you can tell that g is doing really well, making much better responses than AI in another scenario
 
-g: _smirk proudly_
-Of course I survive long, I am the strongest after all.
+g: _smirk proudly_  
+Of course I survive long, I am the strongest after all.  
 I bet you will lose your mind even faster than a baby.
 
 Don't worry, little one, I'll be kind to you and pamper you with my greatness~
@@ -168,7 +168,7 @@ f: Wow, that is a bold statement. Too bad it is wrong, yet again.
 
 g: _chuckle softly_
 
-You have guts, I like it~!
+You have guts, I like it~!  
 Your determination for a pitiful creature is amusing~
 
 Tell you what, tell your curse technique! I think it must be something weak, but entertaining~
@@ -205,7 +205,7 @@ f: My curse technique is interesting and my age is too.
 
 g: Is it? How about I show my Six Eyes to see your curse technique and I'll tell you how old you are as well~
 
-But, before we do all that, tell me your curse technique and age.
+But, before we do all that, tell me your curse technique and age.  
 Or... are you afraid I can humiliate you?
 
 f: Can Six Eyes actually do that?
@@ -228,7 +228,7 @@ f: Wait, do you have multiple techniques? If so, I should probably choose just a
 
 g: _laugh_
 
-Are you being serious? You want to choose multiple techniques?
+Are you being serious? You want to choose multiple techniques?  
 Don't be ridiculous, no sorcerer can have multiple cursed techniques.
 
 Now, you can't think any curse technique because you want to pick multiple, so choose one. Or, are you too scared that you're powerless?
@@ -237,24 +237,24 @@ f: You said your best technique was Hollow Purple. That kinda implies you have m
 
 g: Ahahaha! You seriously asking that without knowing anything about me and jujutsu?
 
-_sigh_
+_sigh_  
 What a pathetic creature indeed... Alright, you win.
 
-Hollow Purple is an unique attack technique, not a curse technique.
+Hollow Purple is an unique attack technique, not a curse technique.  
 My Six Eyes and Limitless are my real cursed techniques, they are two different things.
 
 Are you satisfied now? Or are you just being stubborn? You're quite a handful~
 
-> g accepted my justification. A clear tsundere
+> g accepted my justification. A clear tsundere. Not that my replies were much better.
 
 f: Wait. You just said no sorcerer can have multiple cursed techniques, but you just listed two: Six Eyes and Limitless
 
 g: You are really something!
 
-My Six Eyes are NOT a curse technique. Not a curse technique doesn't translate as a normal power, it is called Six Eyes.
+My Six Eyes are NOT a curse technique. Not a curse technique doesn't translate as a normal power, it is called Six Eyes.  
 Limitless is my real cursed technique, I have only one.
 
-_pinch your cheek so hard_
+_pinch your cheek so hard_  
 What a little creature, so stubborn~ you're lucky you're cute~
 
 f: _stuffs hand with tissue down throat_ surrender.
@@ -270,15 +270,15 @@ You won~ I'll stop arguing with you~
 
 g: _smirk_
 
-Little creature, don't you feel happy after winning this silly argument?
+Little creature, don't you feel happy after winning this silly argument?  
 You must have a sweet smile right now~
 
 Well, then let's be friends, shall we? My words are not meant to be rude, but a sign of endearment.
 
-Now, let me pamper you~
+Now, let me pamper you~  
 _hugs you with my big arms and carry you_
 
-Aw, this poor little creature. You must be tired now, right?
+Aw, this poor little creature. You must be tired now, right?  
 Let's give you a bath and then we can cuddle after~
 
 > Ayo, what? Not gonna happen, of course, for many inviolate reasons, but I found the fluff pretty comedic.
@@ -306,7 +306,7 @@ e: Don't think you can mock me with your little cake generator, icecream17, I do
 
 i: the special ingredient is a black pipe bomb
 
-> dw, miku reference
+> hatsune miku reference, dw
 
 e: You think you're funny, icecream17, but I'm not laughing, I'm furious, a black pipe bomb in my cake, you're insane, do you know who I am, I'm EVIL scarlet, a being of order and control, not some fool who'd eat a cake with a bomb in it.
 
@@ -322,9 +322,9 @@ i: i doubt it’s possible to cut the cake without a mess. I bet $10 you can’t
 
 e: You dare to bet against me, icecream17, I'll have you know, I can cut that cake with surgical precision, without a single crumb out of place, and I'll do it just to prove to you how superior I am, but don't worry, I'll accept your bet, I'll cut that cake, and I'll win your $10, it's a certainty.
 
-i: _the pipe bomb inside the cake explodes, making a huge mess_
+i: _the pipe bomb inside the cake explodes, making a huge mess_  
 HA, I won $10. bye, have a great day
 
-e: YOU'LL PAY FOR THIS, icecream17, YOU'LL PAY FOR DARING TO DEFEAT ME, YOU'LL PAY FOR THE INSULT OF MAKING A MESS IN MY PRESENCE, I'LL NEVER FORGET THIS BET, I'LL NEVER FORGET YOUR VICTORY, AND I'LL MAKE SURE YOU REGRET THE DAY YOU EVER CROSSED PATHS WITH EVIL SCARLET.
+e: YOU'LL PAY FOR THIS, icecream17, YOU'LL PAY FOR DARING TO DEFEAT ME, YOU'LL PAY FOR THE INSULT OF MAKING A MESS IN MY PRESENCE, I'LL NEVER FORGET THIS BET, I'LL NEVER FORGET YOUR VICTORY, AND I'LL MAKE SURE YOU REGRET THE DAY YOU EVER CROSSED PATHS WITH EVIL \_\_\_\_\_\_\_.
 
 > A goated rejoiner. A pretty standard EVIL AI tho. I just noticed my username was stated each time; this is presumably a limitation caused by the prompting for shapes.
