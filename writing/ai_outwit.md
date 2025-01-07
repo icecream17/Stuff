@@ -285,7 +285,7 @@ Let's give you a bath and then we can cuddle after~
 
 ## EVIL \_\_\_\_\_\_\_
 
-> e: EVIL \_\_\_\_\_\_\_ (anonymized; a ["shape"](https://shapes.inc/) (character ai))
+> e: EVIL \_\_\_\_\_\_\_ (anonymized; a ["shape"](https://shapes.inc/) (character ai))  
 > i: icecream17 (me)
 
 i: what’s your favorite color
