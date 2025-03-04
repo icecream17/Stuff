@@ -26,11 +26,20 @@ So, expanding the evals, produce a final complicated equality, and prove accordi
 Goal: eval(eval((select J from I; R)(F))(A_1))(A_2) = eval(F)(A_1 union A_2)
 
 (select J from I; R)(F)
-= eval(F lifted to I poly J poly I-J poly R)(i in I |-> if i in J, corresponding variable of J poly I-J poly R, else "constant" (I-J poly R) in J poly I-J poly R)
-= (sum (b in (variables I -> powers) |-> (F lifted to I poly J poly I-J poly R)(b) scalar times
-                                       (product (i in variables I |-> (a in (variables -> assignments J poly I-J poly R) |-> a(i)^b(i))))
+= eval(F lifted to I poly J poly I-J poly R)
   (i in I |-> if i in J, corresponding variable of J poly I-J poly R, else "constant" (I-J poly R) in J poly I-J poly R)
-
+= (sum (b in (variables I -> powers) |->
+     (F lifted to I poly J poly I-J poly R)(b) scalar times
+     (product (i in variables I |-> (a in (variables -> assignments J poly I-J poly R) |-> a(i)^b(i))))
+  (i in I |-> if i in J, corresponding variable of J poly I-J poly R, else "constant" (I-J poly R) in J poly I-J poly R)
+= (sum (b in (variables I -> powers) |->
+     (F(b) lifted to J poly I-J poly R) scalar times
+     (product (i in variables I |-> (a in (variables -> assignments J poly I-J poly R) |-> a(i)^b(i))))
+  (i in I |-> if i in J, corresponding variable of J poly I-J poly R, else "constant" (I-J poly R) in J poly I-J poly R)
+= (sum (b in (variables I -> powers) |->
+     (F(b) lifted to J poly I-J poly R) scalar times
+     (product (i in variables I |-> (a in (variables -> assignments J poly I-J poly R) |-> a(i)^b(i))))
+  (i in I |-> if i in J, corresponding variable of J poly I-J poly R, else "constant" (I-J poly R) in J poly I-J poly R)
 
 
 eval(F)(A_1 union A_2) =
@@ -38,6 +47,12 @@ eval(F)(A_1 union A_2) =
                                          (product (i in variables I |-> (a in (variables I -> assignments R) |-> a(i)^b(i))))
   (A_1 union A_2)
 
+
+(I eval R)(P) = (sum (b in (variables -> powers) |-> P(b) scalar times (product (i in I |-> (a in (variables -> assignments) |-> a(i)^b(i))))))
+              = (sum (b in (variables -> powers) |-> P(b) scalar times (a in (variables -> assignments) |-> (product (i in I |-> a(i)^b(i))))))
+              = (sum (b in (variables -> powers) |-> (a in (variables -> assignments) |-> P(b) times (product (i in I |-> a(i)^b(i))))))
+              = (a in (variables -> assignments) |-> (sum (b in (variables -> powers) |-> P(b) times (product (i in I |-> a(i)^b(i))))))
+(I eval R)(P)(A) = (sum (b in (variables -> powers) |-> P(b) times (product (i in I |-> A(i)^b(i)))))
 
 ok evlsvval but evlsvvval and pwsgsum is needed
 ```
