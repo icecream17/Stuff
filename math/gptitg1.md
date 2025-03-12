@@ -1,3 +1,5 @@
+> GPT's solution to an integral from an integral bee
+
 Let
 $$I = \int_1^{2025} \frac{dx}{\sqrt{\lceil x-1 \rceil} + \sqrt{\lfloor x+1 \rfloor}}$$
 
