@@ -4,8 +4,8 @@ $$I = \int_1^{2025} \frac{dx}{\sqrt{\lceil x-1 \rceil} + \sqrt{\lfloor x+1 \rflo
 Step 1: Simplify the Ceiling and Floor Functions
 
 For $x \in [n, n+1)$ where $n$ is an integer:
-	•	$\lceil x-1 \rceil = n$
-	•	$\lfloor x+1 \rfloor = n+1$
+- $\lceil x-1 \rceil = n$
+- $\lfloor x+1 \rfloor = n+1$
 
 Thus, the integral splits into sums over integer intervals:
 
