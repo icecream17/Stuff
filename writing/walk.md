@@ -12,7 +12,7 @@ $$\sum \vec{F} = m \vec{a}$$
 
 ## Acceleration
 
-If you already have speed, by default you keep that speed (until friction or some other obstacle).
+If you already have speed, you will keep that speed until friction or some other obstacle interferes.
 
 So, force is only theoretically needed if you need to accelerate: speed up or slow down.
 
@@ -21,11 +21,11 @@ Well, your legs have to move up and down in circles to maintain speed or stand u
 This equation is symmetric for either speeding up or slowing down. So both would take the same theoretical force.
 In real life, it's much easier to slow down because friction and other stationary objects, again a topic for later.
 
-Earth exerts a gravitation force which is a relative negative vertical acceleration of g=9.8 meters per second squared.
+Earth exerts a gravitational force which is a relative negative vertical acceleration of g=9.8 meters per second squared.
 (Plagiarized from Wikipedia: <https://en.wikipedia.org/w/index.php?title=High-g_training&oldid=1235330437>) An untrained
 individual usually black out (a complete loss of vision while still remaining consciousness, in contrast to a g-induced
 loss of consciousness due to movement of blood away from the brain - consequently acceleration perpendicular to the spine
-is much easier to withstand) between 4 and 6g, while rollar coasters typical do not expose the occupants to much more than
+is much easier to withstand) between 4 and 6g, while roller coasters typical do not expose the occupants to much more than
 3g.
 
 ## Relativistic effects
@@ -57,7 +57,7 @@ So the total force is the rate of change of momentum.
 
 ## Impulse
 
-Impulse is defined as a change in momentum. If a ball bounces off a wall, the wall hath imparted impulse on the ball.
+Impulse is defined as a change in momentum. If a ball bounces off a wall, the wall imparts impulse on the ball.
 
 By equal and opposite reaction, when you push a wall (and the wall just stays still because it's massive), what seems
 to happen is that you get pushed away from the wall. That is, you pushes the wall, the wall pushed you back.
@@ -70,7 +70,7 @@ Alternatively you can pull a rope. Maybe you are walking on roller blades on a p
 are holding a rope. If the friend stands still like a wall, you can pull yourself forward towards your friend. Does
 roller blading count as walking? Hmm.
 
-For example, say you reflect your movement by bouncing on the bouncy castle wall or something. The impulse is:
+For example, say you reflect your movement by bouncing on a bouncy castle wall or something. The impulse is:
 
 $$\vec{J} = \Delta \vec{p} = \vec{p}_f - \vec{p}_i = {-m\vec{f}} - m\vec{f} = {-2m\vec{f}} = {-2\vec{p}_i}$$
 
@@ -90,11 +90,11 @@ Let $\vec{n}$ be the normal force: you don't go through a surface but along the 
 surface is cancelled by normal force. This cancellation depends on how much forces would tend to go through the surface,
 so normal force is directed perpendicularly away from the surface.
 
-We have $\vec{f} = \mu \vec{n}$: friction is the friction coefficent of the surface times normal force. 
+We have $\vec{f} = \mu \vec{n}$: friction is the friction coefficient of the surface times normal force. 
 
-So, imagine you are sliding against the bouncy castle wall. Two scenarios: in both you walk forward but in the second
-someone else is pushing you into the wall. In the second one, there is more friction, even though you slide against
-the wall the same distance for both.
+So, imagine you are sliding against a snow wall. Two scenarios: in both you walk forward but in the second someone else
+is pushing you into the wall. In the second one, there is more friction, even though you slide against the wall the same
+distance for both.
 
 ## Roundness, friction, and acceleration
 
@@ -105,8 +105,8 @@ rolling cube, instead of just sliding against the ground like the sphere.
 
 It is well known that rolling decreases friction against the ground damage. In turn, it preserves acceleration a bit
 better. Humans cannot withstand too high accelerations, so this is another helpful thing about rolling. You might say
-that rolling is not walking, so imagine multiple frontflips in a row instead, which is basically walking but someone
-is spinning you around in between, or putting on low-friction spherical shoes in midair.
+that rolling is not walking, so imagine multiple frontflips in a row instead, which is basically walking but spinning
+around in between, or putting on low-friction spherical shoes in midair, or walking inside a sphere.
 
 Another way to reduce acceleration safely is soft collision with snow, leaves, or feathers. Alternatively, if you are
 walking on an extremely downhill slope, a parachute could be helpful to use the air to reduce acceleration. The steps
@@ -130,6 +130,34 @@ about your right foot (moving forwards) than rotating about your left foot (movi
 People typically move forwards instead of backwards for various reasons like being able to see forwards and your knees
 bending in a way that more efficiently prefers going forwards.
 
-Most people including me do not have such intuition about spinning when moving forwards, so without knowing that with
-constant speed you should move in a circle, the attempted movement will probably be more like a 2D imprint of a helix
+Most people, including me, do not have such intuition about spinning when moving forwards. Without knowing that with
+constant speed, you should move in a circle, the attempted movement will probably be more like a 2D imprint of a helix
 (DNA shape viewed at a certain angle) where at some points you turn faster and at others you move forward faster.
+
+## Gravity
+
+It is usually much easier to move down than up, since gravity constantly moves you down for free. The more down the direction
+you are going, the better.
+
+There are edge cases. Elevators usually move at the same speed up and down, this exception generalizes. If the slope downwards
+is so high you risk falling and injuring yourself, the time spent being careful not to fall would slow you down compared to a
+less severe slope.
+
+## Earthquake
+
+In this highly contrived and highly inadvisable scenario, you are walking instead of taking safe shelter during an earthquake.
+This is another instance of friction impeding your intended motion [(joke)](#friction), since tremors of the ground are usually
+unpredictable and your feet can be pulled out from under you by friction, (or more likely you stumble as the ground shifts and
+your foot suddenly is slightly not where you expect it) causing you to stumble and/or fall.
+
+## Speed
+
+It takes more energy to maintain higher speeds than lower speeds. Fast walking is inefficient compared to jogging or running.
+
+Running or jogging consumes more energy than walking over time since there is more stress on the body, but [for most people there
+is not much total difference if you move the same amount of distance.](https://www.betterhealth.vic.gov.au/health/healthyliving/walking-for-good-health)
+
+## Health
+
+Walking, like any exercise, [greatly positively impacts health in several](https://www.betterhealth.vic.gov.au/health/healthyliving/walking-for-good-health)
+if not dozens of ways, and good physical health makes walking easier by definition of health.
