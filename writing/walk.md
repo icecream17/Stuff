@@ -103,7 +103,7 @@ rolling compared to a cube rolling, the edge of the cube tries to rotate into th
 the ground and not into it. So, in order to stop quicker, plant your feet into the ground like the edge of a backwards
 rolling cube, instead of just sliding against the ground like the sphere.
 
-It is well known that rolling decreases friction against the ground damage. In turn, it preserves acceleration a bit
+It is well known that rolling decreases (friction-against-the-ground)-damage. In turn, it preserves acceleration a bit
 better. Humans cannot withstand too high accelerations, so this is another helpful thing about rolling. You might say
 that rolling is not walking, so imagine multiple frontflips in a row instead, which is basically walking but spinning
 around in between, or putting on low-friction spherical shoes in midair, or walking inside a sphere.
