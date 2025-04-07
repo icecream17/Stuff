@@ -21,14 +21,26 @@ Well, your legs have to move up and down in circles to maintain speed or stand u
 This equation is symmetric for either speeding up or slowing down. So both would take the same theoretical force.
 In real life, it's much easier to slow down because friction and other stationary objects, again a topic for later.
 
+Earth exerts a gravitation force which is a relative negative vertical acceleration of g=9.8 meters per second squared.
+(Plagiarized from Wikipedia: <https://en.wikipedia.org/w/index.php?title=High-g_training&oldid=1235330437>) An untrained
+individual usually black out (a complete loss of vision while still remaining consciousness, in contrast to a g-induced
+loss of consciousness due to movement of blood away from the brain - consequently acceleration perpendicular to the spine
+is much easier to withstand) between 4 and 6g, while rollar coasters typical do not expose the occupants to much more than
+3g.
+
+## Relativistic effects
+
+It is highly unlikely for relativistic effects to be noticeable regarding walking, but it is technically possible for humans
+be at that speed by having a low amount of acceleration for a very long time.
+
 ## Mass
 
 If you are carrying something or even wearing slightly weighty clothes that will increase mass and require more
-force.
+force by [Newton's second law](#newtons-second-law)
 
 ## Momentum
 
-Substituting definition of acceleration (derivative of velocity wrt time:)
+Substituting the definition of acceleration (derivative of velocity wrt time) in [Newton's second law](#newtons-second-law):
 
 $$\sum \vec{F} = m \frac{\mathrm{d}\vec{v}}{\mathrm{d}t}$$
 
@@ -99,3 +111,25 @@ is spinning you around in between, or putting on low-friction spherical shoes in
 Another way to reduce acceleration safely is soft collision with snow, leaves, or feathers. Alternatively, if you are
 walking on an extremely downhill slope, a parachute could be helpful to use the air to reduce acceleration. The steps
 would look more like jumps but the motion is still the same, really.
+
+## Spinning and moving forwards
+
+Imagine you are walking and spinning at the same time. Why? Because it's fun, but more important is that if your
+non-angular speed is constant throughout, you will move in a circle. Spin slowly enough relative to forward speed and
+that circle looks more like an arc in the short term, i.e. it is more like turning, which is much more common since people
+usually focus on what's in front of them instead of rapidly partaking fractions of a second of visual information. Also,
+(AI: spinning moves the fluid in your inner ear's vestibular system rapidly, which signals to the brain that you are
+moving. When you stop spinning, the fluid continues moving, creating a mismatch between what your brain expects and what
+it senses, leading to dizziness and a feeling of being spun in the opposite direction). ((I like how due to Google's
+botched quality of results the AI weighs equally some more extreme cases ranging from Neck Pain and Rhabdomyolysis and
+Kidney Damage to Relativistic Effects)).
+
+Consequently, to turn, you rotate about the vertical axis. And, for instance, turning right is typically done by rotating
+about your right foot (moving forwards) than rotating about your left foot (moving backwards).
+
+People typically move forwards instead of backwards for various reasons like being able to see forwards and your knees
+bending in a way that more efficiently prefers going forwards.
+
+Most people including me do not have such intuition about spinning when moving forwards, so without knowing that with
+constant speed you should move in a circle, the attempted movement will probably be more like a 2D imprint of a helix
+(DNA shape viewed at a certain angle) where at some points you turn faster and at others you move forward faster.
