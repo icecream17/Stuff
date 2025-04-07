@@ -117,7 +117,8 @@ would look more like jumps but the motion is still the same, really.
 Imagine you are walking and spinning at the same time. Why? Because it's fun, but more important is that if your
 non-angular speed is constant throughout, you will move in a circle. Spin slowly enough relative to forward speed and
 that circle looks more like an arc in the short term, i.e. it is more like turning, which is much more common since people
-usually focus on what's in front of them instead of rapidly partaking fractions of a second of visual information. Also,
+usually focus on what's in front of them instead of rapidly partaking fractions of a second of visual information in multiple
+different directions. Also,
 (AI: spinning moves the fluid in your inner ear's vestibular system rapidly, which signals to the brain that you are
 moving. When you stop spinning, the fluid continues moving, creating a mismatch between what your brain expects and what
 it senses, leading to dizziness and a feeling of being spun in the opposite direction). ((I like how due to Google's
