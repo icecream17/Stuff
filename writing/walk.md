@@ -23,7 +23,7 @@ In real life, it's much easier to slow down because friction and other stationar
 
 Earth exerts a gravitational force which is a relative negative vertical acceleration of g=9.8 meters per second squared.
 (Plagiarized from Wikipedia: <https://en.wikipedia.org/w/index.php?title=High-g_training&oldid=1235330437>) An untrained
-individual usually black out (a complete loss of vision while still remaining consciousness, in contrast to a g-induced
+individual usually blacks out (a complete loss of vision while still remaining consciousness, in contrast to a g-induced
 loss of consciousness due to movement of blood away from the brain - consequently acceleration perpendicular to the spine
 is much easier to withstand) between 4 and 6g, while roller coasters typical do not expose the occupants to much more than
 3g.
