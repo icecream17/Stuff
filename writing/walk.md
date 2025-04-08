@@ -126,7 +126,10 @@ botched quality of results the AI weighs equally some more extreme cases ranging
 Kidney Damage to Relativistic Effects)).
 
 Consequently, to turn, you rotate about the vertical axis. And, for instance, turning right is typically done by rotating
-about your right foot (moving forwards) than rotating about your left foot (moving backwards).
+about your right foot (moving forwards) than rotating about your left foot (moving backwards). Similar with rotating about
+your left foot to move forwards while turning left. To move forward, you don't rotate about both feet at the same time since
+the internal movement of turning both left and right would be extra energy and cancel. Instead, one foot is planted into the
+ground and your leg swings forward to take the next step. No turning involved.
 
 People typically move forwards instead of backwards for various reasons like being able to see forwards and your knees
 bending in a way that more efficiently prefers going forwards.
