@@ -165,3 +165,8 @@ is not much total difference if you move the same amount of distance.](https://w
 
 Walking, like any exercise, [greatly positively impacts health in several](https://www.betterhealth.vic.gov.au/health/healthyliving/walking-for-good-health)
 if not dozens of ways, and good physical health makes walking easier by definition of health.
+
+## Form and posture
+
+There is so much to say on this. I'll point to wikihow and [maine.gov How to Walk with Proper Form and Technique for Fitness](https://www.maine.gov/mdot/challengeme/topics/docs/2019/may/How-to-Walk-with-Proper-Form-and-Technique-for-Fitness.pdf)
+for now.
