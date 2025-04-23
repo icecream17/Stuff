@@ -10,6 +10,24 @@ By Newton's second law,
 
 $$\sum \vec{F} = m \vec{a}$$
 
+Where $\vec{F}$ is force, $\sum$ is the sum so $\sum \vec{F}$ is the total force, $m$ is mass, and $\vec{a}$ is acceleration.
+Arrows over variables indicate a variable is a vector: it is a numerical amount also associated with a direction.
+
+## Vector
+
+A vector is a magnitude and direction. For example, a rocket leaving Earth typically has a large upwards force vector of thrust
+overpowering a smaller downwards acceleration vector of gravity and a much smaller friction force.
+
+A vector can be visualized as an arrow. The sum of two vectors can simply be calculated by connecting the two arrows together.
+
+To verify intuition, consider an object being pushed by two equal and opposite forces. By intuition, the sum or net force
+is zero. Likewise when many arrows cancel out and end up back where it started, the net force is zero.
+
+A walking example: walking against the direction of a treadmill, some of your force is cancelled out by the opposite direction
+of the treadmill. Walking with the direction of the treadmill, or say an escalator, your movement combines with/is added on top
+of the treadmill or escalator's movement. And if for some reason a treadmill is going diagonally backwards and to the left while
+you move forwards, the sum direction is that some forwards and backwards movement cancels out and you also move left.
+
 ## Acceleration
 
 If you already have speed, you will keep that speed until friction or some other obstacle interferes.
@@ -160,6 +178,70 @@ It takes more energy to maintain higher speeds than lower speeds. Fast walking i
 
 Running or jogging consumes more energy than walking over time since there is more stress on the body, but [for most people there
 is not much total difference if you move the same amount of distance.](https://www.betterhealth.vic.gov.au/health/healthyliving/walking-for-good-health)
+
+## Laminar and turbulent flow
+
+Say you're in a river or the ocean and you're walking in the water. The water is rushing at you in some direction.
+
+In laminar flow, particles move parallel to each other, all smoothly flowing in one direction. This is efficient for flow.
+You can imagine one centimeter of water moving in one direction, and an adjacent centimeter of water also moving in that
+same direction. Then visualize layers of water, all moving in the same direction.
+
+In turbulent flow, the flow of particles are not in all the same direction. Necessarily there is some sideways
+(perpendicular to flow) movement of some particles.
+
+Two features of turbulent flow are:
+
++ Rotationality: Local spinning vortexes form
++ Dissipation: Energy is lost when liquid moves against a containing wall, and a calmer flow is more laminar. So,
+  turbulent flow dissipates away unless there's a continual source of energy
+
+Therefore, I will conclude that if you can somehow predict the turbulent flow, turbulent flow might
+be more efficient for spinning. But since spinning or turning is relatively rare compared to moving forward, it
+would be hard to find a situation where turbulent flow is more efficient, given the same rate of forward flow.
+
+However, as energy increases, it gets harder and harder to stay laminar. ((todo - expand))
+
+## Shear stress
+
+[Shear forces](https://en.wikipedia.org/wiki/Shear_force) are unalligned forces on different parts of an object. Note that
+one of those forces can just be in the form of keeping a part in place. Since humans are slightly stretchy there's definitely
+some math above my level that shows this is important.
+
+## Non-newtonian fluids
+
+Did you know: peanut butter is technically a liquid?
+
+It flows (very slowly) and takes the shape of its container. That seems to satisfy the definition of liquid from 
+<https://www.chem.purdue.edu/gchelp/liquids/character.html> (first `.edu` link from searching "liquid vs solid vs gas").
+In fact: it is a **non-Newtonian fluid**.
+
+A material is **non-Newtonian** when it $\mu$ is non-constant in Newton's law of viscosity:
+
+$$\tau = \mu \frac{\mathrm{d}u}{\mathrm{d}y}$$
+
+Did you know: dough is a solid? While it kinda flows and takes the shape of its container, it holds it shape in the sense
+that it bounces back after it is deformed.
+
+Here are the types of non-newtonian movement as given by GPT-4o:
+
+((todo: viscosity = resistance against flow = interal friction of layers))
+
++ Shear-thickening: Viscosity increases with stress (e.g., cornstarch in water).
+  + Oobleck famously acts like a solid with stress
++ Shear-thinning: Viscosity decreases with stress (e.g., ketchup, paint).
+  + Ketchup pours easier after shaking
++ Bingham plastics: Require a minimum yield stress to flow (e.g., toothpaste, mayonnaise).
+  + If you flick the toothpaste tube, a surprising amount of toothpaste comes out
++ Thixotropic: Viscosity decreases over time under constant stress (e.g., some clays).
++ Rheopectic: Viscosity increases over time under constant stress (e.g., printer ink).
+
+Orthogonal to these is ~~viscoplasticity~~ viscoelasticity: a deformation rearranges molecular structure but recovers to its
+original shape. Dough is considered a viscoelastic solid. In the duration of one stretch, dough becomes easier to manipulate,
+but dough becomes harder and less viscous over multiple kneads.
+
+Anyways, right now ((todo)) I only have one relation of walking to note: memory foam is also known as viscoelastic foam,
+since it can deform but bounce back. Which is useful in shoes.
 
 ## Health
 
