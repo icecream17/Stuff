@@ -1,0 +1,111 @@
+\documentclass[]{article}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{aligned-overset}
+\usepackage{booktabs}% better tables
+\usepackage[a4paper,
+            bindingoffset=0.2in,
+            left=1in,
+            right=1in,
+            top=0.5in,
+            bottom=1in,
+            footskip=.25in]{geometry}
+\usepackage{changepage}
+\usepackage{threeparttable}
+
+\title{Outline of psdmul}
+\author{Steven Nguyen (icecream17)}
+\begin{document}
+
+\maketitle
+
+\noindent{}We have
+\[
+    (FG)(B) = \sum_{b \le B} F(b) G(B-b) \tag{mul}\label{mul}
+\]
+\[
+    \frac{\partial F}{\partial X} = \left( k \mapsto \left(k(X) + 1\right) F(k+X) \right) \tag{psd}\label{psd}
+\]
+where $F$ and $G$ are multivariate polynomials (represented as functions from bags of variables to coefficients) and $X$ is a variable.
+
+\noindent{}\hrulefill
+
+\noindent{}We prove
+\[
+    \frac{\partial (FG)}{\partial X} = \left( \frac{\partial F}{\partial X} G \right) + \left( F \frac{\partial G}{\partial X} \right)
+\]
+from
+\[
+    \frac{\partial (FG)}{\partial X}(k) = \left( \frac{\partial F}{\partial X} G \right)\!\!(k) + \left( F \frac{\partial G}{\partial X} \right)\!\!(k) \tag{1 = 2 + 3}
+\]
+by expanding expressions 1, 2, and 3 as follows:
+
+\vspace{-1em}
+\begin{align*}
+\frac{\partial (FG)}{\partial X}(k)  &= (k(X) + 1) \, (FG)(k+X) \\
+&= (k(X) + 1) \sum_{b \le k+X} F(b) G((k+X)-b) \\
+&= \sum_{b \le k+X} (k(X) + 1) F(b) G((k+X)-b)  \tag{1}\label{1}
+\end{align*}
+\hrulefill
+
+\vspace{-1em}
+\begin{align*}
+\left( \frac{\partial F}{\partial X} G \right)\!\!(k)
+= \sum_{b \le k}& \left( \frac{\partial F}{\partial X} \right)\!\!(b) G(k-b) \\
+\underset{b = b' - X}{\longrightarrow} \sum_{X \le b' \le k+X}& \left( \frac{\partial F}{\partial X} \right)\!\!(b'-X) G(k-(b'-X)) \\
+= \sum_{X \le b' \le k+X}& ((b'-X)(X) + 1) F((b'-X)+X) G(k-(b'-X)) \\
+= \sum_{X \le b \le k+X}& b(X) F(b) G((k+X)-b)  \tag{2}\label{2}
+\end{align*}
+\hrulefill
+
+\vspace{-1em}
+\begin{align*}
+\left( F \frac{\partial G}{\partial X} \right)\!\!(k)
+&= \sum_{b \le k} F(b) \left( \frac{\partial G}{\partial X} \right)\!\!(k-b) \\
+&= \sum_{b \le k} F(b) ((k-b)(X) + 1) G((k-b)+X) \\
+&= \sum_{b \le k} ((k-b)(X) + 1) F(b) G((k-b)+X) \\
+&= \sum_{b \le k} ((k-b)(X) + 1) F(b) G((k+X)-b)  \tag{3}\label{3}
+\end{align*}
+\hrulefill
+
+Then we split each result, a sum, into summations over certain ranges, as shown in Table~\ref{table:sum}.
+
+\newgeometry{left=0.1in,right=0.1in}
+\begin{table}
+\centering
+\begin{threeparttable}
+\caption{Final step: 2 + 3 = 1}\label{table:sum}
+\begin{tabular}{lrrr}
+    \toprule
+    Reference & \multicolumn{1}{c}{$b < X$\tnote{*}} & \multicolumn{1}{c}{$X \le b \le k$} & \multicolumn{1}{c}{$k < b \le k+X$} \\
+    \midrule
+    \eqref{2} & & $b(X) F(b) G((k+X)-b)$ & $b(X) F(b) G((k+X)-b)$ \\
+    \eqref{3} & $((k-b)(X) + 1) F(b) G((k+X)-b)$ & $((k-b)(X) + 1) F(b) G((k+X)-b)$ & \\
+    \eqref{1} & $(k(X) + 1) F(b) G((k+X)-b)$ & $(k(X) + 1) F(b) G((k+X)-b)$ & $(k(X) + 1) F(b) G((k+X)-b)$ \\
+    \bottomrule
+\end{tabular}
+\begin{tablenotes}
+\item[*] bags without the variable $X$
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{adjustwidth}{3.9cm}{6.7cm}
+For the first column, \[ b < X \]
+
+means \[ b(X) = 0 \]
+
+, so \[ (k-b)(X) = k(X) - b(X) = k(X) \]
+
+.
+\end{adjustwidth}
+
+\begin{adjustwidth}{3.9cm}{6.7cm}
+For the last column, \[ k < b \le k+X \]
+
+implies \[ b(X) = (k+X)(X) = k(X) + 1 \]
+
+.
+\end{adjustwidth}
+
+\end{document}
