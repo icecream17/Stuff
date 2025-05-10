@@ -7,11 +7,13 @@
             bindingoffset=0.2in,
             left=1in,
             right=1in,
-            top=0.4in,
+            top=0.2in,
             bottom=1in,
             footskip=.25in]{geometry}
 \usepackage{changepage}
 \usepackage{threeparttable}
+\usepackage[colorlinks=true,linkcolor=blue]{hyperref}
+\usepackage{microtype}
 
 \title{Outline of psdmul}
 \author{Steven Nguyen (icecream17)}
@@ -21,12 +23,26 @@
 
 \noindent{}We have
 \[
-    (FG)(B) = \sum_{b \le B} F(b) G(B-b) \tag{mul}\label{mul}
+    (FG)(k) = \sum_{b \le k} F(b) G(k-b) \tag{mul}\label{mul}
 \]
 \[
     \frac{\partial F}{\partial X} = \left( k \mapsto \left(k(X) + 1\right) F(k+X) \right) \tag{psd}\label{psd}
 \]
-where $F$ and $G$ are multivariate polynomials (represented as functions from bags of variables to coefficients) and $X$ is a variable. A bag can be thought of as a set that may have duplicates, which is represented by mapping variables to nonnegative integers. $F(b)$ is the coefficient corresponding to a bag, and $k(X)$ is the amount of the variable $X$ in the bag. $b + k$ or $b - k$ is the sum or difference of two bags, whereas $b + X$ or $b - X$ adds or removes a variable to or from a bag.
+where $F$ and $G$ are multivariate polynomials (represented as functions from bags of variables to coefficients) and $X$ is a variable. A bag (aka multiset) can be thought of as a set that may have duplicates, which is represented by mapping variables to nonnegative integers.
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Expression & Meaning \\
+\midrule
+$F(b)$     & Coefficient corresponding to a bag \\
+$k(X)$     & Amount of variable $X$ in the bag \\
+$b + k$, $b - k$ & Sum or difference of two bags \\
+$b + X$, $b - X$ & Add or remove variable $X$ to/from a bag \\
+\bottomrule
+\end{tabular}
+\end{center}
+\setcounter{table}{1}
 
 \noindent{}\hrulefill
 
@@ -51,9 +67,9 @@ by expanding expressions 1, 2, and 3 as follows:
 \vspace{-1em}
 \begin{align*}
 \left( \frac{\partial F}{\partial X} G \right)\!\!(k)
-= \sum_{b \le k}& \left( \frac{\partial F}{\partial X} \right)\!\!(b) G(k-b) \\
-\underset{b = b' - X}{\longrightarrow} \sum_{X \le b' \le k+X}& \left( \frac{\partial F}{\partial X} \right)\!\!(b'-X) G(k-(b'-X)) \\
-= \sum_{X \le b' \le k+X}& ((b'-X)(X) + 1) F((b'-X)+X) G(k-(b'-X)) \\
+= \sum_{b' \le k}& \left( \frac{\partial F}{\partial X} \right)\!\!(b') G(k-b') \\
+\underset{b' = b - X}{\longrightarrow} \sum_{X \le b \le k+X}& \left( \frac{\partial F}{\partial X} \right)\!\!(b-X) G(k-(b-X)) \\
+= \sum_{X \le b \le k+X}& ((b-X)(X) + 1) F((b-X)+X) G(k-(b-X)) \\
 = \sum_{X \le b \le k+X}& b(X) F(b) G((k+X)-b)  \tag{2}\label{2}
 \end{align*}
 \hrulefill
@@ -68,9 +84,14 @@ by expanding expressions 1, 2, and 3 as follows:
 \end{align*}
 \hrulefill
 
+\newgeometry{left=0.1in,right=0.1in}
+
+\begin{adjustwidth}{1in}{1in}
 Then we split each result, a sum, into summations over certain ranges, as shown in Table~\ref{table:sum}.
 
-\newgeometry{left=0.1in,right=0.1in}
+Over each range, we have $2 + 3 = 1$:
+\end{adjustwidth}
+
 \begin{table}
 \centering
 \begin{threeparttable}
@@ -103,8 +124,16 @@ means \[ b(X) = 0 \]
 \begin{adjustwidth}{3.9cm}{6.7cm}
 For the last column, \[ k < b \le k+X \]
 
-implies \[ b(X) = (k+X)(X) = k(X) + 1 \]
+implies
 
+{\centering
+  $ \displaystyle
+    \begin{aligned}
+        b(X) &= (k+X)(X) \\
+             &= k(X) + 1
+    \end{aligned}
+  $
+\par}%Necessary for centering to work
 .
 \end{adjustwidth}
 
