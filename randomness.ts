@@ -23,8 +23,8 @@ const random = (() => {
  * and eventually get an integer!
  */
 function log2SomeInt(number: number): [numerator: number, denominator: number, power: number] {
-    if (number === NaN) {
-        throw TypeError('Got NaN')
+    if (Number.isNaN(number)) {
+        throw ValueError('NaN cannot be scaled to an integer')
     }
 
     if (number === 0 || !Number.isFinite(number)) {
@@ -42,7 +42,7 @@ function log2SomeInt(number: number): [numerator: number, denominator: number, p
         number *= 2
         return [number, 2 ** divisor, divisor]
     } else {
-        let denominator = 1
+        let denominator = 0
         while (!Number.isInteger(number)) {
             denominator++
             number *= 2
@@ -56,7 +56,7 @@ function log2SomeInt(number: number): [numerator: number, denominator: number, p
  * If you compare the results of my psuedo rng with Math.random(),
  * there's different results!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
  *
- * Math.random's distribution goes like this:
+ * Math.random's distribution goes like this: [39, 53]
  * #
  * ##
  * ####
@@ -65,7 +65,7 @@ function log2SomeInt(number: number): [numerator: number, denominator: number, p
  * ################################
  * ################################################################
  *
- * But this prng's distribution goes like this:
+ * But this prng's distribution goes like this: 24 [30, 53] Infinity
  * #
  * ##
  * ####
