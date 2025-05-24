@@ -1,5 +1,14 @@
 # False proofs of Fermat's Last Theorem
 
+## arxiv
+
++ https://arxiv.org/abs/math/0309005
+  p6: "The lengths of three borders of the triangle are respectively the lengths of the edges of three n-dimensional cubes"
+  is false. You prove earlier in the paper that the relevant angle must be less than 90deg, and start even earlier with the
+  **volumes** of the cubes not the edge lengths, so nothing in the paper could even imply this to be true.
+
+  Even if this was fixed, the document is so informal as to be quite incomprehensible.
+
 ## icecream17
 
 + https://github.com/icecream17/Stuff/blob/main/fltalmost.md
