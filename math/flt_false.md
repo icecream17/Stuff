@@ -7,7 +7,7 @@
   is false. You prove earlier in the paper that the relevant angle must be less than 90deg, and start even earlier with the
   **volumes** of the cubes not the edge lengths, so nothing in the paper could even imply this to be true.
 
-  Even if this was fixed, the document is so informal as to be quite incomprehensible.
+  Even if this was fixed, the proof is so informally presented without clear logical steps that it is quite incomprehensible.
 
 ## icecream17
 
