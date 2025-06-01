@@ -1,4 +1,4 @@
-$[ set.mm $] $( Part of https://github.com/xamidi/pmGenerator/discussions/2 $)
+$( Part of https://github.com/xamidi/pmGenerator/discussions/2 $)
 
 $(
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -10,48 +10,83 @@ $(
 
 $)
 
-$( Extra variables $)
-$( phi, psi, chi, theta, tau, eta, zeta, sigma, rho, mu, lamda, kappa $)
-$( alpha, beta, gamma, delta, epsilon $)
+$( setup $)
+$c ( $.
+$c ) $.
+$c -> $.
+$c -. $.
+$c wff $.
+$c |- $.
+$v ph $.
+$v ps $.
+$v ch $.
+$v th $.
+$v ta $.
+$v et $.
+$v ze $.
+$v si $.
+$v rh $.
+$v mu $.
+$v la $.
+$v ka $.
 $v al $.
 $v be $.
 $v ga $.
 $v de $.
 $v ep $.
-walp $f wff al $.
+wph $f wff ph $.
+wps $f wff ps $.
+wch $f wff ch $.
+wth $f wff th $.
+wta $f wff ta $.
+wet $f wff et $.
+wze $f wff ze $.
+wsi $f wff si $.
+wrh $f wff rh $.
+wmu $f wff mu $.
+wla $f wff la $.
+wka $f wff ka $.
+wal $f wff al $.
 wbe $f wff be $.
 wga $f wff ga $.
 wde $f wff de $.
 wep $f wff ep $.
 
-$( The first and second antecedents mean that ` ( ps -> ch ) ` by ~ mpi ,
+${
+  min $e |- ph $.
+  maj $e |- ( ph -> ps ) $.
+  ax-mp $a |- ps $.
+$}
+
+${
+  mp2.1 $e |- ph $.
+  mp2.2 $e |- ps $.
+  mp2.3 $e |- ( ph -> ( ps -> ch ) ) $.
+  $( A double modus ponens inference.  (Contributed by NM, 5-Apr-1994.) $)
+  mp2 $p |- ch $=
+    ( wi ax-mp ) BCEABCGDFHH $.
+$}
+
+${
+  mp2b.1 $e |- ph $.
+  mp2b.2 $e |- ( ph -> ps ) $.
+  mp2b.3 $e |- ( ps -> ch ) $.
+  $( A double modus ponens inference.  (Contributed by Mario Carneiro,
+     24-Jan-2013.) $)
+  mp2b $p |- ch $=
+    ( ax-mp ) BCABDEGFG $.
+$}
+
+
+
+
+
+
+$( The first and second antecedents mean that ` ( ps -> ch ) ` by mpi ,
    and the consequence simplifies to ` ( th -> ( ps -> ch ) ) ` . $)
 ax-w2 $a |- ( ph ->
    ( ( ps -> ( ph -> ch ) ) ->
        ( ( -. ch -> ( ( -. th -> et ) -> ps ) ) -> ( th -> ch ) ) ) ) $.
-
-$( Illustrate the comment of ~ ax-w2 .  (Contributed by SN, 10-Jun-2024.) $)
-ex-w2 $p |- (
-       ( ( -. ch -> ( ( -. th -> et ) -> ps ) ) -> ( th -> ch ) ) <->
-       ( th -> ( ps -> ch ) ) ) $=
-  ( wn wi bi2.04 pm2.621 pm2.67 impbii orcom imbi1i df-or 3bitrri pm2.24 imbi1d
-  wo id 2thd pm5.5 bitrd syl5bb pm5.74i bitri ) BECEDFZAFZFZCBFFCUGBFZFCABFZFUG
-  CBGCUHUIUHUFBFZCUIUJUFBQZBFZBUFQZBFUHUJULUFBHUFBIJUKUMBUFBKLUMUGBBUFMLNCUFABC
-  UFCAFACUECACUECCDOCRSPCATUAPUBUCUD $.
-
-${
-  mp3c.m $e |- ph $.
-  mp3c.1 $e |- ( ph -> ps ) $.
-  mp3c.2 $e |- ( ps -> ch ) $.
-  mp3c.3 $e |- ( ch -> th ) $.
-  mp3c $p |- th $=
-    ( ax-mp mp2b ) BCDABEFIGHJ $.
-
-  mp5e.4 $e |- ( th -> ta ) $.
-  mp5e.5 $e |- ( ta -> et ) $.
-  mp5e $p |- et $=
-    ( mp3c mp2b ) DEFABCDGHIJMKLN $.
-$}
 
 ${
   w2i.1 $e |- ph $.
