@@ -51,6 +51,8 @@ wbe $f wff be $.
 wga $f wff ga $.
 wde $f wff de $.
 wep $f wff ep $.
+wn $a wff -. ph $.
+wi $a wff ( ph -> ps ) $.
 
 ${
   min $e |- ph $.
