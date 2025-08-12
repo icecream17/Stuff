@@ -4,9 +4,9 @@ Empathy is feeling what other people feel, in contrast to sympathy which is an u
 
 For example, in a horror movie imagine a beach in the backyard of a haunted house, and you find a gravestone with your name on it and some ending date. You stare at it for a bit and someone suddenly throws very cold halfway melted ice cream at the back of your neck and it goes down your back like ice.
 
-Maybe reading this, you could feel cold, surprised, and a little frightened if scared or annoyed or amused if not. Now imagine I said this happened to someone else but you still shivered from the cold and felt it as if it were you – that would be empathy.
+Maybe reading this, you feel cold shivers, surprise, and/or other possibilities like a little fear, annoyance, or amusement. Now imagine I said this happened to someone else but you still shivered from the cold and felt it as if it were you – that would be empathy.
 
-But say you didn't really have that energy to feel what the other person is feeling, but you understand "oooh, that sucks". That's sympathy.
+But say you didn't really have that energy to feel what the other person is feeling, but you understand "yeah, that sucks". That's sympathy.
 
 ## Age & sorry
 
