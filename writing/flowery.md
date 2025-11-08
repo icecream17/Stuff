@@ -27,6 +27,6 @@ That is true, so it has been demonstrated here that both the quote and this anal
 So in conclusion, the author used padding to the genuine effect of characterization.
 In résumés, such language serves mainly to make things look better - after all, it shows a lot more effort than someone who put nothing.
 But here, extra effort has been put in to add one small nothing, and the result is a genuine effect of good.
-The reader feels justified in reading it all, even the small nothings; the millions of words in the series is all worth reading.
+The reader feels justified in reading it all, even the small nothings; the millions of words in the series are all worth reading.
 
 Genius. (Ok, not really, but I love this series. Of course, focusing so much on this line in particular heavily undersells the work.)
