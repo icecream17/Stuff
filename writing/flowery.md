@@ -16,7 +16,7 @@ The reliability of the prosecution is called into question. How could the prosec
 > “I really like that it stands out,” Angelica said. “It makes it hard to mistake it for anything else.”
 
 <details>
-This is used in the LN (light novel) to the direct and small effect of feature an aspect of Angelica's character shown many times before: she struggles with the scholarly side of things.
+This is used in the LN (light novel) to the direct and small effect of feature an aspect of Angelica's character shown many times before: she struggles with the scholarly side of things, but is earnest in her work (and in not working).
 The statement is not particularly insightful, and technically, even things that stand out could be confused with something else, specifically when the something else is something seen before that looks similar but is not currently in the picture.
 From the combination of premises in the previous sentence, it can be inferred that the reason such an occurence as stated in the above sentence does not happen because the item in question is mundane and simple.
 From this understanding, Angelica's conclusion seems equivalent to the initial observation, so it is natural to check whether it is indeed the case that the forwards and converse direction holds.
