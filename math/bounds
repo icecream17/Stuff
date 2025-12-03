@@ -1,0 +1,26 @@
+sum first three terms in e taylor series + irrationality shows:
+e > 5/2
+
+now we show e^e > (5/2)^(5/2) > 6
+
+ie
+(5/2) > 6^(2/5)
+
+(5/2)^2 = 25/4 > 6
+
+so
+5/2 > 6^(1/2) > 6^(2/5)
+
+qed
+
+ps
+(5/2)^5 = 3125/32 = 98 - 1/32
+
+(a - b)^2 = a^2 - 2ab + b^2 > a^2 - 2ab
+fit a^2 - 2ab to 98 - 1/32 and get
+a = 7sqrt(2)
+b = (1/32)/(14sqrt(2))
+
+So (5/2)^5 > (7sqrt(2) - 1/(32*14sqrt(2))^2
+
+This is probably enough for e^e > 9, but of course far from the true e^e > 15
