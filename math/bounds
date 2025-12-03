@@ -14,13 +14,13 @@ so
 qed
 
 ps
-(5/2)^5 = 3125/32 = 98 - 1/32
+(5/2)^5 = 3125/32 = 98 - 11/32
 
 (a - b)^2 = a^2 - 2ab + b^2 > a^2 - 2ab
 fit a^2 - 2ab to 98 - 1/32 and get
 a = 7sqrt(2)
-b = (1/32)/(14sqrt(2))
+b = (11/32)/(14sqrt(2))
 
-So (5/2)^5 > (7sqrt(2) - 1/(32*14sqrt(2))^2
+So (5/2)^5 > (7sqrt(2) - 11/(32*14sqrt(2))^2
 
 This is probably enough for e^e > 9, but of course far from the true e^e > 15
