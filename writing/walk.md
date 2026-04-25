@@ -251,7 +251,7 @@ since it can deform but bounce back. Which is useful in shoes.
 
 In order to walk, one first needs to know how to stand up.
 
-There are various positions you can start im.
+There are various positions you can start in.
 Of course, if there are obstacles or the ground is fragile, then that makes it even more complicated. But let's keep it simple for now.
 
 Say we are lying down. There are many different positions that count as lying down.
