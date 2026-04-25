@@ -48,8 +48,12 @@ is much easier to withstand) between 4 and 6g, while roller coasters typical do 
 
 ## Relativistic effects
 
-It is highly unlikely for relativistic effects to be noticeable regarding walking, but it is technically possible for humans
-be at that speed by having a low amount of acceleration for a very long time.
+While technically happening, it is highly unlikely for relativistic effects to be noticeable regarding walking.
+
+It is technically possible for humans
+to get to relativistically noticeable speeds by walking (applying a low amount of acceleration) for a very long time.
+
+For such a thing to happen there must be zero air resistance; in other words, one would have to be an astronaut in space. There is not a lot of ground to walk on in space. So for the foreseeable future, relativistic effects are relatively insignificant.
 
 ## Mass
 
@@ -242,6 +246,31 @@ but dough becomes harder and less viscous over multiple kneads.
 
 Anyways, right now ((todo)) I only have one relation of walking to note: memory foam is also known as viscoelastic foam,
 since it can deform but bounce back. Which is useful in shoes.
+
+## Standing up
+
+In order to walk, one first needs to know how to stand up.
+
+There are various positions you can start im.
+Of course, if there are obstacles or the ground is fragile, then that makes it even more complicated. But let's keep it simple for now.
+
+Say we are lying down. There are many different positions that count as lying down.
+
+One could be lying down on their stomach, or on their side, or lying face up. They could be curled up or not. The shoulders, arms, hands, and fingers have freedom of movement. One's head may be lifted a bit, resting on a pillow. One could be on a hill where the ground is sloped.
+
+The muscles are involved in complicated ways, but actually explaining them will be done later. For now, I give intuitive instructions. Let's assume we can be lying down on our back, side, or stomach.
+
+We will try to get into the lying on the back position. If you are lying on your side, "roll" or rotate your body 90 degrees so that one side of your body is above the other (left side over right or vice versa) by swinging your hip, leg, and shoulder in tandem. If you are lying on your stomach,  lift your chest a tiny bit (using arm push ground and core muscles) ((and lift your head too with neck muscles)) to fit your arms underneath, with elbows very bent. Now your arm is in a good position to do the same idea, but this time your arm doesn't swing but rather it pushes off the ground.
+
+Now you are lying on your back. Stretch your legs somewhat straight, then move both legs, curling up to the left and use them in tandem with your right shoulder, hips, and arm to have momentum and almost roll on your side. Your left arm should have been resting on your left and is now being squeezed a bit against the ground; push off with your left arm and move your whole body to rotate both upright and to the right ((lift head with neck muscles)). Finally, you may need a final push with your arms on the ground to the right to go from right leaning to centered and get additional upwards momentum. The overall movement should be swift and feel similar to a smooth roll.
+
+Congratulations, you are now sitting upright. Remember to engage whatever muscles are need to balance and not fall down again.
+
+Going from sitting to standing is currently an exercise to the reader.
+
+## Joints
+
+Your leg moves forward... by rotating around a joint. Of course, just moving that joint leaves you standing on one leg. Instead, the foot and knee of the grounded leg bends forward a bit as well, and your whole body leans forward a bit.
 
 ## Health
 
