@@ -1,6 +1,8 @@
 # Rich
 
-> Random thoughts
+> **Random thoughts**
+> These are random thoughts I had throughout my life; I am definitely **not** an expert.
+> Putting this into chatgpt, **experts would definitely modify this "essay" a great deal**.
 
 I think a more useful secondary definition to distinguish between rich people and poor people is that rich people know how to make money.
 (Alternatively, it is sufficient to have money and just know how to keep it, but I don't relate).
