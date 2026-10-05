@@ -26,7 +26,7 @@ so that basically explains kinda where the thought comes from, but chatgpt was t
    - this feels like a more precise question
 - experts who test themselves against the real world is highly trustworthy
    - my instinct to combine was correct, but the combination is asymmetric: it's not a 50/50 split
-   - someone who lives in their expertise long enough, treats their expertise as common sense inside their world. And they're kinda right, even though outside the world it can be very unintuitive.
+   - someone who lives in their expertise long enough, treats their expertise as common sense inside their world. And they're right to think of it that way.
 - "common sense" is just the name for a default model of the world (i.e. chatgpt definition 1). Realizing that, it loses its moral force and just becomes a description.
 
 While useful for anyone reading this, bringing in ai turned out to take too long for me personally. Since the thought was just random after all, so it's not particularly important.
