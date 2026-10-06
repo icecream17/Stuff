@@ -4,29 +4,17 @@ Preface
 **misc quotes**  
 Posted originally on the [Archive of Our Own](http://archiveofourown.org/) at [http://archiveofourown.org/works/64630690](http://archiveofourown.org/works/64630690).
 
-Rating:
+Rating: [General Audiences](http://archiveofourown.org/tags/General%20Audiences)
 
-[General Audiences](http://archiveofourown.org/tags/General%20Audiences)
+Archive Warning: [No Archive Warnings Apply](http://archiveofourown.org/tags/No%20Archive%20Warnings%20Apply)
 
-Archive Warning:
+Fandom: [Original Work](http://archiveofourown.org/tags/Original%20Work)
 
-[No Archive Warnings Apply](http://archiveofourown.org/tags/No%20Archive%20Warnings%20Apply)
+Additional Tags: [quotes](http://archiveofourown.org/tags/quotes)
 
-Fandom:
+Language: English
 
-[Original Work](http://archiveofourown.org/tags/Original%20Work)
-
-Additional Tags:
-
-[quotes](http://archiveofourown.org/tags/quotes)
-
-Language:
-
-English
-
-Stats:
-
-Published: 2025-04-12 Updated: 2025-07-12 Words: 1,667 Chapters: 6/? Deleted: 2025-08-30
+Stats: Published: 2025-04-12 Updated: 2025-07-12 Words: 1,667 Chapters: 6/? Deleted: 2025-08-30
 
 misc quotes
 ===========
@@ -172,6 +160,21 @@ After this point is content that was not published to AO3.
 
 At [Lichess > Lichess Feedback Forum "Color of new checkmate icon"](https://lichess.org/forum/lichess-feedback/colour-of-new-checkmate-icon) [(archive.org link)](https://web.archive.org/web/20261005015417/https://lichess.org/forum/lichess-feedback/colour-of-new-checkmate-icon)
 
+### Math
 
+This channel in general: <https://www.youtube.com/@zunda-theorem-en>
 
+Impossibility of Trisecting an Angle: [YouTube - 手描きまにも "Math girl witch trail"](https://www.youtube.com/watch?v=IbkLldZ_A4Y)
 
+> _Yuma read, her own voice ringing didactic in her head:_
+> 
+> > A metric space is a generalization of normal Euclidean space to an arbitrary set of objects. Such a space M must consist of a set of objects X and a distance metric d: X x X→ℝ defined for any two objects in the set, such that the following properties hold:
+> > 
+> > 1. d(x,y)=0 ⇔ x=y
+> > 1. d(x,y)=d(y,x)
+? > 1. d(x,z)≤d(x,y)+d(y,z)
+> >    \[Triangle Inequality]
+>
+> from [AO3 - Hieronym - To the Stars - Chapter 43](https://archiveofourown.org/works/777002/chapters/11228542)
+
+there's another youtube video showing a general power prime factorization irrationality argument todo find it
