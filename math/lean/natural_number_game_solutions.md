@@ -211,8 +211,7 @@ exact h
 
 ### 3
 ```
-apply h2 at h1
-exact h1
+exact h2 h1
 ```
 
 ### 4
@@ -246,8 +245,7 @@ exact h
 
 ### 8
 ```
-apply h2
-exact h1
+exact h2 h1
 ```
 
 ### 9
@@ -258,8 +256,7 @@ apply zero_ne_succ
 
 ### 10
 ```
-symm
-exact zero_ne_one
+exact zero_ne_one.symm
 ```
 
 ### 11
@@ -311,8 +308,7 @@ trivial
 ### 7
 ```
 contrapose! h
-apply succ_inj
-exact h
+exact succ_inj m n h
 ```
 
 ### 8
@@ -413,9 +409,7 @@ rfl
 ```
 induction n with d hd
 simp only [add_zero, pow_zero, mul_one]
-simp only [pow_succ, ← mul_assoc, add_succ]
-rw [hd]
-rfl
+simp only [pow_succ, ← mul_assoc, add_succ, hd]
 ```
 
 ### 7
@@ -470,8 +464,7 @@ simp only [ha, hb, add_assoc]
 ```
 cases hx with a ha
 apply add_right_eq_zero
-symm
-exact ha
+exact ha.symm
 ```
 
 ### 6
@@ -578,12 +571,11 @@ rfl
 
 ### 4
 ```
-simp [one_eq_succ_zero]
 apply eq_succ_of_ne_zero at ha
 cases ha with c
 rw [h]
 use c
-simp only [succ_add, zero_add]
+simp only [succ_eq_add_one, add_comm]
 ```
 
 ### 5
@@ -632,8 +624,7 @@ tauto
 ### 9
 ```
 induction b with d hd generalizing c
-contrapose! h
-rw [mul_zero]
+rw [mul_zero] at h
 have i := mul_ne_zero a c
 tauto
 cases c with e
