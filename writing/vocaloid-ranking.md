@@ -9,6 +9,8 @@ in kana order
 + 初音ミク Hatsune Miku
 + 結月ゆかり Yuzuki Yukari
 
+<sup>(Miku is undeniably better than Teto though)</sup>
+
 ## 「メルト」 Melt
 
 Hatsune Miku (ryo) vs **Otomachi Una** (kyaami)
