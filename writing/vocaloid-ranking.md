@@ -11,11 +11,14 @@ in kana order
 
 ## 「メルト」 Melt
 
-Hatsune Miku (ryo) vs Otomachi Una (kyaami)
+Hatsune Miku (ryo) vs **Otomachi Una** (kyaami)
 
 The original (by ryo) really feels like a song that changes history.
 
 Comparing the vocaloids themselves, the way Miku draws out words
 is sooo good. And sooo thematic with the song. And also Una's peaks are sooo good.
 
-Both are better than the other so I guess it's a tie?
+It looks like people prefer Una's more powerful voice here.
+
+I will note that other songs demonstrate that Miku's voice can have more body to it,
+so it's not a complete destruction.
