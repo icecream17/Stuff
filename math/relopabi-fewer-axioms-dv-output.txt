@@ -1,16 +1,16 @@
 [extra]
-ax6v: x y
-ax7v: x y
-ax7v1: x z
-ax7v2: y z
-ax8v: x y
-ax8v1: x z
-ax8v2: y z
-ax9v: x y
-ax9v1: x z
-ax9v2: y z
-ax12v: x y
-ax13v: x z, y z
+    (intentional) ax6v: x y
+    (intentional) ax7v: x y
+    (intentional) ax7v1: x z
+    (intentional) ax7v2: y z
+    (intentional) ax8v: x y
+    (intentional) ax8v1: x z
+    (intentional) ax8v2: y z
+    (intentional) ax9v: x y
+    (intentional) ax9v1: x z
+    (intentional) ax9v2: y z
+    (intentional) ax12v: x y
+    (intentional) ax13v: x z, y z
 ralimd4vOLD: A w, A z, B w, B z, w x, w y, x z, y z
 sbhypf: x y
 reuxfrd: C y
@@ -24,7 +24,7 @@ elriin: A x, X x
 riin0: A x
 disjord: V x
 disjiunb: B x, D x
-axsep: ph z
+    (intentional) axsep: ph z
 reusv1: A x
 axprglem: A x, B x
 rext: x y
