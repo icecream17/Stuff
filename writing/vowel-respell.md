@@ -29,20 +29,20 @@
 | /oʊ/ | oa | goat | goat |
 | /ʊ/ | u | cook | cuk |
 | /ʊr/ | ure | sure | shure |
-| /u/ | oo | goose | goose |
+| /u/ | oo | goose | goos |
 | /ʌ/ | u | strut | strut |
 | /ə/ | - | about | -bowt |
 | /ər/, /ɚ/, /ɝ/ | er | letter, bird | letter, berd |
 
 > note:
 > 
-> + /ʊ/ is super bad rn, need to figure smth out for it.
+> + /ʊ/ is super bad rn, need to figure smth out for it. Note that "oo" fails for "put". I'm a bit tempted to have it be something special like "~".
 > + "-" for /ə/ is a placeholder for now.
 > + "ee" is nice in some words, but kinda bad with "ing".
-> 
 
 Special rules:
 - "qu" as in /kw/ becomes "kw"
+- "s" as in "sure" or "pleasure" becomes "sh"
 
 | IPA | Spelling | Example | Respelling |
 |---|---|---|---|
@@ -66,7 +66,7 @@ Examples:
 - make → meik
 - kite → kight
 - home → hoam
-- about → -bout
+- about → -bowt
 
 ### Rule 2: Preserve existing consonant spellings
 
@@ -108,6 +108,14 @@ In particular:
 
 Existing consonants are still preserved unless another
 rule explicitly overrides them.
+
+#### 3b: sh
+
+The AI seems to put "sh" for words like "sure".
+
+This is invalid: "h" is not a hidden consonant, it's a transformation from the "s" sound to the single "sh" sound. But let's keep this change.
+
+And similarly let's have "sh" be the representation for the consonant of "pleasure" (voiced "sh").
 
 ### Rule 4: Special treatment of "qu"
 
@@ -269,9 +277,10 @@ Consonant reform may be introduced separately later.
 | beautiful | byootif-l | 4 |
 | curious | cyuree-s | 5 |
 | serious | sirree-s | 4 |
-| pleasure | pleser | 5* |
-| treasure | treser | 4* |
+| pleasure | plesher | 5 |
+| treasure | tresher | 4 |
 | ocean | oac-n | 5* |
+| asia | eish- | |
 | delicious | d-lic-s | 5* |
 | conscious | cawnsc-s | 5* |
 | wireless | wigherl-s | 4 |
