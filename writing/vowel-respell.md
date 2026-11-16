@@ -31,7 +31,7 @@
 | /ʊr/ | ure | sure | shure |
 | /u/ | oo | goose | goose |
 | /ʌ/ | u | strut | strut |
-| /ə/ | - | about | -bout |
+| /ə/ | - | about | -bowt |
 | /ər/, /ɚ/, /ɝ/ | er | letter, bird | letter, berd |
 
 > note:
