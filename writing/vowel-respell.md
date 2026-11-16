@@ -27,7 +27,7 @@
 | /ɔɪ/ | oi | choice | choic |
 | /ɔɪər/ | oyer | coyer | coyer |
 | /oʊ/ | oa | goat | goat |
-| /ʊ/ | u | cook | cuk |
+| /ʊ/ | uu | cook | cuuk |
 | /ʊr/ | ure | sure | shure |
 | /u/ | oo | goose | goos |
 | /ʌ/ | u | strut | strut |
@@ -36,7 +36,7 @@
 
 > note:
 > 
-> + /ʊ/ is super bad rn, need to figure smth out for it. Note that "oo" fails for "put". I'm a bit tempted to have it be something special like "~".
+> + For /ʊ/ there is both "put" and "book", so nothing standard works. I'm a bit tempted to have it be something special like "~".
 > + "-" for /ə/ is a placeholder for now.
 > + "ee" is nice in some words, but kinda bad with "ing".
 
@@ -205,18 +205,13 @@ to determine which mapping applies.
 The following phonemes have identical representations:
 
 - /ɑ/ and /ɔ/ → aw
-- /ʊ/ and /ʌ/ → u
-
-> Note: yeah, the second one is terrible
 
 This means the spelling system is not completely
 phonemically reversible.
 
 Examples:
 - hot → hawt
-- caught → cawt (in an accent with /ɔ/)
-- put → put
-- putt → put
+- caught → cawght
 
 ### Clarification: Stress is not explicitly marked
 
@@ -299,11 +294,11 @@ Consonant reform may be introduced separately later.
 | rural | rer-l | 4 |
 | mirror | mirrer | 2 |
 | squirrel | skwirr-l | 4 |
-| thoroughly | thur-lee | 3 |
+| thoroughly | thur-ghlee | 3 |
 | worcestershire | wurcstersher | 5 |
 | bureaucracy | byuroacr-cee | 5* |
 | miscellaneous | mis-lainee-s | 5 |
 | simultaneously | sighm-ltainee-slee | 5 |
-| particularly | pertiky-lerlee | 5 |
-| pronunciation | pr-nunsieit-n | 5* |
-| conscientious | cawnchee-ent-s | 5* |
+| particularly | perticy-lerlee | 5 |
+| pronunciation | pr-nuncieit-n | 5* |
+| conscientious | cawnscee-ent-s | 5* |
