@@ -9,8 +9,6 @@ in kana order
 + 初音ミク Hatsune Miku
 + 結月ゆかり Yuzuki Yukari
 
-<sup>(Miku is undeniably better than Teto though)</sup>
-
 ## 「メルト」 Melt
 
 Hatsune Miku (ryo) vs **Otomachi Una** (kyaami)
@@ -24,3 +22,8 @@ It looks like people prefer Una's more powerful voice here.
 
 I will note that other songs demonstrate that Miku's voice can have more body to it,
 so it's not a complete destruction.
+
+## ミラーミラー 'mirror mirror' by TAK
+
+Teto is better at clarity and pop than Miku.
+The instruments in this song convey Teto a bit better.
