@@ -78,6 +78,7 @@ Examples:
 - choice → choic (not chois)
 - cake → ceik (not keik)
 - palm → pawlm (silent l is preserved)
+- knight → knaight (not nait)
 
 Consonants are not systematically converted to phonetic
 spellings.
